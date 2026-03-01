@@ -1,0 +1,52 @@
+{
+  "apps": [
+    {
+      "id": "app-1",
+      "name": "Uygulama 1",
+      "tagline": "Kısa açıklama buraya",
+      "downloads": 12000,
+      "rating": 4.6,
+      "reviews_count": 532,
+      "play_url": "",
+      "appstore_url": "",
+      "privacy_url": "",
+      "in_app_reviews": [
+        { "user": "Mert", "rating": 5, "date": "2026-02-14", "text": "Çok iyi çalışıyor." },
+        { "user": "Elif", "rating": 4, "date": "2026-02-20", "text": "Genel olarak güzel." }
+      ],
+      "app_ads_txt": [
+        "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
+      ]
+    },
+    {
+      "id": "app-2",
+      "name": "Uygulama 2",
+      "tagline": "Kısa açıklama buraya",
+      "downloads": 5400,
+      "rating": 4.3,
+      "reviews_count": 211,
+      "play_url": "",
+      "appstore_url": "",
+      "privacy_url": "",
+      "in_app_reviews": [],
+      "app_ads_txt": [
+        "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
+      ]
+    },
+    {
+      "id": "app-3",
+      "name": "Uygulama 3",
+      "tagline": "Kısa açıklama buraya",
+      "downloads": 980,
+      "rating": 4.8,
+      "reviews_count": 44,
+      "play_url": "",
+      "appstore_url": "",
+      "privacy_url": "",
+      "in_app_reviews": [],
+      "app_ads_txt": [
+        "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
+      ]
+    }
+  ]
+}
