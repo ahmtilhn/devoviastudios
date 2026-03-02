@@ -7,7 +7,7 @@
       "downloads": 12000,
       "rating": 4.6,
       "reviews_count": 532,
-      "play_url": "",
+      "play_url": "privacy_url": "./privacy/app-1.html",
       "appstore_url": "",
       "privacy_url": "",
       "in_app_reviews": [
@@ -27,7 +27,7 @@
       "reviews_count": 211,
       "play_url": "",
       "appstore_url": "",
-      "privacy_url": "",
+      "privacy_url": "privacy_url": "./privacy/app-2.html",
       "in_app_reviews": [],
       "app_ads_txt": [
         "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
@@ -42,7 +42,7 @@
       "reviews_count": 44,
       "play_url": "",
       "appstore_url": "",
-      "privacy_url": "",
+      "privacy_url": "privacy_url": "./privacy/app-3.html",
       "in_app_reviews": [],
       "app_ads_txt": [
         "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
