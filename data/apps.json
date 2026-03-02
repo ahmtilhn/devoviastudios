@@ -2,50 +2,81 @@
   "apps": [
     {
       "id": "app-1",
-      "name": "Uygulama 1",
-      "tagline": "Kısa açıklama buraya",
-      "downloads": 12000,
-      "rating": 4.6,
-      "reviews_count": 532,
-      "play_url": "",
+      "package": "com.stockflow.inventory",
+      "name": "Stock Manager",
+      "tagline": "Karmaşık Excel’leri bırak — stok & depo takibini hızlıca yap.",
+      "short_desc": "Küçük ve orta ölçekli işletmeler için modern stok takip uygulaması. Barkod/QR, stok hareketleri, ürün fotoğrafları, filtreleme, offline kullanım.",
+      "long_desc": "Stock Manager (StockFlow Inventory), küçük/orta ölçekli işletmeler, mağazalar ve kişisel depolar için stok ve envanter yönetimini kolaylaştırmak üzere tasarlanmış modern bir uygulamadır. Barkod/QR tarama ile hızlı ürün bulma/ekleme, stok hareketlerini zaman çizelgesiyle izleme, ürünlere birden fazla fotoğraf ekleme, akıllı arama/filtreleme ve çoklu dil desteği sunar. Veriler cihaz üzerinde saklanır ve offline çalışabilir. Fatura ve tedarikçi takibi gibi özelliklerle düzenli bir stok operasyonu hedefler.",
+      "developer": "2A Bilişim",
+      "category": "Productivity",
+      "updated_on": "2026-01-22",
+      "downloads_text": "500+",
+      "rating": null,
+      "reviews_count": null,
+      "play_url": "https://play.google.com/store/apps/details?id=com.stockflow.inventory",
       "appstore_url": "",
+      "icon_url": "https://play-lh.googleusercontent.com/8TAsYVE7CdysNxOYj6oaXafUm7x7yB8uano70NvbLXj6yRkWn8Fh4NTrbABvrvFFNCdzVlna2JRxk5hxumKjLBM=w240-h480",
       "privacy_url": "./privacy/app-1.html",
-      "in_app_reviews": [
-        { "user": "Mert", "rating": 5, "date": "2026-02-14", "text": "Çok iyi çalışıyor." },
-        { "user": "Elif", "rating": 4, "date": "2026-02-20", "text": "Genel olarak güzel." }
-      ],
+      "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/SM-PP?authuser=0",
+      "app_ads_file_url": "./apps/app-1/app-ads.txt",
       "app_ads_txt": [
         "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
+      ],
+      "in_app_reviews": [
+        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-20", "text": "Stok giriş/çıkış takibi hızlı, barkod özelliği iyi." },
+        { "user": "Kullanıcı", "rating": 4, "date": "2026-02-22", "text": "Arama/filtreleme pratik, raporlar biraz daha gelişse harika." }
       ]
     },
     {
       "id": "app-2",
-      "name": "Uygulama 2",
-      "tagline": "Kısa açıklama buraya",
-      "downloads": 5400,
-      "rating": 4.3,
-      "reviews_count": 211,
-      "play_url": "",
+      "package": "com.a2.dailyhadith",
+      "name": "Daily Hadith",
+      "tagline": "Her gün güvenilir hadis, sakin bir okuma deneyimi.",
+      "short_desc": "Hadis oku/dinle, favorile, paylaş, günlük hatırlatıcı kur. Premium reklamları kaldırır.",
+      "long_desc": "Daily Hadith, doğrulanmış kaynaklardan günlük hadis sunmayı hedefleyen sade bir uygulamadır. Günün hadisini rastgele seçme, uygulama diliyle okuma, cihazın doğal sesleriyle dinleme (ton kontrolleriyle), favorilere ekleme, tek dokunuşla paylaşma ve günlük hatırlatıcı kurma gibi özellikler içerir. Arayüz minimal tasarlanmıştır; Premium sürüm reklamları kaldırır ve geliştirmeyi destekler.",
+      "developer": "2A Bilişim",
+      "category": "Books & Reference",
+      "updated_on": "2026-01-06",
+      "downloads_text": "100+",
+      "rating": null,
+      "reviews_count": null,
+      "play_url": "https://play.google.com/store/apps/details?id=com.a2.dailyhadith",
       "appstore_url": "",
+      "icon_url": "https://play-lh.googleusercontent.com/aplHKGnrHDFrTdD7P_uC1HSc6rCDHVGCefON1b-EjX-_z7kP8BtkecPmvsIzFC8f_yx1CesNSY5LX8Gsf2BU=w240-h480",
       "privacy_url": "./privacy/app-2.html",
-      "in_app_reviews": [],
+      "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/DH-PP?authuser=0",
+      "app_ads_file_url": "./apps/app-2/app-ads.txt",
       "app_ads_txt": [
         "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
+      ],
+      "in_app_reviews": [
+        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-18", "text": "Bildirimlerle düzenli okumaya başladım, arayüz çok temiz." }
       ]
     },
     {
       "id": "app-3",
-      "name": "Uygulama 3",
-      "tagline": "Kısa açıklama buraya",
-      "downloads": 980,
-      "rating": 4.8,
-      "reviews_count": 44,
-      "play_url": "",
+      "package": "com.tinysteps.app",
+      "name": "TinySteps",
+      "tagline": "Basit alışkanlık takibi: küçük adımlar, gerçek ilerleme.",
+      "short_desc": "Günlük alışkanlıklar, hatırlatıcılar, widget, streak & istatistik. Premium: sınırsız alışkanlık ve gelişmiş özellikler.",
+      "long_desc": "TinySteps; temiz, hızlı ve baskısız bir alışkanlık takip deneyimi sunmayı amaçlayan basit bir habit tracker’dır. Günlük / belirli günler / haftada X kez hedeflerle alışkanlık oluşturma, akıllı hatırlatıcılar, ana ekran widget’ı, streak ve tamamlanma istatistikleri, light/dark mode gibi özellikler içerir. Ücretsiz sürüm temel ihtiyaçlara odaklanırken Premium; sınırsız alışkanlık, gelişmiş istatistikler, yedekleme/dışa aktarma ve gelişmiş hatırlatıcıları açar.",
+      "developer": "Devovia Studio",
+      "category": "Productivity",
+      "updated_on": "2025-12-25",
+      "downloads_text": "10+",
+      "rating": null,
+      "reviews_count": null,
+      "play_url": "https://play.google.com/store/apps/details?id=com.tinysteps.app",
       "appstore_url": "",
+      "icon_url": "https://play-lh.googleusercontent.com/Eu69e8JyNN-WFGqFGsqDKda6ZUWDsk-_SSAVD0ypVrl_L0TDe86J9UTKRzemy_8QtL4-EpKTWuV16dOwOnSOIUc=w240-h480",
       "privacy_url": "./privacy/app-3.html",
-      "in_app_reviews": [],
+      "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/TS-PP?authuser=0",
+      "app_ads_file_url": "./apps/app-3/app-ads.txt",
       "app_ads_txt": [
         "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
+      ],
+      "in_app_reviews": [
+        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-10", "text": "Karmaşık değil, günlük takip için tam aradığım gibi." }
       ]
     }
   ]
