@@ -1,3 +1,1 @@
-# Devovia Studios app-ads.txt
-# Buradaki pub-... kısmını kendi publisher ID’lerinle değiştireceğiz.
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+google.com, pub-8422988604275177, DIRECT, f08c47fec0942fa0
