@@ -4,9 +4,9 @@
       "id": "app-1",
       "package": "com.stockflow.inventory",
       "name": "Stock Manager",
-      "tagline": "Karmaşık Excel’leri bırak — stok & depo takibini hızlıca yap.",
-      "short_desc": "Küçük ve orta ölçekli işletmeler için modern stok takip uygulaması. Barkod/QR, stok hareketleri, ürün fotoğrafları, filtreleme, offline kullanım.",
-      "long_desc": "Stock Manager (StockFlow Inventory), küçük/orta ölçekli işletmeler, mağazalar ve kişisel depolar için stok ve envanter yönetimini kolaylaştırmak üzere tasarlanmış modern bir uygulamadır. Barkod/QR tarama ile hızlı ürün bulma/ekleme, stok hareketlerini zaman çizelgesiyle izleme, ürünlere birden fazla fotoğraf ekleme, akıllı arama/filtreleme ve çoklu dil desteği sunar. Veriler cihaz üzerinde saklanır ve offline çalışabilir. Fatura ve tedarikçi takibi gibi özelliklerle düzenli bir stok operasyonu hedefler.",
+      "tagline": "Stok & depo takibini Excel’siz yönet.",
+      "short_desc": "Küçük/orta işletmeler için stok takibi: barkod/QR, stok hareket geçmişi, ürün fotoğrafları, arama/filtreleme, offline kullanım.",
+      "long_desc": "Stock Manager; küçük ve orta ölçekli işletmeler, mağazalar ve kişisel depolar için modern stok takip uygulamasıdır.\n\nÖne çıkanlar:\n- Modern arayüz\n- Barkod & QR tarama\n- Stok hareket zaman çizelgesi\n- Ürünlere çoklu fotoğraf\n- Akıllı arama & filtreleme\n- Çoklu dil desteği\n- Fatura & tedarikçi takibi\n- Veriler cihazda saklanır, offline çalışabilir",
       "developer": "2A Bilişim",
       "category": "Productivity",
       "updated_on": "2026-01-22",
@@ -14,26 +14,22 @@
       "rating": null,
       "reviews_count": null,
       "play_url": "https://play.google.com/store/apps/details?id=com.stockflow.inventory",
-      "appstore_url": "",
       "icon_url": "https://play-lh.googleusercontent.com/8TAsYVE7CdysNxOYj6oaXafUm7x7yB8uano70NvbLXj6yRkWn8Fh4NTrbABvrvFFNCdzVlna2JRxk5hxumKjLBM=w240-h480",
       "privacy_url": "./privacy/app-1.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/SM-PP?authuser=0",
       "app_ads_file_url": "./apps/app-1/app-ads.txt",
-      "app_ads_txt": [
-        "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
-      ],
       "in_app_reviews": [
         { "user": "Kullanıcı", "rating": 5, "date": "2026-02-20", "text": "Stok giriş/çıkış takibi hızlı, barkod özelliği iyi." },
-        { "user": "Kullanıcı", "rating": 4, "date": "2026-02-22", "text": "Arama/filtreleme pratik, raporlar biraz daha gelişse harika." }
+        { "user": "Kullanıcı", "rating": 4, "date": "2026-02-22", "text": "Arama/filtreleme pratik." }
       ]
     },
     {
       "id": "app-2",
       "package": "com.a2.dailyhadith",
       "name": "Daily Hadith",
-      "tagline": "Her gün güvenilir hadis, sakin bir okuma deneyimi.",
-      "short_desc": "Hadis oku/dinle, favorile, paylaş, günlük hatırlatıcı kur. Premium reklamları kaldırır.",
-      "long_desc": "Daily Hadith, doğrulanmış kaynaklardan günlük hadis sunmayı hedefleyen sade bir uygulamadır. Günün hadisini rastgele seçme, uygulama diliyle okuma, cihazın doğal sesleriyle dinleme (ton kontrolleriyle), favorilere ekleme, tek dokunuşla paylaşma ve günlük hatırlatıcı kurma gibi özellikler içerir. Arayüz minimal tasarlanmıştır; Premium sürüm reklamları kaldırır ve geliştirmeyi destekler.",
+      "tagline": "Her gün hadis — temiz, sakin arayüz.",
+      "short_desc": "Doğrulanmış kaynaklardan günlük hadis: oku, dinle, favorile, paylaş, hatırlatıcı kur. Premium reklamları kaldırır.",
+      "long_desc": "Daily Hadith; güvenilir kaynaklardan günlük hadis sunmayı hedefleyen sade bir uygulamadır.\n\nÖne çıkanlar:\n- Günün hadisi (random)\n- Uygulama dilinde okuma\n- Cihaz sesleriyle dinleme\n- Favoriler\n- Tek dokunuşla paylaşım\n- Günlük hatırlatıcı\n- Minimal arayüz\n- Premium: reklamları kaldırır",
       "developer": "2A Bilişim",
       "category": "Books & Reference",
       "updated_on": "2026-01-06",
@@ -41,25 +37,21 @@
       "rating": null,
       "reviews_count": null,
       "play_url": "https://play.google.com/store/apps/details?id=com.a2.dailyhadith",
-      "appstore_url": "",
       "icon_url": "https://play-lh.googleusercontent.com/aplHKGnrHDFrTdD7P_uC1HSc6rCDHVGCefON1b-EjX-_z7kP8BtkecPmvsIzFC8f_yx1CesNSY5LX8Gsf2BU=w240-h480",
       "privacy_url": "./privacy/app-2.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/DH-PP?authuser=0",
       "app_ads_file_url": "./apps/app-2/app-ads.txt",
-      "app_ads_txt": [
-        "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
-      ],
       "in_app_reviews": [
-        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-18", "text": "Bildirimlerle düzenli okumaya başladım, arayüz çok temiz." }
+        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-18", "text": "Bildirimlerle düzenli okumaya başladım, arayüz temiz." }
       ]
     },
     {
       "id": "app-3",
       "package": "com.tinysteps.app",
       "name": "TinySteps",
-      "tagline": "Basit alışkanlık takibi: küçük adımlar, gerçek ilerleme.",
+      "tagline": "Basit habit tracker: küçük adımlar.",
       "short_desc": "Günlük alışkanlıklar, hatırlatıcılar, widget, streak & istatistik. Premium: sınırsız alışkanlık ve gelişmiş özellikler.",
-      "long_desc": "TinySteps; temiz, hızlı ve baskısız bir alışkanlık takip deneyimi sunmayı amaçlayan basit bir habit tracker’dır. Günlük / belirli günler / haftada X kez hedeflerle alışkanlık oluşturma, akıllı hatırlatıcılar, ana ekran widget’ı, streak ve tamamlanma istatistikleri, light/dark mode gibi özellikler içerir. Ücretsiz sürüm temel ihtiyaçlara odaklanırken Premium; sınırsız alışkanlık, gelişmiş istatistikler, yedekleme/dışa aktarma ve gelişmiş hatırlatıcıları açar.",
+      "long_desc": "TinySteps; temiz, hızlı ve basit bir alışkanlık takip uygulamasıdır.\n\nÖne çıkanlar:\n- Günlük / belirli günler / haftada X hedef\n- Akıllı hatırlatıcılar (Premium: gün içinde farklı saatler)\n- Ana ekran widget’ı\n- Streak & istatistik\n- Light/Dark mode\n\nFree & Premium\n- Free: 5’e kadar alışkanlık, temel istatistikler\n- Premium: sınırsız alışkanlık, gelişmiş istatistik, backup/export, gelişmiş hatırlatıcılar",
       "developer": "Devovia Studio",
       "category": "Productivity",
       "updated_on": "2025-12-25",
@@ -67,16 +59,12 @@
       "rating": null,
       "reviews_count": null,
       "play_url": "https://play.google.com/store/apps/details?id=com.tinysteps.app",
-      "appstore_url": "",
       "icon_url": "https://play-lh.googleusercontent.com/Eu69e8JyNN-WFGqFGsqDKda6ZUWDsk-_SSAVD0ypVrl_L0TDe86J9UTKRzemy_8QtL4-EpKTWuV16dOwOnSOIUc=w240-h480",
       "privacy_url": "./privacy/app-3.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/TS-PP?authuser=0",
       "app_ads_file_url": "./apps/app-3/app-ads.txt",
-      "app_ads_txt": [
-        "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
-      ],
       "in_app_reviews": [
-        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-10", "text": "Karmaşık değil, günlük takip için tam aradığım gibi." }
+        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-10", "text": "Karmaşık değil, günlük takip için ideal." }
       ]
     }
   ]
