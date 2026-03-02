@@ -7,9 +7,9 @@
       "downloads": 12000,
       "rating": 4.6,
       "reviews_count": 532,
-      "play_url": "privacy_url": "./privacy/app-1.html",
+      "play_url": "",
       "appstore_url": "",
-      "privacy_url": "",
+      "privacy_url": "./privacy/app-1.html",
       "in_app_reviews": [
         { "user": "Mert", "rating": 5, "date": "2026-02-14", "text": "Çok iyi çalışıyor." },
         { "user": "Elif", "rating": 4, "date": "2026-02-20", "text": "Genel olarak güzel." }
@@ -27,7 +27,7 @@
       "reviews_count": 211,
       "play_url": "",
       "appstore_url": "",
-      "privacy_url": "privacy_url": "./privacy/app-2.html",
+      "privacy_url": "./privacy/app-2.html",
       "in_app_reviews": [],
       "app_ads_txt": [
         "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
@@ -42,7 +42,7 @@
       "reviews_count": 44,
       "play_url": "",
       "appstore_url": "",
-      "privacy_url": "privacy_url": "./privacy/app-3.html",
+      "privacy_url": "./privacy/app-3.html",
       "in_app_reviews": [],
       "app_ads_txt": [
         "google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0"
