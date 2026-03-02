@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uygulama 1 • Gizlilik Politikası</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+      <a class="brand" href="../">Devovia<span class="brand-dot">•</span>Studios</a>
+      <nav class="nav">
+        <a href="../#apps">Uygulamalar</a>
+        <a href="../privacy.html">Gizlilik</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="position:relative; z-index:1; padding: 26px 0 40px;">
+    <a class="btn" href="../app.html?id=app-1">← Uygulamaya dön</a>
+
+    <div class="card" style="margin-top:14px;">
+      <div class="card-kicker">Gizlilik Politikası</div>
+      <div class="card-title">Uygulama 1</div>
+      <div class="card-sub">
+        Burayı sonra gerçek metinle dolduracağız.
+        Şimdilik iskelet sayfa: veri toplama, üçüncü taraflar, saklama süresi, iletişim.
+      </div>
+
+      <div style="margin-top:14px; color: rgba(255,255,255,.78); line-height:1.7;">
+        <p><b>Toplanan veriler:</b> (örnek) cihaz bilgisi, uygulama içi olaylar.</p>
+        <p><b>Üçüncü taraflar:</b> (örnek) reklam sağlayıcıları.</p>
+        <p><b>İletişim:</b> (mail daha sonra)</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px;">
+      <div class="card-title">Bu uygulamanın app-ads.txt</div>
+      <div class="card-sub">
+        <a class="btn" href="../apps/app-1/app-ads.txt">apps/app-1/app-ads.txt dosyasını aç</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Devovia Studios</span>
+      <span class="muted">Built on GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
