@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Uygulama 1 • Gizlilik Politikası</title>
+  <title>TinySteps • Gizlilik</title>
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
@@ -12,7 +12,7 @@
   <div class="noise" aria-hidden="true"></div>
 
   <header class="topbar">
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+    <div class="container topbar-inner">
       <a class="brand" href="../">Devovia<span class="brand-dot">•</span>Studios</a>
       <nav class="nav">
         <a href="../#apps">Uygulamalar</a>
@@ -22,27 +22,31 @@
   </header>
 
   <main class="container" style="position:relative; z-index:1; padding: 26px 0 40px;">
-    <a class="btn" href="../app.html?id=app-1">← Uygulamaya dön</a>
+    <a class="btn" href="../app.html?id=app-3">← Uygulamaya dön</a>
 
     <div class="card" style="margin-top:14px;">
-      <div class="card-kicker">Gizlilik Politikası</div>
-      <div class="card-title">Uygulama 1</div>
+      <div class="card-kicker">Site içi özet</div>
+      <div class="card-title">TinySteps • Gizlilik Politikası</div>
       <div class="card-sub">
-        Burayı sonra gerçek metinle dolduracağız.
-        Şimdilik iskelet sayfa: veri toplama, üçüncü taraflar, saklama süresi, iletişim.
+        Bu sayfa kısa özet. Resmi metin:
+        <a class="btn" style="margin-left:8px;" target="_blank" rel="noreferrer"
+          href="https://sites.google.com/view/devoviastudio/privacy-policy/TS-PP?authuser=0">Official Privacy</a>
       </div>
 
-      <div style="margin-top:14px; color: rgba(255,255,255,.78); line-height:1.7;">
-        <p><b>Toplanan veriler:</b> (örnek) cihaz bilgisi, uygulama içi olaylar.</p>
-        <p><b>Üçüncü taraflar:</b> (örnek) reklam sağlayıcıları.</p>
-        <p><b>İletişim:</b> (mail daha sonra)</p>
-      </div>
-    </div>
+      <div class="divider"></div>
 
-    <div class="card" style="margin-top:14px;">
-      <div class="card-title">Bu uygulamanın app-ads.txt</div>
-      <div class="card-sub">
-        <a class="btn" href="../apps/app-1/app-ads.txt">apps/app-1/app-ads.txt dosyasını aç</a>
+      <div class="card-sub" style="white-space:pre-wrap;">
+Policy özeti (genel):
+- Teknik/cıhaz & kullanım verileri (performans, crash vb.) policy’de açıklanır
+- Veri saklama/silme ve kullanıcı hakları policy’de belirtilir
+
+Detaylar için resmi metni mutlaka referans al.
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="cta" style="margin:0;">
+        <a class="btn" href="../apps/app-3/app-ads.txt">Bu uygulama app-ads.txt</a>
       </div>
     </div>
   </main>
@@ -54,8 +58,6 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
