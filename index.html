@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Devovia Studios</title>
-  <meta name="description" content="Devovia Studios uygulamaları: açıklamalar, indirmeler, puanlar, yorumlar, gizlilik politikaları." />
+  <meta name="description" content="Devovia Studios uygulamaları: açıklamalar, indirmeler, puanlar, yorumlar, gizlilik politikaları, app-ads.txt." />
   <link rel="stylesheet" href="./styles.css" />
   <script defer src="./app.js"></script>
 </head>
@@ -15,12 +15,14 @@
   <div class="noise" aria-hidden="true"></div>
 
   <header class="topbar">
-    <a class="brand" href="./">Devovia<span class="brand-dot">•</span>Studios</a>
-    <nav class="nav">
-      <a href="#apps">Uygulamalar</a>
-      <a href="./privacy.html">Gizlilik</a>
-      <a href="#contact">İletişim</a>
-    </nav>
+    <div class="container topbar-inner">
+      <a class="brand" href="./">Devovia<span class="brand-dot">•</span>Studios</a>
+      <nav class="nav">
+        <a href="#apps">Uygulamalar</a>
+        <a href="./privacy.html">Gizlilik</a>
+        <a href="./app-ads.txt">app-ads.txt</a>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
@@ -33,13 +35,13 @@
           tanıtıyoruz.
         </h1>
         <p class="lead">
-          Açıklama, indirme sayısı, puanlar, yorumlar, uygulama içi yorumlar ve gizlilik politikası.
-          Yeni uygulama eklemek = sadece JSON’a 1 obje eklemek.
+          Açıklama, indirme sayısı, (varsa) puan & yorum sayısı, uygulama içi yorumlar, gizlilik politikası ve app-ads.txt.
+          Yeni uygulama eklemek = sadece <code>data/apps.json</code> içine 1 obje eklemek.
         </p>
 
         <div class="cta">
           <a class="btn primary" href="#apps">Uygulamaları gör</a>
-          <a class="btn" href="./app-ads.txt">app-ads.txt</a>
+          <a class="btn" href="./privacy.html">Gizlilik</a>
         </div>
 
         <div class="mini-stats" id="mini-stats" aria-label="Özet istatistikler"></div>
@@ -52,14 +54,15 @@
             <div class="card-title">Tüm uygulamalar</div>
             <div class="card-sub">Kartlara tıkla → uygulama sayfası</div>
             <div class="chips">
-              <span class="chip">Ratings</span>
+              <span class="chip">Icons</span>
               <span class="chip">Downloads</span>
               <span class="chip">Reviews</span>
               <span class="chip">Privacy</span>
+              <span class="chip">app-ads.txt</span>
             </div>
           </div>
           <div class="card">
-            <div class="card-kicker">Basit</div>
+            <div class="card-kicker">Basic</div>
             <div class="card-title">Framework yok</div>
             <div class="card-sub">Sadece HTML + CSS + JS</div>
           </div>
@@ -75,26 +78,26 @@
     <section id="apps" class="section">
       <div class="section-head">
         <h2>Uygulamalar</h2>
-        <p class="muted">Bu liste <code>data/apps.json</code> dosyasından otomatik geliyor.</p>
+        <p class="muted">Liste <code>data/apps.json</code> dosyasından otomatik geliyor.</p>
       </div>
       <div id="apps-grid" class="grid" aria-label="Uygulama listesi"></div>
     </section>
 
-    <section id="contact" class="section">
+    <section class="section">
       <div class="section-head">
         <h2>İletişim</h2>
-        <p class="muted">Şimdilik basit tuttum. İstersen burada form da ekleriz.</p>
+        <p class="muted">İstersen sonra form ekleriz.</p>
       </div>
 
       <div class="card contact-card">
         <div>
           <div class="card-title">Devovia Studios</div>
-          <div class="card-sub">Mail / sosyal linkleri sonra ekleriz.</div>
+          <div class="card-sub">GitHub Pages üzerinde hızlı, statik site.</div>
         </div>
         <div class="chips">
-          <span class="chip">GitHub Pages</span>
           <span class="chip">Static</span>
           <span class="chip">Fast</span>
+          <span class="chip">Simple</span>
         </div>
       </div>
     </section>
