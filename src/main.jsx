@@ -4,6 +4,6 @@ import App from './App.jsx';
 import './styles.css';
 import './product-hub.css';
 import './safety.css';
-import './explore.css';
+import './studio-motion.css';
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
