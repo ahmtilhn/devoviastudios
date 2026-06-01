@@ -8,7 +8,7 @@ const trustItems = ['8pt grid', 'Dynamic themes', 'Play Store data', 'Patch note
 const services = [
   ['Problem scan', 'We review test blockers, store readiness, policy links and release risks.'],
   ['Closed test flow', 'Tester guidance, feedback collection and 14-day process tracking.'],
-  ['Launch polish', 'Descriptions, screenshots, privacy pages and app-ads files are kept consistent.'],
+  ['Launch polish', 'Descriptions, screenshots, privacy pages and store compliance assets stay consistent.'],
   ['Post-release support', 'Patch notes, support routing and product updates stay visible after launch.'],
 ];
 
@@ -18,6 +18,10 @@ const updates = [
   ['05 May 2026', 'Daily Hadith stability update', 'Prayer alarm scheduling, notification permissions and resume sync were improved.'],
   ['25 Dec 2025', 'TinySteps performance update', 'Startup work, habit reads and statistics calculations were optimized.'],
 ];
+
+function appHref(app) {
+  return `/?app=${app.id}`;
+}
 
 function getFeatures(app) {
   return app.long_desc
@@ -75,18 +79,165 @@ function ProductDetail({ app, index }) {
           <span>Technical stack</span>
           <strong>{app.tech_stack}</strong>
         </div>
+        <div className="metric-row">
+          <span><strong>{app.downloads_text}</strong> downloads</span>
+          <span><strong>{app.rating_text}</strong> rating</span>
+          <span><strong>{app.reviews_text}</strong></span>
+        </div>
         <div className="actions">
           <a className="button primary" href={app.play_url} target="_blank" rel="noreferrer">Google Play</a>
+          <a className="button secondary" href={appHref(app)}>Details</a>
           <a className="button secondary" href={app.privacy_url}>Privacy</a>
-          <a className="button text" href={app.app_ads_file_url}>app-ads.txt</a>
         </div>
       </div>
     </article>
   );
 }
 
+function AppFeature({ app, feature, index }) {
+  const reverse = index % 2 === 1;
+  const image = app.screenshots[index % app.screenshots.length];
+
+  return (
+    <article className={`app-feature ${reverse ? 'reverse' : ''}`}>
+      <VisualPanel app={app} image={image} title={feature.title} />
+      <div className="feature-copy">
+        <span>{String(index + 1).padStart(2, '0')}</span>
+        <h2>{feature.title}</h2>
+        <p>{feature.description}</p>
+      </div>
+    </article>
+  );
+}
+
+function VisualPanel({ app, image, title }) {
+  return (
+    <div className="feature-image">
+      <img src={image} alt={`${app.name} - ${title}`} loading="lazy" />
+      <div className="visual-overlay">
+        <img src={app.icon_url} alt="" />
+        <span>{app.name}</span>
+        <strong>{title}</strong>
+      </div>
+    </div>
+  );
+}
+
+function AppPage({ app }) {
+  return (
+    <div className="site-shell app-page" style={{ '--theme': app.theme }}>
+      <header className="nav-shell">
+        <a className="brand" href="/" aria-label="Devovia Studio home">
+          <span className="brand-mark">D</span>
+          <span>Devovia</span>
+        </a>
+        <nav aria-label="Application navigation">
+          <a href="/">Home</a>
+          <a href="#features">Features</a>
+          <a href="#support">Support</a>
+        </nav>
+        <a className="button compact" href={app.play_url} target="_blank" rel="noreferrer">Google Play</a>
+      </header>
+
+      <main>
+        <section className="app-hero">
+          <div className="app-hero-copy">
+            <p className="eyebrow">{app.category} / updated {app.updated_on}</p>
+            <img src={app.icon_url} alt="" className="app-icon-large" />
+            <h1>{app.name}</h1>
+            <p className="hero-title">{app.tagline}</p>
+            <p className="hero-text">{app.short_desc}</p>
+            <div className="metric-panel">
+              <span><strong>{app.downloads_text}</strong> downloads</span>
+              <span><strong>{app.rating_text}</strong> Google Play rating</span>
+              <span><strong>{app.reviews_text}</strong></span>
+            </div>
+            <div className="actions">
+              <a className="button primary" href={app.play_url} target="_blank" rel="noreferrer">Download on Google Play</a>
+              <a className="button secondary" href={app.privacy_url}>Privacy policy</a>
+            </div>
+          </div>
+          <div className="app-hero-media">
+            <img src={app.screenshots[0]} alt={`${app.name} hero screenshot`} />
+            <div className="visual-overlay hero-overlay">
+              <img src={app.icon_url} alt="" />
+              <span>{app.name}</span>
+              <strong>{app.category} experience</strong>
+            </div>
+          </div>
+        </section>
+
+        <section className="section app-features" id="features">
+          <div className="section-heading">
+            <p className="eyebrow">Feature system</p>
+            <h2>Every feature gets a visual, a promise and a clear explanation.</h2>
+          </div>
+          {app.feature_details.map((feature, index) => (
+            <AppFeature app={app} feature={feature} index={index} key={feature.title} />
+          ))}
+        </section>
+
+        <section className="section app-meta-section">
+          <div>
+            <p className="eyebrow">Technical note</p>
+            <h2>{app.tech_stack}</h2>
+          </div>
+          <div className="note-card single-note">
+            <img src={app.icon_url} alt="" />
+            <div>
+              <span>Latest update</span>
+              <time>{app.updated_on}</time>
+            </div>
+            <ul>
+              {app.release_notes.map((note) => <li key={note}>{note}</li>)}
+            </ul>
+          </div>
+        </section>
+
+        <section className="section permissions-section">
+          <div>
+            <p className="eyebrow">Privacy & permissions</p>
+            <h2>Clear data handling before users install.</h2>
+          </div>
+          <div className="permission-list">
+            {app.privacy_points.map((point) => <p key={point}>{point}</p>)}
+            <div className="actions">
+              <a className="button secondary" href={app.privacy_url}>Privacy summary</a>
+              {app.terms_url && <a className="button text" href={app.terms_url} target="_blank" rel="noreferrer">Terms of Service</a>}
+            </div>
+          </div>
+        </section>
+
+        <section className="section contact-section" id="support">
+          <div className="contact-copy">
+            <p className="eyebrow">Support</p>
+            <h2>Need help with {app.name}?</h2>
+            <p>For account, privacy, billing, bug reports or feature requests.</p>
+            <a className="email-link" href={`mailto:info@devoviastudio.com?subject=${encodeURIComponent(`${app.name} support`)}`}>info@devoviastudio.com</a>
+          </div>
+
+          <form className="contact-form" action="mailto:info@devoviastudio.com" method="POST" encType="text/plain">
+            <label>Name<input name="name" type="text" placeholder="Your name" required /></label>
+            <label>Email<input name="email" type="email" placeholder="you@example.com" required /></label>
+            <label>Product<input name="product" type="text" value={app.name} readOnly /></label>
+            <label>Request<select name="service" defaultValue="App support"><option>App support</option><option>Privacy policy question</option><option>Bug report</option><option>Feature request</option></select></label>
+            <label className="full">Message<textarea name="message" rows="5" placeholder="Tell us what you need help with" required></textarea></label>
+            <button className="button primary full" type="submit">Send request</button>
+          </form>
+        </section>
+      </main>
+
+      <a className="mobile-cta" href="#support">Contact Devovia</a>
+    </div>
+  );
+}
+
 function App() {
   const featured = products[0];
+  const params = new URLSearchParams(window.location.search);
+  const currentApp = products.find((app) => app.id === params.get('app'));
+
+  if (currentApp) return <AppPage app={currentApp} />;
 
   return (
     <div className="site-shell">
@@ -215,19 +366,13 @@ function App() {
         <section className="section policy-section">
           <div>
             <p className="eyebrow">Navigation system</p>
-            <h2>Policies and app-ads files stay reachable from the main flow.</h2>
+            <h2>Privacy policies stay visible without exposing technical monetization files.</h2>
           </div>
           <div className="policy-grid">
             {products.map((app) => (
               <a className="policy-link" href={app.privacy_url} key={`${app.id}-privacy`}>
                 <img src={app.icon_url} alt="" />
                 <span>{app.name} Privacy</span>
-              </a>
-            ))}
-            {products.map((app) => (
-              <a className="policy-link" href={app.app_ads_file_url} key={`${app.id}-ads`}>
-                <img src={app.icon_url} alt="" />
-                <span>{app.name} app-ads</span>
               </a>
             ))}
           </div>

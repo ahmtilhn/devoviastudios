@@ -10,7 +10,9 @@
       "developer": "Devovia Studio",
       "category": "Productivity",
       "updated_on": "2026-05-08",
-      "downloads_text": "1K+",
+      "downloads_text": "500+",
+      "rating_text": "5.0",
+      "reviews_text": "16 comments",
       "theme": "#2563EB",
       "tech_stack": "Flutter / SQLite / Android backup integration",
       "play_url": "https://play.google.com/store/apps/details?id=com.stockflow.inventory",
@@ -27,6 +29,30 @@
         "Improved Android backup and restore compatibility for .sfbak files.",
         "Added support for opening Stock Manager backup files directly from Android file managers.",
         "Improved backup file picker behavior on mobile devices."
+      ],
+      "feature_details": [
+        {
+          "title": "Barcode and QR scanner",
+          "description": "Find products or add stock using the device camera, with manual entry still available when camera access is not granted."
+        },
+        {
+          "title": "Stock movement timeline",
+          "description": "Entries, sales and updates are shown in chronological order so inventory changes stay transparent."
+        },
+        {
+          "title": "Invoice and supplier tracking",
+          "description": "Attach invoice photos and supplier details to stock entries for cleaner accounting context."
+        },
+        {
+          "title": "Secure offline storage",
+          "description": "Inventory data is stored on the device and core workflows continue without an internet connection."
+        }
+      ],
+      "privacy_points": [
+        "May process account, business, product and transaction records for inventory workflows.",
+        "Camera permission is used for barcode and QR scanning.",
+        "Storage access may be used for product images and exported reports.",
+        "Internet access may support synchronization, updates, security and support."
       ]
     },
     {
@@ -40,6 +66,8 @@
       "category": "Puzzle",
       "updated_on": "2026-05-27",
       "downloads_text": "5+",
+      "rating_text": "0.0",
+      "reviews_text": "0 comments",
       "theme": "#FF5733",
       "tech_stack": "Flutter / Game loop / Rewarded ads / In-app purchases",
       "play_url": "https://play.google.com/store/apps/details?id=com.devovia.arrowescape",
@@ -50,12 +78,37 @@
         "https://play-lh.googleusercontent.com/8g72K9eDjVz8fkPokQrr8c2RR81kXkkyCCOYnbyXvxJksOvwKT7dWB4e6GwVAZnqpGc7pqeN9x5XFgyKAJhpeHA=w1052-h592"
       ],
       "privacy_url": "./privacy/app-4.html",
-      "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy",
+      "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/pp-arrow-escape",
+      "terms_url": "https://sites.google.com/view/devoviastudio/privacy-policy/pp-arrow-escape/terms-of-service",
       "app_ads_file_url": "./apps/app-4/app-ads.txt",
       "release_notes": [
         "Launched Arrow Escape on Google Play.",
         "Added fading arrow gameplay, timed levels and core booster flow.",
         "Published initial puzzle progression, missions and reward economy."
+      ],
+      "feature_details": [
+        {
+          "title": "Fading arrow memory challenge",
+          "description": "Players must remember directions after arrows fade, creating a sharper focus loop than a static puzzle board."
+        },
+        {
+          "title": "Time pressure and mistake limits",
+          "description": "Levels build tension with timers and limited errors while keeping the rules easy to understand."
+        },
+        {
+          "title": "Boosters and hints",
+          "description": "Vision Cards, Time Freeze and hints give players comeback tools without removing the puzzle challenge."
+        },
+        {
+          "title": "Daily missions and rewards",
+          "description": "Coins, streak rewards and daily goals create a reason to return without overloading the core game."
+        }
+      ],
+      "privacy_points": [
+        "No login, membership registration, cloud profile or Devovia-owned server account is required.",
+        "Game progress, coins, stars, boosters, missions, streaks and settings may be stored locally on the device.",
+        "Google AdMob may process advertising identifiers, device information, approximate location and ad interaction data.",
+        "Optional in-app purchases are processed by Google Play Billing under Google Play rules."
       ]
     },
     {
@@ -69,6 +122,8 @@
       "category": "Books & Reference",
       "updated_on": "2026-05-05",
       "downloads_text": "100+",
+      "rating_text": "5.0",
+      "reviews_text": "5 comments",
       "theme": "#0EA5E9",
       "tech_stack": "Flutter / Notifications / TTS / ML Kit translations",
       "play_url": "https://play.google.com/store/apps/details?id=com.a2.dailyhadith",
@@ -85,6 +140,30 @@
         "Resolved prayer alarm scheduling edge cases.",
         "Improved notification permission handling with system fallback.",
         "Fixed data synchronization on app resume."
+      ],
+      "feature_details": [
+        {
+          "title": "Hadith and quote of the day",
+          "description": "A focused daily surface helps users read, reflect and return without cognitive overload."
+        },
+        {
+          "title": "Prayer times and notifications",
+          "description": "The app supports daily rhythm with prayer timing, reminders and permission-aware notifications."
+        },
+        {
+          "title": "Qibla compass and smart tasbih",
+          "description": "Core Islamic utility tools are placed inside the same calm, polished mobile experience."
+        },
+        {
+          "title": "Visual cards and audio playback",
+          "description": "Users can listen, save and share content in formats that fit daily spiritual routines."
+        }
+      ],
+      "privacy_points": [
+        "Location may be requested for prayer time calculation and Qibla direction, processed on-device.",
+        "Advertising providers such as Google AdMob and Unity Ads may process ad identifiers and ad interaction data.",
+        "Purchases are handled by Google Play or App Store; financial data is not collected by Devovia.",
+        "Language, theme, bookmarks, notification preferences and premium cache may be stored locally."
       ]
     },
     {
@@ -98,6 +177,8 @@
       "category": "Productivity",
       "updated_on": "2025-12-25",
       "downloads_text": "10+",
+      "rating_text": "5.0",
+      "reviews_text": "0 comments",
       "theme": "#16A34A",
       "tech_stack": "Flutter / Local storage / Widgets / Notification scheduling",
       "play_url": "https://play.google.com/store/apps/details?id=com.tinysteps.app",
@@ -114,6 +195,30 @@
         "Improved app startup performance and reduced initial load work.",
         "Optimized habit and log reads for faster lists and summaries.",
         "Simplified settings and polished in-app text."
+      ],
+      "feature_details": [
+        {
+          "title": "Daily, weekly and custom habit targets",
+          "description": "Users can track simple daily routines or more flexible schedules without complex setup."
+        },
+        {
+          "title": "Smart reminders",
+          "description": "Reminders keep habits visible at the right moment while premium users can set richer schedules."
+        },
+        {
+          "title": "Widget-first completion",
+          "description": "Home screen check-offs reduce friction and make the habit loop feel immediate."
+        },
+        {
+          "title": "Streaks and clear statistics",
+          "description": "Progress is shown through completion rate, consistency and streaks instead of noisy dashboards."
+        }
+      ],
+      "privacy_points": [
+        "No account is required and habit data is stored locally on the device.",
+        "Habit names, schedules, reminders, logs, theme and settings preferences remain on-device.",
+        "Free users may see Google AdMob ads; purchases are processed by Google Play Billing.",
+        "Notifications are scheduled locally when enabled."
       ]
     }
   ]
