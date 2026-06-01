@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp app-ads.txt dist/app-ads.txt",
+    "build": "vite build && node -e \"require('fs').copyFileSync('app-ads.txt','dist/app-ads.txt')\"",
     "preview": "vite preview"
   },
   "dependencies": {
