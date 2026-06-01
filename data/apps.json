@@ -4,67 +4,116 @@
       "id": "app-1",
       "package": "com.stockflow.inventory",
       "name": "Stock Manager",
-      "tagline": "Stok & depo takibini Excel’siz yönet.",
-      "short_desc": "Küçük/orta işletmeler için stok takibi: barkod/QR, stok hareket geçmişi, ürün fotoğrafları, arama/filtreleme, offline kullanım.",
-      "long_desc": "Stock Manager; küçük ve orta ölçekli işletmeler, mağazalar ve kişisel depolar için modern stok takip uygulamasıdır.\n\nÖne çıkanlar:\n- Modern arayüz\n- Barkod & QR tarama\n- Stok hareket zaman çizelgesi\n- Ürünlere çoklu fotoğraf\n- Akıllı arama & filtreleme\n- Çoklu dil desteği\n- Fatura & tedarikçi takibi\n- Veriler cihazda saklanır, offline çalışabilir",
-      "developer": "2A Bilişim",
+      "tagline": "Professional inventory management with real-time tracking.",
+      "short_desc": "Modern stock management for small and medium businesses: product catalog, stock movements, dashboard, alerts, CSV export and offline SQLite storage.",
+      "long_desc": "Stock Manager is a modern inventory management application designed for small and medium-sized businesses.\n\nKey features:\n- Product creation, SKU, categories and photos\n- Real-time inventory movement tracking\n- Dashboard for product count, value and low-stock items\n- Smart low-stock and critical-level alerts\n- CSV export and reporting\n- Local SQLite data storage\n- Offline inventory management\n- 5-language support: Turkish, English, French, German, Dutch",
+      "developer": "Devovia Studio",
       "category": "Productivity",
-      "updated_on": "2026-01-22",
-      "downloads_text": "500+",
-      "rating": null,
-      "reviews_count": null,
+      "updated_on": "2026-05-08",
+      "downloads_text": "1K+",
+      "theme": "#2563EB",
+      "tech_stack": "Flutter / SQLite / Android backup integration",
       "play_url": "https://play.google.com/store/apps/details?id=com.stockflow.inventory",
       "icon_url": "https://play-lh.googleusercontent.com/8TAsYVE7CdysNxOYj6oaXafUm7x7yB8uano70NvbLXj6yRkWn8Fh4NTrbABvrvFFNCdzVlna2JRxk5hxumKjLBM=w240-h480",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/vMrVHLCV_vaAX2bywQGE1xCxuDGQt5UYlW14vWA3za3QXoXD8zOm4tpcpEsG82dKH8bKa2dpV9mT2cD69AIeeQ=w1052-h592",
+        "https://play-lh.googleusercontent.com/5vF1p5SLVWb3bgC_fho8dRSkcPu9ODHqGtwplxtMmXwSZe6wMiBvkW1gKaS9nCzmLuoPuMevIjwegzECTKKv6Q=w1052-h592",
+        "https://play-lh.googleusercontent.com/gD3XtmQ-f1NrhgTAVLDKSPqb9gPsFEplKzwOb3SwXMPIzz5ZBcuB2rznAzmeINPUivOs--nAk9hs_9O-s9938g=w1052-h592"
+      ],
       "privacy_url": "./privacy/app-1.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/SM-PP?authuser=0",
       "app_ads_file_url": "./apps/app-1/app-ads.txt",
-      "in_app_reviews": [
-        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-20", "text": "Stok giriş/çıkış takibi hızlı, barkod özelliği iyi." },
-        { "user": "Kullanıcı", "rating": 4, "date": "2026-02-22", "text": "Arama/filtreleme pratik." }
+      "release_notes": [
+        "Improved Android backup and restore compatibility for .sfbak files.",
+        "Added support for opening Stock Manager backup files directly from Android file managers.",
+        "Improved backup file picker behavior on mobile devices."
+      ]
+    },
+    {
+      "id": "app-4",
+      "package": "com.devovia.arrowescape",
+      "name": "Arrow Escape",
+      "tagline": "A fast-paced arrow puzzle built around memory, focus and timing.",
+      "short_desc": "Follow arrows, remember fading directions, manage the timer and escape increasingly complex puzzle boards with boosters, missions and rewards.",
+      "long_desc": "Arrow Escape is a fast-paced puzzle game where players follow arrows, test memory and find the right path before time runs out.\n\nKey features:\n- Easy to learn, hard to master arrow puzzle gameplay\n- Fading arrow system that tests memory\n- Time-based levels with increasing pressure\n- Complex arrow maps and mistake limits\n- Vision Cards, Time Freeze and hints\n- Daily missions, streak rewards and coins\n- Neon-purple visual style\n- Reward-focused level progression",
+      "developer": "Devovia Studio",
+      "category": "Puzzle",
+      "updated_on": "2026-05-27",
+      "downloads_text": "5+",
+      "theme": "#FF5733",
+      "tech_stack": "Flutter / Game loop / Rewarded ads / In-app purchases",
+      "play_url": "https://play.google.com/store/apps/details?id=com.devovia.arrowescape",
+      "icon_url": "https://play-lh.googleusercontent.com/CAwPjc_JdVc-jwFKcKugrJPi3-pbfDgnmb6tZ6-CsyvXCXEYryGxj7-AFhfUaFutTcUq_8KuXgVMGQcfY-489Mk=w240-h480",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/5ZcCRoH0DOG84JE2iaZtOhcTfM9qTnH3Pe6fF4FeeOTivIMesVaeRYDhBhIG1Dp9hvNZWBuOhbNgouqroouDgQ=w1052-h592",
+        "https://play-lh.googleusercontent.com/MW-XkbzI5C3yDcxNIQmzI_r75ma3Nhjc2G9Ns6zcRnWA0QFMpigp1NsRJeFfF2x-l8L2Sff5-4cTVp8VauA2SQ=w1052-h592",
+        "https://play-lh.googleusercontent.com/8g72K9eDjVz8fkPokQrr8c2RR81kXkkyCCOYnbyXvxJksOvwKT7dWB4e6GwVAZnqpGc7pqeN9x5XFgyKAJhpeHA=w1052-h592"
+      ],
+      "privacy_url": "./privacy/app-4.html",
+      "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy",
+      "app_ads_file_url": "./apps/app-4/app-ads.txt",
+      "release_notes": [
+        "Launched Arrow Escape on Google Play.",
+        "Added fading arrow gameplay, timed levels and core booster flow.",
+        "Published initial puzzle progression, missions and reward economy."
       ]
     },
     {
       "id": "app-2",
       "package": "com.a2.dailyhadith",
       "name": "Daily Hadith",
-      "tagline": "Her gün hadis — temiz, sakin arayüz.",
-      "short_desc": "Doğrulanmış kaynaklardan günlük hadis: oku, dinle, favorile, paylaş, hatırlatıcı kur. Premium reklamları kaldırır.",
-      "long_desc": "Daily Hadith; güvenilir kaynaklardan günlük hadis sunmayı hedefleyen sade bir uygulamadır.\n\nÖne çıkanlar:\n- Günün hadisi (random)\n- Uygulama dilinde okuma\n- Cihaz sesleriyle dinleme\n- Favoriler\n- Tek dokunuşla paylaşım\n- Günlük hatırlatıcı\n- Minimal arayüz\n- Premium: reklamları kaldırır",
-      "developer": "2A Bilişim",
+      "tagline": "Daily spiritual guidance with a calm, premium interface.",
+      "short_desc": "Daily Hadith combines hadiths, prayer times, Qibla compass, smart tasbih, audio playback, visual cards and multi-language support.",
+      "long_desc": "Daily Hadith helps users bring spiritual routines into daily life through a polished mobile interface.\n\nKey features:\n- Hadith and quote of the day\n- Accurate prayer times and notifications\n- Qibla compass\n- Smart tasbih with haptic feedback\n- Audio playback through text-to-speech\n- Create and share visual cards\n- Islamic calendar and holy days\n- Multi-language support and premium ad-free option",
+      "developer": "Devovia Studio",
       "category": "Books & Reference",
-      "updated_on": "2026-01-06",
+      "updated_on": "2026-05-05",
       "downloads_text": "100+",
-      "rating": null,
-      "reviews_count": null,
+      "theme": "#0EA5E9",
+      "tech_stack": "Flutter / Notifications / TTS / ML Kit translations",
       "play_url": "https://play.google.com/store/apps/details?id=com.a2.dailyhadith",
       "icon_url": "https://play-lh.googleusercontent.com/aplHKGnrHDFrTdD7P_uC1HSc6rCDHVGCefON1b-EjX-_z7kP8BtkecPmvsIzFC8f_yx1CesNSY5LX8Gsf2BU=w240-h480",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/Q3E6eOteRL1mHZdznlo8H1WZSzmq0iVQMYQDgMA63gXPP7uun4IcoiA_B_UwaK9n-bENmarm-9qBQhScofDZ=w1052-h592",
+        "https://play-lh.googleusercontent.com/pReSWdgkphVPFT8rGchxyUpwczRqtElimPNUTJ41zvHnKkoDDgY97_M7KtP5Jkt9jojkVnlAIAJSSah4FJtpyA=w1052-h592",
+        "https://play-lh.googleusercontent.com/N2I4Uq7UXLUGzKtwG5qbBvvypIqDxFRpEtQ7Ie4wQTMLz0Lm4RD809MG4mnqZ0vAoU9iBwcuoFxjV8j-_MkN=w1052-h592"
+      ],
       "privacy_url": "./privacy/app-2.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/DH-PP?authuser=0",
       "app_ads_file_url": "./apps/app-2/app-ads.txt",
-      "in_app_reviews": [
-        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-18", "text": "Bildirimlerle düzenli okumaya başladım, arayüz temiz." }
+      "release_notes": [
+        "Resolved prayer alarm scheduling edge cases.",
+        "Improved notification permission handling with system fallback.",
+        "Fixed data synchronization on app resume."
       ]
     },
     {
       "id": "app-3",
       "package": "com.tinysteps.app",
       "name": "TinySteps",
-      "tagline": "Basit habit tracker: küçük adımlar.",
-      "short_desc": "Günlük alışkanlıklar, hatırlatıcılar, widget, streak & istatistik. Premium: sınırsız alışkanlık ve gelişmiş özellikler.",
-      "long_desc": "TinySteps; temiz, hızlı ve basit bir alışkanlık takip uygulamasıdır.\n\nÖne çıkanlar:\n- Günlük / belirli günler / haftada X hedef\n- Akıllı hatırlatıcılar (Premium: gün içinde farklı saatler)\n- Ana ekran widget’ı\n- Streak & istatistik\n- Light/Dark mode\n\nFree & Premium\n- Free: 5’e kadar alışkanlık, temel istatistikler\n- Premium: sınırsız alışkanlık, gelişmiş istatistik, backup/export, gelişmiş hatırlatıcılar",
+      "tagline": "Simple habit tracking that actually works.",
+      "short_desc": "A clean habit tracker for daily habits, reminders, widgets, streaks, statistics, light/dark mode and premium productivity features.",
+      "long_desc": "TinySteps helps users build daily habits, stay consistent and create routines that last.\n\nKey features:\n- Daily habits, specific days or weekly targets\n- Smart habit reminders\n- Home screen habit widget\n- Streaks, completion rate and consistency stats\n- Routine and productivity tracking\n- Light and dark mode\n- Free plan with up to 5 habits\n- Premium unlimited habits, advanced stats, backup and export",
       "developer": "Devovia Studio",
       "category": "Productivity",
       "updated_on": "2025-12-25",
       "downloads_text": "10+",
-      "rating": null,
-      "reviews_count": null,
+      "theme": "#16A34A",
+      "tech_stack": "Flutter / Local storage / Widgets / Notification scheduling",
       "play_url": "https://play.google.com/store/apps/details?id=com.tinysteps.app",
       "icon_url": "https://play-lh.googleusercontent.com/Eu69e8JyNN-WFGqFGsqDKda6ZUWDsk-_SSAVD0ypVrl_L0TDe86J9UTKRzemy_8QtL4-EpKTWuV16dOwOnSOIUc=w240-h480",
+      "screenshots": [
+        "https://play-lh.googleusercontent.com/rA2vRrTDW9vd4bQ34LILDi8dQiR4g92QMYYnYEsn0_ZlVOkBwwkEZOo0UUz6x11rJTW5yEY52W69jELKoIVZ8Ko=w1052-h592",
+        "https://play-lh.googleusercontent.com/kLW8cZ4bvQQduWV0gqIaxVe52YAROYuxm8dafcm_iqrKIalHS5yHHcwEZ2FDk5AX6D2-hMShHK9XItapP-USPQ=w1052-h592",
+        "https://play-lh.googleusercontent.com/oudofDjepicDtRJgej-NUqVYFQ_YPg4U5CbXsexxtFy7GWkCV3VyFu44xXgHCRfaqtSwRUj20U5yWg-tR0nK=w1052-h592"
+      ],
       "privacy_url": "./privacy/app-3.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/TS-PP?authuser=0",
       "app_ads_file_url": "./apps/app-3/app-ads.txt",
-      "in_app_reviews": [
-        { "user": "Kullanıcı", "rating": 5, "date": "2026-02-10", "text": "Karmaşık değil, günlük takip için ideal." }
+      "release_notes": [
+        "Improved app startup performance and reduced initial load work.",
+        "Optimized habit and log reads for faster lists and summaries.",
+        "Simplified settings and polished in-app text."
       ]
     }
   ]

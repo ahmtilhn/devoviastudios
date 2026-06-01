@@ -3,18 +3,20 @@ import appData from '../data/apps.json';
 
 const products = appData.apps;
 
-const trustItems = ['Google Play ready', 'Policy center', 'App support', 'Update notes'];
+const trustItems = ['8pt grid', 'Dynamic themes', 'Play Store data', 'Patch notes'];
 
 const services = [
-  ['Test plan', 'Closed testing flow, tester guidance and Play Console readiness before release.'],
-  ['Store assets', 'Screenshots, descriptions, privacy links and app-ads files kept consistent.'],
-  ['Support layer', 'Product-specific contact paths for privacy, billing, bugs and feedback.'],
+  ['Problem scan', 'We review test blockers, store readiness, policy links and release risks.'],
+  ['Closed test flow', 'Tester guidance, feedback collection and 14-day process tracking.'],
+  ['Launch polish', 'Descriptions, screenshots, privacy pages and app-ads files are kept consistent.'],
+  ['Post-release support', 'Patch notes, support routing and product updates stay visible after launch.'],
 ];
 
 const updates = [
-  ['01 Jun 2026', 'Website system refresh', 'Devovia moved to the new premium mobile studio design system.'],
-  ['01 Jun 2026', 'Product hub connected', 'Published apps, privacy policies and app-ads files now share one public surface.'],
-  ['Next', 'App detail expansion', 'Trailer-first product pages and richer release notes will be added per app.'],
+  ['27 May 2026', 'Arrow Escape release', 'Fading arrows, timed puzzle levels, boosters and daily rewards went live on Google Play.'],
+  ['08 May 2026', 'Stock Manager backup update', 'Android backup file handling and mobile file picker behavior were improved.'],
+  ['05 May 2026', 'Daily Hadith stability update', 'Prayer alarm scheduling, notification permissions and resume sync were improved.'],
+  ['25 Dec 2025', 'TinySteps performance update', 'Startup work, habit reads and statistics calculations were optimized.'],
 ];
 
 function getFeatures(app) {
@@ -27,7 +29,7 @@ function getFeatures(app) {
 
 function AppMockup({ app, index = 0 }) {
   return (
-    <div className={`phone phone-${index + 1}`} aria-label={`${app.name} mobile preview`}>
+    <div className={`phone phone-${index + 1}`} style={{ '--theme': app.theme }} aria-label={`${app.name} mobile preview`}>
       <div className="phone-top">
         <span></span>
         <span></span>
@@ -51,17 +53,27 @@ function ProductDetail({ app, index }) {
   const features = getFeatures(app);
 
   return (
-    <article className="product-detail" id={`product-${app.id}`}>
+    <article className="product-detail" id={`product-${app.id}`} style={{ '--theme': app.theme }}>
       <div className="detail-media">
+        <div className="trailer-frame">
+          <img src={app.screenshots[0]} alt={`${app.name} screenshot`} loading="lazy" />
+        </div>
         <AppMockup app={app} index={index} />
       </div>
       <div className="detail-copy">
-        <p className="eyebrow">{app.category} / {app.downloads_text} downloads</p>
+        <p className="eyebrow">{app.category} / {app.downloads_text} downloads / updated {app.updated_on}</p>
         <h3>{app.name}</h3>
         <p className="lead">{app.tagline}</p>
         <p>{app.short_desc}</p>
+        <div className="screenshot-row" aria-label={`${app.name} screenshots`}>
+          {app.screenshots.slice(0, 3).map((src) => <img src={src} alt="" loading="lazy" key={src} />)}
+        </div>
         <div className="feature-strip">
           {features.map((feature) => <span key={feature}>{feature}</span>)}
+        </div>
+        <div className="developer-note">
+          <span>Technical stack</span>
+          <strong>{app.tech_stack}</strong>
         </div>
         <div className="actions">
           <a className="button primary" href={app.play_url} target="_blank" rel="noreferrer">Google Play</a>
@@ -97,9 +109,9 @@ function App() {
           <div className="hero-copy">
             <p className="eyebrow">Mobile app studio / Netherlands</p>
             <h1>Devovia</h1>
-            <p className="hero-title">Premium mobile products with clean launch systems.</p>
+            <p className="hero-title">Mobil Dünyada Devovia İmzası.</p>
             <p className="hero-text">
-              Apps, games, privacy pages, Play Store assets and user support in one calm public product home.
+              Premium mobile apps, games, Play Store launch systems and support pages built with clean engineering.
             </p>
             <div className="actions">
               <a className="button primary" href="#apps">Explore apps</a>
@@ -122,17 +134,17 @@ function App() {
         <section className="section intro-section">
           <div>
             <p className="eyebrow">Design direction</p>
-            <h2>Apple-like motion, indie studio clarity and product-first storytelling.</h2>
+            <h2>A design system for both art direction and engineering discipline.</h2>
           </div>
           <p>
-            The new system uses an 8pt rhythm, Inter/Outfit typography, borderless soft-shadow surfaces and focused mobile previews so every app feels ready for store visitors.
+            Inter/Outfit typography, #F9F9F9 background, #1A1A1A text, #2563EB brand accent, 8pt spacing, borderless soft shadows and ease-out-expo motion define the Devovia visual DNA.
           </p>
         </section>
 
         <section className="section apps-section" id="apps">
           <div className="section-heading">
             <p className="eyebrow">Application detail pages</p>
-            <h2>Trailer-first product blocks for each published app.</h2>
+            <h2>Trailer-first product blocks from the live Google Play catalog.</h2>
           </div>
           <div className="product-stack">
             {products.map((app, index) => <ProductDetail app={app} index={index} key={app.id} />)}
@@ -142,9 +154,9 @@ function App() {
         <section className="section testing-section" id="testing">
           <div className="testing-copy">
             <p className="eyebrow">Google Play test support</p>
-            <h2>Release preparation for Play Store testing pain points.</h2>
+            <h2>Google Play Test Sürecinde Tıkandınız mı?</h2>
             <p>
-              A conversion-focused support surface for closed testing, store readiness, policy links and launch checks.
+              Devovia ile 14 gün kuralını, test gereksinimlerini, store hazırlığını ve yayın öncesi kontrolleri düzenli bir süreçle yönetin.
             </p>
             <a className="button primary" href="#support">Request support</a>
           </div>
@@ -164,7 +176,7 @@ function App() {
         <section className="section updates-section" id="updates">
           <div className="section-heading">
             <p className="eyebrow">Patch notes</p>
-            <h2>Chronological updates with a simple release feed.</h2>
+            <h2>Devovia yenilikleri, ürün bazlı ve kronolojik.</h2>
           </div>
           <div className="timeline">
             {updates.map(([date, title, text]) => (
@@ -174,6 +186,27 @@ function App() {
                   <h3>{title}</h3>
                   <p>{text}</p>
                 </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section notes-section">
+          <div className="section-heading">
+            <p className="eyebrow">Per-product patch notes</p>
+            <h2>Each app keeps its own release story.</h2>
+          </div>
+          <div className="notes-grid">
+            {products.map((app) => (
+              <article className="note-card" style={{ '--theme': app.theme }} key={`${app.id}-notes`}>
+                <img src={app.icon_url} alt="" />
+                <div>
+                  <span>{app.name}</span>
+                  <time>{app.updated_on}</time>
+                </div>
+                <ul>
+                  {app.release_notes.map((note) => <li key={note}>{note}</li>)}
+                </ul>
               </article>
             ))}
           </div>
