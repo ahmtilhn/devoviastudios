@@ -1,0 +1,15 @@
+body::before,
+body::after {
+  z-index: 0;
+}
+
+.site-shell {
+  position: relative;
+  z-index: 2;
+}
+
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
