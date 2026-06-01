@@ -17,11 +17,11 @@
       "theme": "#2563EB",
       "tech_stack": "Flutter / SQLite / Android backup integration",
       "play_url": "https://play.google.com/store/apps/details?id=com.stockflow.inventory",
-      "icon_url": "https://play-lh.googleusercontent.com/8TAsYVE7CdysNxOYj6oaXafUm7x7yB8uano70NvbLXj6yRkWn8Fh4NTrbABvrvFFNCdzVlna2JRxk5hxumKjLBM=w240-h480",
+      "icon_url": "/products/stockflow-inventory/icon.png",
       "screenshots": [
-        "https://play-lh.googleusercontent.com/vMrVHLCV_vaAX2bywQGE1xCxuDGQt5UYlW14vWA3za3QXoXD8zOm4tpcpEsG82dKH8bKa2dpV9mT2cD69AIeeQ=w1052-h592",
-        "https://play-lh.googleusercontent.com/5vF1p5SLVWb3bgC_fho8dRSkcPu9ODHqGtwplxtMmXwSZe6wMiBvkW1gKaS9nCzmLuoPuMevIjwegzECTKKv6Q=w1052-h592",
-        "https://play-lh.googleusercontent.com/gD3XtmQ-f1NrhgTAVLDKSPqb9gPsFEplKzwOb3SwXMPIzz5ZBcuB2rznAzmeINPUivOs--nAk9hs_9O-s9938g=w1052-h592"
+        "/products/stockflow-inventory/screenshot-1.jpg",
+        "/products/stockflow-inventory/screenshot-2.jpg",
+        "/products/stockflow-inventory/screenshot-3.jpg"
       ],
       "privacy_url": "./privacy/app-1.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/SM-PP?authuser=0",
@@ -73,11 +73,11 @@
       "theme": "#FF5733",
       "tech_stack": "Flutter / Game loop / Rewarded ads / In-app purchases",
       "play_url": "https://play.google.com/store/apps/details?id=com.devovia.arrowescape",
-      "icon_url": "https://play-lh.googleusercontent.com/CAwPjc_JdVc-jwFKcKugrJPi3-pbfDgnmb6tZ6-CsyvXCXEYryGxj7-AFhfUaFutTcUq_8KuXgVMGQcfY-489Mk=w240-h480",
+      "icon_url": "/products/arrow-escape/icon.png",
       "screenshots": [
-        "https://play-lh.googleusercontent.com/5ZcCRoH0DOG84JE2iaZtOhcTfM9qTnH3Pe6fF4FeeOTivIMesVaeRYDhBhIG1Dp9hvNZWBuOhbNgouqroouDgQ=w1052-h592",
-        "https://play-lh.googleusercontent.com/MW-XkbzI5C3yDcxNIQmzI_r75ma3Nhjc2G9Ns6zcRnWA0QFMpigp1NsRJeFfF2x-l8L2Sff5-4cTVp8VauA2SQ=w1052-h592",
-        "https://play-lh.googleusercontent.com/8g72K9eDjVz8fkPokQrr8c2RR81kXkkyCCOYnbyXvxJksOvwKT7dWB4e6GwVAZnqpGc7pqeN9x5XFgyKAJhpeHA=w1052-h592"
+        "/products/arrow-escape/screenshot-1.jpg",
+        "/products/arrow-escape/screenshot-2.jpg",
+        "/products/arrow-escape/screenshot-3.jpg"
       ],
       "privacy_url": "./privacy/app-4.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/pp-arrow-escape",
@@ -130,11 +130,11 @@
       "theme": "#0EA5E9",
       "tech_stack": "Flutter / Notifications / TTS / ML Kit translations",
       "play_url": "https://play.google.com/store/apps/details?id=com.a2.dailyhadith",
-      "icon_url": "https://play-lh.googleusercontent.com/aplHKGnrHDFrTdD7P_uC1HSc6rCDHVGCefON1b-EjX-_z7kP8BtkecPmvsIzFC8f_yx1CesNSY5LX8Gsf2BU=w240-h480",
+      "icon_url": "/products/daily-hadith/icon.png",
       "screenshots": [
-        "https://play-lh.googleusercontent.com/Q3E6eOteRL1mHZdznlo8H1WZSzmq0iVQMYQDgMA63gXPP7uun4IcoiA_B_UwaK9n-bENmarm-9qBQhScofDZ=w1052-h592",
-        "https://play-lh.googleusercontent.com/pReSWdgkphVPFT8rGchxyUpwczRqtElimPNUTJ41zvHnKkoDDgY97_M7KtP5Jkt9jojkVnlAIAJSSah4FJtpyA=w1052-h592",
-        "https://play-lh.googleusercontent.com/N2I4Uq7UXLUGzKtwG5qbBvvypIqDxFRpEtQ7Ie4wQTMLz0Lm4RD809MG4mnqZ0vAoU9iBwcuoFxjV8j-_MkN=w1052-h592"
+        "/products/daily-hadith/screenshot-1.jpg",
+        "/products/daily-hadith/screenshot-2.jpg",
+        "/products/daily-hadith/screenshot-3.jpg"
       ],
       "privacy_url": "./privacy/app-2.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/DH-PP?authuser=0",
@@ -186,11 +186,11 @@
       "theme": "#16A34A",
       "tech_stack": "Flutter / Local storage / Widgets / Notification scheduling",
       "play_url": "https://play.google.com/store/apps/details?id=com.tinysteps.app",
-      "icon_url": "https://play-lh.googleusercontent.com/Eu69e8JyNN-WFGqFGsqDKda6ZUWDsk-_SSAVD0ypVrl_L0TDe86J9UTKRzemy_8QtL4-EpKTWuV16dOwOnSOIUc=w240-h480",
+      "icon_url": "/products/tinysteps/icon.png",
       "screenshots": [
-        "https://play-lh.googleusercontent.com/rA2vRrTDW9vd4bQ34LILDi8dQiR4g92QMYYnYEsn0_ZlVOkBwwkEZOo0UUz6x11rJTW5yEY52W69jELKoIVZ8Ko=w1052-h592",
-        "https://play-lh.googleusercontent.com/kLW8cZ4bvQQduWV0gqIaxVe52YAROYuxm8dafcm_iqrKIalHS5yHHcwEZ2FDk5AX6D2-hMShHK9XItapP-USPQ=w1052-h592",
-        "https://play-lh.googleusercontent.com/oudofDjepicDtRJgej-NUqVYFQ_YPg4U5CbXsexxtFy7GWkCV3VyFu44xXgHCRfaqtSwRUj20U5yWg-tR0nK=w1052-h592"
+        "/products/tinysteps/screenshot-1.jpg",
+        "/products/tinysteps/screenshot-2.jpg",
+        "/products/tinysteps/screenshot-3.jpg"
       ],
       "privacy_url": "./privacy/app-3.html",
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/TS-PP?authuser=0",
