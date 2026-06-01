@@ -116,6 +116,165 @@ const metaByRoute = {
   '/contact': ['Start a Project - Devovia Studio', 'Tell Devovia Studio what you want to build and start a clean, launch-ready product system.'],
 };
 
+const trText = {
+  Devovia: 'Devovia',
+  Products: 'Ürünler',
+  Services: 'Hizmetler',
+  Updates: 'Güncellemeler',
+  Blog: 'Blog',
+  Support: 'Destek',
+  'Start a Project': 'Proje Başlat',
+  'Netherlands-based mobile product studio': 'Hollanda merkezli mobil ürün stüdyosu',
+  'Launch-ready apps, games and ': 'Yayına hazır uygulamalar, oyunlar ve ',
+  'product systems.': 'ürün sistemleri.',
+  'Devovia builds polished mobile apps, indie games, product websites and Google Play launch systems with clean engineering, strong UX and credible support infrastructure.': 'Devovia; temiz mühendislik, güçlü UX ve güvenilir destek altyapısıyla mobil uygulamalar, indie oyunlar, ürün web siteleri ve Google Play yayın sistemleri geliştirir.',
+  'Explore Products': 'Ürünleri İncele',
+  'Get Play Support': 'Play Desteği Al',
+  'Live Google Play products': 'Canlı Google Play ürünleri',
+  'Real apps with real users.': 'Gerçek kullanıcıları olan gerçek uygulamalar.',
+  'Product-first UI systems': 'Ürün odaklı arayüz sistemleri',
+  'Designed for clarity and trust.': 'Netlik ve güven için tasarlandı.',
+  'Modern stacks. Scalable results.': 'Modern altyapılar. Ölçeklenebilir sonuçlar.',
+  'Policies, support and updates built in': 'Politika, destek ve güncellemeler hazır',
+  'Launch infrastructure from day one.': 'İlk günden yayın altyapısı.',
+  'Featured products': 'Öne çıkan ürünler',
+  'Real products built to launch.': 'Yayınlanmak için geliştirilmiş gerçek ürünler.',
+  'View all products': 'Tüm ürünler',
+  'View product': 'Ürünü incele',
+  'Our services': 'Hizmetlerimiz',
+  'How Devovia helps': 'Devovia nasıl yardımcı olur',
+  'Mobile App Development': 'Mobil Uygulama Geliştirme',
+  'Cross-platform apps built with clean architecture, polished UI and launch-ready foundations.': 'Temiz mimari, rafine arayüz ve yayına hazır temellerle geliştirilen çapraz platform uygulamalar.',
+  'Game Development': 'Oyun Geliştirme',
+  'Engaging indie games with memorable mechanics, strong progression and store-ready presentation.': 'Akılda kalan mekanikler, güçlü ilerleme sistemi ve mağazaya hazır sunumla indie oyunlar.',
+  'Product Websites': 'Ürün Web Siteleri',
+  'Fast, premium websites that explain products clearly and convert visitors into action.': 'Ürünü net anlatan ve ziyaretçiyi aksiyona taşıyan hızlı, premium web siteleri.',
+  'Google Play Test Support': 'Google Play Test Desteği',
+  'Closed-testing guidance, store-readiness, policy pages and release support for teams blocked in Google Play.': 'Google Play’de takılan ekipler için kapalı test rehberliği, mağaza hazırlığı, politika sayfaları ve yayın desteği.',
+  Explore: 'İncele',
+  'Blocked in Google Play closed testing?': 'Google Play kapalı test sürecinde takıldınız mı?',
+  'We help developers fix test blockers, improve store readiness and ship with confidence.': 'Test engellerini gidermenize, mağaza hazırlığını güçlendirmenize ve güvenle yayına çıkmanıza yardımcı oluruz.',
+  'Problem scan': 'Sorun taraması',
+  'We review test blockers, store assets and policy gaps.': 'Test engellerini, mağaza varlıklarını ve politika boşluklarını inceleriz.',
+  'Fix & prepare': 'Düzelt ve hazırla',
+  'We improve your assets, content and test flow.': 'Varlıklarınızı, içeriklerinizi ve test akışınızı iyileştiririz.',
+  'Release ready': 'Yayına hazır',
+  'We guide you toward a cleaner launch process.': 'Daha temiz bir yayın sürecine doğru rehberlik ederiz.',
+  'Request Support': 'Destek İste',
+  'Latest updates': 'Son güncellemeler',
+  'Product updates that show momentum.': 'Ürün gelişimini gösteren güncellemeler.',
+  'View all updates': 'Tüm güncellemeler',
+  'Read more': 'Devamını oku',
+  'Have a product idea?': 'Bir ürün fikrin mi var?',
+  'Let us build it right. Clean code, strong UX and launch-ready infrastructure from day one.': 'Doğru şekilde inşa edelim. İlk günden temiz kod, güçlü UX ve yayına hazır altyapı.',
+  'Products built by Devovia': 'Devovia tarafından geliştirilen ürünler',
+  'Real mobile products,': 'Gerçek mobil ürünler,',
+  'not placeholder concepts.': 'boş konseptler değil.',
+  "Explore Devovia's published apps and launch-ready product systems across productivity, games, habits and spiritual utilities.": 'Devovia’nın yayınlanmış uygulamalarını ve üretkenlik, oyun, alışkanlık ve manevi araçlar alanındaki yayına hazır ürün sistemlerini keşfedin.',
+  All: 'Tümü',
+  Productivity: 'Üretkenlik',
+  Puzzle: 'Bulmaca',
+  'Books & Reference': 'Kitaplar ve Referans',
+  Games: 'Oyunlar',
+  Utility: 'Araçlar',
+  Spiritual: 'Manevi',
+  'Launch Systems': 'Yayın Sistemleri',
+  'Launch systems & support': 'Yayın sistemleri ve destek',
+  'Store-readiness, policy pages, test flows and release support for teams blocked in Google Play.': 'Google Play’de takılan ekipler için mağaza hazırlığı, politika sayfaları, test akışları ve yayın desteği.',
+  'Why these products feel different': 'Bu ürünler neden farklı hissettirir',
+  'Built for real users, release pressure and long-term support.': 'Gerçek kullanıcılar, yayın baskısı ve uzun vadeli destek için geliştirildi.',
+  'Service / Google Play Test Support': 'Hizmet / Google Play Test Desteği',
+  'Blocked in Google Play ': 'Google Play ',
+  'closed testing?': 'kapalı testinde takıldınız mı?',
+  'Devovia helps teams improve store readiness, test flows, policy pages and release confidence before launch.': 'Devovia, yayından önce mağaza hazırlığını, test akışlarını, politika sayfalarını ve yayın güvenini iyileştirir.',
+  'See the process': 'Süreci gör',
+  'Closed testing guidance': 'Kapalı test rehberliği',
+  'Store readiness': 'Mağaza hazırlığı',
+  'Privacy & support pages': 'Gizlilik ve destek sayfaları',
+  'Where teams get stuck': 'Ekiplerin takıldığı yerler',
+  'Avoidable blockers slow launches down.': 'Önlenebilir engeller yayını yavaşlatır.',
+  'A clear path from blocker to release-ready.': 'Engelden yayına hazır hale net bir yol.',
+  'Request support': 'Destek iste',
+  'Your name': 'Adınız',
+  'Work email': 'İş e-postası',
+  Product: 'Ürün',
+  'Request type': 'Talep türü',
+  Message: 'Mesaj',
+  'Enter your name': 'Adınızı yazın',
+  'name@company.com': 'ad@sirket.com',
+  'Choose a product': 'Ürün seçin',
+  'Select a type': 'Tür seçin',
+  'Tell us more...': 'Bize biraz daha anlatın...',
+  'Your details are secure and used only to respond to your request.': 'Bilgileriniz güvenlidir ve yalnızca talebinize yanıt vermek için kullanılır.',
+  'Send request': 'Talebi gönder',
+  'Send project request': 'Proje talebi gönder',
+  'We do not ask for your Google password.': 'Google şifrenizi istemeyiz.',
+  'Ship with more confidence.': 'Daha güvenle yayına çıkın.',
+  'Book a review': 'İnceleme iste',
+  'Support & Privacy': 'Destek ve Gizlilik',
+  'Support pages that feel product-ready, not neglected.': 'İhmal edilmiş değil, ürüne hazır hissettiren destek sayfaları.',
+  'Find privacy policies, app support and the right contact path for each Devovia product without digging through generic pages.': 'Genel sayfalarda kaybolmadan her Devovia ürünü için gizlilik politikalarını, uygulama desteğini ve doğru iletişim yolunu bulun.',
+  'Privacy policy': 'Gizlilik politikası',
+  'Support center': 'Destek merkezi',
+  'Release notes': 'Sürüm notları',
+  'Choose what you need': 'İhtiyacınızı seçin',
+  'Pick a path and we will route your request.': 'Bir yol seçin, talebinizi doğru yere yönlendirelim.',
+  'App support': 'Uygulama desteği',
+  'Get help with features, bugs or general usage.': 'Özellikler, hatalar veya genel kullanım için yardım alın.',
+  'View or request information about your data.': 'Verileriniz hakkında bilgi görüntüleyin veya talep edin.',
+  'Billing issue': 'Ödeme sorunu',
+  'Questions about payments, refunds or subscriptions.': 'Ödemeler, iadeler veya abonelikler hakkındaki sorular.',
+  'Google Play test support': 'Google Play test desteği',
+  'Get help with closed testing or release participation.': 'Kapalı test veya yayın katılımı için yardım alın.',
+  'Quick privacy access': 'Hızlı gizlilik erişimi',
+  'Common questions': 'Sık sorulan sorular',
+  'Send us a request': 'Bize talep gönderin',
+  'Start a project': 'Proje başlat',
+  'Start a project with Devovia.': 'Devovia ile proje başlatın.',
+  'Tell us what you want to build. We will help shape it into a clean, launch-ready product system.': 'Ne inşa etmek istediğinizi anlatın. Onu temiz, yayına hazır bir ürün sistemine dönüştürmeye yardımcı olalım.',
+};
+
+function detectLocale() {
+  const requested = new URLSearchParams(window.location.search).get('lang');
+  if (requested?.toLowerCase().startsWith('tr')) return 'tr';
+  const language = (navigator.languages?.[0] || navigator.language || 'en').toLowerCase();
+  return language.startsWith('tr') ? 'tr' : 'en';
+}
+
+function useLocale() {
+  const [locale, setLocale] = useState('en');
+  useEffect(() => {
+    const nextLocale = detectLocale();
+    setLocale(nextLocale);
+    document.documentElement.lang = nextLocale;
+  }, []);
+  return locale;
+}
+
+function useAutoTranslate(locale, path) {
+  useEffect(() => {
+    if (locale !== 'tr') return;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const parent = node.parentElement;
+        if (!parent || ['SCRIPT', 'STYLE', 'TEXTAREA'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      },
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    for (const node of nodes) {
+      const value = node.nodeValue;
+      const translated = trText[value] || trText[value.trim()];
+      if (translated) node.nodeValue = value.replace(value.trim(), translated);
+    }
+    document.querySelectorAll('[placeholder]').forEach((element) => {
+      const translated = trText[element.getAttribute('placeholder')];
+      if (translated) element.setAttribute('placeholder', translated);
+    });
+  }, [locale, path]);
+}
+
 function normalizePath() {
   const path = window.location.pathname.replace(/\/$/, '') || '/';
   return path;
@@ -365,7 +524,10 @@ function UpdateCard({ update, navigate }) {
 
 function SupportForm({ productName = '', project = false }) {
   return (
-    <form className="support-form" action="mailto:info@devoviastudio.com" method="POST" encType="text/plain">
+    <form className="support-form" action="https://formsubmit.co/info@devoviastudio.com" method="POST">
+      <input type="hidden" name="_subject" value={project ? 'New Devovia project request' : 'New Devovia support request'} />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
       <label>Your name<input name="name" placeholder="Enter your name" required /></label>
       <label>Work email<input name="email" type="email" placeholder="name@company.com" required /></label>
       {project ? (
@@ -523,7 +685,7 @@ function PageHero({ eyebrow, title, text, children }) {
 }
 
 function ProductDetailPage({ product, navigate }) {
-  const isStock = product.slug === 'stock-manager';
+  const isStock = product.id === 'app-1';
   return (
     <>
       <section className="product-hero-detail" style={{ '--theme': product.theme }}>
@@ -770,8 +932,10 @@ function ContactPage() {
 
 function App() {
   const { path, navigate } = useRoute();
+  const locale = useLocale();
   const product = getProductFromPath(path);
   useMetadata(path, product);
+  useAutoTranslate(locale, path);
 
   const page = useMemo(() => {
     if (product) return <ProductDetailPage product={product} navigate={navigate} />;
