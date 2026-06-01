@@ -1,68 +1,45 @@
 import { useEffect } from 'react';
+import appData from '../data/apps.json';
+
+const products = appData.apps;
 
 const services = [
-  {
-    icon: '01',
-    title: 'Mobile App Development',
-    text: 'Android and iOS apps with premium interfaces, smooth user flows and scalable product foundations.',
-  },
-  {
-    icon: '02',
-    title: 'Website Development',
-    text: 'Fast, responsive and professional websites that make your business look serious from the first visit.',
-  },
-  {
-    icon: '03',
-    title: 'Custom Software',
-    text: 'Dashboards, internal tools and automations built around the way your business actually works.',
-  },
-  {
-    icon: '04',
-    title: 'UI/UX & Product Design',
-    text: 'Clean structure, clear journeys and interface decisions that help users understand your product fast.',
-  },
+  ['01', 'Google Play & iOS Apps', 'Android and iOS products with store-ready pages, privacy links, support flows and update communication.'],
+  ['02', 'Games & Utilities', 'Mobile games, inventory tools, habit trackers and focused utilities designed for real users.'],
+  ['03', 'Product Websites', 'Public pages for product presentation, privacy policies, agreements, app-ads files and support.'],
+  ['04', 'Ongoing Updates', 'Release notes, user feedback, bug fixes and future-product visibility in one place.'],
 ];
 
-const processSteps = [
-  ['01', 'Discover', 'We clarify your idea, goals, users and the result your business needs.'],
-  ['02', 'Design', 'We shape the experience with clean screens, strong structure and a clear user journey.'],
-  ['03', 'Develop', 'We build the product with modern code, responsive layouts and reliable foundations.'],
-  ['04', 'Launch', 'We publish, test and improve the final version so it is ready for real users.'],
+const inDevelopment = [
+  ['Master Measure', 'Construction measurement app', 'Professional measurement, export and project-record tools for contractor workflows.'],
+  ['Arrow Escape', 'Puzzle game', 'A competitive arrow-tile puzzle experience built around challenge, motion and clean gameplay.'],
+  ['Grow Nest', 'Family collaboration app', 'Shared family tracking, permissions, notifications and widgets for real-time household use.'],
 ];
 
-const projectTypes = [
-  'Mobile apps',
-  'Business websites',
-  'Admin dashboards',
-  'Booking systems',
-  'Inventory tools',
-  'Automation flows',
-  'Internal portals',
-  'Landing pages',
+const legalItems = [
+  ['Privacy Policies', 'Each product has its own privacy page and official policy link for store compliance.'],
+  ['Customer Agreements', 'Terms, subscription notes, support responsibilities and fair-use rules can live in this center.'],
+  ['App Updates', 'Release notes and product changes are presented publicly so users can see what improved.'],
+  ['Support Requests', 'Users can contact Devovia Studio directly through the Netlify-powered support form.'],
 ];
 
-const storyFragments = [
-  ['Strategy', 'Clear scope before design'],
-  ['Interface', 'Premium product screens'],
-  ['Development', 'Fast, scalable build'],
-  ['Launch', 'Tested and ready'],
+const updates = [
+  ['2026', 'Studio platform', 'Devovia Studio is becoming the public home for products, policies, updates and support.'],
+  ['2026', 'Product pages', 'Published Google Play products are connected with icons, store links, policy pages and app-ads files.'],
+  ['Next', 'iOS expansion', 'iOS App Store pages will be connected here after the first App Store listings go live.'],
 ];
 
 function useScrollExperience() {
   useEffect(() => {
     const revealItems = Array.from(document.querySelectorAll('.reveal'));
     const scenes = Array.from(document.querySelectorAll('[data-scroll-scene]'));
+    const root = document.documentElement;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.16, rootMargin: '0px 0px -70px' },
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -70px' });
 
     revealItems.forEach((item) => observer.observe(item));
 
@@ -71,6 +48,12 @@ function useScrollExperience() {
     const ease = (value) => value * value * (3 - 2 * value);
 
     const updateScenes = () => {
+      const scrollMax = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+      const pageProgress = clamp(window.scrollY / scrollMax, 0, 1);
+      root.style.setProperty('--page-progress', pageProgress.toFixed(4));
+      root.style.setProperty('--bg-slide', `${Math.round(pageProgress * -420)}px`);
+      root.style.setProperty('--bg-rotate', `${Math.round(pageProgress * 38)}deg`);
+
       scenes.forEach((scene) => {
         const rect = scene.getBoundingClientRect();
         const viewport = window.innerHeight || 1;
@@ -80,24 +63,20 @@ function useScrollExperience() {
 
         scene.style.setProperty('--scene-progress', progress.toFixed(4));
         scene.style.setProperty('--progress-width', `${Math.round(progress * 100)}%`);
-        scene.style.setProperty('--fragment-opacity', `${0.56 + smooth * 0.44}`);
+        scene.style.setProperty('--fragment-opacity', `${0.58 + smooth * 0.42}`);
         scene.style.setProperty('--core-scale', `${1 - smooth * 0.08}`);
-
-        scene.style.setProperty('--piece-a-x', `${-112 * smooth}px`);
-        scene.style.setProperty('--piece-a-y', `${-42 * smooth}px`);
-        scene.style.setProperty('--piece-a-r', `${-8 * smooth}deg`);
-
-        scene.style.setProperty('--piece-b-x', `${96 * smooth}px`);
-        scene.style.setProperty('--piece-b-y', `${-88 * smooth}px`);
-        scene.style.setProperty('--piece-b-r', `${9 * smooth}deg`);
-
-        scene.style.setProperty('--piece-c-x', `${-92 * smooth}px`);
-        scene.style.setProperty('--piece-c-y', `${102 * smooth}px`);
-        scene.style.setProperty('--piece-c-r', `${7 * smooth}deg`);
-
-        scene.style.setProperty('--piece-d-x', `${110 * smooth}px`);
-        scene.style.setProperty('--piece-d-y', `${72 * smooth}px`);
-        scene.style.setProperty('--piece-d-r', `${-7 * smooth}deg`);
+        scene.style.setProperty('--piece-a-x', `${-124 * smooth}px`);
+        scene.style.setProperty('--piece-a-y', `${-52 * smooth}px`);
+        scene.style.setProperty('--piece-a-r', `${-9 * smooth}deg`);
+        scene.style.setProperty('--piece-b-x', `${104 * smooth}px`);
+        scene.style.setProperty('--piece-b-y', `${-96 * smooth}px`);
+        scene.style.setProperty('--piece-b-r', `${10 * smooth}deg`);
+        scene.style.setProperty('--piece-c-x', `${-98 * smooth}px`);
+        scene.style.setProperty('--piece-c-y', `${108 * smooth}px`);
+        scene.style.setProperty('--piece-c-r', `${8 * smooth}deg`);
+        scene.style.setProperty('--piece-d-x', `${118 * smooth}px`);
+        scene.style.setProperty('--piece-d-y', `${78 * smooth}px`);
+        scene.style.setProperty('--piece-d-r', `${-8 * smooth}deg`);
       });
 
       frame = null;
@@ -120,214 +99,238 @@ function useScrollExperience() {
   }, []);
 }
 
+function ProductDevice({ app, index }) {
+  return (
+    <div className="product-device" aria-label={`${app.name} animated preview`}>
+      <div className="trailer-screen">
+        <span className="motion-line line-one"></span>
+        <span className="motion-line line-two"></span>
+        <span className="motion-line line-three"></span>
+        <span className="motion-orb orb-a"></span>
+        <span className="motion-orb orb-b"></span>
+      </div>
+      <div className="icon-glass">
+        <img src={app.icon_url} alt={`${app.name} icon`} loading={index === 0 ? 'eager' : 'lazy'} />
+      </div>
+      <div className="glass-fade"></div>
+    </div>
+  );
+}
+
+function ProductShowcase({ app, index }) {
+  const reverse = index % 2 === 1;
+  const features = app.long_desc
+    .split('\n')
+    .filter((line) => line.trim().startsWith('-'))
+    .slice(0, 4)
+    .map((line) => line.replace('-', '').trim());
+
+  return (
+    <article className={`product-showcase reveal ${reverse ? 'reverse' : ''}`} id={`product-${app.id}`}>
+      <ProductDevice app={app} index={index} />
+      <div className="product-copy">
+        <p className="eyebrow">{app.category} • {app.downloads_text} downloads</p>
+        <h3>{app.name}</h3>
+        <p className="product-tagline">{app.tagline}</p>
+        <p>{app.short_desc}</p>
+        <div className="mini-feature-grid">
+          {features.map((feature) => <span key={feature}>{feature}</span>)}
+        </div>
+        <div className="product-actions">
+          <a className="button primary" href={app.play_url} target="_blank" rel="noreferrer">Google Play</a>
+          <a className="button secondary" href={app.privacy_url}>Privacy Policy</a>
+          <a className="button ghost" href={app.app_ads_file_url}>app-ads.txt</a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function App() {
   useScrollExperience();
 
   return (
     <div className="site-shell">
+      <div className="ambient ambient-one"></div>
+      <div className="ambient ambient-two"></div>
+
       <header className="header">
         <a className="brand" href="#top" aria-label="Devovia Studio home">
           <span className="brand-mark">D</span>
           <span>Devovia Studio</span>
         </a>
         <nav className="nav" aria-label="Primary navigation">
-          <a href="#services">Services</a>
-          <a href="#studio-system">Experience</a>
-          <a href="#process">Process</a>
-          <a href="#contact">Contact</a>
+          <a href="#products">Products</a>
+          <a href="#legal">Policies</a>
+          <a href="#roadmap">In progress</a>
+          <a href="#updates">Updates</a>
+          <a href="#support">Support</a>
         </nav>
-        <a className="nav-cta" href="mailto:info@devoviastudio.com">Start a project</a>
+        <a className="nav-cta" href="#support">Contact support</a>
       </header>
 
       <main id="top">
         <section className="hero section-grid">
           <div className="hero-copy reveal is-visible">
-            <p className="eyebrow">Android • iOS • Websites • Software</p>
-            <h1>
-              <span>Digital products</span>
-              <span>that feel premium.</span>
-            </h1>
+            <p className="eyebrow">Google Play • iOS • Mobile games • Product studio</p>
+            <h1><span>Apps, games</span><span>and future products.</span></h1>
             <p className="hero-text">
-              Devovia Studio designs and develops modern mobile apps, websites and custom software for businesses that want to look stronger, move faster and grow online.
+              Devovia Studio is the public home for our mobile applications, games, privacy policies, customer agreements, product updates and user support.
             </p>
             <div className="hero-actions">
-              <a className="button primary" href="#contact">Start your project</a>
-              <a className="button secondary" href="#studio-system">See the experience</a>
+              <a className="button primary" href="#products">Explore products</a>
+              <a className="button secondary" href="https://play.google.com/store/apps/dev?id=8503755770254696496" target="_blank" rel="noreferrer">Google Play developer page</a>
             </div>
-            <div className="trust-row" aria-label="Core strengths">
-              <span>Premium design</span>
-              <span>Clean code</span>
-              <span>Business-focused</span>
+            <div className="trust-row" aria-label="Core studio areas">
+              <span>Android apps</span><span>iOS coming next</span><span>Game projects</span><span>Support center</span>
             </div>
           </div>
 
-          <div className="hero-card reveal is-visible" aria-label="Devovia Studio capability card">
-            <div className="orb orb-one"></div>
-            <div className="orb orb-two"></div>
-            <div className="screen-card main-screen">
-              <span className="status-dot"></span>
-              <p>Devovia Product Engine</p>
-              <h2>Design. Build. Launch.</h2>
-              <div className="metric-grid">
-                <div><strong>Apps</strong><span>Android & iOS</span></div>
-                <div><strong>Web</strong><span>Company sites</span></div>
-                <div><strong>Tools</strong><span>Dashboards</span></div>
-                <div><strong>Growth</strong><span>Launch support</span></div>
-              </div>
+          <div className="hero-product-wall reveal is-visible" aria-label="Animated product wall">
+            {products.map((app, index) => (
+              <a className={`hero-app-card card-${index + 1}`} href={`#product-${app.id}`} key={app.id}>
+                <img src={app.icon_url} alt={`${app.name} icon`} />
+                <span>{app.name}</span>
+              </a>
+            ))}
+            <div className="hero-glass-panel">
+              <p>Live product ecosystem</p>
+              <h2>Store pages, policies, support and updates in one place.</h2>
+              <span className="hero-scan"></span>
             </div>
-            <div className="floating-card one">UI/UX Design</div>
-            <div className="floating-card two">Automation</div>
-            <div className="floating-card three">React • Flutter</div>
           </div>
         </section>
 
-        <section className="story-section" id="studio-system" data-scroll-scene>
+        <section className="story-section" id="experience" data-scroll-scene>
           <div className="story-sticky">
             <div className="story-copy reveal">
-              <p className="eyebrow">Scroll experience</p>
-              <h2>As you scroll, the product breaks into its core layers.</h2>
+              <p className="eyebrow">Scroll-driven product storytelling</p>
+              <h2>Products enter the screen with motion, glass and focus.</h2>
               <p>
-                This is the feeling we want for Devovia Studio: one strong digital product, then each layer separates and explains itself — strategy, interface, development and launch.
+                The site is designed around animated product blocks: app icon on the visual side, trailer-style motion behind it, glass blur between layers and clear product text on the opposite side.
               </p>
-              <div className="story-progress" aria-label="Scroll progress">
-                <span></span>
-              </div>
+              <div className="story-progress" aria-label="Scroll progress"><span></span></div>
             </div>
-
-            <div className="build-visual" aria-label="Animated product layers">
+            <div className="build-visual" aria-label="Animated website composition">
               <div className="product-core">
-                <div className="browser-bar">
-                  <span></span><span></span><span></span>
-                </div>
+                <div className="browser-bar"><span></span><span></span><span></span></div>
                 <div className="core-glow"></div>
-                <p>Complete product</p>
-                <h3>Devovia Studio</h3>
-                <div className="core-lines">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
+                <p>Devovia Studio</p>
+                <h3>Product hub</h3>
+                <div className="core-lines"><span></span><span></span><span></span></div>
               </div>
-
-              {storyFragments.map(([title, text], index) => (
-                <article className={`fragment-card fragment-${index + 1}`} key={title}>
-                  <span>{`0${index + 1}`}</span>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-
-              <div className="code-shard shard-one">mobile_app.dart</div>
-              <div className="code-shard shard-two">website.jsx</div>
-              <div className="code-shard shard-three">launch.json</div>
+              <article className="fragment-card fragment-1"><span>01</span><h3>Products</h3><p>Store-ready app sections</p></article>
+              <article className="fragment-card fragment-2"><span>02</span><h3>Policies</h3><p>Privacy and agreements</p></article>
+              <article className="fragment-card fragment-3"><span>03</span><h3>Updates</h3><p>Release notes and roadmap</p></article>
+              <article className="fragment-card fragment-4"><span>04</span><h3>Support</h3><p>User messages and mail flow</p></article>
+              <div className="code-shard shard-one">privacy.html</div>
+              <div className="code-shard shard-two">apps.json</div>
+              <div className="code-shard shard-three">support-form</div>
             </div>
+          </div>
+        </section>
+
+        <section className="section" id="products">
+          <div className="section-heading reveal">
+            <p className="eyebrow">Published products</p>
+            <h2>Everything users need before they download.</h2>
+            <p>Each product block connects presentation, Play Store access, privacy pages and monetization compliance files.</p>
+          </div>
+          <div className="product-stack">
+            {products.map((app, index) => <ProductShowcase app={app} index={index} key={app.id} />)}
           </div>
         </section>
 
         <section className="section" id="services">
           <div className="section-heading reveal">
-            <p className="eyebrow">What we do</p>
-            <h2>Digital solutions designed for real business needs.</h2>
+            <p className="eyebrow">What Devovia Studio does</p>
+            <h2>We build, publish and grow mobile products.</h2>
           </div>
           <div className="service-grid">
-            {services.map((service, index) => (
-              <article className="service-card reveal" style={{ '--delay': `${index * 70}ms` }} key={service.title}>
-                <span className="card-index">{service.icon}</span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
+            {services.map(([icon, title, text], index) => (
+              <article className="service-card reveal" style={{ '--delay': `${index * 70}ms` }} key={title}>
+                <span className="card-index">{icon}</span><h3>{title}</h3><p>{text}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section split-section reveal">
-          <div>
-            <p className="eyebrow">Why Devovia</p>
-            <h2>Small studio focus, premium product standards.</h2>
-          </div>
+        <section className="section split-section reveal" id="about">
+          <div><p className="eyebrow">Who we are</p><h2>Independent mobile product studio based in the Netherlands.</h2></div>
           <div className="feature-list">
-            <p>We create digital products that look professional, work smoothly on every screen and support your business instead of complicating it.</p>
+            <p>We create useful apps, mobile games and business tools with a focus on clean interfaces, practical features, store compliance and long-term product improvement.</p>
             <ul>
-              <li>Responsive design for mobile, tablet and desktop</li>
-              <li>Clear user journeys and simple navigation</li>
-              <li>Modern frontend foundations ready for growth</li>
-              <li>Launch support, maintenance and improvements</li>
+              <li>Google Play products are connected directly from the website</li>
+              <li>iOS App Store presence will be added when listings are published</li>
+              <li>Privacy policies and app support stay visible and easy to reach</li>
+              <li>Future apps and active development work are shown publicly</li>
             </ul>
           </div>
         </section>
 
-        <section className="section" id="process">
-          <div className="section-heading reveal">
-            <p className="eyebrow">Our process</p>
-            <h2>From idea to launch without unnecessary complexity.</h2>
+        <section className="section legal-section" id="legal">
+          <div className="section-heading reveal"><p className="eyebrow">Legal & trust center</p><h2>Policies, agreements and product trust pages.</h2></div>
+          <div className="legal-grid">
+            {legalItems.map(([title, text], index) => (
+              <article className="legal-card reveal" style={{ '--delay': `${index * 60}ms` }} key={title}>
+                <span>{`0${index + 1}`}</span><h3>{title}</h3><p>{text}</p>
+              </article>
+            ))}
           </div>
-          <div className="process-grid">
-            {processSteps.map(([number, title, text], index) => (
-              <article className="process-card reveal" style={{ '--delay': `${index * 80}ms` }} key={number}>
-                <span>{number}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
+          <div className="policy-list reveal">
+            {products.map((app) => (
+              <a href={app.privacy_url} key={app.id}><img src={app.icon_url} alt="" /><span>{app.name} Privacy Policy</span></a>
+            ))}
+            <a href="#support"><span>Customer support agreement request</span></a>
+          </div>
+        </section>
+
+        <section className="section roadmap-section" id="roadmap">
+          <div className="section-heading reveal"><p className="eyebrow">In development</p><h2>Products and systems currently being shaped.</h2></div>
+          <div className="roadmap-grid">
+            {inDevelopment.map(([name, type, text], index) => (
+              <article className="roadmap-card reveal" style={{ '--delay': `${index * 90}ms` }} key={name}>
+                <span>{type}</span><h3>{name}</h3><p>{text}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section projects-section reveal">
-          <div className="section-heading">
-            <p className="eyebrow">Project types</p>
-            <h2>We build the digital pieces your business needs.</h2>
-          </div>
-          <div className="pill-grid">
-            {projectTypes.map((item, index) => <span style={{ '--delay': `${index * 40}ms` }} key={item}>{item}</span>)}
+        <section className="section updates-section" id="updates">
+          <div className="section-heading reveal"><p className="eyebrow">Product updates</p><h2>Clear communication for users and store visitors.</h2></div>
+          <div className="timeline">
+            {updates.map(([date, title, text], index) => (
+              <article className="timeline-item reveal" style={{ '--delay': `${index * 80}ms` }} key={`${date}-${title}`}>
+                <span>{date}</span><div><h3>{title}</h3><p>{text}</p></div>
+              </article>
+            ))}
           </div>
         </section>
 
-        <section className="section contact-section reveal" id="contact">
+        <section className="section contact-section reveal" id="support">
           <div className="contact-copy">
-            <p className="eyebrow">Contact</p>
-            <h2>Have an app, website or software idea?</h2>
-            <p>Tell us what you want to build. We will help shape the idea into a clear digital product plan.</p>
+            <p className="eyebrow">Support center</p>
+            <h2>Users can send product questions directly from here.</h2>
+            <p>For privacy, account, billing, feature request or bug reports, users can contact Devovia Studio through this form or email.</p>
             <a className="email-link" href="mailto:info@devoviastudio.com">info@devoviastudio.com</a>
           </div>
 
           <form className="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact" />
-            <p className="hidden-field">
-              <label>Do not fill this field <input name="bot-field" /></label>
-            </p>
-            <label>
-              Name
-              <input name="name" type="text" placeholder="Your name" required />
-            </label>
-            <label>
-              Email
-              <input name="email" type="email" placeholder="you@example.com" required />
-            </label>
-            <label>
-              Company
-              <input name="company" type="text" placeholder="Company name" />
-            </label>
-            <label>
-              Service
-              <select name="service" defaultValue="Mobile App Development">
-                <option>Mobile App Development</option>
-                <option>Website Development</option>
-                <option>Custom Software</option>
-                <option>UI/UX & Product Design</option>
-              </select>
-            </label>
-            <label className="full">
-              Message
-              <textarea name="message" rows="5" placeholder="Tell us about your project" required></textarea>
-            </label>
-            <button className="button primary full" type="submit">Send message</button>
+            <p className="hidden-field"><label>Do not fill this field <input name="bot-field" /></label></p>
+            <label>Name<input name="name" type="text" placeholder="Your name" required /></label>
+            <label>Email<input name="email" type="email" placeholder="you@example.com" required /></label>
+            <label>Product<select name="product" defaultValue={products[0]?.name || 'General support'}>{products.map((app) => <option key={app.id}>{app.name}</option>)}<option>General support</option><option>Future collaboration</option></select></label>
+            <label>Request type<select name="service" defaultValue="App support"><option>App support</option><option>Privacy policy question</option><option>Customer agreement</option><option>Bug report</option><option>Feature request</option></select></label>
+            <label className="full">Message<textarea name="message" rows="5" placeholder="Tell us what you need help with" required></textarea></label>
+            <button className="button primary full" type="submit">Send support request</button>
           </form>
         </section>
       </main>
 
       <footer className="footer">
         <span>© {new Date().getFullYear()} Devovia Studio. All rights reserved.</span>
-        <span>Based in the Netherlands.</span>
+        <span>Google Play now live. iOS App Store coming next.</span>
       </footer>
     </div>
   );
