@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp app-ads.txt dist/app-ads.txt && cp app-ads.txt dist/app.txt",
+    "build": "vite build && cp app-ads.txt dist/app-ads.txt",
     "preview": "vite preview"
   },
   "dependencies": {
