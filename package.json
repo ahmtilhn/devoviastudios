@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build && node -e \"const fs=require('fs'); for (const [s,d] of [['app-ads.txt','dist/app-ads.txt'],['privacy','dist/privacy'],['apps','dist/apps'],['data','dist/data']]) if(fs.existsSync(s)) fs.cpSync(s,d,{recursive:true});\"",
