@@ -128,7 +128,7 @@ function AppPage({ app }) {
     <div className="site-shell app-page" style={{ '--theme': app.theme }}>
       <header className="nav-shell">
         <a className="brand" href="/" aria-label="Devovia Studio home">
-          <span className="brand-mark">D</span>
+          <span className="brand-mark"><img src="/devovia-logo.png" alt="" /></span>
           <span>Devovia</span>
         </a>
         <nav aria-label="Application navigation">
@@ -245,7 +245,7 @@ function App() {
     <div className="site-shell">
       <header className="nav-shell">
         <a className="brand" href="#top" aria-label="Devovia Studio home">
-          <span className="brand-mark">D</span>
+          <span className="brand-mark"><img src="/devovia-logo.png" alt="" /></span>
           <span>Devovia</span>
         </a>
         <nav aria-label="Primary navigation">
