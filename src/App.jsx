@@ -20,7 +20,7 @@ const updates = [
 ];
 
 function appHref(app) {
-  return `/?app=${app.id}`;
+  return `/projects/${app.slug}`;
 }
 
 function getFeatures(app) {
@@ -235,7 +235,9 @@ function AppPage({ app }) {
 function App() {
   const featured = products[0];
   const params = new URLSearchParams(window.location.search);
-  const currentApp = products.find((app) => app.id === params.get('app'));
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+  const projectSlug = pathParts[0] === 'projects' ? pathParts[1] : null;
+  const currentApp = products.find((app) => app.id === params.get('app') || app.slug === projectSlug);
 
   if (currentApp) return <AppPage app={currentApp} />;
 

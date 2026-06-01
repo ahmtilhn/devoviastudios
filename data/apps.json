@@ -2,6 +2,7 @@
   "apps": [
     {
       "id": "app-1",
+      "slug": "stockflow-inventory",
       "package": "com.stockflow.inventory",
       "name": "Stock Manager",
       "tagline": "Professional inventory management with real-time tracking.",
@@ -57,6 +58,7 @@
     },
     {
       "id": "app-4",
+      "slug": "arrow-escape",
       "package": "com.devovia.arrowescape",
       "name": "Arrow Escape",
       "tagline": "A fast-paced arrow puzzle built around memory, focus and timing.",
@@ -113,6 +115,7 @@
     },
     {
       "id": "app-2",
+      "slug": "daily-hadith",
       "package": "com.a2.dailyhadith",
       "name": "Daily Hadith",
       "tagline": "Daily spiritual guidance with a calm, premium interface.",
@@ -168,6 +171,7 @@
     },
     {
       "id": "app-3",
+      "slug": "tinysteps",
       "package": "com.tinysteps.app",
       "name": "TinySteps",
       "tagline": "Simple habit tracking that actually works.",
