@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import appData from '../data/apps.json';
 
 const products = appData.apps;

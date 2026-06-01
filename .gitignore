@@ -1,5 +1,8 @@
 node_modules
 dist
+.netlify/plugins
+.netlify/netlify.toml
+.playwright-cli
 .env
 .env.local
 .DS_Store
