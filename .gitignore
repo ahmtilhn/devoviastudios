@@ -3,6 +3,7 @@ dist
 .netlify/plugins
 .netlify/netlify.toml
 .playwright-cli
+output/playwright
 .env
 .env.local
 .DS_Store
