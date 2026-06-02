@@ -820,9 +820,18 @@ h3 { margin-bottom: 8px; line-height: 1.2; }
   align-items: flex-start;
   color: #86efac;
 }
+.form-note.error {
+  align-items: flex-start;
+  color: #fca5a5;
+}
 .form-note a {
   color: #93c5fd;
   font-weight: 850;
+}
+.support-form button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
 }
 .deliverables { margin-top: 18px; font-size: 0.85rem; }
 .deliverables li::marker { color: #60a5fa; }

@@ -3,6 +3,8 @@ import appData from '../data/apps.json';
 
 const products = appData.apps;
 const contactEmail = 'info@devoviastudio.com';
+const formEndpoint = 'https://api.web3forms.com/submit';
+const formAccessKey = 'PASTE_WEB3FORMS_ACCESS_KEY';
 
 const productRouteMap = {
   'stock-manager': 'stockflow-inventory',
@@ -645,29 +647,42 @@ function UpdateCard({ update, navigate }) {
 }
 
 function SupportForm({ productName = '', project = false }) {
-  const [sent, setSent] = useState(false);
-  const handleSubmit = (event) => {
+  const [status, setStatus] = useState('idle');
+  const [statusText, setStatusText] = useState('');
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    if (formAccessKey === 'PASTE_WEB3FORMS_ACCESS_KEY') {
+      setStatus('error');
+      setStatusText('Form service is not connected yet. Add your Web3Forms access key in the site config to send messages directly from the form.');
+      return;
+    }
+
+    setStatus('sending');
+    setStatusText('');
     const formData = new FormData(event.currentTarget);
     const subject = project ? 'New Devovia project request' : 'New Devovia support request';
-    const rows = project
-      ? [
-        ['Name', formData.get('name')],
-        ['Email', formData.get('email')],
-        ['Project type', formData.get('project_type')],
-        ['Timeline', formData.get('timeline')],
-        ['Message', formData.get('message')],
-      ]
-      : [
-        ['Name', formData.get('name')],
-        ['Email', formData.get('email')],
-        ['Product', formData.get('product')],
-        ['Request type', formData.get('request_type')],
-        ['Message', formData.get('message')],
-      ];
-    const body = rows.map(([label, value]) => `${label}: ${value || '-'}`).join('\n');
-    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+
+    formData.append('access_key', formAccessKey);
+    formData.append('subject', subject);
+    formData.append('from_name', 'Devovia Studio Website');
+    formData.append('replyto', formData.get('email') || '');
+
+    try {
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'The form service could not send this message.');
+      }
+      event.currentTarget.reset();
+      setStatus('success');
+      setStatusText('Message sent. We will route it to the right Devovia contact path.');
+    } catch (error) {
+      setStatus('error');
+      setStatusText(error.message || 'Something went wrong while sending the message.');
+    }
   };
 
   return (
@@ -686,9 +701,9 @@ function SupportForm({ productName = '', project = false }) {
         </>
       )}
       <label className="full">Message<textarea name="message" rows="5" placeholder="Tell us more..." required></textarea></label>
-      <p className="form-note"><Icon name="lock" /> Your details open as an email draft to {contactEmail}. We do not send them through a third-party form service.</p>
-      <button className="button primary full" type="submit">{project ? 'Send project request' : 'Send request'}<Icon name="arrow" /></button>
-      {sent && <p className="form-note success"><Icon name="shield" /> Your email app should be open now. If it did not open, email us directly at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>}
+      <p className="form-note"><Icon name="lock" /> Your details are sent securely through the website form and used only to respond to your request.</p>
+      <button className="button primary full" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending...' : project ? 'Send project request' : 'Send request'}<Icon name="arrow" /></button>
+      {statusText && <p className={`form-note ${status}`}><Icon name={status === 'success' ? 'shield' : 'support'} /> {statusText}</p>}
     </form>
   );
 }
