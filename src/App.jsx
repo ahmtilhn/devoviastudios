@@ -666,6 +666,7 @@ function SupportForm({ productName = '', project = false }) {
     formData.append('subject', subject);
     formData.append('from_name', 'Devovia Studio Website');
     formData.append('replyto', formData.get('email') || '');
+    formData.append('botcheck', '');
 
     try {
       const response = await fetch(formEndpoint, {
