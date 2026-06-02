@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import appData from '../data/apps.json';
 
 const products = appData.apps;
+const contactEmail = 'info@devoviastudio.com';
 
 const productRouteMap = {
   'stock-manager': 'stockflow-inventory',
@@ -99,10 +100,84 @@ const updates = [
 ];
 
 const blogPosts = [
-  ['Google Play', 'How to prepare your app for Google Play closed testing', 'A practical checklist for store readiness, tester flows, support links and release confidence.', '6 min read'],
-  ['Google Play', 'Google Play app launch checklist for indie developers', 'What to prepare before launch: screenshots, descriptions, privacy pages, testing and updates.', '7 min read'],
-  ['UI/UX', 'How to design a mobile app landing page that builds trust', 'Why product screenshots, support infrastructure and clear copy matter.', '5 min read'],
-  ['Mobile Apps', 'Why offline-first apps still matter for business tools', 'How local storage, fast workflows and simple backups help small teams.', '5 min read'],
+  {
+    slug: 'google-play-closed-testing-checklist',
+    category: 'Google Play',
+    title: 'How to prepare your app for Google Play closed testing',
+    text: 'A practical checklist for store readiness, tester flows, support links and release confidence.',
+    date: 'June 2, 2026',
+    readTime: '6 min read',
+    sections: [
+      ['Start with policy links', 'Make privacy, support and contact paths easy to find before inviting testers. A clean support hub lowers confusion for reviewers and testers.'],
+      ['Give testers one clear job', 'Closed testing works best when testers know what to install, what to try and where to report feedback. Keep the instructions short and repeatable.'],
+      ['Prepare release notes early', 'Write update notes before submission so every change has context and your product history looks maintained.'],
+    ],
+  },
+  {
+    slug: 'google-play-launch-checklist-indie-developers',
+    category: 'Google Play',
+    title: 'Google Play app launch checklist for indie developers',
+    text: 'What to prepare before launch: screenshots, descriptions, privacy pages, testing and updates.',
+    date: 'May 30, 2026',
+    readTime: '7 min read',
+    sections: [
+      ['Polish the store listing', 'Screenshots, short descriptions and feature copy should explain the product in seconds. Avoid placeholder images and vague claims.'],
+      ['Verify the support surface', 'Each product needs a reachable support path, privacy policy and a basic release history that users can trust.'],
+      ['Ship with measured claims', 'Use real download, rating and review counts. Credibility grows faster when numbers are accurate.'],
+    ],
+  },
+  {
+    slug: 'mobile-app-landing-page-trust',
+    category: 'UI/UX',
+    title: 'How to design a mobile app landing page that builds trust',
+    text: 'Why product screenshots, support infrastructure and clear copy matter.',
+    date: 'May 24, 2026',
+    readTime: '5 min read',
+    sections: [
+      ['Show the product immediately', 'Real screenshots beat generic mockups because visitors can inspect what they might install or buy.'],
+      ['Put proof near action', 'Download counts, ratings, update dates and privacy links make CTAs feel safer.'],
+      ['Make support visible', 'Trust drops when privacy and support pages are hidden. Put them in product pages, support hubs and the footer.'],
+    ],
+  },
+  {
+    slug: 'offline-first-business-tools',
+    category: 'Mobile Apps',
+    title: 'Why offline-first apps still matter for business tools',
+    text: 'How local storage, fast workflows and simple backups help small teams.',
+    date: 'May 18, 2026',
+    readTime: '5 min read',
+    sections: [
+      ['Speed is a product feature', 'Inventory and habit workflows should open quickly and keep working even when connectivity is poor.'],
+      ['Local data reduces friction', 'For small teams, local-first storage can make daily work simpler while still supporting exports and backups.'],
+      ['Backups need plain language', 'Users need to know where files are, how restore works and what happens when they move devices.'],
+    ],
+  },
+  {
+    slug: 'flutter-product-quality-release-notes',
+    category: 'Flutter',
+    title: 'Using release notes to make Flutter apps feel maintained',
+    text: 'A lightweight system for documenting fixes, performance work and UX improvements without slowing development.',
+    date: 'May 12, 2026',
+    readTime: '4 min read',
+    sections: [
+      ['Write for users first', 'Mention the outcome: faster startup, better backup handling or clearer notifications. Implementation details can stay internal.'],
+      ['Keep notes chronological', 'A simple update timeline helps users and reviewers see momentum across the product.'],
+      ['Connect notes to support', 'When an update fixes a blocker, link users toward the support path that helps them verify the fix.'],
+    ],
+  },
+  {
+    slug: 'indie-game-store-readiness',
+    category: 'Game Development',
+    title: 'Store-readiness basics for indie puzzle games',
+    text: 'How screenshots, progression copy, privacy pages and reward explanations help a new game launch with less friction.',
+    date: 'May 8, 2026',
+    readTime: '6 min read',
+    sections: [
+      ['Explain the core loop', 'Players should understand the mechanic, pressure and reward system before installing.'],
+      ['Be clear about monetization', 'If ads, rewarded videos or purchases exist, describe them plainly in policy and support surfaces.'],
+      ['Use honest launch metrics', 'Early games often have low counts. That is fine. Accuracy builds more trust than inflated numbers.'],
+    ],
+  },
 ];
 
 const metaByRoute = {
@@ -289,14 +364,31 @@ function projectUrl(product) {
   return productUrl(product);
 }
 
+function productGroup(product) {
+  if (product.name === 'Arrow Escape') return 'Games';
+  if (product.name === 'Daily Hadith') return 'Spiritual';
+  if (product.category === 'Productivity') return 'Productivity';
+  return 'Utility';
+}
+
 function productBySlug(slug) {
   const normalized = productRouteMap[slug] || slug;
   return products.find((product) => product.slug === normalized || product.id === slug);
 }
 
+function blogBySlug(slug) {
+  return blogPosts.find((post) => post.slug === slug);
+}
+
 function getProductFromPath(path) {
   const parts = path.split('/').filter(Boolean);
   if ((parts[0] === 'products' || parts[0] === 'projects') && parts[1]) return productBySlug(parts[1]);
+  return null;
+}
+
+function getBlogFromPath(path) {
+  const parts = path.split('/').filter(Boolean);
+  if (parts[0] === 'blog' && parts[1]) return blogBySlug(parts[1]);
   return null;
 }
 
@@ -319,10 +411,12 @@ function useRoute() {
   return { path, navigate };
 }
 
-function useMetadata(path, product) {
+function useMetadata(path, product, blogPost) {
   useEffect(() => {
     const routeMeta = product
       ? [`${product.name} - Devovia Studio`, `${product.name}: ${product.short_desc}`]
+      : blogPost
+        ? [`${blogPost.title} - Devovia Studio`, blogPost.text]
       : metaByRoute[path] || metaByRoute['/'];
     document.title = routeMeta[0];
     const description = document.querySelector('meta[name="description"]');
@@ -331,7 +425,7 @@ function useMetadata(path, product) {
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if (ogTitle) ogTitle.setAttribute('content', routeMeta[0]);
     if (ogDescription) ogDescription.setAttribute('content', routeMeta[1]);
-  }, [path, product]);
+  }, [path, product, blogPost]);
 }
 
 function Icon({ name }) {
@@ -378,6 +472,7 @@ function Header({ path, navigate }) {
     setOpen(false);
     navigate(href);
   };
+  const isActive = (href) => path === href || (href !== '/' && path.startsWith(`${href}/`));
 
   return (
     <header className="site-header">
@@ -387,7 +482,7 @@ function Header({ path, navigate }) {
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         {links.map(([href, label]) => (
-          <Link href={href} onNavigate={go} className={path === href ? 'is-active' : ''} key={href}>{label}</Link>
+          <Link href={href} onNavigate={go} className={isActive(href) ? 'is-active' : ''} key={href}>{label}</Link>
         ))}
       </nav>
       <Link href="/contact" onNavigate={go} className="button primary small">Start a Project</Link>
@@ -427,7 +522,7 @@ function Footer({ navigate }) {
         <Link href="/blog" onNavigate={navigate}>Blog</Link>
         <Link href="/updates" onNavigate={navigate}>Updates</Link>
         <Link href="/support" onNavigate={navigate}>Support</Link>
-        <a href="mailto:info@devoviastudio.com">info@devoviastudio.com</a>
+        <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
       </div>
     </footer>
   );
@@ -448,6 +543,32 @@ function SectionHeader({ eyebrow, title, text, action, onNavigate }) {
 
 function PlayBadge() {
   return <span className="play-badge"><span></span>Google Play</span>;
+}
+
+function MetricRow({ product, compact = false }) {
+  const metrics = [
+    ['Downloads', product.downloads_text],
+    ['Rating', product.rating_text && Number(product.rating_text) > 0 ? `${product.rating_text}/5` : 'New'],
+    ['Reviews', product.reviews_text],
+  ];
+  return (
+    <div className={`metric-row ${compact ? 'compact' : ''}`} aria-label={`${product.name} Google Play metrics`}>
+      {metrics.map(([label, value]) => <span key={label}><strong>{value}</strong>{label}</span>)}
+    </div>
+  );
+}
+
+function ReviewPanel({ product }) {
+  const hasReviews = product.reviews_text && !product.reviews_text.startsWith('0');
+  return (
+    <article className="glass-panel review-panel">
+      <span className="icon-box"><Icon name="support" /></span>
+      <h2>User signal</h2>
+      <MetricRow product={product} />
+      <p>{hasReviews ? `${product.name} currently shows ${product.rating_text}/5 on Google Play with ${product.reviews_text}. Public review text is not mirrored here, so the site keeps the proof numeric and accurate.` : `${product.name} is early on Google Play. Ratings and public review text will appear here once enough users leave feedback.`}</p>
+      <a href={product.play_url} className="text-link" target="_blank" rel="noreferrer">Open Google Play listing<Icon name="arrow" /></a>
+    </article>
+  );
 }
 
 function DeviceMockup({ product, className = '', priority = false }) {
@@ -480,6 +601,7 @@ function ProductCard({ product, navigate, compact = false }) {
         </div>
       </div>
       <p>{product.short_copy || product.short_desc}</p>
+      <MetricRow product={product} compact />
       {!compact && (
         <div className="product-visual">
           <img src={product.screenshots[0]} alt={`${product.name} screenshot`} loading="lazy" />
@@ -516,18 +638,40 @@ function UpdateCard({ update, navigate }) {
         <time>{update.date}</time>
         <h3>{update.title}</h3>
         <p>{update.text}</p>
-        <Link href="/updates" onNavigate={navigate} className="text-link">Read more<Icon name="arrow" /></Link>
+        <Link href={product ? productUrl(product) : '/updates'} onNavigate={navigate} className="text-link">Read more<Icon name="arrow" /></Link>
       </div>
     </article>
   );
 }
 
 function SupportForm({ productName = '', project = false }) {
+  const [sent, setSent] = useState(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const subject = project ? 'New Devovia project request' : 'New Devovia support request';
+    const rows = project
+      ? [
+        ['Name', formData.get('name')],
+        ['Email', formData.get('email')],
+        ['Project type', formData.get('project_type')],
+        ['Timeline', formData.get('timeline')],
+        ['Message', formData.get('message')],
+      ]
+      : [
+        ['Name', formData.get('name')],
+        ['Email', formData.get('email')],
+        ['Product', formData.get('product')],
+        ['Request type', formData.get('request_type')],
+        ['Message', formData.get('message')],
+      ];
+    const body = rows.map(([label, value]) => `${label}: ${value || '-'}`).join('\n');
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSent(true);
+  };
+
   return (
-    <form className="support-form" action="https://formsubmit.co/info@devoviastudio.com" method="POST">
-      <input type="hidden" name="_subject" value={project ? 'New Devovia project request' : 'New Devovia support request'} />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
+    <form className="support-form" onSubmit={handleSubmit}>
       <label>Your name<input name="name" placeholder="Enter your name" required /></label>
       <label>Work email<input name="email" type="email" placeholder="name@company.com" required /></label>
       {project ? (
@@ -542,8 +686,9 @@ function SupportForm({ productName = '', project = false }) {
         </>
       )}
       <label className="full">Message<textarea name="message" rows="5" placeholder="Tell us more..." required></textarea></label>
-      <p className="form-note"><Icon name="lock" /> Your details are secure and used only to respond to your request.</p>
+      <p className="form-note"><Icon name="lock" /> Your details open as an email draft to {contactEmail}. We do not send them through a third-party form service.</p>
       <button className="button primary full" type="submit">{project ? 'Send project request' : 'Send request'}<Icon name="arrow" /></button>
+      {sent && <p className="form-note success"><Icon name="shield" /> Your email app should be open now. If it did not open, email us directly at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>}
     </form>
   );
 }
@@ -636,16 +781,20 @@ function CTASection({ navigate }) {
 }
 
 function ProductsPage({ navigate }) {
+  const [activeFilter, setActiveFilter] = useState('All');
+  const filters = ['All', 'Productivity', 'Games', 'Utility', 'Spiritual', 'Launch Systems'];
+  const visibleProducts = products.filter((product) => activeFilter === 'All' || productGroup(product) === activeFilter);
+  const showLaunchSupport = activeFilter === 'All' || activeFilter === 'Launch Systems';
   return (
     <>
       <PageHero eyebrow="Products built by Devovia" title={<><span>Real mobile products,</span><br />not placeholder concepts.</>} text="Explore Devovia's published apps and launch-ready product systems across productivity, games, habits and spiritual utilities." />
       <div className="filter-row">
-        {['All', 'Productivity', 'Games', 'Utility', 'Spiritual', 'Launch Systems'].map((filter, index) => <button className={index === 0 ? 'active' : ''} type="button" key={filter}>{filter}</button>)}
+        {filters.map((filter) => <button className={activeFilter === filter ? 'active' : ''} type="button" onClick={() => setActiveFilter(filter)} key={filter}>{filter}</button>)}
       </div>
       <section className="products-grid">
-        {products.map((product) => <ProductCard product={product} navigate={navigate} key={product.id} />)}
+        {visibleProducts.map((product) => <ProductCard product={product} navigate={navigate} key={product.id} />)}
       </section>
-      <section className="support-product-card">
+      {showLaunchSupport && <section className="support-product-card">
         <span className="icon-xl"><Icon name="shield" /></span>
         <div>
           <p className="eyebrow">Launch systems & support</p>
@@ -656,7 +805,7 @@ function ProductsPage({ navigate }) {
           {supportSteps.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}
         </div>
         <Link href="/services/google-play-test-support" onNavigate={navigate} className="button primary">Request Support<Icon name="arrow" /></Link>
-      </section>
+      </section>}
       <section className="section">
         <SectionHeader eyebrow="Why these products feel different" title="Built for real users, release pressure and long-term support." />
         <div className="reason-grid">
@@ -704,6 +853,8 @@ function ProductDetailPage({ product, navigate }) {
           <div className="meta-chip-row">
             <span>{product.category}</span>
             <span>{product.downloads_text} downloads</span>
+            <span>{Number(product.rating_text) > 0 ? `${product.rating_text}/5 rating` : 'New listing'}</span>
+            <span>{product.reviews_text}</span>
             <span>Updated {formatDate(product.updated_on)}</span>
             {isStock && <span>Offline-first</span>}
           </div>
@@ -727,6 +878,7 @@ function ProductDetailPage({ product, navigate }) {
             ))}
           </div>
         </article>
+        <ReviewPanel product={product} />
       </section>
 
       <section className="workflow-section">
@@ -761,8 +913,12 @@ function ProductDetailPage({ product, navigate }) {
         </article>
         <article className="glass-panel">
           <h2>Privacy first</h2>
-          <p>Your data stays on your device where possible. We do not collect or share personal information without purpose.</p>
-          <a href={product.privacy_url} className="text-link">Learn more<Icon name="arrow" /></a>
+          <p>Your data stays on your device where possible. Product privacy pages are linked here and in the support hub so users can find them fast.</p>
+          <div className="privacy-link-stack">
+            <a href={product.privacy_url} className="text-link">Local privacy page<Icon name="arrow" /></a>
+            {product.privacy_official_url && <a href={product.privacy_official_url} className="text-link" target="_blank" rel="noreferrer">Official privacy policy<Icon name="arrow" /></a>}
+            {product.terms_url && <a href={product.terms_url} className="text-link" target="_blank" rel="noreferrer">Terms of service<Icon name="arrow" /></a>}
+          </div>
         </article>
       </section>
     </>
@@ -840,20 +996,25 @@ function TestSupportPage({ navigate }) {
 }
 
 function UpdatesPage({ navigate }) {
+  const [activeFilter, setActiveFilter] = useState('All');
+  const filters = ['All', 'Stock Manager', 'Arrow Escape', 'Daily Hadith', 'TinySteps', 'Studio'];
+  const visibleUpdates = updates.filter((update) => activeFilter === 'All' || update.product === activeFilter);
+  const visibleProducts = products.filter((product) => activeFilter === 'All' || product.name === activeFilter || activeFilter === 'Studio');
   return (
     <>
       <PageHero eyebrow="Updates" title={<>Release notes that keep <span>products credible.</span></>} text="Follow product launches, quality improvements and release milestones across the Devovia catalog.">
         <HeroDeviceCluster />
       </PageHero>
       <div className="filter-row">
-        {['All', 'Stock Manager', 'Arrow Escape', 'Daily Hadith', 'TinySteps', 'Studio'].map((filter, index) => <button className={index === 0 ? 'active' : ''} type="button" key={filter}>{filter}</button>)}
+        {filters.map((filter) => <button className={activeFilter === filter ? 'active' : ''} type="button" onClick={() => setActiveFilter(filter)} key={filter}>{filter}</button>)}
       </div>
       <section className="updates-layout">
         <div className="timeline-list">
-          {updates.map((update) => <UpdateCard update={update} navigate={navigate} key={update.title} />)}
+          {visibleUpdates.map((update) => <UpdateCard update={update} navigate={navigate} key={update.title} />)}
+          {activeFilter === 'Studio' && <article className="update-card"><span className="icon-box"><Icon name="shield" /></span><div><time>June 2026</time><h3>Studio support pages expanded</h3><p>Privacy, support and launch-support routes are grouped so app users can reach the right page faster.</p><Link href="/support" onNavigate={navigate} className="text-link">Open support hub<Icon name="arrow" /></Link></div></article>}
         </div>
         <div className="story-grid">
-          {products.map((product) => <article className="story-card" style={{ '--theme': product.theme }} key={product.id}><img src={product.icon_url} alt="" /><h3>{product.name}</h3><time>{formatDate(product.updated_on)}</time><ul>{product.release_notes.map((note) => <li key={note}>{note}</li>)}</ul><Link href={productUrl(product)} onNavigate={navigate} className="text-link">Read full notes<Icon name="arrow" /></Link></article>)}
+          {visibleProducts.map((product) => <article className="story-card" style={{ '--theme': product.theme }} key={product.id}><img src={product.icon_url} alt="" /><h3>{product.name}</h3><MetricRow product={product} compact /><time>{formatDate(product.updated_on)}</time><ul>{product.release_notes.map((note) => <li key={note}>{note}</li>)}</ul><Link href={productUrl(product)} onNavigate={navigate} className="text-link">Read full notes<Icon name="arrow" /></Link></article>)}
           <article className="launch-support-row"><h3>Need launch support?</h3><p>Our Google Play Test Support service helps you run closed tests, fix issues and release with confidence.</p><Link href="/services/google-play-test-support" onNavigate={navigate} className="button primary">Explore Test Support<Icon name="arrow" /></Link></article>
         </div>
       </section>
@@ -866,7 +1027,7 @@ function SupportPage({ navigate }) {
     <>
       <PageHero eyebrow="Support & Privacy" title={<>Support pages that feel product-ready, not neglected.</>} text="Find privacy policies, app support and the right contact path for each Devovia product without digging through generic pages.">
         <div className="support-app-grid">
-          {products.map((product) => <article className="support-app-card" key={product.id}><img src={product.icon_url} alt="" /><h3>{product.name}</h3><p>{product.category}</p><a href={product.privacy_url}>Privacy policy</a><Link href={productUrl(product)} onNavigate={navigate}>Support center</Link><Link href="/updates" onNavigate={navigate}>Release notes</Link></article>)}
+          {products.map((product) => <article className="support-app-card" key={product.id}><img src={product.icon_url} alt="" /><h3>{product.name}</h3><p>{product.category}</p><a href={product.privacy_url}>Local privacy page</a>{product.privacy_official_url && <a href={product.privacy_official_url} target="_blank" rel="noreferrer">Official privacy policy</a>}<Link href={productUrl(product)} onNavigate={navigate}>Product page</Link><Link href="/updates" onNavigate={navigate}>Release notes</Link></article>)}
         </div>
       </PageHero>
       <section className="support-layout">
@@ -885,6 +1046,7 @@ function SupportPage({ navigate }) {
             <div className="chip-row large">
               {products.map((product) => <a href={product.privacy_url} key={product.id}><img src={product.icon_url} alt="" />{product.name}</a>)}
             </div>
+            <p className="privacy-note">Each product page also links to its official Google-hosted privacy policy when available.</p>
           </article>
           <div className="faq-grid">
             {[
@@ -903,16 +1065,40 @@ function SupportPage({ navigate }) {
   );
 }
 
-function BlogPage() {
+function BlogPage({ navigate }) {
+  const [activeFilter, setActiveFilter] = useState('All');
+  const categories = ['All', 'Google Play', 'Flutter', 'Mobile Apps', 'Game Development', 'UI/UX', 'Product Launch'];
+  const visiblePosts = blogPosts.filter((post) => activeFilter === 'All' || post.category === activeFilter || (activeFilter === 'Product Launch' && post.category === 'Google Play'));
   return (
     <>
       <PageHero eyebrow="Blog" title="Practical notes on mobile apps, Google Play and product launches." text="Guides for builders who need launch-ready apps, store pages, support systems and product websites." />
       <div className="filter-row">
-        {['Google Play', 'Flutter', 'Mobile Apps', 'Game Development', 'UI/UX', 'Product Launch'].map((filter) => <button type="button" key={filter}>{filter}</button>)}
+        {categories.map((filter) => <button className={activeFilter === filter ? 'active' : ''} type="button" onClick={() => setActiveFilter(filter)} key={filter}>{filter}</button>)}
       </div>
       <section className="blog-grid">
-        {blogPosts.map(([category, title, text, readTime]) => <article className="blog-card" key={title}><span>{category}</span><h2>{title}</h2><p>{text}</p><time>June 2026 - {readTime}</time><a className="text-link" href="#top">Read article<Icon name="arrow" /></a></article>)}
+        {visiblePosts.map((post) => <article className="blog-card" key={post.slug}><span>{post.category}</span><h2>{post.title}</h2><p>{post.text}</p><time>{post.date} - {post.readTime}</time><Link className="text-link" href={`/blog/${post.slug}`} onNavigate={navigate}>Read article<Icon name="arrow" /></Link></article>)}
       </section>
+    </>
+  );
+}
+
+function BlogArticlePage({ post, navigate }) {
+  return (
+    <>
+      <PageHero eyebrow={post.category} title={post.title} text={post.text}>
+        <article className="glass-panel article-meta-panel">
+          <h2>Article details</h2>
+          <div className="meta-chip-row"><span>{post.date}</span><span>{post.readTime}</span><span>{post.category}</span></div>
+          <p>Practical launch notes from Devovia Studio, written for teams shipping real mobile products.</p>
+        </article>
+      </PageHero>
+      <article className="article-body">
+        {post.sections.map(([title, text]) => <section key={title}><h2>{title}</h2><p>{text}</p></section>)}
+        <div className="article-actions">
+          <Link href="/blog" onNavigate={navigate} className="button secondary">Back to blog</Link>
+          <Link href="/services/google-play-test-support" onNavigate={navigate} className="button primary">Get launch support<Icon name="arrow" /></Link>
+        </div>
+      </article>
     </>
   );
 }
@@ -934,20 +1120,22 @@ function App() {
   const { path, navigate } = useRoute();
   const locale = useLocale();
   const product = getProductFromPath(path);
-  useMetadata(path, product);
+  const blogPost = getBlogFromPath(path);
+  useMetadata(path, product, blogPost);
   useAutoTranslate(locale, path);
 
   const page = useMemo(() => {
     if (product) return <ProductDetailPage product={product} navigate={navigate} />;
+    if (blogPost) return <BlogArticlePage post={blogPost} navigate={navigate} />;
     if (path === '/products' || path === '/projects') return <ProductsPage navigate={navigate} />;
     if (path === '/services/google-play-test-support') return <TestSupportPage navigate={navigate} />;
     if (path.startsWith('/services')) return <ServicesPage navigate={navigate} />;
     if (path === '/updates') return <UpdatesPage navigate={navigate} />;
     if (path === '/support') return <SupportPage navigate={navigate} />;
-    if (path === '/blog') return <BlogPage />;
+    if (path === '/blog') return <BlogPage navigate={navigate} />;
     if (path === '/contact') return <ContactPage />;
     return <HomePage navigate={navigate} />;
-  }, [path, product, navigate]);
+  }, [path, product, blogPost, navigate]);
 
   return (
     <div className="app-shell">

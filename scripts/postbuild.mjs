@@ -30,6 +30,15 @@ function writeRoute(route) {
   fs.copyFileSync(index, path.join(routeDir, 'index.html'));
 }
 
+const blogSlugs = [
+  'google-play-closed-testing-checklist',
+  'google-play-launch-checklist-indie-developers',
+  'mobile-app-landing-page-trust',
+  'offline-first-business-tools',
+  'flutter-product-quality-release-notes',
+  'indie-game-store-readiness',
+];
+
 const routes = [
   '/',
   '/products',
@@ -41,6 +50,7 @@ const routes = [
   '/contact',
   ...appData.apps.map((app) => `/products/${routeSlug(app)}`),
   ...appData.apps.map((app) => `/projects/${app.slug}`),
+  ...blogSlugs.map((slug) => `/blog/${slug}`),
 ];
 
 fs.copyFileSync(index, path.join(dist, '404.html'));
