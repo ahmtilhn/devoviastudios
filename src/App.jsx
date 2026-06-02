@@ -651,6 +651,7 @@ function SupportForm({ productName = '', project = false }) {
   const [statusText, setStatusText] = useState('');
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const form = event.currentTarget;
     if (formAccessKey === 'PASTE_WEB3FORMS_ACCESS_KEY') {
       setStatus('error');
       setStatusText('Form service is not connected yet. Add your Web3Forms access key in the site config to send messages directly from the form.');
@@ -659,7 +660,7 @@ function SupportForm({ productName = '', project = false }) {
 
     setStatus('sending');
     setStatusText('');
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     const subject = project ? 'New Devovia project request' : 'New Devovia support request';
 
     formData.append('access_key', formAccessKey);
@@ -677,7 +678,7 @@ function SupportForm({ productName = '', project = false }) {
       if (!response.ok || !result.success) {
         throw new Error(result.message || 'The form service could not send this message.');
       }
-      event.currentTarget.reset();
+      form.reset();
       setStatus('success');
       setStatusText('Message sent. We will route it to the right Devovia contact path.');
     } catch (error) {
