@@ -4,7 +4,7 @@ import appData from '../data/apps.json';
 const products = appData.apps;
 const contactEmail = 'info@devoviastudio.com';
 const formEndpoint = 'https://api.web3forms.com/submit';
-const formAccessKey = 'PASTE_WEB3FORMS_ACCESS_KEY';
+const formAccessKey = '156fd324-7568-4397-adee-20b99ad68190';
 
 const productRouteMap = {
   'stock-manager': 'stockflow-inventory',
