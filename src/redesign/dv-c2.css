@@ -1,0 +1,3 @@
+.dv-updates { background: #fff; }
+.dv-update-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.dv-update-card { display: flex; min-height: 330px; flex-direction: column; padding: 26px; border: 1px solid var(--dv-line); border-radius: var(--dv-radius); background: #fff; text-decoration: none; }

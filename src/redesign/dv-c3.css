@@ -1,0 +1,3 @@
+.dv-about-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 100px; }
+.dv-about-visual { position: relative; min-height: 520px; border-radius: var(--dv-radius-lg); background: linear-gradient(145deg,#eaf3ff,#f6f1ff,#ecfeff); }
+.dv-about-copy > p { color: var(--dv-copy); line-height: 1.85; }

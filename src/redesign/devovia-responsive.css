@@ -1,0 +1,24 @@
+@import './dv-a1.css';
+@import './dv-a2.css';
+
+@media (max-width: 1080px) {
+  .dv-hero-grid { grid-template-columns: 1fr; }
+  .dv-service-grid { grid-template-columns: 1fr 1fr; }
+  .dv-product { grid-template-columns: 1fr; }
+  .dv-product.is-reverse .dv-product-visual,
+  .dv-product.is-reverse .dv-product-copy { order: initial; }
+  .dv-process-section .dv-shell { grid-template-columns: 1fr; }
+  .dv-about-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .dv-menu { display: grid; }
+  .dv-nav-links { display: none; position: absolute; top: 68px; right: 15px; left: 15px; flex-direction: column; padding: 14px; border-radius: 22px; background: #fff; box-shadow: var(--dv-shadow); }
+  .dv-nav-links.is-open { display: flex; }
+  .dv-service-grid,
+  .dv-update-grid,
+  .dv-process-grid,
+  .dv-footer-grid { grid-template-columns: 1fr; }
+  .dv-section-head { align-items: flex-start; flex-direction: column; }
+  .dv-product { padding: 24px; }
+}

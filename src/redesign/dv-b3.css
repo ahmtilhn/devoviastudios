@@ -1,0 +1,4 @@
+.dv-product-heading { display: flex; align-items: center; gap: 16px; }
+.dv-product-heading img { width: 64px; height: 64px; border-radius: 19px; object-fit: cover; }
+.dv-product-heading h3 { margin: 0; font-size: 2rem; letter-spacing: -.055em; }
+.dv-product-copy > p { color: var(--dv-copy); font-size: .94rem; line-height: 1.75; }

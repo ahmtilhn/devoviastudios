@@ -1,0 +1,4 @@
+.dv-section { padding: 122px 0; }
+.dv-section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 60px; margin-bottom: 58px; }
+.dv-section-head h2, .dv-process-intro h2, .dv-about-copy h2 { margin: 0; font-size: clamp(2.35rem, 4vw, 4.25rem); line-height: 1.08; letter-spacing: -0.06em; }
+.dv-section-head > p { max-width: 430px; margin: 0 0 8px; color: var(--dv-copy); line-height: 1.75; }
