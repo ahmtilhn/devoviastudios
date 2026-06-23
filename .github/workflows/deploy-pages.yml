@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -41,6 +41,19 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+      - name: Sync build to gh-pages fallback branch
+        run: |
+          cp -R dist /tmp/devovia-dist
+          git checkout --orphan gh-pages-publish
+          git rm -rf .
+          git clean -fdx
+          cp -R /tmp/devovia-dist/. .
+          echo "devoviastudio.com" > CNAME
+          touch .nojekyll
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "deploy: publish latest main build"
+          git push --force origin HEAD:gh-pages
 
   deploy:
     environment:
