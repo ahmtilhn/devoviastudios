@@ -1,0 +1,9 @@
+.dv-service-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.dv-service-card { position: relative; min-height: 335px; padding: 26px; border: 1px solid var(--dv-line); border-radius: var(--dv-radius); background: rgba(255,255,255,.84); box-shadow: 0 14px 44px rgba(15,23,42,.04); transition: transform .25s ease, box-shadow .25s ease; }
+.dv-service-card:hover { transform: translateY(-7px); box-shadow: var(--dv-shadow); }
+.dv-service-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 60px; }
+.dv-service-top > span { color: var(--dv-muted); font-size: .68rem; font-weight: 700; }
+.dv-service-top > div { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 15px; color: var(--dv-blue); background: linear-gradient(145deg,#eff6ff,#f5f3ff); }
+.dv-service-card h3 { margin: 0 0 14px; font-size: 1.15rem; }
+.dv-service-card p { margin: 0; color: var(--dv-copy); font-size: .88rem; line-height: 1.7; }
+.dv-service-card a { position: absolute; bottom: 25px; display: inline-flex; align-items: center; gap: 8px; color: #334155; text-decoration: none; font-size: .73rem; font-weight: 700; }
