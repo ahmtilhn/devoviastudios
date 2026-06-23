@@ -11,7 +11,6 @@ const config = {
 };
 
 export const ownerEmail = (import.meta.env.VITE_ADMIN_EMAIL || 'info@devoviastudio.com').toLowerCase();
-
 let sdkPromise;
 
 export const isFirebaseConfigured = () => Boolean(
@@ -66,18 +65,21 @@ export async function observeAdminUser(callback) {
   const { auth } = await getServices();
   return auth.onAuthStateChanged((user) => {
     const allowed = Boolean(user?.email && user.email.toLowerCase() === ownerEmail && user.emailVerified);
-    callback(allowed ? user : null, user && !allowed ? 'This account is not authorized or its email is not verified.' : '');
+    callback(allowed ? user : null, user && !allowed ? 'This Google account is not authorized.' : '');
   });
 }
 
-export async function signInAdmin(email, password) {
-  if (email.trim().toLowerCase() !== ownerEmail) throw new Error('This email address is not authorized.');
-  const { auth } = await getServices();
-  const result = await auth.signInWithEmailAndPassword(email.trim(), password);
-  if (!result.user.emailVerified) {
+export async function signInAdmin() {
+  const { auth, firebase } = await getServices();
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account', login_hint: ownerEmail });
+  const result = await auth.signInWithPopup(provider);
+
+  if (!result.user?.email || result.user.email.toLowerCase() !== ownerEmail) {
     await auth.signOut();
-    throw new Error('Verify the admin email address before signing in.');
+    throw new Error('This Google account is not authorized.');
   }
+
   return result.user;
 }
 
