@@ -1,1 +1,7 @@
-:root{}
+.dv-cta-section { padding: 0 0 110px; }
+.dv-cta-card { position: relative; display: flex; min-height: 365px; align-items: center; justify-content: space-between; gap: 60px; overflow: hidden; padding: 68px; border-radius: 42px; color: white; background: linear-gradient(135deg,#2563eb 0%,#7656e8 58%,#0ea5e9 120%); box-shadow: 0 30px 80px rgba(59,130,246,.24); }
+.dv-cta-card > div:not(.dv-cta-orb) { position: relative; z-index: 2; max-width: 730px; }
+.dv-cta-card h2 { margin: 0; font-size: clamp(2.5rem,4vw,4.5rem); line-height: 1.06; letter-spacing: -.06em; }
+.dv-cta-card p { max-width: 650px; margin: 22px 0 0; color: rgba(255,255,255,.8); line-height: 1.75; }
+.dv-cta-card > a { position: relative; z-index: 2; flex: none; }
+.dv-cta-orb { position: absolute; right: -80px; bottom: -130px; width: 430px; height: 430px; border: 1px solid rgba(255,255,255,.13); border-radius: 50%; box-shadow: inset 0 0 0 50px rgba(255,255,255,.025), inset 0 0 0 100px rgba(255,255,255,.025); }
