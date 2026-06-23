@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import VisualPage from './VisualPage.jsx';
-import { isFirebaseConfigured, loadPublishedContent } from './firebaseContentStore.js';
+import { loadPublishedContent } from './localContentStore.js';
 
 export default function PublishedHome({ fallback }) {
   const [content, setContent] = useState(null);
-  const [checked, setChecked] = useState(!isFirebaseConfigured());
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    if (!isFirebaseConfigured()) return undefined;
     let active = true;
+
     loadPublishedContent()
       .then((published) => {
         if (active) setContent(published || null);
@@ -17,6 +17,7 @@ export default function PublishedHome({ fallback }) {
       .finally(() => {
         if (active) setChecked(true);
       });
+
     return () => { active = false; };
   }, []);
 
