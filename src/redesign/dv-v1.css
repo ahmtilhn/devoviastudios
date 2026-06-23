@@ -1,0 +1,3 @@
+.dv-phone { position: absolute; overflow: hidden; width: 188px; height: 395px; padding: 9px; border: 1px solid rgba(15,23,42,.15); border-radius: 31px; background: #0b1020; box-shadow: 0 26px 55px rgba(15,23,42,.2); }
+.dv-phone img { width: 100%; height: 100%; border-radius: 23px; object-fit: cover; object-position: top; }
+.dv-phone-speaker { position: absolute; z-index: 3; top: 14px; left: 50%; width: 56px; height: 14px; transform: translateX(-50%); border-radius: 999px; background: #080b12; }
