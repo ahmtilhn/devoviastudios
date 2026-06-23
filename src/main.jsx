@@ -7,6 +7,8 @@ import './styles.css';
 import './product-hub.css';
 import './safety.css';
 import './studio-motion.css';
+import './ui/system.css';
+import './ui/enhancer.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 const page = path === '/admin'
