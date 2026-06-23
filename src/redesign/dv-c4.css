@@ -5,3 +5,12 @@
 .dv-cta-card p { max-width: 650px; margin: 22px 0 0; color: rgba(255,255,255,.8); line-height: 1.75; }
 .dv-cta-card > a { position: relative; z-index: 2; flex: none; }
 .dv-cta-orb { position: absolute; right: -80px; bottom: -130px; width: 430px; height: 430px; border: 1px solid rgba(255,255,255,.13); border-radius: 50%; box-shadow: inset 0 0 0 50px rgba(255,255,255,.025), inset 0 0 0 100px rgba(255,255,255,.025); }
+.dv-footer { padding: 75px 0 24px; color: #cbd5e1; background: #0b1220; }
+.dv-footer-grid { display: grid; grid-template-columns: 1.7fr repeat(3,1fr); gap: 60px; padding-bottom: 64px; }
+.dv-footer .dv-brand { color: #fff; }
+.dv-footer-brand p { max-width: 390px; margin: 22px 0 14px; color: #8f9cad; font-size: .84rem; line-height: 1.75; }
+.dv-footer-grid > div:not(.dv-footer-brand) { display: grid; align-content: start; gap: 13px; }
+.dv-footer-grid strong { margin-bottom: 6px; color: #fff; font-size: .75rem; }
+.dv-footer-grid a { color: #8f9cad; text-decoration: none; font-size: .78rem; }
+.dv-footer-grid a:hover { color: #fff; }
+.dv-footer-bottom { display: flex; justify-content: space-between; gap: 30px; padding-top: 23px; border-top: 1px solid rgba(255,255,255,.08); color: #64748b; font-size: .7rem; }
