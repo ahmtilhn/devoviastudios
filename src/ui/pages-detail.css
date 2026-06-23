@@ -1,0 +1,138 @@
+.product-hero-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(420px, 1.12fr);
+  align-items: center;
+  gap: 54px;
+  min-height: 620px;
+  padding: 58px;
+}
+
+.product-title-row {
+  align-items: center;
+  gap: 18px;
+}
+
+.product-title-row img {
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16);
+}
+
+.product-hero-detail .hero-lead {
+  color: var(--text-primary);
+  font-family: Sora, Manrope, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.product-hero-detail > div:first-child > p:not(.eyebrow):not(.hero-lead) {
+  max-width: 640px;
+}
+
+.detail-device-row {
+  position: relative;
+  min-height: 500px;
+}
+
+.detail-device-row .device {
+  width: 190px;
+  border-color: rgba(15, 23, 42, 0.12);
+  background: #111827;
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.24), 0 0 45px color-mix(in srgb, var(--theme) 22%, transparent);
+}
+
+.detail-device-row .detail-device-1 {
+  top: 26px;
+  left: 4%;
+  transform: rotate(-8deg);
+}
+
+.detail-device-row .detail-device-2 {
+  z-index: 3;
+  top: 0;
+  left: 35%;
+  transform: rotate(3deg);
+}
+
+.detail-device-row .detail-device-3 {
+  top: 42px;
+  right: 2%;
+  transform: rotate(9deg);
+}
+
+.detail-grid,
+.workflow-section,
+.detail-footer-grid {
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.detail-grid .glass-panel,
+.workflow-section .glass-panel,
+.detail-footer-grid .glass-panel {
+  padding: 30px;
+}
+
+.detail-grid .wide {
+  grid-column: span 2;
+}
+
+.capability-grid {
+  gap: 10px;
+}
+
+.capability-grid span {
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 15px;
+  color: #405066;
+  background: #f8fafc;
+}
+
+.gallery-panel {
+  overflow: hidden;
+}
+
+.gallery-row {
+  gap: 12px;
+  padding-bottom: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-row img {
+  flex: 0 0 210px;
+  width: 210px;
+  max-height: 430px;
+  border: 1px solid var(--border-soft);
+  border-radius: 22px;
+  object-fit: cover;
+  object-position: top;
+  scroll-snap-align: start;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+}
+
+.review-panel .metric-row {
+  margin: 20px 0;
+}
+
+.privacy-link-stack {
+  gap: 10px;
+}
+
+.detail-footer-grid ul,
+.story-card ul,
+.deliverables {
+  padding-left: 20px;
+  color: var(--text-secondary);
+}
+
+.detail-footer-grid li,
+.story-card li,
+.deliverables li {
+  margin-bottom: 9px;
+  line-height: 1.65;
+}

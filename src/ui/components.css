@@ -1,0 +1,226 @@
+.app-shell .button {
+  min-height: 48px;
+  padding: 0 21px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.app-shell .button:hover {
+  transform: translateY(-2px);
+}
+
+.app-shell .button.primary {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--primary), var(--ux-violet));
+  box-shadow: 0 14px 30px rgba(59, 130, 246, 0.22);
+}
+
+.app-shell .button.primary:hover {
+  background: linear-gradient(135deg, var(--primary-hover), #7c3aed);
+  box-shadow: var(--shadow-glow);
+}
+
+.app-shell .button.secondary,
+.app-shell .button.ghost {
+  color: #27364b;
+  border-color: var(--border-soft);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.app-shell .button.secondary:hover,
+.app-shell .button.ghost:hover {
+  border-color: var(--border-active);
+  background: #f4f8ff;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #334155;
+  font-family: Sora, Manrope, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.text-link:hover {
+  color: var(--primary-hover);
+}
+
+.glass-panel,
+.product-card,
+.service-card,
+.update-card,
+.story-card,
+.blog-card,
+.faq-card,
+.reason-card,
+.support-app-card,
+.support-product-card,
+.test-teaser,
+.request-panel,
+.quick-privacy,
+.launch-support-row {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--ux-radius);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.055);
+  backdrop-filter: blur(14px);
+}
+
+.product-card,
+.service-card,
+.update-card,
+.story-card,
+.blog-card,
+.faq-card,
+.reason-card,
+.support-app-card {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.product-card:hover,
+.service-card:hover,
+.update-card:hover,
+.story-card:hover,
+.blog-card:hover,
+.faq-card:hover,
+.reason-card:hover,
+.support-app-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.25);
+  box-shadow: var(--shadow-low);
+}
+
+.icon-box {
+  color: var(--primary);
+  border: 1px solid #dce8fb;
+  background: linear-gradient(145deg, #eef6ff, #f6f2ff);
+  box-shadow: none;
+}
+
+.product-card-top img,
+.story-card > img,
+.support-app-card > img {
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.metric-row {
+  gap: 8px;
+}
+
+.metric-row span,
+.meta-chip-row span,
+.chip-row span,
+.chip-row a {
+  color: #46556a;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: #f8fafc;
+}
+
+.metric-row strong {
+  color: var(--text-primary);
+}
+
+.filter-row {
+  position: sticky;
+  z-index: 12;
+  top: 94px;
+  display: flex;
+  max-width: 100%;
+  gap: 8px;
+  padding: 10px;
+  overflow-x: auto;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.07);
+  backdrop-filter: blur(18px);
+}
+
+.filter-row button {
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 999px;
+  color: #5d6c80;
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.filter-row button:hover {
+  color: var(--text-primary);
+  background: #f1f5f9;
+}
+
+.filter-row button.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--ux-violet));
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.2);
+}
+
+.app-shell label {
+  gap: 8px;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.app-shell input,
+.app-shell textarea,
+.app-shell select {
+  min-height: 50px;
+  padding: 13px 15px;
+  border: 1px solid #dce4ef;
+  border-radius: 15px;
+  color: var(--text-primary);
+  background: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(15, 23, 42, 0.02);
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.app-shell textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.app-shell input:hover,
+.app-shell textarea:hover,
+.app-shell select:hover {
+  border-color: #c6d4e7;
+}
+
+.app-shell input:focus,
+.app-shell textarea:focus,
+.app-shell select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.form-note,
+.security-note,
+.privacy-note {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+}
+
+.faq-card h3,
+.support-app-card h3,
+.blog-card h2,
+.update-card h3,
+.story-card h3 {
+  color: var(--text-primary);
+}
+
+.play-badge {
+  color: inherit;
+}

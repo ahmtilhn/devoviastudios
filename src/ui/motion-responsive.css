@@ -1,0 +1,296 @@
+.ux-progress {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--primary), var(--ux-violet), var(--ux-cyan));
+  pointer-events: none;
+}
+
+[data-ux-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 560ms cubic-bezier(.2,.75,.2,1),
+    transform 560ms cubic-bezier(.2,.75,.2,1);
+  transition-delay: calc(var(--ux-index, 0) * 70ms);
+}
+
+[data-ux-reveal][data-ux-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ux-route-enter {
+  animation: ux-route-enter 460ms cubic-bezier(.2,.75,.2,1) both;
+}
+
+@keyframes ux-route-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.device,
+.product-visual img,
+.detail-device-row .device {
+  transform-origin: center center;
+}
+
+.ux-enhanced .hero-device-cluster .device,
+.ux-enhanced .detail-device-row .device {
+  animation: ux-float 7s ease-in-out infinite alternate;
+}
+
+.ux-enhanced .hero-device-cluster .device:nth-child(2),
+.ux-enhanced .detail-device-row .device:nth-child(2) {
+  animation-delay: -1.4s;
+}
+
+.ux-enhanced .hero-device-cluster .device:nth-child(3),
+.ux-enhanced .detail-device-row .device:nth-child(3) {
+  animation-delay: -2.8s;
+}
+
+@keyframes ux-float {
+  from { translate: 0 0; }
+  to { translate: 0 -8px; }
+}
+
+@media (max-width: 1080px) {
+  .app-shell {
+    width: min(100% - 34px, var(--ux-content));
+  }
+
+  .page-hero,
+  .product-hero-detail,
+  .contact-page {
+    grid-template-columns: 1fr;
+    padding: 48px;
+  }
+
+  .page-hero {
+    min-height: auto;
+  }
+
+  .detail-device-row {
+    width: min(650px, 100%);
+    margin-inline: auto;
+  }
+
+  .products-grid,
+  .featured-grid,
+  .service-grid.full-grid,
+  .blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .test-support-page,
+  .support-layout,
+  .updates-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .request-panel,
+  .contact-page > div:first-child {
+    position: static;
+  }
+
+  .site-footer {
+    padding: 54px 38px;
+  }
+}
+
+@media (max-width: 820px) {
+  .app-shell {
+    width: min(100% - 24px, var(--ux-content));
+    padding-top: 8px;
+  }
+
+  .app-shell main {
+    padding-top: 28px;
+  }
+
+  .site-header {
+    top: 8px;
+    grid-template-columns: 1fr auto;
+    min-height: 60px;
+  }
+
+  .site-header > .button.small,
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-button {
+    display: grid;
+    justify-self: end;
+  }
+
+  .mobile-menu {
+    right: 0;
+    left: 0;
+    top: 70px;
+    padding: 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 20px;
+    background: rgba(255,255,255,.97);
+    box-shadow: var(--shadow-low);
+  }
+
+  .mobile-menu a:not(.button) {
+    color: #334155;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .page-hero,
+  .product-hero-detail,
+  .contact-page {
+    gap: 38px;
+    padding: 38px 28px;
+    border-radius: 28px;
+  }
+
+  .section,
+  .compact-section,
+  .final-cta {
+    margin-top: 78px;
+  }
+
+  .section-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .products-grid,
+  .featured-grid,
+  .service-grid.full-grid,
+  .blog-grid,
+  .problem-grid,
+  .process-grid,
+  .support-choice-grid,
+  .detail-grid,
+  .workflow-section,
+  .detail-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-grid .wide {
+    grid-column: auto;
+  }
+
+  .filter-row {
+    top: 78px;
+    border-radius: 18px;
+  }
+
+  .detail-device-row {
+    min-height: 430px;
+    transform: scale(.88);
+    transform-origin: center top;
+  }
+
+  .article-body {
+    padding: 36px 28px;
+  }
+
+  .site-footer {
+    margin-top: 78px;
+    padding: 46px 28px;
+    border-radius: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-shell h1 {
+    font-size: clamp(2.6rem, 13vw, 3.8rem);
+  }
+
+  .app-shell h2 {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  .page-hero,
+  .product-hero-detail,
+  .contact-page {
+    padding: 32px 20px;
+  }
+
+  .product-card,
+  .service-card,
+  .update-card,
+  .story-card,
+  .blog-card,
+  .glass-panel,
+  .request-panel,
+  .support-product-card,
+  .test-teaser,
+  .final-cta {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .products-grid,
+  .featured-grid,
+  .service-grid.full-grid,
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-device-row {
+    left: 50%;
+    width: 560px;
+    min-height: 390px;
+    margin-left: -280px;
+    transform: scale(.66);
+  }
+
+  .metric-row,
+  .actions,
+  .card-actions,
+  .article-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  [data-ux-reveal],
+  [data-ux-reveal][data-ux-visible="true"],
+  .ux-route-enter,
+  .ux-enhanced .hero-device-cluster .device,
+  .ux-enhanced .detail-device-row .device {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+
+  .product-card:hover,
+  .service-card:hover,
+  .update-card:hover,
+  .story-card:hover,
+  .blog-card:hover,
+  .faq-card:hover,
+  .reason-card:hover,
+  .support-app-card:hover,
+  .button:hover {
+    transform: none;
+  }
+}
