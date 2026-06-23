@@ -41,6 +41,7 @@ const blogSlugs = [
 
 const routes = [
   '/',
+  '/admin',
   '/products',
   '/services',
   '/services/google-play-test-support',
@@ -72,7 +73,7 @@ fs.writeFileSync(
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ...routes
-      .filter((route) => !route.startsWith('/projects'))
+      .filter((route) => !route.startsWith('/projects') && route !== '/admin')
       .map((route) => `  <url><loc>${siteUrl}${route === '/' ? '/' : `${route}/`}</loc></url>`),
     '</urlset>',
     '',
