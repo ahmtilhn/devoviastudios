@@ -1,3 +1,6 @@
 .dv-updates { background: #fff; }
 .dv-update-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.dv-update-card { display: flex; min-height: 330px; flex-direction: column; padding: 26px; border: 1px solid var(--dv-line); border-radius: var(--dv-radius); background: #fff; text-decoration: none; }
+.dv-update-card { display: flex; min-height: 330px; flex-direction: column; padding: 26px; border: 1px solid var(--dv-line); border-radius: var(--dv-radius); background: #fff; text-decoration: none; transition: transform .25s ease, box-shadow .25s ease; }
+.dv-update-card:hover { transform: translateY(-6px); box-shadow: var(--dv-shadow); }
+.dv-update-card h3 { margin: 40px 0 13px; font-size: 1.28rem; line-height: 1.35; }
+.dv-update-card p { margin: 0; color: var(--dv-copy); font-size: .84rem; line-height: 1.7; }
