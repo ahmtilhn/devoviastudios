@@ -1,0 +1,130 @@
+/* V6 performance layer: keep first paint light, then progressively enable motion. */
+html:not(.ux-first-paint) .dv-motion-v4,
+html:not(.ux-first-paint) .ux-site-atmosphere {
+  opacity: 0;
+}
+
+.dv-motion-v4,
+.ux-site-atmosphere {
+  transition: opacity 420ms ease;
+}
+
+html.ux-first-paint:not(.ux-motion-ready) .dv-motion-v4,
+html.ux-first-paint:not(.ux-motion-ready) .ux-site-atmosphere {
+  opacity: .42;
+}
+
+html.ux-motion-ready .dv-motion-v4,
+html.ux-motion-ready .ux-site-atmosphere {
+  opacity: 1;
+}
+
+.dv-motion-v4,
+.ux-site-atmosphere {
+  view-transition-name: devovia-atmosphere;
+  contain: strict;
+}
+
+::view-transition-group(devovia-atmosphere) {
+  animation: none !important;
+}
+
+::view-transition-old(devovia-content) {
+  animation: v6-page-out 300ms cubic-bezier(.2,.7,.2,1) both !important;
+}
+
+::view-transition-new(devovia-content) {
+  animation: v6-page-in 460ms cubic-bezier(.16,.84,.24,1) both !important;
+}
+
+html[data-route-direction='back']::view-transition-old(devovia-content) {
+  animation-name: v6-page-out-back !important;
+}
+
+html[data-route-direction='back']::view-transition-new(devovia-content) {
+  animation-name: v6-page-in-back !important;
+}
+
+@keyframes v6-page-out {
+  from { opacity: 1; transform: translate3d(0,0,0) scale(1); clip-path: inset(0 0 0 0 round 0); }
+  to { opacity: 0; transform: translate3d(-14px,0,0) scale(.996); clip-path: inset(0 3% 0 0 round 18px); }
+}
+
+@keyframes v6-page-in {
+  from { opacity: 0; transform: translate3d(18px,0,0) scale(.996); clip-path: inset(0 0 0 3% round 18px); }
+  to { opacity: 1; transform: translate3d(0,0,0) scale(1); clip-path: inset(0 0 0 0 round 0); }
+}
+
+@keyframes v6-page-out-back {
+  from { opacity: 1; transform: translate3d(0,0,0) scale(1); clip-path: inset(0 0 0 0 round 0); }
+  to { opacity: 0; transform: translate3d(14px,0,0) scale(.996); clip-path: inset(0 0 0 3% round 18px); }
+}
+
+@keyframes v6-page-in-back {
+  from { opacity: 0; transform: translate3d(-18px,0,0) scale(.996); clip-path: inset(0 3% 0 0 round 18px); }
+  to { opacity: 1; transform: translate3d(0,0,0) scale(1); clip-path: inset(0 0 0 0 round 0); }
+}
+
+html.ux-page-hidden *,
+html.ux-lite-motion .release-orbit,
+html.ux-lite-motion .release-ring,
+html.ux-lite-motion .story-arrow,
+html.ux-lite-motion .story-coin,
+html.ux-lite-motion .story-wave i {
+  animation-play-state: paused !important;
+}
+
+html.ux-lite-motion .dv-v4-noise,
+html.ux-lite-motion .ux-atmosphere-noise {
+  display: none !important;
+}
+
+html.ux-lite-motion .dv-v4-pointer,
+html.ux-lite-motion .ux-cursor-cloud {
+  opacity: .38 !important;
+}
+
+html.ux-lite-motion .product-feature-visual,
+html.ux-lite-motion .test-support-visual-v6,
+html.ux-lite-motion .request-panel,
+html.ux-lite-motion .glass-panel {
+  backdrop-filter: none !important;
+}
+
+html.ux-lite-motion .product-feature-visual,
+html.ux-lite-motion .product-feature-story {
+  box-shadow: 0 18px 48px rgb(15 23 42 / .07) !important;
+}
+
+img {
+  content-visibility: auto;
+}
+
+.product-feature-visual img,
+.detail-device-row img,
+.gallery-row img,
+.ux-product-stage img {
+  contain: paint;
+}
+
+@media (max-width: 820px) {
+  .dv-v4-noise,
+  .ux-atmosphere-noise { display: none !important; }
+  .dv-v4-pointer,
+  .ux-cursor-cloud { opacity: .34 !important; }
+  .product-feature-visual figcaption,
+  .release-core,
+  .release-orbit,
+  .story-power,
+  .story-widget-card,
+  .story-wave,
+  .story-bars,
+  .story-streak { backdrop-filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-motion-v4,
+  .ux-site-atmosphere { transition: none; opacity: 1; }
+  ::view-transition-old(devovia-content),
+  ::view-transition-new(devovia-content) { animation: none !important; }
+}
