@@ -8,6 +8,7 @@ const siteUrl = 'https://devoviastudio.com';
 
 const copyTargets = [
   ['app-ads.txt', 'app-ads.txt'],
+  ['privacy.html', 'privacy.html'],
   ['privacy', 'privacy'],
   ['apps', 'apps'],
   ['data', 'data'],
@@ -75,6 +76,7 @@ fs.writeFileSync(
     ...routes
       .filter((route) => !route.startsWith('/projects') && route !== '/admin')
       .map((route) => `  <url><loc>${siteUrl}${route === '/' ? '/' : `${route}/`}</loc></url>`),
+    `  <url><loc>${siteUrl}/privacy.html</loc></url>`,
     '</urlset>',
     '',
   ].join('\n'),
