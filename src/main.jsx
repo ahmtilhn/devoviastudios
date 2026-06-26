@@ -9,6 +9,7 @@ import './safety.css';
 import './studio-motion.css';
 import './ui/system.css';
 import './ui/enhancer.js';
+import './redesign/immersive-motion.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 const page = path === '/admin'
