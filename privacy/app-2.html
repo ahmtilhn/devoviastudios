@@ -1,64 +1,74 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en" style="--privacy-theme:#0ea5e9; --privacy-theme-rgb:14 165 233;">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Daily Hadith • Gizlilik</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <meta name="description" content="Plain-language privacy summary and official privacy links for Daily Hadith by Devovia Studio." />
+  <meta name="theme-color" content="#f7faff" />
+  <title>Daily Hadith Privacy — Devovia Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../devovia-logo.png" />
+  <link rel="stylesheet" href="./privacy-v2.css" />
+  <script defer src="./privacy-v2.js"></script>
 </head>
 <body>
-  <div class="bg-orb orb-1" aria-hidden="true"></div>
-  <div class="bg-orb orb-2" aria-hidden="true"></div>
-  <div class="noise" aria-hidden="true"></div>
-
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="../">Devovia<span class="brand-dot">•</span>Studios</a>
-      <nav class="nav">
-        <a href="../#apps">Uygulamalar</a>
-        <a href="../privacy.html">Gizlilik</a>
+  <header class="privacy-topbar">
+    <div class="privacy-topbar-inner">
+      <a class="privacy-brand" href="../"><img src="../devovia-logo.png" alt="" /><span>Devovia Studio</span></a>
+      <nav class="privacy-nav" aria-label="Privacy navigation">
+        <a href="../support">Support</a>
+        <a href="../privacy.html">Privacy center</a>
+        <a class="privacy-nav-primary" href="../products/daily-hadith">Product page</a>
       </nav>
     </div>
   </header>
 
-  <main class="container" style="position:relative; z-index:1; padding: 26px 0 40px;">
-    <a class="btn" href="../app.html?id=app-2">← Uygulamaya dön</a>
-
-    <div class="card" style="margin-top:14px;">
-      <div class="card-kicker">Site içi özet</div>
-      <div class="card-title">Daily Hadith • Gizlilik Politikası</div>
-      <div class="card-sub">
-        Bu sayfa kısa özet. Resmi metin:
-        <a class="btn" style="margin-left:8px;" target="_blank" rel="noreferrer"
-          href="https://sites.google.com/view/devoviastudio/privacy-policy/DH-PP?authuser=0">Official Privacy</a>
+  <main class="privacy-shell">
+    <section class="privacy-hero" data-reveal>
+      <div>
+        <p class="privacy-eyebrow">Daily Hadith · Privacy summary</p>
+        <h1>Spiritual tools with <span>purpose-led access.</span></h1>
+        <p class="privacy-lead">This page explains how location, reminders, local preferences and eligible third-party services relate to Daily Hadith features. The official policy and store disclosure remain authoritative.</p>
+        <div class="privacy-actions">
+          <a class="privacy-button primary" href="https://sites.google.com/view/devoviastudio/privacy-policy/DH-PP?authuser=0" target="_blank" rel="noreferrer">Open official privacy policy</a>
+          <a class="privacy-button" href="../products/daily-hadith">Return to Daily Hadith</a>
+          <a class="privacy-button" href="../apps/app-2/app-ads.txt">View app-ads.txt</a>
+        </div>
       </div>
-
-      <div class="divider"></div>
-
-      <div class="card-sub" style="white-space:pre-wrap;">
-Policy özeti (genel):
-- Teknik / cihaz bilgileri ve kullanım verileri (kişisel kimliklendirmeyen)
-- Performans / hata raporları gibi tanılama verileri
-- Reklam/analitik gibi üçüncü taraf servisler (varsa) policy’de listelenir
-
-Detaylar için resmi metni mutlaka referans al.
+      <div class="privacy-status-visual" aria-label="Daily Hadith privacy overview">
+        <div class="privacy-app-orb"><img src="../products/daily-hadith/icon.png" alt="" /><strong>Daily Hadith</strong><small>Daily spiritual guidance</small></div>
+        <span class="privacy-float-chip c1">On-device direction</span><span class="privacy-float-chip c2">Prayer reminders</span><span class="privacy-float-chip c3">Local preferences</span><span class="privacy-float-chip c4">Store purchases</span>
       </div>
+    </section>
 
-      <div class="divider"></div>
+    <section class="privacy-summary-grid" data-reveal>
+      <article class="privacy-summary-card"><strong>Contextual</strong><span>Location is connected to prayer-time calculation and Qibla direction rather than being requested without a visible purpose.</span></article>
+      <article class="privacy-summary-card"><strong>Local</strong><span>Bookmarks, theme, language, reminders and related preferences may remain on the device.</span></article>
+      <article class="privacy-summary-card"><strong>Controlled</strong><span>Users can review location and notification permissions through device settings at any time.</span></article>
+    </section>
 
-      <div class="cta" style="margin:0;">
-        <a class="btn" href="../apps/app-2/app-ads.txt">Bu uygulama app-ads.txt</a>
+    <section class="privacy-section" data-reveal>
+      <div class="privacy-section-head"><h2>Feature-linked privacy areas</h2><p>The app should request access only when a feature needs it, with platform controls remaining available to the user.</p></div>
+      <div class="privacy-grid">
+        <article class="privacy-card"><h3>Location and direction</h3><p>Location may be used to calculate prayer times and Qibla direction. These experiences are designed around a clear user action.</p><ul class="privacy-points"><li>Prayer-time calculation</li><li>Qibla direction</li><li>Location permission controlled by the operating system</li></ul></article>
+        <article class="privacy-card"><h3>Notifications</h3><p>Reminder schedules help users follow prayer times and spiritual routines when notification permission is enabled.</p><ul class="privacy-points"><li>Prayer alerts</li><li>Daily reminder preferences</li><li>Local scheduling and permission-aware behavior</li></ul></article>
+        <article class="privacy-card"><h3>Local preferences</h3><p>Settings that personalize the experience may be stored locally so the app can restore the user's chosen routine.</p><ul class="privacy-points"><li>Language and theme</li><li>Bookmarks and saved content</li><li>Notification and premium-state cache</li></ul></article>
+        <article class="privacy-card"><h3>Advertising and purchases</h3><p>Where ads or premium purchases are available, eligible providers may process information under their own terms.</p><ul class="privacy-points"><li>Advertising identifiers and ad interaction data</li><li>Google Play or App Store purchase processing</li><li>No direct collection of payment-card details by Devovia</li></ul></article>
       </div>
-    </div>
+    </section>
+
+    <section class="privacy-section" data-reveal>
+      <div class="privacy-section-head"><h2>Your controls</h2><p>Permissions can be changed later, although disabling them can limit the feature they support.</p></div>
+      <div class="privacy-grid">
+        <article class="privacy-card"><h3>Permission choices</h3><p>Location and notification access can be enabled, reviewed or removed through device settings. Core reading features can remain available even when optional permissions are not granted.</p></article>
+        <article class="privacy-card"><h3>Questions and requests</h3><p>Privacy questions, data requests or account-related concerns can be routed through Devovia support and the procedure described in the official policy.</p><div class="privacy-actions"><a class="privacy-button" href="mailto:info@devoviastudio.com">Email privacy support</a><a class="privacy-button" href="../support">Open support center</a></div></article>
+      </div>
+      <div class="privacy-notice"><span>ⓘ</span><div><strong>Important:</strong> This page is a plain-language summary. The official privacy policy, platform permission dialogs and current store Data Safety information provide the complete disclosure.</div></div>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> Devovia Studios</span>
-      <span class="muted">Built on GitHub Pages</span>
-    </div>
-  </footer>
-
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <footer class="privacy-footer"><div class="privacy-footer-inner"><span>© <span data-year></span> Devovia Studio</span><span>Clear privacy information for everyday product use.</span></div></footer>
 </body>
 </html>
