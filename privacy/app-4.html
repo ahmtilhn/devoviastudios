@@ -1,62 +1,74 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en" style="--privacy-theme:#ff5733; --privacy-theme-rgb:255 87 51;">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Arrow Escape • Gizlilik</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <meta name="description" content="Plain-language privacy summary and official privacy links for Arrow Escape by Devovia Studio." />
+  <meta name="theme-color" content="#f7faff" />
+  <title>Arrow Escape Privacy — Devovia Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../devovia-logo.png" />
+  <link rel="stylesheet" href="./privacy-v2.css" />
+  <script defer src="./privacy-v2.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="../">Devovia<span class="brand-dot">•</span>Studios</a>
-      <nav class="nav">
-        <a href="../#apps">Uygulamalar</a>
-        <a href="../privacy.html">Gizlilik</a>
+  <header class="privacy-topbar">
+    <div class="privacy-topbar-inner">
+      <a class="privacy-brand" href="../"><img src="../devovia-logo.png" alt="" /><span>Devovia Studio</span></a>
+      <nav class="privacy-nav" aria-label="Privacy navigation">
+        <a href="../support">Support</a>
+        <a href="../privacy.html">Privacy center</a>
+        <a class="privacy-nav-primary" href="../products/arrow-escape">Product page</a>
       </nav>
     </div>
   </header>
 
-  <main class="container" style="position:relative; z-index:1; padding: 26px 0 40px;">
-    <a class="btn" href="../app.html?id=app-4">← Uygulamaya dön</a>
-
-    <div class="card" style="margin-top:14px;">
-      <div class="card-kicker">Site içi özet</div>
-      <div class="card-title">Arrow Escape • Gizlilik Politikası</div>
-      <div class="card-sub">
-        Bu sayfa kısa özet. Resmi metin: <a class="btn" style="margin-left:8px;" target="_blank" rel="noreferrer"
-          href="https://sites.google.com/view/devoviastudio/privacy-policy">Official Privacy</a>
+  <main class="privacy-shell">
+    <section class="privacy-hero" data-reveal>
+      <div>
+        <p class="privacy-eyebrow">Arrow Escape · Privacy summary</p>
+        <h1>A fast puzzle with <span>clear platform boundaries.</span></h1>
+        <p class="privacy-lead">Arrow Escape does not require a Devovia account. This page explains local game progress, advertising, optional purchases and diagnostic information in plain language.</p>
+        <div class="privacy-actions">
+          <a class="privacy-button primary" href="https://sites.google.com/view/devoviastudio/privacy-policy/pp-arrow-escape" target="_blank" rel="noreferrer">Open official privacy policy</a>
+          <a class="privacy-button" href="../products/arrow-escape">Return to Arrow Escape</a>
+          <a class="privacy-button" href="../apps/app-4/app-ads.txt">View app-ads.txt</a>
+        </div>
       </div>
-
-      <div class="divider"></div>
-
-      <div class="card-sub" style="white-space:pre-wrap;">
-Arrow Escape, Google Play'de reklam ve uygulama içi satın alma içeren bir puzzle oyunudur.
-
-Veri işleme ve güvenlik özetleri için her zaman Google Play Data Safety alanı ve resmi gizlilik metni esas alınmalıdır.
-
-Olası veri/sistem başlıkları:
-- Reklam ve uygulama içi satın alma altyapısı
-- Oyun etkinliği, performans ve hata tanılama verileri
-- Ödül, görev, seviye ve ilerleme deneyimini destekleyen kullanım olayları
-- Bölge, yaş ve platform ayarlarına göre değişebilen Google Play veri güvenliği açıklamaları
+      <div class="privacy-status-visual" aria-label="Arrow Escape privacy overview">
+        <div class="privacy-app-orb"><img src="../products/arrow-escape/icon.png" alt="" /><strong>Arrow Escape</strong><small>Local puzzle progression</small></div>
+        <span class="privacy-float-chip c1">No login required</span><span class="privacy-float-chip c2">Local progress</span><span class="privacy-float-chip c3">Rewarded ads</span><span class="privacy-float-chip c4">Play Billing</span>
       </div>
+    </section>
 
-      <div class="divider"></div>
+    <section class="privacy-summary-grid" data-reveal>
+      <article class="privacy-summary-card"><strong>No profile</strong><span>The game does not require a Devovia membership, cloud profile or login to play.</span></article>
+      <article class="privacy-summary-card"><strong>Local progress</strong><span>Levels, coins, stars, boosters, missions, streaks and preferences may be stored on the device.</span></article>
+      <article class="privacy-summary-card"><strong>Platform services</strong><span>Advertising and optional purchases use eligible Google services under their own platform rules.</span></article>
+    </section>
 
-      <div class="cta" style="margin:0;">
-        <a class="btn" href="../apps/app-4/app-ads.txt">Bu uygulama app-ads.txt</a>
+    <section class="privacy-section" data-reveal>
+      <div class="privacy-section-head"><h2>How data connects to gameplay</h2><p>The core puzzle can be understood separately from optional advertising and purchase services.</p></div>
+      <div class="privacy-grid">
+        <article class="privacy-card"><h3>Game progress</h3><p>Progress information may remain locally on the device so the game can restore the player's current state.</p><ul class="privacy-points"><li>Level and board progression</li><li>Coins, stars and boosters</li><li>Missions, streaks and game settings</li></ul></article>
+        <article class="privacy-card"><h3>Advertising</h3><p>Google AdMob may process information required to deliver, measure and protect advertising experiences where ads are shown.</p><ul class="privacy-points"><li>Advertising identifiers where permitted</li><li>Device and approximate location context</li><li>Ad views, clicks and rewarded-ad interactions</li></ul></article>
+        <article class="privacy-card"><h3>Optional purchases</h3><p>In-app purchases are processed by Google Play Billing and are subject to Google Play's purchase and payment terms.</p><ul class="privacy-points"><li>Store-managed purchase processing</li><li>No direct payment-card collection by Devovia</li><li>Purchase state used to unlock eligible content</li></ul></article>
+        <article class="privacy-card"><h3>Diagnostics</h3><p>Technical data may be used to understand crashes, compatibility and game performance where supported by enabled services.</p><ul class="privacy-points"><li>App and device version context</li><li>Crash or performance signals</li><li>Gameplay events required to support rewards or progression</li></ul></article>
       </div>
-    </div>
+    </section>
+
+    <section class="privacy-section" data-reveal>
+      <div class="privacy-section-head"><h2>Your controls</h2><p>Advertising, purchases and device-level privacy options remain connected to Google Play and Android settings.</p></div>
+      <div class="privacy-grid">
+        <article class="privacy-card"><h3>Advertising and platform settings</h3><p>Eligible advertising controls, purchase history and account-level settings are managed through Google and the device platform. Available choices can vary by age, region and operating-system version.</p></article>
+        <article class="privacy-card"><h3>Questions and support</h3><p>Privacy, purchase or gameplay questions can be sent through Devovia support. The official policy and current Google Play Data Safety section should be used for the complete disclosure.</p><div class="privacy-actions"><a class="privacy-button" href="mailto:info@devoviastudio.com">Email privacy support</a><a class="privacy-button" href="../support">Open support center</a><a class="privacy-button" href="https://sites.google.com/view/devoviastudio/privacy-policy/pp-arrow-escape/terms-of-service" target="_blank" rel="noreferrer">Terms of service</a></div></article>
+      </div>
+      <div class="privacy-notice"><span>ⓘ</span><div><strong>Important:</strong> This page is a readable summary. Google Play Data Safety, the official privacy policy and Google Play Billing terms provide the complete and current platform disclosure.</div></div>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> Devovia Studios</span>
-      <span class="muted">Built on GitHub Pages</span>
-    </div>
-  </footer>
-
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <footer class="privacy-footer"><div class="privacy-footer-inner"><span>© <span data-year></span> Devovia Studio</span><span>Game privacy explained without interrupting the experience.</span></div></footer>
 </body>
 </html>
