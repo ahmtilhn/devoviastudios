@@ -3,6 +3,8 @@ import { readFile } from 'node:fs/promises';
 const paths = {
   main: 'src/main.jsx',
   story: 'src/ui/product-story-engine.js',
+  productData: 'src/ui/product-experience-v7-data.js',
+  productVisuals: 'src/ui/product-visuals-v7.js',
   experienceCss: 'src/ui/experience-v6.css',
   performanceJs: 'src/ui/performance-v6.js',
   performanceCss: 'src/ui/performance-v6.css',
@@ -28,16 +30,16 @@ const check = (name, value, file) => checks.push({ name, value: Boolean(value), 
 const turkishCharacters = /[çğıöşüÇĞİÖŞÜ]/;
 const privacyPages = [source.privacyIndex, source.privacy1, source.privacy2, source.privacy3, source.privacy4];
 
-check('V6 story engine is loaded', source.main.includes("./ui/product-story-engine.js"), paths.main);
-check('V6 experience CSS is loaded', source.main.includes("./ui/experience-v6.css"), paths.main);
+check('Product story engine is loaded', source.main.includes("./ui/product-story-engine.js"), paths.main);
+check('V6 supporting experience CSS remains loaded', source.main.includes("./ui/experience-v6.css"), paths.main);
 check('Adaptive performance controller is loaded', source.main.includes("./ui/performance-v6.js"), paths.main);
 check('Shared transition controller is loaded before native engine', source.main.indexOf("./ui/shared-transitions-v6.js") > -1 && source.main.indexOf("./ui/shared-transitions-v6.js") < source.main.indexOf("./ui/native-web-engine.js"), paths.main);
-check('All four products have custom experience copy', ['app-1', 'app-2', 'app-3', 'app-4'].every((id) => source.story.includes(`'${id}'`)), paths.story);
-check('All sixteen product animation variants exist', ['scanner','timeline','dashboard','shield','focus','timer','boost','rewards','daily','prayer','compass','audio','habits','reminder','widget','streak'].every((variant) => source.story.includes(variant)), paths.story);
+check('All four products have dedicated experience data', ['app-1', 'app-2', 'app-3', 'app-4'].every((id) => source.productData.includes(`'${id}'`)), paths.productData);
+check('All sixteen product visuals exist', ['stockCatalog','stockMovement','stockInsights','stockOffline','arrowMemory','arrowPressure','arrowBoosters','arrowProgression','hadithDaily','hadithPrayer','hadithTools','hadithMedia','tinySchedules','tinyReminders','tinyWidget','tinyStats'].every((variant) => source.productVisuals.includes(variant)), paths.productVisuals);
 check('Product stories use real screenshots with lazy async decoding', source.story.includes('loading="lazy" decoding="async"'), paths.story);
-check('Test Support receives a dedicated visual system', source.story.includes('test-support-visual-v6') && source.story.includes('support-proof-strip-v6'), paths.story);
-check('Product storytelling uses content visibility', source.experienceCss.includes('content-visibility: auto'), paths.experienceCss);
-check('Product storytelling supports native view timelines', source.experienceCss.includes('animation-timeline: view(block)'), paths.experienceCss);
+check('Test Support retains its dedicated visual system', source.story.includes('test-support-visual-v6') && source.story.includes('support-proof-strip-v6'), paths.story);
+check('Supporting experience uses content visibility', source.experienceCss.includes('content-visibility: auto'), paths.experienceCss);
+check('Supporting experience supports native view timelines', source.experienceCss.includes('animation-timeline: view(block)'), paths.experienceCss);
 check('V6 experience respects reduced motion', source.experienceCss.includes('@media (prefers-reduced-motion: reduce)'), paths.experienceCss);
 check('Pointer engine is demand-driven', source.motion.includes('function queuePointerFrame') && !source.motion.includes('pointerFrame = requestAnimationFrame(animatePointer);\n  }\n\n  requestAnimationFrame(scheduleInstall)'), paths.motion);
 check('Scroll targets are cached', source.motion.includes('let sectionElements = []') && source.motion.includes('let parallaxElements = []'), paths.motion);
@@ -56,5 +58,5 @@ check('Each product privacy page links back to its real product route', ['/produ
 
 const failures = checks.filter((item) => !item.value);
 for (const item of checks) console.log(`${item.value ? 'PASS' : 'FAIL'}  ${item.name}  [${item.file}]`);
-console.log(`\nV6 experience checks: ${checks.length - failures.length}/${checks.length} passed.`);
+console.log(`\nV6 compatibility checks: ${checks.length - failures.length}/${checks.length} passed.`);
 if (failures.length) process.exit(1);
