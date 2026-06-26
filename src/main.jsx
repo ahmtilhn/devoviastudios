@@ -15,11 +15,14 @@ import './ui/experience-v6.css';
 import './ui/product-experience-v7.css';
 import './ui/shared-transitions-v6.css';
 import './ui/performance-v6.css';
+import './ui/premium-motion-v8.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/link-normalizer-v6.js';
 import './ui/shared-transitions-v6.js';
 import './ui/native-web-engine.js';
+import './ui/brand-language-v8.js';
+import './ui/premium-motion-v8.js';
 import './redesign/immersive-motion.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
