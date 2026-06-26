@@ -1,0 +1,39 @@
+.app-shell[data-ux-page="test-support"] .test-support-page {
+  grid-template-columns: minmax(0, 1fr) 390px;
+  gap: 34px;
+  align-items: start;
+}
+
+.app-shell[data-ux-page="test-support"] .page-hero {
+  min-height: 520px;
+}
+
+.app-shell[data-ux-page="test-support"] .request-panel {
+  position: sticky;
+  top: 104px;
+  padding: 30px;
+  border-radius: 30px;
+}
+
+.app-shell[data-ux-page="test-support"] .problem-grid,
+.app-shell[data-ux-page="test-support"] .process-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.app-shell[data-ux-page="test-support"] .problem-grid .glass-panel,
+.app-shell[data-ux-page="test-support"] .process-grid .glass-panel {
+  min-height: 250px;
+  padding: 30px;
+  border-radius: 28px;
+}
+
+@media (max-width: 1080px) {
+  .app-shell[data-ux-page="test-support"] .test-support-page { grid-template-columns: 1fr; }
+  .app-shell[data-ux-page="test-support"] .request-panel { position: relative; top: auto; }
+}
+
+@media (max-width: 720px) {
+  .app-shell[data-ux-page="test-support"] .problem-grid,
+  .app-shell[data-ux-page="test-support"] .process-grid { grid-template-columns: 1fr; }
+}
