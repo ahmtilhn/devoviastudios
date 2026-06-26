@@ -5,13 +5,13 @@
       "slug": "stockflow-inventory",
       "package": "com.stockflow.inventory",
       "name": "Stock Manager",
-      "tagline": "Professional inventory management with real-time tracking.",
-      "short_desc": "Modern stock management for small and medium businesses: product catalog, stock movements, dashboard, alerts, CSV export and offline SQLite storage.",
-      "long_desc": "Stock Manager is a modern inventory management application designed for small and medium-sized businesses.\n\nKey features:\n- Product creation, SKU, categories and photos\n- Real-time inventory movement tracking\n- Dashboard for product count, value and low-stock items\n- Smart low-stock and critical-level alerts\n- CSV export and reporting\n- Local SQLite data storage\n- Offline inventory management\n- 5-language support: Turkish, English, French, German, Dutch",
+      "tagline": "Professional offline inventory management for products, stock movement, value and alerts.",
+      "short_desc": "Create a structured product catalog, track every stock movement, monitor inventory value and low-stock risk, then export or restore records without depending on a permanent internet connection.",
+      "long_desc": "Stock Manager is designed for small and medium-sized businesses that need practical inventory control without a complex ERP workflow.\n\nKey features:\n- Product creation and editing with SKU, categories, photos and documents\n- Barcode and QR scanning for faster lookup and entry\n- Real-time stock levels and chronological transaction history\n- Dashboard for product count, inventory value and recent movement\n- Low-stock notifications and critical-level warnings\n- CSV export, professional reports and data sharing\n- Local SQLite storage and complete offline operation\n- Android .sfbak backup and restore support\n- Turkish, English, French, German and Dutch language support",
       "developer": "Devovia Studio",
       "category": "Productivity",
       "updated_on": "2026-05-08",
-      "downloads_text": "500+",
+      "downloads_text": "1K+",
       "rating_text": "5.0",
       "reviews_text": "16 comments",
       "theme": "#2563EB",
@@ -33,20 +33,20 @@
       ],
       "feature_details": [
         {
-          "title": "Barcode and QR scanner",
-          "description": "Find products or add stock using the device camera, with manual entry still available when camera access is not granted."
+          "title": "Product catalog and barcode capture",
+          "description": "Create and edit products with SKU, category, photos and documents, then use barcode or QR scanning to speed up lookup and entry."
         },
         {
-          "title": "Stock movement timeline",
-          "description": "Entries, sales and updates are shown in chronological order so inventory changes stay transparent."
+          "title": "Real-time stock movement history",
+          "description": "Follow incoming stock, sales and adjustments in chronological order so every quantity change keeps its operational context."
         },
         {
-          "title": "Invoice and supplier tracking",
-          "description": "Attach invoice photos and supplier details to stock entries for cleaner accounting context."
+          "title": "Inventory dashboard and shortage alerts",
+          "description": "Review total products, inventory value, recent movement, low-stock items and critical-level warnings from one decision surface."
         },
         {
-          "title": "Secure offline storage",
-          "description": "Inventory data is stored on the device and core workflows continue without an internet connection."
+          "title": "Offline storage, reports and backup",
+          "description": "Continue core work through local SQLite storage, export CSV records and move .sfbak backups through supported Android file workflows."
         }
       ],
       "privacy_points": [
@@ -61,16 +61,16 @@
       "slug": "arrow-escape",
       "package": "com.devovia.arrowescape",
       "name": "Arrow Escape",
-      "tagline": "A fast-paced arrow puzzle built around memory, focus and timing.",
-      "short_desc": "Follow arrows, remember fading directions, manage the timer and escape increasingly complex puzzle boards with boosters, missions and rewards.",
-      "long_desc": "Arrow Escape is a fast-paced puzzle game where players follow arrows, test memory and find the right path before time runs out.\n\nKey features:\n- Easy to learn, hard to master arrow puzzle gameplay\n- Fading arrow system that tests memory\n- Time-based levels with increasing pressure\n- Complex arrow maps and mistake limits\n- Vision Cards, Time Freeze and hints\n- Daily missions, streak rewards and coins\n- Neon-purple visual style\n- Reward-focused level progression",
+      "tagline": "A memory-and-timing puzzle where arrow directions fade before the route is complete.",
+      "short_desc": "Read the arrows, remember directions after they fade, manage time and limited mistakes, then use boosters, missions and rewards to progress through increasingly complex boards.",
+      "long_desc": "Arrow Escape is a fast-paced puzzle game where players follow arrows and find the correct path before time runs out.\n\nKey features:\n- Easy-to-learn arrow-based puzzle rules\n- Signature fading-arrow system that tests short-term visual memory\n- Time-based levels with increasing pressure\n- Complex maps, lives and mistake limits\n- Vision Cards that reveal faded arrows temporarily\n- Time Freeze that pauses the countdown\n- Hints that expose a useful move when the player is stuck\n- Daily missions, streak rewards and additional prizes\n- Coins, stars, level rewards and useful boosters\n- Modern neon-purple visual style and responsive effects",
       "developer": "Devovia Studio",
       "category": "Puzzle",
       "updated_on": "2026-05-27",
-      "downloads_text": "5+",
+      "downloads_text": "10+",
       "rating_text": "0.0",
       "reviews_text": "0 comments",
-      "theme": "#FF5733",
+      "theme": "#8B5CF6",
       "tech_stack": "Flutter / Game loop / Rewarded ads / In-app purchases",
       "play_url": "https://play.google.com/store/apps/details?id=com.devovia.arrowescape",
       "icon_url": "/products/arrow-escape/icon.png",
@@ -90,20 +90,20 @@
       ],
       "feature_details": [
         {
-          "title": "Fading arrow memory challenge",
-          "description": "Players must remember directions after arrows fade, creating a sharper focus loop than a static puzzle board."
+          "title": "Fading-arrow memory mechanic",
+          "description": "Arrow heads disappear after the route is shown, forcing players to remember directions rather than reading a permanently visible board."
         },
         {
-          "title": "Time pressure and mistake limits",
-          "description": "Levels build tension with timers and limited errors while keeping the rules easy to understand."
+          "title": "Timer, lives and mistake limits",
+          "description": "Time-based levels and limited errors increase pressure while discouraging random tapping."
         },
         {
-          "title": "Boosters and hints",
-          "description": "Vision Cards, Time Freeze and hints give players comeback tools without removing the puzzle challenge."
+          "title": "Vision Cards, Time Freeze and hints",
+          "description": "Three distinct recovery tools reveal lost information, pause the countdown or expose a useful move without solving the full board."
         },
         {
-          "title": "Daily missions and rewards",
-          "description": "Coins, streak rewards and daily goals create a reason to return without overloading the core game."
+          "title": "Missions, stars, coins and streak rewards",
+          "description": "Level rewards and daily goals create visible progression while remaining connected to successful puzzle play."
         }
       ],
       "privacy_points": [
@@ -118,9 +118,9 @@
       "slug": "daily-hadith",
       "package": "com.a2.dailyhadith",
       "name": "Daily Hadith",
-      "tagline": "Daily spiritual guidance with a calm, premium interface.",
-      "short_desc": "Daily Hadith combines hadiths, prayer times, Qibla compass, smart tasbih, audio playback, visual cards and multi-language support.",
-      "long_desc": "Daily Hadith helps users bring spiritual routines into daily life through a polished mobile interface.\n\nKey features:\n- Hadith and quote of the day\n- Accurate prayer times and notifications\n- Qibla compass\n- Smart tasbih with haptic feedback\n- Audio playback through text-to-speech\n- Create and share visual cards\n- Islamic calendar and holy days\n- Multi-language support and premium ad-free option",
+      "tagline": "Daily hadith, prayer times, Qibla direction, smart tasbih and spiritual media in one calm interface.",
+      "short_desc": "Read a selected hadith or quote, follow accurate prayer times, find Qibla, count dhikr with haptic feedback, listen through TTS and create shareable visual cards.",
+      "long_desc": "Daily Hadith combines daily spiritual content with practical Islamic utilities in a polished mobile experience.\n\nKey features:\n- Hadith and Islamic quote of the day from trusted sources\n- Accurate location-based prayer times\n- Customizable prayer notifications\n- Qibla compass for home and travel\n- Smart tasbih with haptic feedback\n- Text-to-speech audio playback\n- Visual quote and hadith card creation\n- Sharing to WhatsApp, Instagram and other apps\n- Islamic calendar, holy days and weekly visual cards\n- Multi-language reading and ML Kit translation support\n- Theme, language and notification personalization\n- Optional premium ad-free experience",
       "developer": "Devovia Studio",
       "category": "Books & Reference",
       "updated_on": "2026-05-05",
@@ -147,19 +147,19 @@
       "feature_details": [
         {
           "title": "Hadith and quote of the day",
-          "description": "A focused daily surface helps users read, reflect and return without cognitive overload."
+          "description": "Open to one selected hadith or Islamic quote from trusted sources without navigating an endless feed."
         },
         {
-          "title": "Prayer times and notifications",
-          "description": "The app supports daily rhythm with prayer timing, reminders and permission-aware notifications."
+          "title": "Prayer times and customizable reminders",
+          "description": "Use location-based prayer calculations and permission-aware notifications to keep the next prayer visible."
         },
         {
-          "title": "Qibla compass and smart tasbih",
-          "description": "Core Islamic utility tools are placed inside the same calm, polished mobile experience."
+          "title": "Qibla compass and haptic smart tasbih",
+          "description": "Find the prayer direction and count dhikr with tactile feedback inside the same interface."
         },
         {
-          "title": "Visual cards and audio playback",
-          "description": "Users can listen, save and share content in formats that fit daily spiritual routines."
+          "title": "TTS audio, visual cards and Islamic calendar",
+          "description": "Listen to content, create designed cards for sharing and follow holy days through the Islamic calendar."
         }
       ],
       "privacy_points": [
@@ -174,9 +174,9 @@
       "slug": "tinysteps",
       "package": "com.tinysteps.app",
       "name": "TinySteps",
-      "tagline": "Simple habit tracking that actually works.",
-      "short_desc": "A clean habit tracker for daily habits, reminders, widgets, streaks, statistics, light/dark mode and premium productivity features.",
-      "long_desc": "TinySteps helps users build daily habits, stay consistent and create routines that last.\n\nKey features:\n- Daily habits, specific days or weekly targets\n- Smart habit reminders\n- Home screen habit widget\n- Streaks, completion rate and consistency stats\n- Routine and productivity tracking\n- Light and dark mode\n- Free plan with up to 5 habits\n- Premium unlimited habits, advanced stats, backup and export",
+      "tagline": "A clean habit tracker for flexible schedules, reminders, widgets and understandable consistency statistics.",
+      "short_desc": "Create daily, selected-day or weekly-frequency habits, receive local reminders, complete routines from the home-screen widget and review streaks without complicated charts.",
+      "long_desc": "TinySteps is a simple habit tracker designed around small wins and consistent routines rather than pressure or complicated setup.\n\nKey features:\n- Daily habits, selected weekdays or X-times-per-week targets\n- Smart local reminders\n- Different reminder times per day for premium users\n- Interactive home-screen habit widget\n- Weekly habit progress and monthly consistency\n- Longest streak and most consistent habit insights\n- Routine and productivity tracking\n- Light and dark mode\n- Free plan with up to five habits\n- Premium unlimited habits and advanced statistics\n- Premium backup, export and advanced reminders",
       "developer": "Devovia Studio",
       "category": "Productivity",
       "updated_on": "2025-12-25",
@@ -202,20 +202,20 @@
       ],
       "feature_details": [
         {
-          "title": "Daily, weekly and custom habit targets",
-          "description": "Users can track simple daily routines or more flexible schedules without complex setup."
+          "title": "Daily, selected-day and weekly targets",
+          "description": "Create habits that repeat every day, on chosen weekdays or a selected number of times per week."
         },
         {
-          "title": "Smart reminders",
-          "description": "Reminders keep habits visible at the right moment while premium users can set richer schedules."
+          "title": "Smart local reminders",
+          "description": "Keep routines visible at the right moment, with different reminder times by day available to premium users."
         },
         {
-          "title": "Widget-first completion",
-          "description": "Home screen check-offs reduce friction and make the habit loop feel immediate."
+          "title": "Interactive home-screen widget",
+          "description": "View and complete today’s habits without opening the full application."
         },
         {
-          "title": "Streaks and clear statistics",
-          "description": "Progress is shown through completion rate, consistency and streaks instead of noisy dashboards."
+          "title": "Streaks and readable consistency statistics",
+          "description": "Review weekly progress, monthly consistency, longest streak and the most consistent habits without noisy charts."
         }
       ],
       "privacy_points": [
