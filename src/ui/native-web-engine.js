@@ -10,6 +10,11 @@ function normalizedPath(url = window.location.href) {
   return parsed.pathname.replace(/\/+$/, '') || '/';
 }
 
+function isAppRoute(path) {
+  if (['/', '/products', '/projects', '/services', '/updates', '/support', '/blog', '/contact'].includes(path)) return true;
+  return ['/products/', '/projects/', '/services/', '/blog/'].some((prefix) => path.startsWith(prefix));
+}
+
 function routeDepth(path) {
   if (path === '/') return 0;
   const parts = path.split('/').filter(Boolean);
@@ -95,7 +100,7 @@ function navigateInternal(url) {
   const update = () => {
     window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
     window.dispatchEvent(new PopStateEvent('popstate'));
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
 
   if (!reducedMotion && document.startViewTransition) {
@@ -123,7 +128,7 @@ function handleClick(event) {
   if (sameDocumentHash) return;
 
   const appShell = document.querySelector('.app-shell');
-  if (appShell && nextPath !== '/admin') {
+  if (appShell && isAppRoute(nextPath)) {
     event.preventDefault();
     event.stopImmediatePropagation();
     navigateInternal(url);
