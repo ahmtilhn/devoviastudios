@@ -24,8 +24,8 @@ check('Neutral brand language controller is loaded', source.main.includes("./ui/
 check('Neutral homepage metadata refresh is loaded', source.main.includes("./ui/brand-meta-v8.js"), paths.main);
 check('Extended UX copy refinements are loaded', source.main.includes("./ui/ux-copy-v8.js"), paths.main);
 check('Premium motion CSS and controller are loaded', source.main.includes("./ui/premium-motion-v8.css") && source.main.includes("./ui/premium-motion-v8.js"), paths.main);
-check('Nationality positioning is replaced with independent studio language', source.brand.includes("'Netherlands-based mobile product studio', 'Independent digital product studio'") && source.brand.includes("Independent products, built with care."), paths.brand);
-check('Homepage proof no longer displays NL', source.brand.includes("value.textContent = 'Independent'") && source.brand.includes("label.textContent = 'Product studio'"), paths.brand);
+check('Nationality positioning is replaced with independent studio language', source.brand.includes("'Netherlands-based mobile product studio', 'Independent digital product studio'") && source.brand.includes('Independent products, built with care.'), paths.brand);
+check('Homepage proof no longer displays NL', source.brand.includes("querySelector('strong').textContent = 'Independent'") && source.brand.includes("querySelector('span').textContent = 'Product studio'"), paths.brand);
 check('About and footer copy contain no nationality claim', source.brand.includes('independent digital product studio') && source.brand.includes('An independent studio designing useful apps'), paths.brand);
 check('Neutral metadata contains no country positioning', !/Netherlands|Dutch|Holland|\bNL\b/i.test(source.meta), paths.meta);
 check('Service and conversion copy is outcome-led', ['Outcome-led experience design','Product continuity','Operational release readiness','A promising idea deserves a considered product system.'].every((text) => source.copy.includes(text)), paths.copy);
