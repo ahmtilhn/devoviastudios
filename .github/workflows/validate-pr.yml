@@ -4,10 +4,10 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build:
@@ -18,4 +18,8 @@ jobs:
         with:
           show-progress: false
       - name: Extract Daily Hadith privacy policy
-        run: node scripts/fetch-daily-policy.mjs
+        run: node scripts/fetch-daily-policy.mjs > daily-hadith-policy.txt
+      - name: Post extracted policy to this draft PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr comment ${{ github.event.pull_request.number }} --body-file daily-hadith-policy.txt
