@@ -12,6 +12,7 @@ import './studio-motion.css';
 import './ui/system.css';
 import './ui/native-web-engine.css';
 import './ui/experience-v6.css';
+import './ui/product-experience-v7.css';
 import './ui/shared-transitions-v6.css';
 import './ui/performance-v6.css';
 import './ui/enhancer.js';
