@@ -1,0 +1,32 @@
+/* QA pass 2: isolate homepage layers from the internal-page UX system. */
+.dv-site {
+  overflow: hidden;
+}
+
+.dv-site > .dv-interactive-background {
+  position: fixed;
+  z-index: 0;
+}
+
+.dv-site > .dv-motion-v4 {
+  position: fixed;
+  z-index: 1;
+}
+
+.dv-site > .dv-header,
+.dv-site > main,
+.dv-site > .dv-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.dv-site > .ux-site-atmosphere,
+.dv-site > .ux-progress {
+  display: none !important;
+}
+
+.dv-site .ux-spotlight-target,
+.dv-site .ux-tilt-target,
+.dv-site .ux-magnetic-target {
+  transform: none;
+}
