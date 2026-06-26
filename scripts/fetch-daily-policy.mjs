@@ -1,1 +1,0 @@
-// Temporary extraction script retired.
