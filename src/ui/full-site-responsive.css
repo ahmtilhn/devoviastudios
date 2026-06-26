@@ -1,0 +1,174 @@
+@media (max-width: 1180px) {
+  .app-shell {
+    width: min(100% - 40px, 1240px);
+  }
+
+  .app-shell .section-header {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 24px;
+  }
+
+  .app-shell .section-header > .text-link {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 1080px) {
+  .app-shell .site-header {
+    border-radius: 20px;
+  }
+
+  .app-shell .support-choice-grid,
+  .app-shell .problem-grid,
+  .app-shell .process-grid,
+  .app-shell .faq-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .app-shell .detail-device-row {
+    width: min(680px, 100%);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 820px) {
+  .app-shell {
+    width: min(100% - 24px, 1240px);
+    padding-top: 8px;
+  }
+
+  .app-shell main {
+    padding-top: 30px;
+  }
+
+  .site-header {
+    top: 8px;
+    min-height: 60px;
+  }
+
+  .mobile-menu {
+    overflow: hidden;
+    border-color: rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .12);
+    background: rgb(255 255 255 / .97);
+    box-shadow: 0 24px 62px rgb(15 23 42 / .14);
+    backdrop-filter: blur(24px);
+  }
+
+  .app-shell .section,
+  .app-shell .compact-section,
+  .app-shell .final-cta,
+  .app-shell .site-footer {
+    margin-top: 78px;
+  }
+
+  .app-shell .support-choice-grid,
+  .app-shell .problem-grid,
+  .app-shell .process-grid,
+  .app-shell .faq-grid,
+  .app-shell .detail-grid,
+  .app-shell .workflow-section,
+  .app-shell .detail-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell .detail-grid .wide {
+    grid-column: auto;
+  }
+
+  .app-shell .filter-row {
+    top: 78px;
+    border-radius: 18px;
+  }
+
+  .app-shell .final-cta {
+    min-height: 0;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 38px 30px;
+    border-radius: 28px;
+  }
+
+  .app-shell .site-footer {
+    padding: 46px 30px;
+    border-radius: 30px;
+  }
+}
+
+@media (max-width: 620px) {
+  .ux-atmosphere-grid {
+    opacity: .15;
+  }
+
+  .ux-atmosphere-noise {
+    display: none;
+  }
+
+  .ux-cursor-cloud {
+    opacity: .36;
+    filter: blur(86px);
+  }
+
+  .app-shell h1 {
+    font-size: clamp(2.55rem, 13vw, 3.75rem);
+  }
+
+  .app-shell h2 {
+    font-size: clamp(1.95rem, 9vw, 2.75rem);
+  }
+
+  .app-shell .section-header {
+    margin-bottom: 36px;
+  }
+
+  .app-shell .filter-row {
+    margin-inline: -2px;
+    padding: 7px;
+  }
+
+  .app-shell .filter-row button {
+    min-height: 40px;
+    padding-inline: 14px;
+  }
+
+  .app-shell .metric-row {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell .card-actions,
+  .app-shell .actions,
+  .app-shell .article-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell .button {
+    width: 100%;
+  }
+
+  .app-shell .site-footer {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .ux-tilt-target,
+  .ux-magnetic-target {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-ux-reveal],
+  [data-ux-reveal][data-ux-visible="true"],
+  [data-ux-parallax],
+  .ux-route-enter {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: none;
+    animation: none;
+    transition: none;
+  }
+}
