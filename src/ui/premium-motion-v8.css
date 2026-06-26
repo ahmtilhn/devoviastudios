@@ -1,0 +1,422 @@
+/* Devovia Motion V8 — restrained, elegant and product-led. */
+:root {
+  --pm-ease: cubic-bezier(.22, 1, .36, 1);
+  --pm-ease-soft: cubic-bezier(.33, 1, .68, 1);
+  --pm-duration-fast: 420ms;
+  --pm-duration: 760ms;
+  --pm-duration-slow: 1080ms;
+}
+
+html.premium-motion-v8 {
+  scroll-behavior: smooth;
+}
+
+/* Disable the older blur-heavy reveal systems before applying the V8 choreography. */
+html.premium-motion-v8 .v4-reveal,
+html.premium-motion-v8 .v4-reveal.is-visible,
+html.premium-motion-v8 .app-shell [data-ux-reveal],
+html.premium-motion-v8 .app-shell [data-ux-reveal][data-ux-visible='true'] {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  filter: none;
+  clip-path: none;
+  transition: none;
+  animation: none;
+}
+
+html.premium-motion-v8 [data-pm-state='pending'] {
+  opacity: 0;
+  translate: 0 18px;
+  scale: .994;
+}
+
+html.premium-motion-v8 [data-pm-state='pending'][data-pm-role='hero'] {
+  translate: 0 26px;
+  scale: .988;
+  clip-path: inset(0 0 22% 0 round 14px);
+}
+
+html.premium-motion-v8 [data-pm-state='pending'][data-pm-role='heading'] {
+  translate: 0 20px;
+  clip-path: inset(0 0 18% 0 round 10px);
+}
+
+html.premium-motion-v8 [data-pm-state='pending'][data-pm-role='eyebrow'] {
+  translate: 0 9px;
+}
+
+html.premium-motion-v8 [data-pm-state='pending'][data-pm-role='visual'] {
+  translate: 0 24px;
+  scale: .982;
+}
+
+html.premium-motion-v8 [data-pm-state='visible'] {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  clip-path: inset(0 0 0 0 round 0);
+  transition:
+    opacity var(--pm-duration) var(--pm-ease),
+    translate var(--pm-duration-slow) var(--pm-ease),
+    scale var(--pm-duration-slow) var(--pm-ease),
+    clip-path var(--pm-duration-slow) var(--pm-ease);
+  transition-delay: calc(var(--pm-delay, 0ms) + var(--pm-order, 0) * 44ms);
+}
+
+html.premium-motion-v8 [data-pm-order='1'] { --pm-order: 1; }
+html.premium-motion-v8 [data-pm-order='2'] { --pm-order: 2; }
+html.premium-motion-v8 [data-pm-order='3'] { --pm-order: 3; }
+html.premium-motion-v8 [data-pm-order='4'] { --pm-order: 4; }
+html.premium-motion-v8 [data-pm-order='5'] { --pm-order: 5; }
+
+/* Premium surfaces: no exaggerated tilt, no harsh lift, one controlled light response. */
+html.premium-motion-v8 .ux-tilt-target {
+  transform: translate3d(0, 0, 0) !important;
+  transform-style: flat;
+  will-change: auto;
+}
+
+html.premium-motion-v8 .pm-surface {
+  --pm-local-x: 50%;
+  --pm-local-y: 50%;
+  position: relative;
+  isolation: isolate;
+  transition:
+    translate 560ms var(--pm-ease),
+    border-color 420ms ease,
+    box-shadow 620ms var(--pm-ease),
+    background-color 420ms ease;
+}
+
+html.premium-motion-v8 .pm-surface::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--pm-local-x) var(--pm-local-y), rgb(255 255 255 / .54), transparent 66%);
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 520ms ease;
+}
+
+html.premium-motion-v8 .pm-surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+html.premium-motion-v8 .pm-surface:hover {
+  translate: 0 -3px;
+  border-color: rgb(var(--ux-page-r, 59) var(--ux-page-g, 130) var(--ux-page-b, 246) / .18);
+  box-shadow:
+    0 30px 76px rgb(15 23 42 / .105),
+    0 1px 0 rgb(255 255 255 / .9) inset;
+}
+
+html.premium-motion-v8 .pm-surface:hover::after {
+  opacity: .7;
+}
+
+html.premium-motion-v8 .ux-spotlight-target > .ux-local-aura {
+  opacity: .08;
+  filter: blur(24px);
+  transition: opacity 620ms ease, filter 620ms ease;
+}
+
+html.premium-motion-v8 .ux-spotlight-target.ux-pointer-inside > .ux-local-aura {
+  opacity: .28;
+  filter: blur(30px);
+}
+
+/* Pointer ambience becomes a faint environmental light instead of a visible cursor effect. */
+html.premium-motion-v8 .ux-cursor-cloud {
+  opacity: .14;
+  filter: blur(110px);
+  mix-blend-mode: normal;
+}
+
+html.premium-motion-v8 .ux-cursor-cloud-primary { width: 520px; height: 520px; }
+html.premium-motion-v8 .ux-cursor-cloud-secondary { width: 640px; height: 640px; opacity: .1; }
+html.premium-motion-v8 .ux-cursor-cloud-cyan { opacity: .07; }
+html.premium-motion-v8 .native-web-engine .dv-v4-pointer::after,
+html.premium-motion-v8 .native-web-engine .ux-site-atmosphere::after { display: none; }
+
+html.premium-motion-v8 .ux-ambient-ribbon {
+  opacity: .065;
+  filter: blur(110px);
+  animation-duration: 42s;
+  animation-timing-function: ease-in-out;
+}
+
+html.premium-motion-v8 .ux-atmosphere-noise,
+html.premium-motion-v8 .dv-v4-noise {
+  opacity: .008;
+  animation: none;
+}
+
+html.premium-motion-v8 .ux-atmosphere-grid,
+html.premium-motion-v8 .dv-v4-grid {
+  opacity: .09;
+  background-size: 108px 108px;
+}
+
+/* Buttons and links feel precise rather than playful. */
+html.premium-motion-v8 .button,
+html.premium-motion-v8 .dv-button,
+html.premium-motion-v8 .privacy-button,
+html.premium-motion-v8 .text-link,
+html.premium-motion-v8 .dv-text-link,
+html.premium-motion-v8 .desktop-nav a,
+html.premium-motion-v8 .filter-row button {
+  transform: none;
+  transition:
+    translate 420ms var(--pm-ease),
+    color 320ms ease,
+    border-color 320ms ease,
+    background-color 320ms ease,
+    box-shadow 520ms var(--pm-ease);
+}
+
+html.premium-motion-v8 .button:hover,
+html.premium-motion-v8 .dv-button:hover,
+html.premium-motion-v8 .privacy-button:hover,
+html.premium-motion-v8 .text-link:hover,
+html.premium-motion-v8 .dv-text-link:hover,
+html.premium-motion-v8 .desktop-nav a:hover,
+html.premium-motion-v8 .filter-row button:hover {
+  transform: none;
+  translate: 0 -1px;
+}
+
+html.premium-motion-v8 .button svg,
+html.premium-motion-v8 .dv-button svg,
+html.premium-motion-v8 .text-link svg,
+html.premium-motion-v8 .dv-text-link svg {
+  transition: translate 460ms var(--pm-ease);
+}
+
+html.premium-motion-v8 .button:hover svg,
+html.premium-motion-v8 .dv-button:hover svg,
+html.premium-motion-v8 .text-link:hover svg,
+html.premium-motion-v8 .dv-text-link:hover svg {
+  transform: none;
+  translate: 3px 0;
+}
+
+/* Header movement is quieter and more architectural. */
+html.premium-motion-v8 .site-header,
+html.premium-motion-v8 .dv-header {
+  transition:
+    background-color 420ms ease,
+    border-color 420ms ease,
+    box-shadow 620ms var(--pm-ease),
+    backdrop-filter 420ms ease;
+}
+
+html.premium-motion-v8 .app-shell.ux-is-scrolled .site-header,
+html.premium-motion-v8 .site-header.is-scrolled,
+html.premium-motion-v8 .dv-site.is-scrolled .dv-header {
+  box-shadow: 0 18px 52px rgb(15 23 42 / .08);
+}
+
+/* Homepage hero depth is subtle and slow. */
+html.premium-motion-v8 .dv-hero-showcase {
+  transform:
+    perspective(2200px)
+    rotateX(calc(var(--dv-tilt-x) * .12))
+    rotateY(calc(var(--dv-tilt-y) * .14))
+    translate3d(0, var(--parallax-y, 0px), 0);
+  transition: transform 520ms var(--pm-ease-soft);
+}
+
+html.premium-motion-v8 .card-blue {
+  transform: translate3d(calc(var(--dv-shift-x) * .2), calc(var(--dv-shift-y) * .18), 18px) rotate(-3deg);
+}
+html.premium-motion-v8 .card-violet {
+  transform: translate3d(calc(var(--dv-shift-x-reverse) * .18), calc(var(--dv-shift-y-reverse) * .16), 42px) rotate(1deg);
+}
+html.premium-motion-v8 .card-cyan {
+  transform: translate3d(calc(var(--dv-shift-x) * .16), calc(var(--dv-shift-y-reverse) * .17), 8px) rotate(3.5deg);
+}
+
+html.premium-motion-v8 .dv-showcase-card,
+html.premium-motion-v8 .dv-showcase-badge,
+html.premium-motion-v8 .dv-phone {
+  transition: transform 620ms var(--pm-ease), box-shadow 620ms var(--pm-ease), filter 420ms ease;
+}
+
+html.premium-motion-v8 .dv-product-visual {
+  transform: translate3d(0, calc((.5 - var(--product-progress)) * 10px), 0);
+  transition: transform 360ms var(--pm-ease-soft);
+}
+
+html.premium-motion-v8 .dv-product-copy {
+  transform: translate3d(0, calc((var(--product-progress) - .5) * 5px), 0);
+  transition: transform 360ms var(--pm-ease-soft);
+}
+
+/* Route transitions preserve context without blur or theatrical movement. */
+html.premium-motion-v8 ::view-transition-group(devovia-content) {
+  animation-duration: 780ms;
+  animation-timing-function: var(--pm-ease);
+}
+
+html.premium-motion-v8 ::view-transition-old(devovia-content) {
+  animation: pm-page-out 420ms cubic-bezier(.4,0,1,1) both;
+}
+
+html.premium-motion-v8 ::view-transition-new(devovia-content) {
+  animation: pm-page-in 780ms var(--pm-ease) both;
+}
+
+html.premium-motion-v8[data-route-direction='back']::view-transition-old(devovia-content) {
+  animation-name: pm-page-out-back;
+}
+
+html.premium-motion-v8[data-route-direction='back']::view-transition-new(devovia-content) {
+  animation-name: pm-page-in-back;
+}
+
+@keyframes pm-page-out {
+  from { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+  to { opacity: 0; transform: translate3d(-10px,0,0) scale(.997); }
+}
+@keyframes pm-page-in {
+  from { opacity: 0; transform: translate3d(14px,0,0) scale(.996); clip-path: inset(0 0 0 2%); }
+  to { opacity: 1; transform: translate3d(0,0,0) scale(1); clip-path: inset(0); }
+}
+@keyframes pm-page-out-back {
+  from { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+  to { opacity: 0; transform: translate3d(10px,0,0) scale(.997); }
+}
+@keyframes pm-page-in-back {
+  from { opacity: 0; transform: translate3d(-14px,0,0) scale(.996); clip-path: inset(0 2% 0 0); }
+  to { opacity: 1; transform: translate3d(0,0,0) scale(1); clip-path: inset(0); }
+}
+
+@supports (animation-timeline: view()) {
+  html.premium-motion-v8 .dv-section-head,
+  html.premium-motion-v8 .dv-service-card,
+  html.premium-motion-v8 .dv-product,
+  html.premium-motion-v8 .dv-process-grid article,
+  html.premium-motion-v8 .dv-update-card,
+  html.premium-motion-v8 .dv-about-grid > *,
+  html.premium-motion-v8 .dv-cta-card,
+  html.premium-motion-v8 .app-shell .section-header,
+  html.premium-motion-v8 .app-shell .product-card,
+  html.premium-motion-v8 .app-shell .service-card,
+  html.premium-motion-v8 .app-shell .update-card,
+  html.premium-motion-v8 .app-shell .story-card,
+  html.premium-motion-v8 .app-shell .blog-card,
+  html.premium-motion-v8 .app-shell .glass-panel,
+  html.premium-motion-v8 .app-shell .faq-card,
+  html.premium-motion-v8 .app-shell .reason-card,
+  html.premium-motion-v8 .app-shell .support-app-card,
+  html.premium-motion-v8 .app-shell .request-panel {
+    animation: pm-view-reveal 1ms linear both;
+    animation-timeline: view(block);
+    animation-range: entry 8% cover 32%;
+  }
+}
+
+@keyframes pm-view-reveal {
+  from { opacity: .08; translate: 0 18px; scale: .994; clip-path: inset(0 0 10% 0 round 12px); }
+  to { opacity: 1; translate: 0 0; scale: 1; clip-path: inset(0); }
+}
+
+/* Product feature scenes play once, then settle into a composed final state. */
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-scan-beam { animation-duration: 3.4s; animation-iteration-count: 1; }
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-result-chip,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-catalog-row,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-flow-line,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-flow-event,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-metric-card,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-alert-row,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-export-card,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-mission-row,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-prayer-point,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-day-chip,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-reminder-row,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-complete-card,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-heat-cell {
+  animation-duration: 900ms;
+  animation-timing-function: var(--pm-ease);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-chart-dots circle,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-database,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-fading-arrow,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-path-guide,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-booster-card,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-streak-flame,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-star-row text,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-daily-orbit,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-bell,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-compass-needle,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-bead,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-audio-wave rect,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-reminder-pulse,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-widget-card {
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  animation-timing-function: var(--pm-ease-soft);
+}
+
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-export-route,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-booster-energy,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-widget-route {
+  animation-duration: 3.6s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-countdown-ring,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-pressure-bar,
+html.premium-motion-v8 .v7-feature-stage:not(.is-switching) .v7-memory-bar {
+  animation-duration: 5.4s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+html.premium-motion-v8 .v7-feature-stage {
+  box-shadow: 0 34px 90px rgb(15 23 42 / .085), inset 0 1px 0 #fff;
+}
+
+html.premium-motion-v8 .v7-vector-scene,
+html.premium-motion-v8 .v7-live-phone {
+  transition-duration: 700ms;
+  transition-timing-function: var(--pm-ease);
+}
+
+@media (max-width: 820px) {
+  html.premium-motion-v8 [data-pm-state='pending'] { translate: 0 12px; scale: .997; }
+  html.premium-motion-v8 .ux-ambient-ribbon { opacity: .035; }
+  html.premium-motion-v8 .ux-cursor-cloud { display: none; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  html.premium-motion-v8 .pm-surface:hover { translate: 0 0; }
+  html.premium-motion-v8 .pm-surface::after { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.premium-motion-v8 { scroll-behavior: auto; }
+  html.premium-motion-v8 [data-pm-state] {
+    opacity: 1 !important;
+    translate: 0 0 !important;
+    scale: 1 !important;
+    clip-path: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  html.premium-motion-v8 .ux-ambient-ribbon,
+  html.premium-motion-v8 .ux-atmosphere-noise,
+  html.premium-motion-v8 .dv-v4-noise,
+  html.premium-motion-v8 .v7-feature-stage * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

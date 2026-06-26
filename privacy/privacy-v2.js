@@ -3,6 +3,15 @@ let pointerFrame = 0;
 let pointerX = window.innerWidth * 0.78;
 let pointerY = window.innerHeight * 0.08;
 
+function ensurePremiumStyles() {
+  if (document.querySelector('link[data-privacy-premium-v8]')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = './privacy-premium-v8.css';
+  link.dataset.privacyPremiumV8 = 'true';
+  document.head.append(link);
+}
+
 function updatePointer(event) {
   pointerX = event.clientX;
   pointerY = event.clientY;
@@ -15,6 +24,7 @@ function updatePointer(event) {
 }
 
 function start() {
+  ensurePremiumStyles();
   document.querySelectorAll('[data-year]').forEach((element) => {
     element.textContent = new Date().getFullYear();
   });
@@ -27,7 +37,7 @@ function start() {
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('[data-reveal]').forEach((element) => observer.observe(element));
   } else {
     document.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('is-visible'));
