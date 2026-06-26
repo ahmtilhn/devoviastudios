@@ -26,11 +26,15 @@ jobs:
         run: npm run test:ux
       - name: Native engine and English pass 1
         run: node scripts/native-engine-check.mjs
-      - name: V6 experience and privacy pass 1
+      - name: V6 compatibility and privacy pass 1
         run: node scripts/v6-experience-check.mjs
-      - name: Production build and UX contract pass 2
+      - name: V7 authentic product pass 1
+        run: npm run test:v7
+      - name: Production build and repeated UX/V7 checks
         run: npm run build
       - name: Native engine and English pass 2
         run: node scripts/native-engine-check.mjs
-      - name: V6 experience and privacy pass 2
+      - name: V6 compatibility and privacy pass 2
         run: node scripts/v6-experience-check.mjs
+      - name: V7 authentic product pass 2
+        run: npm run test:v7
