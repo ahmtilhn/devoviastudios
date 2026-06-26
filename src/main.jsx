@@ -23,6 +23,7 @@ import './ui/shared-transitions-v6.js';
 import './ui/native-web-engine.js';
 import './ui/brand-language-v8.js';
 import './ui/brand-meta-v8.js';
+import './ui/ux-copy-v8.js';
 import './ui/premium-motion-v8.js';
 import './redesign/immersive-motion.js';
 
