@@ -34,7 +34,7 @@ check('Adaptive performance controller is loaded', source.main.includes("./ui/pe
 check('Shared transition controller is loaded before native engine', source.main.indexOf("./ui/shared-transitions-v6.js") > -1 && source.main.indexOf("./ui/shared-transitions-v6.js") < source.main.indexOf("./ui/native-web-engine.js"), paths.main);
 check('All four products have custom experience copy', ['app-1', 'app-2', 'app-3', 'app-4'].every((id) => source.story.includes(`'${id}'`)), paths.story);
 check('All sixteen product animation variants exist', ['scanner','timeline','dashboard','shield','focus','timer','boost','rewards','daily','prayer','compass','audio','habits','reminder','widget','streak'].every((variant) => source.story.includes(variant)), paths.story);
-check('Product stories use real screenshots with lazy async decoding', source.story.includes('loading=\"lazy\" decoding=\"async\"'), paths.story);
+check('Product stories use real screenshots with lazy async decoding', source.story.includes('loading="lazy" decoding="async"'), paths.story);
 check('Test Support receives a dedicated visual system', source.story.includes('test-support-visual-v6') && source.story.includes('support-proof-strip-v6'), paths.story);
 check('Product storytelling uses content visibility', source.experienceCss.includes('content-visibility: auto'), paths.experienceCss);
 check('Product storytelling supports native view timelines', source.experienceCss.includes('animation-timeline: view(block)'), paths.experienceCss);
@@ -43,7 +43,7 @@ check('Pointer engine is demand-driven', source.motion.includes('function queueP
 check('Scroll targets are cached', source.motion.includes('let sectionElements = []') && source.motion.includes('let parallaxElements = []'), paths.motion);
 check('Long-task adaptive lite mode exists', source.performanceJs.includes("supportedEntryTypes?.includes('longtask')") && source.performanceJs.includes('ux-lite-motion'), paths.performanceJs);
 check('Initial atmosphere waits for first paint', source.performanceCss.includes('html:not(.ux-first-paint)'), paths.performanceCss);
-check('Page transitions avoid blur-heavy keyframes', source.performanceCss.includes('@keyframes v6-page-in') && !source.performanceCss.match(/@keyframes v6-page-in[\s\S]*?filter:/), paths.performanceCss);
+check('Page transitions avoid blur-heavy keyframes', source.performanceCss.includes('@keyframes v6-page-in') && !source.performanceCss.includes('filter: blur'), paths.performanceCss);
 check('Product icon shared transition exists', source.sharedJs.includes("view-transition-name', 'product-icon") && source.sharedCss.includes('::view-transition-group(product-icon)'), paths.sharedJs);
 check('Product preview shared transition exists', source.sharedJs.includes("view-transition-name', 'product-preview") && source.sharedCss.includes('::view-transition-group(product-preview)'), paths.sharedJs);
 check('Legacy relative privacy links are normalized', source.links.includes("/^\\.\\/(privacy|apps)\\//"), paths.links);
