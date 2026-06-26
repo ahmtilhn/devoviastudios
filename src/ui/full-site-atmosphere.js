@@ -1,4 +1,4 @@
-const ROOT_SELECTOR = '.dv-site, .app-shell';
+const ROOT_SELECTOR = '.app-shell';
 
 const SPOTLIGHT_SELECTOR = [
   '.page-hero > div:first-child',
@@ -22,17 +22,9 @@ const SPOTLIGHT_SELECTOR = [
   '.detail-device-row',
   '.hero-device-cluster',
   '.support-form',
-  '.dv-hero-copy',
-  '.dv-service-card',
-  '.dv-product',
-  '.dv-update-card',
-  '.dv-process-grid article',
-  '.dv-about-visual',
-  '.dv-cta-card',
 ].join(',');
 
 const PALETTES = {
-  home: [[59, 130, 246], [139, 92, 246]],
   products: [[91, 103, 240], [34, 211, 238]],
   'product-detail': [[59, 130, 246], [124, 58, 237]],
   services: [[14, 165, 233], [99, 102, 241]],
@@ -47,7 +39,6 @@ const PALETTES = {
 
 function pageKey(path = window.location.pathname) {
   const clean = path.replace(/\/+$/, '') || '/';
-  if (clean === '/') return 'home';
   if (clean === '/products' || clean === '/projects') return 'products';
   if (clean.startsWith('/products/') || clean.startsWith('/projects/')) return 'product-detail';
   if (clean === '/services/google-play-test-support') return 'test-support';
@@ -74,8 +65,9 @@ function setIdentity(root) {
 }
 
 function ensureAtmosphere(root) {
-  if (root.querySelector(':scope > .ux-site-atmosphere')) return;
-  const layer = document.createElement('div');
+  let layer = root.querySelector(':scope > .ux-site-atmosphere');
+  if (layer) return layer;
+  layer = document.createElement('div');
   layer.className = 'ux-site-atmosphere';
   layer.setAttribute('aria-hidden', 'true');
   layer.innerHTML = `
@@ -85,9 +77,9 @@ function ensureAtmosphere(root) {
     <div class="ux-ambient-ribbon ux-ambient-ribbon-a"></div>
     <div class="ux-ambient-ribbon ux-ambient-ribbon-b"></div>
     <div class="ux-atmosphere-grid"></div>
-    <div class="ux-atmosphere-noise"></div>
   `;
   root.prepend(layer);
+  return layer;
 }
 
 function addAura(element) {
@@ -113,7 +105,7 @@ function decorateMockups(root) {
   root.querySelectorAll('.product-visual').forEach((visual) => visual.classList.add('ux-product-stage'));
 }
 
-export function decorateSite() {
+function decorateSite() {
   const root = document.querySelector(ROOT_SELECTOR);
   if (!root) return null;
   setIdentity(root);
@@ -123,21 +115,4 @@ export function decorateSite() {
   return root;
 }
 
-export { ROOT_SELECTOR, SPOTLIGHT_SELECTOR };
-
-let frame = 0;
-const schedule = () => {
-  cancelAnimationFrame(frame);
-  frame = requestAnimationFrame(decorateSite);
-};
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', schedule, { once: true });
-} else {
-  schedule();
-}
-
-const observer = new MutationObserver(schedule);
-observer.observe(document.getElementById('root') || document.body, { childList: true, subtree: true });
-window.addEventListener('popstate', schedule);
-window.addEventListener('pagehide', () => observer.disconnect(), { once: true });
+export { ROOT_SELECTOR, SPOTLIGHT_SELECTOR, decorateSite };
