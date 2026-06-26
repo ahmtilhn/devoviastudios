@@ -11,7 +11,7 @@ function normalizedPath(url = window.location.href) {
 }
 
 function isAppRoute(path) {
-  if (['/', '/products', '/projects', '/services', '/updates', '/support', '/blog', '/contact'].includes(path)) return true;
+  if (['/products', '/projects', '/services', '/updates', '/support', '/blog', '/contact'].includes(path)) return true;
   return ['/products/', '/projects/', '/services/', '/blog/'].some((prefix) => path.startsWith(prefix));
 }
 
@@ -131,6 +131,14 @@ function handleClick(event) {
   if (sameDocumentHash) return;
 
   const appShell = document.querySelector('.app-shell');
+  if (appShell && nextPath === '/') {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    storeTransitionContext('back');
+    window.location.assign(url.href);
+    return;
+  }
+
   if (appShell && isAppRoute(nextPath)) {
     event.preventDefault();
     event.stopImmediatePropagation();
