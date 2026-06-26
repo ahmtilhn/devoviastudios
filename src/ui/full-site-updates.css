@@ -1,0 +1,28 @@
+.app-shell[data-ux-page="updates"] .page-hero {
+  grid-template-columns: minmax(0, .82fr) minmax(520px, 1.18fr);
+  min-height: 590px;
+}
+
+.app-shell[data-ux-page="updates"] .hero-device-cluster {
+  min-height: 480px;
+}
+
+.app-shell[data-ux-page="updates"] .updates-layout {
+  grid-template-columns: minmax(320px, .78fr) minmax(0, 1.22fr);
+  gap: 30px;
+  margin-top: 34px;
+}
+
+.app-shell[data-ux-page="updates"] .story-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 1080px) {
+  .app-shell[data-ux-page="updates"] .page-hero,
+  .app-shell[data-ux-page="updates"] .updates-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .app-shell[data-ux-page="updates"] .story-grid { grid-template-columns: 1fr; }
+}

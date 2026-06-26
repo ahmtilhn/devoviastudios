@@ -1,0 +1,277 @@
+html,
+body {
+  overflow-x: clip;
+}
+
+.dv-site,
+.app-shell {
+  --ux-page-r: 59;
+  --ux-page-g: 130;
+  --ux-page-b: 246;
+  --ux-page2-r: 139;
+  --ux-page2-g: 92;
+  --ux-page2-b: 246;
+  --ux-mouse-x: 50vw;
+  --ux-mouse-y: 32vh;
+  --ux-mouse-nx: 0;
+  --ux-mouse-ny: 0;
+  --ux-mouse-speed: 0;
+  --ux-depth-x: 0px;
+  --ux-depth-y: 0px;
+  --ux-depth-x-reverse: 0px;
+  --ux-depth-y-reverse: 0px;
+  --ux-cloud-scale: 1;
+  --ux-scroll-progress: 0;
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.app-shell > :not(.ux-site-atmosphere),
+.dv-site > :not(.ux-site-atmosphere) {
+  position: relative;
+  z-index: 2;
+}
+
+.ux-site-atmosphere {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+.ux-cursor-cloud {
+  position: absolute;
+  top: var(--ux-mouse-y);
+  left: var(--ux-mouse-x);
+  border-radius: 50%;
+  translate: -50% -50%;
+  scale: var(--ux-cloud-scale);
+  filter: blur(74px);
+  opacity: .56;
+  mix-blend-mode: multiply;
+  will-change: top, left, transform, scale;
+}
+
+.ux-cursor-cloud-primary {
+  width: 430px;
+  height: 430px;
+  background: radial-gradient(
+    circle,
+    rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .31) 0%,
+    rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .15) 38%,
+    transparent 72%
+  );
+  transform: translate3d(var(--ux-depth-x), var(--ux-depth-y), 0);
+}
+
+.ux-cursor-cloud-secondary {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(
+    circle,
+    rgb(var(--ux-page2-r) var(--ux-page2-g) var(--ux-page2-b) / .22) 0%,
+    rgb(var(--ux-page2-r) var(--ux-page2-g) var(--ux-page2-b) / .10) 42%,
+    transparent 74%
+  );
+  transform: translate3d(
+    calc(var(--ux-depth-x-reverse) - 140px),
+    calc(var(--ux-depth-y-reverse) + 54px),
+    0
+  );
+}
+
+.ux-cursor-cloud-cyan {
+  width: 360px;
+  height: 360px;
+  opacity: .38;
+  background: radial-gradient(
+    circle,
+    rgb(34 211 238 / .24) 0%,
+    rgb(34 211 238 / .08) 44%,
+    transparent 72%
+  );
+  transform: translate3d(
+    calc(var(--ux-depth-x) + 190px),
+    calc(var(--ux-depth-y-reverse) - 115px),
+    0
+  );
+}
+
+.ux-ambient-ribbon {
+  position: absolute;
+  width: 64vw;
+  min-width: 720px;
+  height: 220px;
+  border-radius: 50%;
+  filter: blur(68px);
+  opacity: .15;
+  mix-blend-mode: multiply;
+}
+
+.ux-ambient-ribbon-a {
+  top: 2%;
+  left: -18%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .86),
+    transparent
+  );
+  rotate: -14deg;
+  animation: uxRibbonA 18s ease-in-out infinite alternate;
+}
+
+.ux-ambient-ribbon-b {
+  right: -22%;
+  bottom: 4%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--ux-page2-r) var(--ux-page2-g) var(--ux-page2-b) / .78),
+    transparent
+  );
+  rotate: 17deg;
+  animation: uxRibbonB 21s ease-in-out infinite alternate;
+}
+
+.ux-atmosphere-grid {
+  position: absolute;
+  inset: -8%;
+  opacity: .24;
+  background-image:
+    linear-gradient(rgb(15 23 42 / .025) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(15 23 42 / .018) 1px, transparent 1px);
+  background-position:
+    var(--ux-depth-x) var(--ux-depth-y),
+    var(--ux-depth-x-reverse) var(--ux-depth-y-reverse);
+  background-size: 84px 84px;
+  mask-image: radial-gradient(circle at 50% 28%, #000, transparent 76%);
+}
+
+.ux-atmosphere-noise {
+  position: absolute;
+  inset: -20%;
+  opacity: .026;
+  background-image: repeating-radial-gradient(circle at 20% 30%, #0f172a 0 .7px, transparent .9px 4px);
+  background-size: 7px 7px;
+  animation: uxNoise .42s steps(2) infinite;
+}
+
+@keyframes uxRibbonA {
+  from { translate: -4% -2%; scale: .95; }
+  to { translate: 10% 8%; scale: 1.08; }
+}
+
+@keyframes uxRibbonB {
+  from { translate: 5% 7%; scale: 1.06; }
+  to { translate: -9% -6%; scale: .94; }
+}
+
+@keyframes uxNoise {
+  0% { transform: translate3d(-1%, 0, 0); }
+  25% { transform: translate3d(1%, -1%, 0); }
+  50% { transform: translate3d(0, 1%, 0); }
+  75% { transform: translate3d(-1%, 1%, 0); }
+  100% { transform: translate3d(1%, 0, 0); }
+}
+
+.ux-spotlight-target {
+  --ux-local-x: 50%;
+  --ux-local-y: 50%;
+  position: relative;
+  isolation: isolate;
+}
+
+.ux-spotlight-target > .ux-local-aura {
+  position: absolute;
+  z-index: 0;
+  inset: -2px;
+  overflow: hidden;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      300px circle at var(--ux-local-x) var(--ux-local-y),
+      rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .19),
+      rgb(var(--ux-page2-r) var(--ux-page2-g) var(--ux-page2-b) / .095) 36%,
+      transparent 72%
+    );
+  filter: blur(10px);
+  opacity: .16;
+  pointer-events: none;
+  transition: opacity .32s ease, filter .32s ease;
+}
+
+.ux-spotlight-target.ux-pointer-inside > .ux-local-aura {
+  opacity: .95;
+  filter: blur(15px);
+}
+
+.ux-spotlight-target > :not(.ux-local-aura) {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero > div:first-child.ux-spotlight-target > .ux-local-aura,
+.product-hero-detail > div:first-child.ux-spotlight-target > .ux-local-aura,
+.contact-page > div:first-child.ux-spotlight-target > .ux-local-aura,
+.dv-hero-copy.ux-spotlight-target > .ux-local-aura {
+  inset: -34px;
+  background:
+    radial-gradient(
+      360px circle at var(--ux-local-x) var(--ux-local-y),
+      rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .19),
+      rgb(var(--ux-page2-r) var(--ux-page2-g) var(--ux-page2-b) / .10) 38%,
+      transparent 74%
+    );
+  filter: blur(28px);
+}
+
+.ux-progress {
+  height: 3px;
+  background: transparent;
+  overflow: hidden;
+}
+
+.ux-progress::after {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b)),
+    rgb(var(--ux-page2-r) var(--ux-page2-g) var(--ux-page2-b)),
+    #22d3ee
+  );
+  box-shadow: 0 0 18px rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .45);
+  content: '';
+}
+
+@media (hover: none), (pointer: coarse) {
+  .ux-cursor-cloud {
+    top: 24%;
+    left: 72%;
+    scale: 1;
+    transform: none;
+  }
+
+  .ux-spotlight-target > .ux-local-aura {
+    opacity: .3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ux-ambient-ribbon,
+  .ux-atmosphere-noise {
+    animation: none !important;
+  }
+
+  .ux-cursor-cloud {
+    top: 22%;
+    left: 74%;
+    scale: 1;
+    transform: none;
+  }
+}

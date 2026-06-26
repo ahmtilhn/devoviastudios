@@ -1,0 +1,169 @@
+.app-shell .page-hero,
+.app-shell .product-hero-detail,
+.app-shell .contact-page {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  border-color: rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .12);
+  background: transparent;
+  box-shadow: 0 28px 76px rgb(15 23 42 / .085);
+}
+
+.app-shell .page-hero::before,
+.app-shell .product-hero-detail::before,
+.app-shell .contact-page::before {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 86% 16%, rgb(var(--ux-page2-r) var(--ux-page2-g) var(--ux-page2-b) / .14), transparent 25rem), radial-gradient(circle at 10% 6%, rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .13), transparent 25rem), linear-gradient(145deg, rgb(255 255 255 / .96), rgb(248 250 252 / .88));
+  content: '';
+}
+
+.app-shell .page-hero::after,
+.app-shell .product-hero-detail::after,
+.app-shell .contact-page::after {
+  position: absolute;
+  z-index: -1;
+  right: 4%;
+  bottom: -8%;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .12);
+  border-radius: 42%;
+  background: linear-gradient(145deg, rgb(255 255 255 / .38), rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .05));
+  content: '';
+  rotate: 18deg;
+  transform: translate3d(var(--ux-depth-x-reverse), var(--ux-depth-y-reverse), 0);
+}
+
+.app-shell .page-hero {
+  min-height: 460px;
+  padding: clamp(48px, 5.4vw, 70px);
+  gap: clamp(48px, 6vw, 82px);
+}
+
+.app-shell .page-hero > div:first-child {
+  max-width: 780px;
+}
+
+.app-shell .page-hero p:not(.eyebrow) {
+  max-width: 650px;
+}
+
+.app-shell .page-hero:has(> div:only-child) {
+  min-height: 400px;
+}
+
+.app-shell .product-hero-detail {
+  grid-template-columns: minmax(0, .88fr) minmax(520px, 1.12fr);
+  min-height: 650px;
+  gap: clamp(50px, 6vw, 84px);
+  padding: clamp(48px, 5.4vw, 70px);
+}
+
+.app-shell .product-title-row img {
+  width: 82px;
+  height: 82px;
+  border-radius: 24px;
+  box-shadow: 0 20px 44px color-mix(in srgb, var(--theme) 30%, transparent);
+}
+
+.app-shell .product-hero-detail .hero-lead {
+  max-width: 620px;
+  margin-top: 24px;
+  font-size: 1.18rem;
+}
+
+.app-shell .meta-chip-row {
+  gap: 9px;
+  margin-top: 28px;
+}
+
+.app-shell .meta-chip-row span {
+  min-height: 36px;
+  padding: 7px 13px;
+  background: rgb(255 255 255 / .74);
+  backdrop-filter: blur(10px);
+}
+
+.app-shell .detail-grid,
+.app-shell .workflow-section,
+.app-shell .detail-footer-grid {
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.app-shell .detail-grid .glass-panel,
+.app-shell .workflow-section .glass-panel,
+.app-shell .detail-footer-grid .glass-panel {
+  padding: clamp(26px, 3vw, 36px);
+  border-radius: 28px;
+}
+
+.app-shell .capability-grid {
+  gap: 12px;
+}
+
+.app-shell .capability-grid span {
+  min-height: 58px;
+  padding: 13px 15px;
+  border-color: rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .09);
+  background: linear-gradient(145deg, #f8fafc, #eef5ff);
+}
+
+.app-shell .contact-page {
+  grid-template-columns: minmax(0, .78fr) minmax(440px, 1.22fr);
+  gap: clamp(52px, 7vw, 94px);
+  min-height: 660px;
+  padding: clamp(48px, 5.5vw, 72px);
+}
+
+.app-shell .contact-page > div:first-child {
+  top: 124px;
+}
+
+.app-shell .contact-page form {
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 28px;
+  background: rgb(255 255 255 / .92);
+  box-shadow: 0 26px 64px rgb(15 23 42 / .09);
+}
+
+@media (max-width: 1080px) {
+  .app-shell .page-hero,
+  .app-shell .product-hero-detail,
+  .app-shell .contact-page {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell .product-hero-detail {
+    min-height: auto;
+  }
+
+  .app-shell .contact-page > div:first-child {
+    position: relative;
+    top: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell .page-hero,
+  .app-shell .product-hero-detail,
+  .app-shell .contact-page {
+    padding: 34px 24px;
+    border-radius: 28px;
+  }
+
+  .app-shell .page-hero,
+  .app-shell .page-hero:has(> div:only-child) {
+    min-height: auto;
+  }
+
+  .app-shell .page-hero::after,
+  .app-shell .product-hero-detail::after,
+  .app-shell .contact-page::after {
+    width: 190px;
+    height: 190px;
+  }
+}
