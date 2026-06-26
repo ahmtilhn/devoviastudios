@@ -1,4 +1,6 @@
 import appData from '../../data/apps.json';
+import { productExperienceV7 } from './product-experience-v7-data.js';
+import { renderProductVisual } from './product-visuals-v7.js';
 
 const products = appData.apps;
 const routeAliases = {
@@ -7,61 +9,6 @@ const routeAliases = {
   'arrow-escape': 'app-4',
   'daily-hadith': 'app-2',
   tinysteps: 'app-3',
-};
-
-const experienceCopy = {
-  'app-1': {
-    eyebrow: 'Inventory intelligence, explained clearly',
-    title: 'Every stock action stays visible, fast and under control.',
-    intro: 'Stock Manager turns daily inventory work into a connected flow: capture products, understand movement, act on low stock and keep business records available even without a connection.',
-    variants: ['scanner', 'timeline', 'dashboard', 'shield'],
-    benefits: [
-      ['Capture products faster', 'Keep manual entry available', 'Reduce repetitive catalog work'],
-      ['See every movement in context', 'Trace sales and incoming stock', 'Spot unusual changes sooner'],
-      ['Understand value and low-stock risk', 'Export useful business records', 'Make reorder decisions with confidence'],
-      ['Work offline when needed', 'Keep core records on the device', 'Move backups between devices'],
-    ],
-    labels: ['Camera-assisted capture', 'Chronological stock history', 'Business overview', 'Offline-first data'],
-  },
-  'app-4': {
-    eyebrow: 'A puzzle loop built around memory and momentum',
-    title: 'Simple rules become a fast, focused challenge.',
-    intro: 'Arrow Escape combines fading information, time pressure and controlled recovery tools to create short puzzle sessions that feel tense without becoming confusing.',
-    variants: ['focus', 'timer', 'boost', 'rewards'],
-    benefits: [
-      ['Read the route before it fades', 'Train short-term visual memory', 'Stay focused on the board'],
-      ['React before the timer ends', 'Manage limited mistakes', 'Feel pressure without complex rules'],
-      ['Use recovery tools strategically', 'Protect a strong run', 'Learn difficult board patterns'],
-      ['Return for daily goals', 'Build streak momentum', 'Earn coins through play'],
-    ],
-    labels: ['Fading direction memory', 'Timed puzzle pressure', 'Strategic recovery', 'Daily progression'],
-  },
-  'app-2': {
-    eyebrow: 'A calmer spiritual routine in one place',
-    title: 'Daily guidance and practical tools without visual noise.',
-    intro: 'Daily Hadith brings reading, reminders, direction and reflection tools together in a calm interface designed for short, meaningful moments throughout the day.',
-    variants: ['daily', 'prayer', 'compass', 'audio'],
-    benefits: [
-      ['Open to one focused daily reading', 'Save meaningful content', 'Return without navigating a complex feed'],
-      ['Follow daily prayer timing', 'Receive permission-aware reminders', 'Keep the routine visible'],
-      ['Find Qibla direction', 'Use smart tasbih feedback', 'Access core utilities together'],
-      ['Listen through text-to-speech', 'Create visual quote cards', 'Share content in a useful format'],
-    ],
-    labels: ['Daily reflection', 'Prayer rhythm', 'Direction and tasbih', 'Listen, save and share'],
-  },
-  'app-3': {
-    eyebrow: 'Habit building with less friction',
-    title: 'Plan the routine, complete it quickly and see real consistency.',
-    intro: 'TinySteps keeps habit tracking deliberately simple. Flexible schedules, timely reminders, fast widget actions and readable progress make consistency easier to maintain.',
-    variants: ['habits', 'reminder', 'widget', 'streak'],
-    benefits: [
-      ['Create daily or weekly targets', 'Use flexible custom schedules', 'Avoid complicated project-style setup'],
-      ['Bring habits back at the right time', 'Keep routines visible', 'Use richer schedules when needed'],
-      ['Complete habits from the home screen', 'Reduce taps and navigation', 'Make the action feel immediate'],
-      ['Read streaks at a glance', 'Understand completion rate', 'Focus on consistency rather than noise'],
-    ],
-    labels: ['Flexible targets', 'Timely prompts', 'Widget-first action', 'Readable progress'],
-  },
 };
 
 const escapeHtml = (value = '') => String(value)
@@ -78,97 +25,217 @@ function currentProduct() {
   return products.find((product) => product.id === id || product.slug === parts[1]);
 }
 
-function variantMarkup(variant) {
-  const overlays = {
-    scanner: '<span class="story-scan-line"></span><span class="story-corner c1"></span><span class="story-corner c2"></span><span class="story-corner c3"></span><span class="story-corner c4"></span>',
-    timeline: '<span class="story-route"></span><i class="story-node n1"></i><i class="story-node n2"></i><i class="story-node n3"></i><i class="story-node n4"></i>',
-    dashboard: '<span class="story-bars"><i></i><i></i><i></i><i></i></span><span class="story-metric">LIVE</span>',
-    shield: '<span class="story-shield">✓</span><span class="story-ring r1"></span><span class="story-ring r2"></span>',
-    focus: '<span class="story-arrow a1">→</span><span class="story-arrow a2">↑</span><span class="story-arrow a3">←</span><span class="story-arrow a4">↓</span>',
-    timer: '<span class="story-timer"><i></i></span><span class="story-count">12</span>',
-    boost: '<span class="story-power p1">VISION</span><span class="story-power p2">FREEZE</span><span class="story-power p3">HINT</span>',
-    rewards: '<span class="story-coin c1">★</span><span class="story-coin c2">★</span><span class="story-coin c3">★</span>',
-    daily: '<span class="story-sun"></span><span class="story-quote">“</span>',
-    prayer: '<span class="story-prayer-arc"></span><i class="story-prayer-dot d1"></i><i class="story-prayer-dot d2"></i><i class="story-prayer-dot d3"></i>',
-    compass: '<span class="story-compass"><i></i></span><span class="story-direction">QIBLA</span>',
-    audio: '<span class="story-wave"><i></i><i></i><i></i><i></i><i></i><i></i></span>',
-    habits: '<span class="story-habit-grid"><i>✓</i><i></i><i>✓</i><i>✓</i><i></i><i>✓</i></span>',
-    reminder: '<span class="story-bell">◉</span><span class="story-pulse p1"></span><span class="story-pulse p2"></span>',
-    widget: '<span class="story-widget-card"><i>✓</i><b>Morning routine</b></span>',
-    streak: '<span class="story-streak"><i></i><i></i><i></i><i></i><i></i></span><span class="story-flame">◆</span>',
-  };
-  return overlays[variant] || '';
+function chapterMarkup(feature, index) {
+  return `
+    <article class="v7-feature-chapter" data-feature-index="${index}" data-motion="${escapeHtml(feature.motion)}">
+      <div class="v7-chapter-index"><span>${String(index + 1).padStart(2, '0')}</span><i></i></div>
+      <p class="v7-feature-label">${escapeHtml(feature.label)}</p>
+      <h3>${escapeHtml(feature.title)}</h3>
+      <p class="v7-feature-description">${escapeHtml(feature.description)}</p>
+      <ul class="v7-outcome-list">
+        ${feature.outcomes.map((outcome) => `<li><span>✓</span>${escapeHtml(outcome)}</li>`).join('')}
+      </ul>
+      <div class="v7-feature-proof"><span>Product proof</span><strong>${escapeHtml(feature.proof)}</strong></div>
+    </article>
+  `;
 }
 
-function storySection(product, copy) {
-  const features = product.feature_details || [];
-  const stories = features.map((feature, index) => {
-    const screenshot = product.screenshots[index % product.screenshots.length];
-    const variant = copy.variants[index] || 'dashboard';
-    const benefits = copy.benefits[index] || [];
-    const number = String(index + 1).padStart(2, '0');
-    return `
-      <article class="product-feature-story story-${variant} ${index % 2 ? 'is-reversed' : ''}" style="--story-theme:${escapeHtml(product.theme)}; --story-index:${index}">
-        <div class="product-feature-copy">
-          <span class="feature-number">${number}</span>
-          <p class="feature-label">${escapeHtml(copy.labels[index] || 'Product capability')}</p>
-          <h3>${escapeHtml(feature.title)}</h3>
-          <p class="feature-description">${escapeHtml(feature.description || '')}</p>
-          <ul>${benefits.map((item) => `<li><span>✓</span>${escapeHtml(item)}</li>`).join('')}</ul>
-        </div>
-        <figure class="product-feature-visual" aria-label="${escapeHtml(feature.title)} visual demonstration">
-          <div class="feature-ambient"></div>
-          <div class="feature-device-shell">
-            <span class="feature-device-speaker"></span>
-            <img src="${escapeHtml(screenshot)}" alt="${escapeHtml(product.name)} — ${escapeHtml(feature.title)}" loading="lazy" decoding="async" />
-            <span class="feature-device-glass"></span>
-          </div>
-          <div class="feature-motion-layer" aria-hidden="true">${variantMarkup(variant)}</div>
-          <figcaption>${escapeHtml(copy.labels[index] || feature.title)}</figcaption>
-        </figure>
-      </article>
-    `;
-  }).join('');
+function productExperienceMarkup(product, experience) {
+  const featureCount = experience.features.length;
+  const screenshots = product.screenshots.map((shot, index) => `
+    <figure class="v7-screen-card">
+      <div class="v7-screen-phone"><img src="${escapeHtml(shot)}" alt="${escapeHtml(product.name)} application screen ${index + 1}" loading="lazy" decoding="async" /></div>
+      <figcaption>Product screen ${String(index + 1).padStart(2, '0')}</figcaption>
+    </figure>
+  `).join('');
 
   return `
-    <section class="product-story-section" data-product-story="${escapeHtml(product.id)}" style="--story-theme:${escapeHtml(product.theme)}">
-      <header class="product-story-intro">
-        <p class="eyebrow">${escapeHtml(copy.eyebrow)}</p>
-        <h2>${escapeHtml(copy.title)}</h2>
-        <p>${escapeHtml(copy.intro)}</p>
+    <section class="v7-product-experience" data-product-v7="${escapeHtml(product.id)}" style="--v7-theme:${escapeHtml(product.theme)}">
+      <header class="v7-product-overview">
+        <div class="v7-overview-copy">
+          <p class="eyebrow">${escapeHtml(experience.eyebrow)}</p>
+          <h2>${escapeHtml(experience.headline)}</h2>
+          <p>${escapeHtml(experience.intro)}</p>
+        </div>
+        <div class="v7-promise-grid">
+          ${experience.promise.map(([title, text], index) => `
+            <article><span>${String(index + 1).padStart(2, '0')}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>
+          `).join('')}
+        </div>
       </header>
-      <div class="product-story-list">${stories}</div>
-      <div class="product-outcome-strip">
-        <div><strong>${features.length}</strong><span>Explained feature systems</span></div>
-        <div><strong>${product.screenshots.length}</strong><span>Real product screens</span></div>
-        <div><strong>Fast</strong><span>Native scroll choreography</span></div>
-        <div><strong>Clear</strong><span>User outcomes before technical detail</span></div>
+
+      <div class="v7-story-layout">
+        <aside class="v7-stage-column" aria-label="Animated product feature demonstration">
+          <div class="v7-feature-stage" data-active-feature="0">
+            <div class="v7-stage-header">
+              <div><span class="v7-stage-kicker">Feature demonstration</span><strong data-stage-title>${escapeHtml(experience.features[0].label)}</strong></div>
+              <span data-stage-counter>01 / ${String(featureCount).padStart(2, '0')}</span>
+            </div>
+            <div class="v7-stage-canvas" data-stage-motion="${escapeHtml(experience.features[0].motion)}">
+              <div class="v7-vector-scene" data-stage-scene>${renderProductVisual(experience.features[0].visual, product.theme)}</div>
+              <div class="v7-live-phone" aria-hidden="true">
+                <span class="v7-phone-speaker"></span>
+                <img data-stage-screenshot src="${escapeHtml(product.screenshots[experience.features[0].screenshot % product.screenshots.length])}" alt="" />
+                <span class="v7-phone-glass"></span>
+              </div>
+              <span class="v7-stage-signal signal-a"></span>
+              <span class="v7-stage-signal signal-b"></span>
+            </div>
+            <div class="v7-stage-footer">
+              <div class="v7-stage-progress"><i data-stage-progress></i></div>
+              <nav class="v7-stage-nav" aria-label="Product features">
+                ${experience.features.map((feature, index) => `<button type="button" data-feature-jump="${index}" aria-label="Show ${escapeHtml(feature.label)}" class="${index === 0 ? 'is-active' : ''}"><span>${String(index + 1).padStart(2, '0')}</span></button>`).join('')}
+              </nav>
+            </div>
+          </div>
+        </aside>
+
+        <div class="v7-feature-track">
+          ${experience.features.map(chapterMarkup).join('')}
+        </div>
       </div>
+
+      <section class="v7-product-screens">
+        <div class="v7-section-heading">
+          <p class="eyebrow">Real product interface</p>
+          <h2>The feature story is connected to screens that already exist in the app.</h2>
+          <p>These are published product screens—not invented dashboard placeholders. The vector scenes explain the workflow while the device previews preserve the real interface.</p>
+        </div>
+        <div class="v7-screen-grid">${screenshots}</div>
+      </section>
+
+      <section class="v7-product-facts">
+        <div class="v7-fact-panel">
+          <p class="eyebrow">Designed for</p>
+          <h2>Clear use cases, not a generic audience.</h2>
+          <div class="v7-audience-list">${experience.audiences.map((audience) => `<span>${escapeHtml(audience)}</span>`).join('')}</div>
+        </div>
+        <div class="v7-fact-panel">
+          <p class="eyebrow">Product foundation</p>
+          <h2>${escapeHtml(product.tech_stack)}</h2>
+          <div class="v7-fact-metrics">
+            <div><strong>${escapeHtml(product.downloads_text)}</strong><span>Google Play downloads</span></div>
+            <div><strong>${Number(product.rating_text) > 0 ? `${escapeHtml(product.rating_text)}/5` : 'New'}</strong><span>Current listing status</span></div>
+            <div><strong>${featureCount}</strong><span>Core systems explained</span></div>
+          </div>
+        </div>
+        <div class="v7-fact-panel v7-release-panel">
+          <p class="eyebrow">Latest release work</p>
+          <h2>Recent improvements</h2>
+          <ul>${product.release_notes.map((note) => `<li>${escapeHtml(note)}</li>`).join('')}</ul>
+        </div>
+      </section>
+
+      <section class="v7-product-cta">
+        <div><p class="eyebrow">Explore the live product</p><h2>See ${escapeHtml(product.name)} on Google Play or ask about the product workflow.</h2></div>
+        <div class="v7-cta-actions">
+          <a class="button primary" href="${escapeHtml(product.play_url)}" target="_blank" rel="noreferrer">View on Google Play →</a>
+          <a class="button secondary" href="/support">Contact support</a>
+        </div>
+      </section>
     </section>
   `;
 }
 
-function installProductStory() {
+function installProductExperience() {
   const product = currentProduct();
-  if (!product || document.querySelector('[data-product-story]')) return;
-  const detailGrid = document.querySelector('.product-hero-detail + .detail-grid, .detail-grid');
-  if (!detailGrid) return;
-  const copy = experienceCopy[product.id];
-  if (!copy) return;
+  const appShell = document.querySelector('.app-shell');
+  if (!product || !appShell || appShell.dataset.productV7 === product.id) return;
 
-  detailGrid.insertAdjacentHTML('afterend', storySection(product, copy));
-  document.querySelector('.product-hero-detail')?.classList.add('has-product-story');
+  const experience = productExperienceV7[product.id];
+  const hero = document.querySelector('.product-hero-detail');
+  if (!experience || !hero) return;
 
-  if (!CSS.supports('animation-timeline: view()')) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-story-visible');
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.product-feature-story, .product-story-intro, .product-outcome-strip').forEach((element) => observer.observe(element));
+  document.querySelectorAll('[data-product-story], [data-product-v7]').forEach((element) => element.remove());
+  hero.insertAdjacentHTML('afterend', productExperienceMarkup(product, experience));
+  appShell.dataset.productV7 = product.id;
+  appShell.classList.add('v7-product-detail-ready');
+  hero.classList.add('v7-product-hero');
+
+  const section = document.querySelector('[data-product-v7]');
+  const stage = section.querySelector('.v7-feature-stage');
+  const canvas = section.querySelector('.v7-stage-canvas');
+  const scene = section.querySelector('[data-stage-scene]');
+  const screenshot = section.querySelector('[data-stage-screenshot]');
+  const title = section.querySelector('[data-stage-title]');
+  const counter = section.querySelector('[data-stage-counter]');
+  const progressBar = section.querySelector('[data-stage-progress]');
+  const chapters = Array.from(section.querySelectorAll('.v7-feature-chapter'));
+  const navButtons = Array.from(section.querySelectorAll('[data-feature-jump]'));
+  const track = section.querySelector('.v7-feature-track');
+  let activeIndex = -1;
+  let scrollFrame = 0;
+  let storyVisible = false;
+
+  function activateFeature(index) {
+    const nextIndex = Math.max(0, Math.min(index, experience.features.length - 1));
+    if (nextIndex === activeIndex) return;
+    const feature = experience.features[nextIndex];
+    activeIndex = nextIndex;
+
+    stage.classList.add('is-switching');
+    stage.dataset.activeFeature = String(nextIndex);
+    canvas.dataset.stageMotion = feature.motion;
+    title.textContent = feature.label;
+    counter.textContent = `${String(nextIndex + 1).padStart(2, '0')} / ${String(experience.features.length).padStart(2, '0')}`;
+    scene.innerHTML = renderProductVisual(feature.visual, product.theme);
+    screenshot.src = product.screenshots[feature.screenshot % product.screenshots.length];
+    screenshot.alt = `${product.name} — ${feature.label}`;
+
+    chapters.forEach((chapter, chapterIndex) => chapter.classList.toggle('is-active', chapterIndex === nextIndex));
+    navButtons.forEach((button, buttonIndex) => {
+      button.classList.toggle('is-active', buttonIndex === nextIndex);
+      button.setAttribute('aria-current', buttonIndex === nextIndex ? 'step' : 'false');
+    });
+
+    requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.remove('is-switching')));
   }
+
+  function updateStoryProgress() {
+    scrollFrame = 0;
+    if (!storyVisible) return;
+    const trackRect = track.getBoundingClientRect();
+    const viewport = window.innerHeight;
+    const distance = Math.max(trackRect.height - viewport * 0.7, 1);
+    const progress = Math.max(0, Math.min(1, (viewport * 0.34 - trackRect.top) / distance));
+    section.style.setProperty('--v7-story-progress', progress.toFixed(4));
+    progressBar.style.transform = `scaleX(${progress})`;
+
+    chapters.forEach((chapter) => {
+      const rect = chapter.getBoundingClientRect();
+      const local = Math.max(0, Math.min(1, (viewport - rect.top) / (viewport + rect.height)));
+      chapter.style.setProperty('--v7-chapter-progress', local.toFixed(4));
+    });
+  }
+
+  function requestStoryProgress() {
+    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateStoryProgress);
+  }
+
+  const activeObserver = new IntersectionObserver((entries) => {
+    const visibleEntries = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => Math.abs(a.boundingClientRect.top - window.innerHeight * 0.36) - Math.abs(b.boundingClientRect.top - window.innerHeight * 0.36));
+    if (visibleEntries[0]) activateFeature(Number(visibleEntries[0].target.dataset.featureIndex));
+  }, { threshold: [0.2, 0.45, 0.7], rootMargin: '-24% 0px -42% 0px' });
+
+  const storyObserver = new IntersectionObserver(([entry]) => {
+    storyVisible = entry.isIntersecting;
+    if (storyVisible) requestStoryProgress();
+  }, { rootMargin: '35% 0px 35% 0px' });
+
+  chapters.forEach((chapter) => activeObserver.observe(chapter));
+  storyObserver.observe(section.querySelector('.v7-story-layout'));
+  navButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      chapters[Number(button.dataset.featureJump)]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+  window.addEventListener('scroll', requestStoryProgress, { passive: true });
+  window.addEventListener('resize', requestStoryProgress, { passive: true });
+
+  activateFeature(0);
+  requestStoryProgress();
 }
 
 function installTestSupportExperience() {
@@ -201,10 +268,6 @@ function installTestSupportExperience() {
     `);
   }
 
-  page.querySelectorAll('.problem-grid .glass-panel, .process-grid .glass-panel').forEach((card, index) => {
-    card.style.setProperty('--support-card-index', String(index));
-  });
-
   const requestPanel = page.querySelector('.request-panel');
   if (requestPanel && !requestPanel.querySelector('.request-panel-intro-v6')) {
     requestPanel.insertAdjacentHTML('afterbegin', `
@@ -220,12 +283,11 @@ function installTestSupportExperience() {
 let frame = 0;
 function install() {
   frame = 0;
-  installProductStory();
+  installProductExperience();
   installTestSupportExperience();
 }
 function schedule() {
-  if (frame) return;
-  frame = requestAnimationFrame(install);
+  if (!frame) frame = requestAnimationFrame(install);
 }
 
 const observer = new MutationObserver(schedule);
