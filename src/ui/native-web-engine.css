@@ -1,0 +1,316 @@
+@view-transition {
+  navigation: auto;
+}
+
+:root {
+  --route-x: 50vw;
+  --route-y: 42vh;
+  --engine-ease: cubic-bezier(.16, .84, .24, 1);
+  --engine-soft-ease: cubic-bezier(.2, .75, .2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #f8fafc;
+}
+
+body {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 84% 5%, rgb(99 102 241 / .055), transparent 31rem),
+    radial-gradient(circle at 8% 24%, rgb(34 211 238 / .045), transparent 34rem),
+    #f8fafc;
+}
+
+.dv-header,
+.site-header {
+  view-transition-name: devovia-header;
+}
+
+.dv-header .dv-brand,
+.site-header .brand {
+  view-transition-name: devovia-brand;
+}
+
+.dv-site main,
+.app-shell main {
+  view-transition-name: devovia-content;
+}
+
+.dv-footer,
+.site-footer {
+  view-transition-name: devovia-footer;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-group(devovia-header),
+::view-transition-group(devovia-brand),
+::view-transition-group(devovia-footer) {
+  animation-duration: 520ms;
+  animation-timing-function: var(--engine-ease);
+}
+
+::view-transition-old(devovia-content) {
+  animation: engine-page-out 380ms var(--engine-soft-ease) both;
+}
+
+::view-transition-new(devovia-content) {
+  animation: engine-page-in 580ms var(--engine-ease) both;
+}
+
+html[data-route-direction='back']::view-transition-old(devovia-content) {
+  animation-name: engine-page-out-back;
+}
+
+html[data-route-direction='back']::view-transition-new(devovia-content) {
+  animation-name: engine-page-in-back;
+}
+
+@keyframes engine-page-out {
+  from { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); }
+  to { opacity: 0; translate: -20px 0; scale: .992; filter: blur(7px); }
+}
+
+@keyframes engine-page-in {
+  from { opacity: 0; translate: 24px 0; scale: .994; filter: blur(8px); }
+  to { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); }
+}
+
+@keyframes engine-page-out-back {
+  from { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); }
+  to { opacity: 0; translate: 20px 0; scale: .992; filter: blur(7px); }
+}
+
+@keyframes engine-page-in-back {
+  from { opacity: 0; translate: -24px 0; scale: .994; filter: blur(8px); }
+  to { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); }
+}
+
+.native-web-engine .dv-v4-pointer::after,
+.native-web-engine .ux-site-atmosphere::after {
+  position: absolute;
+  top: var(--dv-pointer-y, var(--ux-mouse-y, 38vh));
+  left: var(--dv-pointer-x, var(--ux-mouse-x, 50vw));
+  width: 132px;
+  height: 132px;
+  border: 1px solid rgb(99 102 241 / .14);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 255 255 / .28), transparent 68%);
+  box-shadow:
+    0 0 0 18px rgb(59 130 246 / .018),
+    0 0 54px rgb(99 102 241 / .08);
+  content: '';
+  opacity: .72;
+  translate: -50% -50%;
+  pointer-events: none;
+  will-change: top, left, translate;
+}
+
+.native-web-engine .dv-v4-grid,
+.native-web-engine .ux-atmosphere-grid {
+  background-size: 96px 96px;
+  opacity: .16;
+}
+
+.native-web-engine .dv-section,
+.native-web-engine .app-shell [data-ux-section] {
+  scroll-margin-top: 108px;
+}
+
+.native-web-engine .dv-service-card,
+.native-web-engine .dv-update-card,
+.native-web-engine .dv-process-grid article,
+.native-web-engine .product-card,
+.native-web-engine .service-card,
+.native-web-engine .update-card,
+.native-web-engine .story-card,
+.native-web-engine .blog-card,
+.native-web-engine .glass-panel {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.native-web-engine .dv-button,
+.native-web-engine .button,
+.native-web-engine .dv-text-link,
+.native-web-engine .text-link {
+  isolation: isolate;
+}
+
+.native-web-engine .dv-button::before,
+.native-web-engine .button::before {
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgb(255 255 255 / .22), transparent 34%, rgb(255 255 255 / .08));
+  content: '';
+  opacity: .66;
+  pointer-events: none;
+}
+
+@supports (animation-timeline: view()) {
+  .v4-reveal,
+  .v4-reveal.is-visible,
+  .app-shell [data-ux-reveal],
+  .app-shell [data-ux-reveal][data-ux-visible='true'] {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: none;
+    clip-path: none;
+    transition: none;
+  }
+
+  .dv-section-head,
+  .dv-service-card,
+  .dv-product,
+  .dv-process-grid article,
+  .dv-update-card,
+  .dv-about-grid > *,
+  .dv-cta-card,
+  .app-shell .section-header,
+  .app-shell .product-card,
+  .app-shell .service-card,
+  .app-shell .update-card,
+  .app-shell .story-card,
+  .app-shell .blog-card,
+  .app-shell .glass-panel,
+  .app-shell .faq-card,
+  .app-shell .reason-card,
+  .app-shell .support-app-card,
+  .app-shell .request-panel {
+    animation: engine-view-reveal 1ms linear both;
+    animation-timeline: view(block);
+    animation-range: entry 7% cover 27%;
+  }
+
+  .dv-product-visual,
+  .dv-about-visual,
+  .app-shell .detail-device-row,
+  .app-shell .hero-device-cluster,
+  .app-shell .ux-product-stage {
+    animation: engine-view-float 1ms linear both;
+    animation-timeline: view(block);
+    animation-range: entry 0% exit 100%;
+  }
+
+  body::before {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #60a5fa, #8b5cf6, #22d3ee);
+    box-shadow: 0 0 16px rgb(99 102 241 / .22);
+    content: '';
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: engine-scroll-progress 1ms linear both;
+    animation-timeline: scroll(root block);
+    pointer-events: none;
+  }
+
+  .dv-v4-progress,
+  .app-shell::after {
+    display: none;
+  }
+}
+
+@keyframes engine-view-reveal {
+  from {
+    opacity: .12;
+    translate: 0 30px;
+    scale: .988;
+    filter: blur(7px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes engine-view-float {
+  0% { translate: 0 26px; scale: .985; }
+  45% { translate: 0 0; scale: 1; }
+  100% { translate: 0 -18px; scale: 1.008; }
+}
+
+@keyframes engine-scroll-progress {
+  to { transform: scaleX(1); }
+}
+
+@media (max-width: 820px) {
+  ::view-transition-old(devovia-content),
+  ::view-transition-new(devovia-content) {
+    animation-duration: 380ms;
+  }
+
+  .native-web-engine .dv-v4-pointer::after,
+  .native-web-engine .ux-site-atmosphere::after {
+    width: 96px;
+    height: 96px;
+    opacity: .36;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .native-web-engine .dv-v4-pointer::after,
+  .native-web-engine .ux-site-atmosphere::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(devovia-content),
+  ::view-transition-new(devovia-content),
+  ::view-transition-group(devovia-header),
+  ::view-transition-group(devovia-brand),
+  ::view-transition-group(devovia-footer) {
+    animation: none !important;
+  }
+
+  .native-web-engine .dv-v4-pointer::after,
+  .native-web-engine .ux-site-atmosphere::after,
+  body::before {
+    display: none !important;
+  }
+
+  .dv-section-head,
+  .dv-service-card,
+  .dv-product,
+  .dv-process-grid article,
+  .dv-update-card,
+  .dv-about-grid > *,
+  .dv-cta-card,
+  .app-shell .section-header,
+  .app-shell .product-card,
+  .app-shell .service-card,
+  .app-shell .update-card,
+  .app-shell .story-card,
+  .app-shell .blog-card,
+  .app-shell .glass-panel,
+  .app-shell .faq-card,
+  .app-shell .reason-card,
+  .app-shell .support-app-card,
+  .app-shell .request-panel,
+  .dv-product-visual,
+  .dv-about-visual,
+  .app-shell .detail-device-row,
+  .app-shell .hero-device-cluster,
+  .app-shell .ux-product-stage {
+    animation: none !important;
+  }
+}
