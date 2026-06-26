@@ -1,36 +1,66 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en" style="--privacy-theme:#6366f1; --privacy-theme-rgb:99 102 241;">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gizlilik • Devovia Studios</title>
-  <link rel="stylesheet" href="./styles.css" />
-  <script defer src="./app.js"></script>
+  <meta name="description" content="Devovia Studio privacy center with product summaries, official policies and support links." />
+  <meta name="theme-color" content="#f7faff" />
+  <title>Privacy Center — Devovia Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="./devovia-logo.png" />
+  <link rel="stylesheet" href="./privacy/privacy-v2.css" />
+  <script defer src="./privacy/privacy-v2.js"></script>
 </head>
 <body>
-  <div class="bg-orb orb-1" aria-hidden="true"></div>
-  <div class="bg-orb orb-2" aria-hidden="true"></div>
-  <div class="noise" aria-hidden="true"></div>
-
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="./">Devovia<span class="brand-dot">•</span>Studios</a>
-      <nav class="nav">
-        <a href="./#apps">Uygulamalar</a>
-        <a href="./app-ads.txt">app-ads.txt</a>
+  <header class="privacy-topbar">
+    <div class="privacy-topbar-inner">
+      <a class="privacy-brand" href="./"><img src="./devovia-logo.png" alt="" /><span>Devovia Studio</span></a>
+      <nav class="privacy-nav" aria-label="Privacy navigation">
+        <a href="./products">Products</a>
+        <a href="./support">Support</a>
+        <a class="privacy-nav-primary" href="mailto:info@devoviastudio.com">Privacy contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="container" style="position:relative; z-index:1; padding: 26px 0 40px;">
-    <div id="privacy-root"></div>
+  <main class="privacy-shell">
+    <section class="privacy-hero" data-reveal>
+      <div>
+        <p class="privacy-eyebrow">Devovia Studio · Privacy center</p>
+        <h1>Privacy information that is <span>easy to reach.</span></h1>
+        <p class="privacy-lead">Choose a product to read a plain-language summary, open its official policy and find the right support path.</p>
+        <div class="privacy-actions">
+          <a class="privacy-button primary" href="./support">Open support center</a>
+          <a class="privacy-button" href="mailto:info@devoviastudio.com">Email privacy support</a>
+          <a class="privacy-button" href="./app-ads.txt">View app-ads.txt</a>
+        </div>
+      </div>
+      <div class="privacy-status-visual" aria-label="Devovia privacy center overview">
+        <div class="privacy-app-orb"><img src="./devovia-logo.png" alt="" /><strong>Privacy Center</strong><small>Four product summaries</small></div>
+        <span class="privacy-float-chip c1">Local summaries</span><span class="privacy-float-chip c2">Official policies</span><span class="privacy-float-chip c3">Support routes</span><span class="privacy-float-chip c4">Store disclosures</span>
+      </div>
+    </section>
+
+    <section class="privacy-summary-grid" data-reveal>
+      <article class="privacy-summary-card"><strong>Plain language</strong><span>Each local page connects product features to permissions, device data and platform services.</span></article>
+      <article class="privacy-summary-card"><strong>Official links</strong><span>Every product keeps its official privacy policy reachable from the local summary.</span></article>
+      <article class="privacy-summary-card"><strong>One support path</strong><span>Privacy, billing and access questions can be routed through Devovia support.</span></article>
+    </section>
+
+    <section class="privacy-section" data-reveal>
+      <div class="privacy-section-head"><h2>Choose a product</h2><p>Open a readable local summary or continue directly to the official policy.</p></div>
+      <div class="privacy-app-grid">
+        <article class="privacy-app-card" style="--privacy-theme:#2563eb; --privacy-theme-rgb:37 99 235;"><img src="./products/stockflow-inventory/icon.png" alt="" /><div><h2>Stock Manager</h2><p>Inventory records, scanning, media access, exports, backups and diagnostics.</p></div><div class="privacy-actions"><a class="privacy-button primary" href="./privacy/app-1.html">Local summary</a><a class="privacy-button" href="https://sites.google.com/view/devoviastudio/privacy-policy/SM-PP?authuser=0" target="_blank" rel="noreferrer">Official policy</a></div></article>
+        <article class="privacy-app-card" style="--privacy-theme:#ff5733; --privacy-theme-rgb:255 87 51;"><img src="./products/arrow-escape/icon.png" alt="" /><div><h2>Arrow Escape</h2><p>Local progress, advertising services, optional purchases and diagnostics.</p></div><div class="privacy-actions"><a class="privacy-button primary" href="./privacy/app-4.html">Local summary</a><a class="privacy-button" href="https://sites.google.com/view/devoviastudio/privacy-policy/pp-arrow-escape" target="_blank" rel="noreferrer">Official policy</a></div></article>
+        <article class="privacy-app-card" style="--privacy-theme:#0ea5e9; --privacy-theme-rgb:14 165 233;"><img src="./products/daily-hadith/icon.png" alt="" /><div><h2>Daily Hadith</h2><p>Prayer timing, direction, reminders, preferences, advertising and purchases.</p></div><div class="privacy-actions"><a class="privacy-button primary" href="./privacy/app-2.html">Local summary</a><a class="privacy-button" href="https://sites.google.com/view/devoviastudio/privacy-policy/DH-PP?authuser=0" target="_blank" rel="noreferrer">Official policy</a></div></article>
+        <article class="privacy-app-card" style="--privacy-theme:#16a34a; --privacy-theme-rgb:22 163 74;"><img src="./products/tinysteps/icon.png" alt="" /><div><h2>TinySteps</h2><p>Local habit records, reminders, advertising and optional premium purchases.</p></div><div class="privacy-actions"><a class="privacy-button primary" href="./privacy/app-3.html">Local summary</a><a class="privacy-button" href="https://sites.google.com/view/devoviastudio/privacy-policy/TS-PP?authuser=0" target="_blank" rel="noreferrer">Official policy</a></div></article>
+      </div>
+      <div class="privacy-notice"><span>ⓘ</span><div><strong>Policy hierarchy:</strong> Local pages are explanatory summaries. Official policies, current store Data Safety disclosures and platform terms remain the primary references.</div></div>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> Devovia Studios</span>
-      <span class="muted">Built on GitHub Pages</span>
-    </div>
-  </footer>
+  <footer class="privacy-footer"><div class="privacy-footer-inner"><span>© <span data-year></span> Devovia Studio</span><span>One privacy center for every Devovia product.</span></div></footer>
 </body>
 </html>
