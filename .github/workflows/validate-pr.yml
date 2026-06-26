@@ -30,7 +30,9 @@ jobs:
         run: node scripts/v6-experience-check.mjs
       - name: V7 authentic product pass 1
         run: npm run test:v7
-      - name: Production build and repeated UX/V7 checks
+      - name: V8 premium motion and language pass 1
+        run: npm run test:v8
+      - name: Production build and repeated UX checks
         run: npm run build
       - name: Native engine and English pass 2
         run: node scripts/native-engine-check.mjs
@@ -38,3 +40,5 @@ jobs:
         run: node scripts/v6-experience-check.mjs
       - name: V7 authentic product pass 2
         run: npm run test:v7
+      - name: V8 premium motion and language pass 2
+        run: npm run test:v8
