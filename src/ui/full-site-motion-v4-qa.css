@@ -1,0 +1,45 @@
+/* QA pass 2: progress, sticky safety and final internal-page isolation. */
+.app-shell::after {
+  position: fixed;
+  z-index: 240;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b)), rgb(var(--ux-page2-r) var(--ux-page2-g) var(--ux-page2-b)), #22d3ee);
+  box-shadow: 0 0 16px rgb(var(--ux-page-r) var(--ux-page-g) var(--ux-page-b) / .22);
+  content: '';
+  transform: scaleX(var(--ux-scroll-progress));
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.app-shell .page-hero,
+.app-shell .product-hero-detail,
+.app-shell .contact-page,
+.app-shell [data-ux-page='product-detail'] {
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
+}
+
+.app-shell[data-ux-page='product-detail'] .product-hero-detail,
+.app-shell[data-ux-page='product-detail'] .detail-device-row {
+  contain: none;
+}
+
+.app-shell > .ux-site-atmosphere {
+  z-index: 0;
+}
+
+.app-shell > .site-header,
+.app-shell > main,
+.app-shell > .site-footer {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell::after {
+    display: none;
+  }
+}
