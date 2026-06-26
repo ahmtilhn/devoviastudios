@@ -1,3 +1,4 @@
+import './ui/english-only.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
@@ -8,7 +9,9 @@ import './product-hub.css';
 import './safety.css';
 import './studio-motion.css';
 import './ui/system.css';
+import './ui/native-web-engine.css';
 import './ui/enhancer.js';
+import './ui/native-web-engine.js';
 import './redesign/immersive-motion.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
