@@ -117,6 +117,9 @@ function navigateInternal(url) {
 }
 
 function handleClick(event) {
+  if (Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
+    lastPointer = { x: event.clientX, y: event.clientY };
+  }
   animatePressedControl(event.target);
   const match = eligibleAnchor(event);
   if (!match) return;
@@ -154,20 +157,31 @@ function handlePopState() {
   });
 }
 
+function appendPrefetch(url) {
+  if (HTMLScriptElement.supports?.('speculationrules')) {
+    const script = document.createElement('script');
+    script.type = 'speculationrules';
+    script.textContent = JSON.stringify({
+      prefetch: [{ source: 'list', urls: [`${url.pathname}${url.search}`] }],
+    });
+    document.head.append(script);
+    return;
+  }
+
+  const link = document.createElement('link');
+  link.rel = 'prefetch';
+  link.href = `${url.pathname}${url.search}`;
+  link.as = 'document';
+  document.head.append(link);
+}
+
 function schedulePrefetch(anchor) {
   if (!anchor || anchor.target || anchor.hasAttribute('download')) return;
   const url = new URL(anchor.href, window.location.href);
   if (url.origin !== window.location.origin || url.hash || prefetched.has(url.pathname)) return;
   prefetched.add(url.pathname);
 
-  const run = () => {
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = `${url.pathname}${url.search}`;
-    link.as = 'document';
-    document.head.append(link);
-  };
-
+  const run = () => appendPrefetch(url);
   if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout: 1200 });
   else window.setTimeout(run, 120);
 }
@@ -175,10 +189,6 @@ function schedulePrefetch(anchor) {
 function handlePointerOver(event) {
   if (!finePointer) return;
   schedulePrefetch(event.target.closest?.('a[href]'));
-}
-
-function handlePointerMove(event) {
-  lastPointer = { x: event.clientX, y: event.clientY };
 }
 
 function handlePageSwap(event) {
@@ -198,7 +208,6 @@ function handlePageReveal() {
 document.documentElement.classList.add('native-web-engine');
 document.addEventListener('click', handleClick, { capture: true });
 document.addEventListener('pointerover', handlePointerOver, { passive: true });
-if (finePointer) window.addEventListener('pointermove', handlePointerMove, { passive: true });
 window.addEventListener('popstate', handlePopState);
 window.addEventListener('pageswap', handlePageSwap);
 window.addEventListener('pagereveal', handlePageReveal);
@@ -206,7 +215,6 @@ window.addEventListener('pagereveal', handlePageReveal);
 window.addEventListener('pagehide', () => {
   document.removeEventListener('click', handleClick, { capture: true });
   document.removeEventListener('pointerover', handlePointerOver);
-  window.removeEventListener('pointermove', handlePointerMove);
   window.removeEventListener('popstate', handlePopState);
   window.removeEventListener('pageswap', handlePageSwap);
   window.removeEventListener('pagereveal', handlePageReveal);
