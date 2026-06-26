@@ -67,6 +67,12 @@ function readTransitionContext() {
   }
 }
 
+function waitForReactPaint() {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  });
+}
+
 function eligibleAnchor(event) {
   if (event.defaultPrevented || event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return null;
   const anchor = event.target.closest?.('a[href]');
@@ -97,10 +103,11 @@ function navigateInternal(url) {
   applyTransitionContext(direction);
   storeTransitionContext(direction);
 
-  const update = () => {
+  const update = async () => {
     window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
     window.dispatchEvent(new PopStateEvent('popstate'));
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    await waitForReactPaint();
   };
 
   if (!reducedMotion && document.startViewTransition) {
