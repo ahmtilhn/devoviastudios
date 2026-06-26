@@ -6,7 +6,7 @@ const html = execFileSync('google-chrome', [
   '--disable-gpu',
   '--virtual-time-budget=12000',
   '--dump-dom',
-  'https://sites.google.com/view/devoviastudio/privacy-policy/DH-PP',
+  'https://sites.google.com/view/devoviastudio/privacy-policy/pp-arrow-escape',
 ], { encoding: 'utf8', maxBuffer: 20 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
 
 const text = html
@@ -28,4 +28,4 @@ const lines = text.split(/\r?\n/)
   .filter(Boolean)
   .filter((line, index, all) => index === 0 || line !== all[index - 1]);
 
-console.log('DAILY_HADITH_POLICY_JSON=' + JSON.stringify(lines));
+console.log('ARROW_ESCAPE_POLICY_JSON=' + JSON.stringify(lines));
