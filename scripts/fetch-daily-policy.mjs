@@ -30,4 +30,5 @@ const lines = text.split(/\r?\n/)
   .filter(Boolean)
   .filter((line, index, all) => index === 0 || line !== all[index - 1]);
 
-console.log('STOCK_MANAGER_POLICY_JSON=' + JSON.stringify(lines));
+const start = lines.findIndex((line) => line === '17. Sensitive Data');
+console.log('STOCK_MANAGER_TAIL_JSON=' + JSON.stringify(start >= 0 ? lines.slice(start) : lines));
