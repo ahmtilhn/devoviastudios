@@ -1,0 +1,39 @@
+.ux-device-frame {
+  overflow: visible;
+  isolation: isolate;
+  border: 1px solid rgb(255 255 255 / .54);
+  background: linear-gradient(145deg, rgb(255 255 255 / .88), rgb(148 163 184 / .42) 24%, #111827 58%, #020617 100%);
+  box-shadow: 0 34px 84px rgb(15 23 42 / .28), 0 0 54px color-mix(in srgb, var(--theme) 24%, transparent), inset 0 1px 0 rgb(255 255 255 / .72);
+}
+
+.ux-device-frame .ux-device-glass {
+  position: absolute;
+  z-index: 4;
+  inset: 10px;
+  border-radius: 24px;
+  background: linear-gradient(120deg, rgb(255 255 255 / .24), transparent 28%, transparent 70%, rgb(255 255 255 / .08));
+  pointer-events: none;
+}
+
+.hero-device-cluster,
+.detail-device-row {
+  overflow: visible;
+  isolation: isolate;
+}
+
+.detail-device-row .device:nth-child(n+5) {
+  display: none;
+}
+
+.gallery-row {
+  padding: 8px 4px 18px;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.gallery-row img {
+  border: 8px solid #0f172a;
+  border-radius: 28px;
+  background: #0f172a;
+  box-shadow: 0 24px 54px rgb(15 23 42 / .18);
+}
