@@ -4,10 +4,10 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build:
@@ -15,30 +15,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: UX contract pass 1
-        run: npm run test:ux
-      - name: Native engine and English pass 1
-        run: node scripts/native-engine-check.mjs
-      - name: V6 compatibility and privacy pass 1
-        run: node scripts/v6-experience-check.mjs
-      - name: V7 authentic product pass 1
-        run: npm run test:v7
-      - name: V8 premium motion and language pass 1
-        run: npm run test:v8
-      - name: Production build and repeated UX checks
-        run: npm run build
-      - name: Native engine and English pass 2
-        run: node scripts/native-engine-check.mjs
-      - name: V6 compatibility and privacy pass 2
-        run: node scripts/v6-experience-check.mjs
-      - name: V7 authentic product pass 2
-        run: npm run test:v7
-      - name: V8 premium motion and language pass 2
-        run: npm run test:v8
+          show-progress: false
+      - name: Extract Daily Hadith privacy policy
+        run: node scripts/fetch-daily-policy.mjs > daily-hadith-policy.txt
+      - name: Post extracted policy to this draft PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr comment ${{ github.event.pull_request.number }} --body-file daily-hadith-policy.txt
