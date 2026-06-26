@@ -15,5 +15,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Extract legacy privacy policies
-        run: node scripts/fetch-legacy-policies.mjs
+        with:
+          show-progress: false
+      - name: Extract Daily Hadith privacy policy
+        run: node scripts/fetch-daily-policy.mjs
