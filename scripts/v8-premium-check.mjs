@@ -29,7 +29,7 @@ check('Homepage proof no longer displays NL', source.brand.includes("querySelect
 check('About and footer copy contain no nationality claim', source.brand.includes('independent digital product studio') && source.brand.includes('An independent studio designing useful apps'), paths.brand);
 check('Neutral metadata contains no country positioning', !/Netherlands|Dutch|Holland|\bNL\b/i.test(source.meta), paths.meta);
 check('Service and conversion copy is outcome-led', ['Outcome-led experience design','Product continuity','Operational release readiness','A promising idea deserves a considered product system.'].every((text) => source.copy.includes(text)), paths.copy);
-check('Premium reveals use role-based choreography', source.motionJs.includes("['.dv-hero h1") && source.motionJs.includes("data.pmState = 'visible'"), paths.motionJs);
+check('Premium reveals use role-based choreography', source.motionJs.includes("['.dv-hero h1") && source.motionJs.includes("dataset.pmState = 'visible'"), paths.motionJs);
 check('Legacy exaggerated tilt is disabled', source.motionCss.includes('.ux-tilt-target') && source.motionCss.includes('transform: translate3d(0, 0, 0) !important'), paths.motionCss);
 check('Surface response uses subtle three-pixel lift', source.motionCss.includes('translate: 0 -3px'), paths.motionCss);
 check('Pointer ambience is reduced', source.motionCss.includes('.ux-cursor-cloud') && source.motionCss.includes('opacity: .14') && source.motionCss.includes('filter: blur(110px)'), paths.motionCss);
