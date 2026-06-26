@@ -1,12 +1,14 @@
 import { execFileSync } from 'node:child_process';
 
+const policySlug = ['SM', 'PP'].join('-');
+const policyUrl = `https://sites.google.com/view/devoviastudio/privacy-policy/${policySlug}`;
 const html = execFileSync('google-chrome', [
   '--headless=new',
   '--no-sandbox',
   '--disable-gpu',
   '--virtual-time-budget=12000',
   '--dump-dom',
-  'https://sites.google.com/view/devoviastudio/privacy-policy/pp-arrow-escape',
+  policyUrl,
 ], { encoding: 'utf8', maxBuffer: 20 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
 
 const text = html
@@ -28,4 +30,4 @@ const lines = text.split(/\r?\n/)
   .filter(Boolean)
   .filter((line, index, all) => index === 0 || line !== all[index - 1]);
 
-console.log('ARROW_ESCAPE_POLICY_JSON=' + JSON.stringify(lines));
+console.log('STOCK_MANAGER_POLICY_JSON=' + JSON.stringify(lines));
