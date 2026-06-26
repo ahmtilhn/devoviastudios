@@ -22,6 +22,11 @@ const REVEAL_SELECTOR = [
   '.final-cta > *',
   '.article-body > *',
   '.site-footer > *',
+  '.product-story-intro',
+  '.product-feature-story',
+  '.product-outcome-strip',
+  '.support-proof-strip-v6',
+  '.test-support-visual-v6',
 ].join(',');
 
 const PARALLAX_RULES = [
@@ -33,6 +38,7 @@ const PARALLAX_RULES = [
   ['.section-header', 0.016],
   ['.article-meta-panel', -0.018],
   ['.contact-page > div:first-child', 0.018],
+  ['.product-feature-visual', -0.018],
 ];
 
 const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
@@ -49,6 +55,7 @@ const pointer = {
   previousX: window.innerWidth * 0.5,
   previousY: window.innerHeight * 0.32,
   speed: 0,
+  settledFrames: 0,
 };
 
 let root = null;
@@ -59,6 +66,8 @@ let scrollFrame = 0;
 let installFrame = 0;
 let lastScrollY = window.scrollY;
 let velocity = 0;
+let sectionElements = [];
+let parallaxElements = [];
 
 function installRevealTargets(currentRoot) {
   currentRoot.querySelectorAll(REVEAL_SELECTOR).forEach((element, index) => {
@@ -71,15 +80,21 @@ function installRevealTargets(currentRoot) {
 }
 
 function installParallax(currentRoot) {
+  const next = [];
   PARALLAX_RULES.forEach(([selector, depth]) => {
     currentRoot.querySelectorAll(selector).forEach((element) => {
       element.dataset.uxParallax = String(depth);
+      next.push(element);
     });
   });
+  parallaxElements = next;
 }
 
 function installSections(currentRoot) {
-  currentRoot.querySelectorAll('main > section, main > article, .section, .compact-section').forEach((element, index) => {
+  sectionElements = Array.from(currentRoot.querySelectorAll(
+    'main > section, main > article, .section, .compact-section, .product-feature-story',
+  ));
+  sectionElements.forEach((element, index) => {
     element.dataset.uxSection = String(index + 1);
   });
 }
@@ -101,42 +116,55 @@ function scheduleInstall() {
   installFrame = requestAnimationFrame(install);
 }
 
+function queuePointerFrame() {
+  if (!pointerFrame && !document.hidden) pointerFrame = requestAnimationFrame(animatePointer);
+}
+
 function updatePointer(event) {
   if (!root) return;
   pointer.targetX = event.clientX;
   pointer.targetY = event.clientY;
+  pointer.settledFrames = 0;
   updateTargets(event, root);
+  queuePointerFrame();
 }
 
 function animatePointer() {
-  if (root) {
-    pointer.x = lerp(pointer.x, pointer.targetX, 0.095);
-    pointer.y = lerp(pointer.y, pointer.targetY, 0.095);
+  pointerFrame = 0;
+  if (!root || document.hidden) return;
 
-    const dx = pointer.x - pointer.previousX;
-    const dy = pointer.y - pointer.previousY;
-    pointer.speed = lerp(pointer.speed, clamp(Math.hypot(dx, dy), 0, 36), 0.16);
-    pointer.previousX = pointer.x;
-    pointer.previousY = pointer.y;
+  pointer.x = lerp(pointer.x, pointer.targetX, 0.14);
+  pointer.y = lerp(pointer.y, pointer.targetY, 0.14);
 
-    const nx = pointer.x / Math.max(window.innerWidth, 1) - 0.5;
-    const ny = pointer.y / Math.max(window.innerHeight, 1) - 0.5;
-    root.style.setProperty('--ux-mouse-x', `${pointer.x.toFixed(2)}px`);
-    root.style.setProperty('--ux-mouse-y', `${pointer.y.toFixed(2)}px`);
-    root.style.setProperty('--ux-mouse-nx', nx.toFixed(4));
-    root.style.setProperty('--ux-mouse-ny', ny.toFixed(4));
-    root.style.setProperty('--ux-mouse-speed', pointer.speed.toFixed(2));
-    root.style.setProperty('--ux-depth-x', `${(nx * 12).toFixed(2)}px`);
-    root.style.setProperty('--ux-depth-y', `${(ny * 10).toFixed(2)}px`);
-    root.style.setProperty('--ux-depth-x-reverse', `${(nx * -9).toFixed(2)}px`);
-    root.style.setProperty('--ux-depth-y-reverse', `${(ny * -8).toFixed(2)}px`);
-    root.style.setProperty('--ux-cloud-scale', (1 + pointer.speed * 0.004).toFixed(3));
-  }
-  pointerFrame = requestAnimationFrame(animatePointer);
+  const dx = pointer.x - pointer.previousX;
+  const dy = pointer.y - pointer.previousY;
+  const targetDistance = Math.hypot(pointer.targetX - pointer.x, pointer.targetY - pointer.y);
+  pointer.speed = lerp(pointer.speed, clamp(Math.hypot(dx, dy), 0, 36), 0.22);
+  pointer.previousX = pointer.x;
+  pointer.previousY = pointer.y;
+
+  const nx = pointer.x / Math.max(window.innerWidth, 1) - 0.5;
+  const ny = pointer.y / Math.max(window.innerHeight, 1) - 0.5;
+  root.style.setProperty('--ux-mouse-x', `${pointer.x.toFixed(2)}px`);
+  root.style.setProperty('--ux-mouse-y', `${pointer.y.toFixed(2)}px`);
+  root.style.setProperty('--ux-mouse-nx', nx.toFixed(4));
+  root.style.setProperty('--ux-mouse-ny', ny.toFixed(4));
+  root.style.setProperty('--ux-mouse-speed', pointer.speed.toFixed(2));
+  root.style.setProperty('--ux-depth-x', `${(nx * 12).toFixed(2)}px`);
+  root.style.setProperty('--ux-depth-y', `${(ny * 10).toFixed(2)}px`);
+  root.style.setProperty('--ux-depth-x-reverse', `${(nx * -9).toFixed(2)}px`);
+  root.style.setProperty('--ux-depth-y-reverse', `${(ny * -8).toFixed(2)}px`);
+  root.style.setProperty('--ux-cloud-scale', (1 + pointer.speed * 0.004).toFixed(3));
+
+  if (targetDistance < 0.18 && pointer.speed < 0.12) pointer.settledFrames += 1;
+  else pointer.settledFrames = 0;
+
+  if (pointer.settledFrames < 3) queuePointerFrame();
+  else pointer.speed = 0;
 }
 
 function updateSectionProgress(viewportHeight) {
-  root.querySelectorAll('[data-ux-section]').forEach((element) => {
+  sectionElements.forEach((element) => {
     const rect = element.getBoundingClientRect();
     const progress = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
     const distance = Math.abs(rect.top + rect.height * 0.5 - viewportHeight * 0.5);
@@ -147,7 +175,7 @@ function updateSectionProgress(viewportHeight) {
 
 function updateParallax(viewportHeight) {
   if (reducedMotion) return;
-  root.querySelectorAll('[data-ux-parallax]').forEach((element) => {
+  parallaxElements.forEach((element) => {
     const rect = element.getBoundingClientRect();
     const depth = Number.parseFloat(element.dataset.uxParallax || '0');
     const centerOffset = rect.top + rect.height * 0.5 - viewportHeight * 0.5;
@@ -174,8 +202,19 @@ function updateScroll() {
 }
 
 function requestScrollUpdate() {
-  if (scrollFrame) return;
+  if (scrollFrame || document.hidden) return;
   scrollFrame = requestAnimationFrame(updateScroll);
+}
+
+function updateVisibility() {
+  if (document.hidden) {
+    cancelAnimationFrame(pointerFrame);
+    cancelAnimationFrame(scrollFrame);
+    pointerFrame = 0;
+    scrollFrame = 0;
+  } else {
+    requestScrollUpdate();
+  }
 }
 
 function start() {
@@ -195,10 +234,10 @@ function start() {
   window.addEventListener('scroll', requestScrollUpdate, { passive: true });
   window.addEventListener('resize', requestScrollUpdate, { passive: true });
   window.addEventListener('popstate', scheduleInstall);
+  document.addEventListener('visibilitychange', updateVisibility, { passive: true });
 
   if (finePointer && !reducedMotion) {
     window.addEventListener('pointermove', updatePointer, { passive: true });
-    pointerFrame = requestAnimationFrame(animatePointer);
   }
 
   requestAnimationFrame(scheduleInstall);
@@ -215,6 +254,7 @@ function stop() {
   window.removeEventListener('resize', requestScrollUpdate);
   window.removeEventListener('popstate', scheduleInstall);
   window.removeEventListener('pointermove', updatePointer);
+  document.removeEventListener('visibilitychange', updateVisibility);
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
