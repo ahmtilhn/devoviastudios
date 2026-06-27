@@ -1,3 +1,4 @@
+import './ui/canonical-route-redirect-v12.js';
 import './ui/english-only.js';
 import './ui/performance-v6.js';
 import React from 'react';
