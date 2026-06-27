@@ -210,14 +210,14 @@ async function main() {
 
     await client.send('Emulation.setScriptExecutionDisabled', { value: true });
     for (const [route, marker] of [
-      ['/privacy/stock-manager', '22. Contact'],
-      ['/privacy/daily-hadith', 'Terms of Service'],
-      ['/privacy/arrow-escape', '21. Contact'],
+      ['/privacy/stock-manager/', '22. Contact'],
+      ['/privacy/daily-hadith/', 'Terms of Service'],
+      ['/privacy/arrow-escape/', '21. Contact'],
     ]) {
       await navigate(route);
       const documentNode = await client.send('DOM.getDocument', { depth: 1, pierce: true });
       const { outerHTML } = await client.send('DOM.getOuterHTML', { nodeId: documentNode.root.nodeId });
-      assert(`${route} is complete without JavaScript`, outerHTML.includes(marker), marker);
+      assert(`${route.replace(/\/$/, '')} is complete without JavaScript`, outerHTML.includes(marker), marker);
     }
     await client.send('Emulation.setScriptExecutionDisabled', { value: false });
 
