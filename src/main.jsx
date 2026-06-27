@@ -27,6 +27,7 @@ import './ui/brand-language-v8.js';
 import './ui/brand-meta-v8.js';
 import './ui/ux-copy-v8.js';
 import './ui/motion-system-v10.js';
+import './ui/motion-system-v10-compat.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 const page = path === '/admin'
