@@ -34,6 +34,8 @@ jobs:
         run: npm run test:v8
       - name: Contextual motion V10 contract
         run: node scripts/motion-v10-check.mjs
+      - name: Global pointer V11 contract
+        run: node scripts/pointer-v11-check.mjs
       - name: Production build and repeated UX checks
         run: npm run build
       - name: Static route link and motion integrity
@@ -48,6 +50,8 @@ jobs:
         run: npm run test:v8
       - name: Contextual motion V10 contract pass 2
         run: node scripts/motion-v10-check.mjs
+      - name: Global pointer V11 contract pass 2
+        run: node scripts/pointer-v11-check.mjs
 
   browser-audit:
     runs-on: ubuntu-latest
