@@ -129,10 +129,11 @@ function navigateInternal(url) {
   if (!reducedMotion && document.startViewTransition) {
     spaTransitionActive = true;
     const transition = document.startViewTransition(update);
-    transition.finished.finally(() => {
+    const finishTransition = () => {
       spaTransitionActive = false;
       clearTransitionContext();
-    });
+    };
+    transition.finished.then(finishTransition, finishTransition);
   } else {
     update();
     clearTransitionContext();
