@@ -17,6 +17,7 @@ import './ui/shared-transitions-v6.css';
 import './ui/performance-v6.css';
 import './ui/premium-motion-v8.css';
 import './ui/motion-system-v10.css';
+import './ui/motion-system-v10-hardening.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/link-normalizer-v6.js';
