@@ -134,6 +134,22 @@ async function main() {
       await delay(320);
     }
 
+    async function navigateToCanonical(route, expectedPath, timeout = 5000) {
+      await client.send('Page.navigate', { url: `${baseUrl}${route}` });
+      const started = Date.now();
+      let currentPath = '';
+      while (Date.now() - started < timeout) {
+        try {
+          currentPath = await evaluate('location.pathname.replace(/\\/+$/, "") || "/"');
+          if (currentPath === expectedPath) return currentPath;
+        } catch {
+          // The execution context can be replaced while a redirect is committing.
+        }
+        await delay(100);
+      }
+      return currentPath;
+    }
+
     await client.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
     await navigate('/');
     const menu = await evaluate(`(async () => {
@@ -210,16 +226,28 @@ async function main() {
 
     await client.send('Emulation.setScriptExecutionDisabled', { value: true });
     for (const [route, marker] of [
-      ['/privacy/app-1.html', '22. Contact'],
-      ['/privacy/app-2.html', 'Terms of Service'],
-      ['/privacy/app-4.html', '21. Contact'],
+      ['/privacy/stock-manager/', '22. Contact'],
+      ['/privacy/daily-hadith/', 'Terms of Service'],
+      ['/privacy/arrow-escape/', '21. Contact'],
     ]) {
       await navigate(route);
       const documentNode = await client.send('DOM.getDocument', { depth: 1, pierce: true });
       const { outerHTML } = await client.send('DOM.getOuterHTML', { nodeId: documentNode.root.nodeId });
-      assert(`${route} is complete without JavaScript`, outerHTML.includes(marker), marker);
+      assert(`${route.replace(/\/$/, '')} is complete without JavaScript`, outerHTML.includes(marker), marker);
     }
     await client.send('Emulation.setScriptExecutionDisabled', { value: false });
+
+    for (const [legacyRoute, canonicalRoute] of [
+      ['/privacy.html', '/privacy'],
+      ['/privacy/app-1.html', '/privacy/stock-manager'],
+      ['/privacy/app-2.html', '/privacy/daily-hadith'],
+      ['/privacy/app-3.html', '/privacy/tinysteps'],
+      ['/privacy/app-4.html', '/privacy/arrow-escape'],
+      ['/projects/stockflow-inventory', '/products/stock-manager'],
+    ]) {
+      const finalPath = await navigateToCanonical(legacyRoute, canonicalRoute);
+      assert(`${legacyRoute} redirects to ${canonicalRoute}`, finalPath === canonicalRoute, finalPath);
+    }
 
     const actionable = runtimeErrors.filter((error) => !/AbortError|ViewTransition.*skip|Transition was skipped/i.test(error));
     assert('Interactions produce no uncaught runtime errors', actionable.length === 0, actionable.join(' | '));

@@ -14,7 +14,7 @@ function ensureMotionStyles() {
   if (document.querySelector('link[data-privacy-motion-v10]')) return;
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = './privacy-motion-v10.css';
+  link.href = '/privacy/privacy-motion-v10.css';
   link.dataset.privacyMotionV10 = 'true';
   document.head.append(link);
 }
