@@ -16,6 +16,7 @@ import './ui/product-experience-v7.css';
 import './ui/shared-transitions-v6.css';
 import './ui/performance-v6.css';
 import './ui/premium-motion-v8.css';
+import './ui/motion-system-v10.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/link-normalizer-v6.js';
@@ -25,8 +26,7 @@ import './ui/native-web-engine.js';
 import './ui/brand-language-v8.js';
 import './ui/brand-meta-v8.js';
 import './ui/ux-copy-v8.js';
-import './ui/premium-motion-v8.js';
-import './redesign/immersive-motion.js';
+import './ui/motion-system-v10.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 const page = path === '/admin'
