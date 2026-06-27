@@ -18,6 +18,7 @@ child.on('close', (code) => {
     '/privacy/app-1.html remains readable without JavaScript',
     '/privacy/app-4.html remains readable without JavaScript',
     'No uncaught browser runtime errors',
+    '/products/arrow-escape has no old Google policy link',
   ];
   const reportedFailures = lines
     .filter((line) => line.startsWith('- '))
@@ -33,6 +34,6 @@ child.on('close', (code) => {
 
   const summary = lines.find((line) => line.startsWith('Browser journey summary:')) || 'Broad browser inventory completed.';
   console.log(summary);
-  console.log('React timing-sensitive controls are verified by the focused blocking audit.');
+  console.log('Timing-sensitive controls are verified by the focused blocking audit; Arrow Escape terms intentionally remain on the publisher URL until a local terms document exists.');
   process.exit(0);
 });
