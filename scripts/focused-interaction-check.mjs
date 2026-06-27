@@ -155,7 +155,9 @@ async function main() {
       await navigate(route);
       const results = await evaluate(`(async () => {
         const results = [];
-        for (const button of [...document.querySelectorAll('.filter-row button')]) {
+        const buttons = [...document.querySelectorAll('.filter-row button')]
+          .filter((button) => !button.hidden && getComputedStyle(button).display !== 'none');
+        for (const button of buttons) {
           button.click();
           await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
           results.push({
@@ -172,7 +174,14 @@ async function main() {
       }
     }
 
-    await testFilters('/products', '.product-card, .support-product-card', ['All', 'Productivity', 'Games', 'Utility', 'Spiritual', 'Launch Systems']);
+    await navigate('/products');
+    const utilityHidden = await evaluate(`(() => {
+      const button = [...document.querySelectorAll('.filter-row button')].find((item) => item.textContent.trim() === 'Utility');
+      return Boolean(button?.hidden && button.getAttribute('aria-hidden') === 'true');
+    })()`);
+    assert('Products page hides the empty Utility filter', utilityHidden);
+
+    await testFilters('/products', '.product-card, .support-product-card', ['All', 'Productivity', 'Games', 'Spiritual', 'Launch Systems']);
     await testFilters('/updates', '.update-card, .story-card, .launch-support-row', ['All', 'Stock Manager', 'Arrow Escape', 'Daily Hadith', 'TinySteps', 'Studio']);
     await testFilters('/blog', '.blog-card', ['All', 'Google Play', 'Flutter', 'Mobile Apps', 'Game Development', 'UI/UX', 'Product Launch']);
 
@@ -220,7 +229,12 @@ async function main() {
     client?.close();
     preview.kill('SIGTERM');
     chrome.kill('SIGTERM');
-    fs.rmSync(profile, { recursive: true, force: true });
+    await delay(250);
+    try {
+      fs.rmSync(profile, { recursive: true, force: true });
+    } catch {
+      // Chrome can briefly retain profile files while shutting down.
+    }
   }
 
   if (failures.length) {
