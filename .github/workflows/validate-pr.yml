@@ -62,12 +62,14 @@ jobs:
       - name: Broad Chromium route and control inventory
         run: node scripts/run-browser-audit.mjs
       - name: Focused wait-aware interaction and transition audit
-        run: node scripts/focused-interaction-check.mjs
+        run: node scripts/run-focused-audit.mjs
       - name: Upload browser audit diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: browser-audit-result
-          path: audit-result.txt
+          path: |
+            audit-result.txt
+            focused-audit-result.txt
           retention-days: 1
           if-no-files-found: warn
