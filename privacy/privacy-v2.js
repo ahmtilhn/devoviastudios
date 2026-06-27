@@ -19,6 +19,23 @@ function ensureMotionStyles() {
   document.head.append(link);
 }
 
+function ensureGlobalPointer() {
+  if (!document.querySelector('link[data-pointer-v11]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/pointer-v11.css';
+    link.dataset.pointerV11 = 'true';
+    document.head.append(link);
+  }
+  if (!document.querySelector('script[data-pointer-v11]')) {
+    const script = document.createElement('script');
+    script.src = '/pointer-v11.js';
+    script.defer = true;
+    script.dataset.pointerV11 = 'true';
+    document.head.append(script);
+  }
+}
+
 function ensureReadingProgress() {
   const topbar = document.querySelector('.privacy-topbar');
   if (!topbar || topbar.querySelector('.privacy-reading-progress')) return;
@@ -125,6 +142,7 @@ function requestScrollUpdate() {
 
 function start() {
   ensureMotionStyles();
+  ensureGlobalPointer();
   ensureReadingProgress();
   root.classList.add('privacy-motion-v10');
   document.querySelectorAll('[data-year]').forEach((element) => {
