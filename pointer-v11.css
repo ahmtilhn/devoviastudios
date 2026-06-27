@@ -1,0 +1,270 @@
+/* Devovia Pointer V11 — global, contextual and performance-conscious. */
+:root {
+  --p11-r: var(--m10-r, 59);
+  --p11-g: var(--m10-g, 130);
+  --p11-b: var(--m10-b, 246);
+  --p11-r2: var(--m10-r2, 139);
+  --p11-g2: var(--m10-g2, 92);
+  --p11-b2: var(--m10-b2, 246);
+}
+
+.p11-layer {
+  position: fixed;
+  z-index: 2147483000;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+html.pointer-v11-active .p11-layer.is-active { opacity: 1; }
+html.pointer-v11-active .p11-layer[data-mode='native'],
+html.pointer-v11-active .p11-layer[data-mode='hidden'] { opacity: 0; }
+
+.p11-trail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .9;
+  pointer-events: none;
+}
+
+.p11-aura,
+.p11-ring,
+.p11-core {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, width, height, opacity;
+  pointer-events: none;
+}
+
+.p11-aura {
+  width: 180px;
+  height: 180px;
+  margin: -90px 0 0 -90px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .12) 0%, rgb(var(--p11-r2) var(--p11-g2) var(--p11-b2) / .055) 34%, transparent 72%);
+  filter: blur(12px);
+  opacity: .54;
+  transition: opacity 320ms ease, filter 420ms ease;
+}
+
+.p11-ring {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  place-items: center;
+  overflow: visible;
+  border: 1px solid rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .54);
+  border-radius: 50%;
+  background: rgb(255 255 255 / .035);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / .35) inset,
+    0 8px 28px rgb(15 23 42 / .07),
+    0 0 26px rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .08);
+  backdrop-filter: blur(2px);
+  transition:
+    width 520ms cubic-bezier(.16,1,.3,1),
+    height 520ms cubic-bezier(.16,1,.3,1),
+    margin 520ms cubic-bezier(.16,1,.3,1),
+    border-radius 520ms cubic-bezier(.16,1,.3,1),
+    border-color 320ms ease,
+    background-color 320ms ease,
+    box-shadow 420ms ease,
+    opacity 240ms ease;
+}
+
+.p11-core {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgb(var(--p11-r) var(--p11-g) var(--p11-b)), rgb(var(--p11-r2) var(--p11-g2) var(--p11-b2)));
+  box-shadow:
+    0 0 0 2px rgb(255 255 255 / .72),
+    0 0 18px rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .52);
+  transition: width 240ms ease, height 240ms ease, margin 240ms ease, opacity 220ms ease, box-shadow 320ms ease;
+}
+
+.p11-glyph {
+  position: relative;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  color: rgb(var(--p11-r) var(--p11-g) var(--p11-b));
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(.7) rotate(-10deg);
+  transition: opacity 240ms ease, transform 520ms cubic-bezier(.16,1,.3,1);
+}
+
+.p11-satellite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin: -2px;
+  border-radius: 50%;
+  background: rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .86);
+  box-shadow: 0 0 12px rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .5);
+  opacity: 0;
+  transform-origin: 0 0;
+}
+
+.p11-satellite.s2 {
+  width: 3px;
+  height: 3px;
+  margin: -1.5px;
+  background: rgb(var(--p11-r2) var(--p11-g2) var(--p11-b2) / .82);
+}
+
+.p11-layer[data-mode='dock'] .p11-ring {
+  border-color: rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .45);
+  background: rgb(255 255 255 / .11);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / .48) inset,
+    0 18px 48px rgb(15 23 42 / .09),
+    0 0 34px rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .11);
+  backdrop-filter: blur(7px) saturate(1.08);
+}
+
+.p11-layer[data-mode='dock'] .p11-core {
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  opacity: .28;
+}
+
+.p11-layer[data-mode='dock'] .p11-glyph {
+  opacity: .92;
+  transform: scale(1) rotate(0deg);
+}
+
+.p11-layer[data-mode='dock'] .p11-satellite {
+  opacity: .8;
+  animation: p11-orbit 2200ms linear infinite;
+}
+
+.p11-layer[data-mode='dock'] .p11-satellite.s2 {
+  animation-duration: 3100ms;
+  animation-direction: reverse;
+}
+
+.p11-layer[data-mode='surface'] .p11-ring {
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  border-color: rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .34);
+  background: rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .025);
+  box-shadow: 0 0 36px rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .09);
+}
+
+.p11-layer[data-mode='surface'] .p11-aura {
+  opacity: .72;
+  filter: blur(16px);
+}
+
+.p11-layer.is-pressed .p11-ring {
+  border-color: rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .8);
+  box-shadow:
+    0 0 0 3px rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .08),
+    0 0 30px rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .18);
+}
+
+.p11-layer.is-pressed .p11-core {
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+}
+
+.p11-wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  margin: -7px;
+  border: 1px solid rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .72);
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .16);
+  pointer-events: none;
+}
+
+html.pointer-v11-active [data-p11-hover='true'] {
+  --p11-local-x: 50%;
+  --p11-local-y: 50%;
+}
+
+html.pointer-v11-active [data-p11-surface='true'] {
+  position: relative;
+  isolation: isolate;
+}
+
+html.pointer-v11-active [data-p11-surface='true']::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(380px circle at var(--p11-local-x) var(--p11-local-y), rgb(var(--p11-r) var(--p11-g) var(--p11-b) / .075), transparent 68%);
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms ease;
+}
+
+html.pointer-v11-active [data-p11-surface='true'] > * {
+  position: relative;
+  z-index: 1;
+}
+
+html.pointer-v11-active [data-p11-surface='true'][data-p11-hover='true']::after { opacity: 1; }
+
+@keyframes p11-orbit {
+  from { transform: rotate(0deg) translateX(var(--p11-orbit-radius, 25px)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--p11-orbit-radius, 25px)) rotate(-360deg); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.pointer-v11-active,
+  html.pointer-v11-active body,
+  html.pointer-v11-active a,
+  html.pointer-v11-active button,
+  html.pointer-v11-active [role='button'],
+  html.pointer-v11-active summary,
+  html.pointer-v11-active label,
+  html.pointer-v11-active [data-p11-surface='true'] {
+    cursor: none !important;
+  }
+
+  html.pointer-v11-active input,
+  html.pointer-v11-active textarea,
+  html.pointer-v11-active select,
+  html.pointer-v11-active option,
+  html.pointer-v11-active [contenteditable='true'],
+  html.pointer-v11-active iframe,
+  html.pointer-v11-active video[controls] {
+    cursor: auto !important;
+  }
+}
+
+@media (max-width: 900px), (hover: none), (pointer: coarse) {
+  .p11-layer { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p11-layer { display: none !important; }
+  html.pointer-v11-active,
+  html.pointer-v11-active body,
+  html.pointer-v11-active * { cursor: auto !important; }
+}
