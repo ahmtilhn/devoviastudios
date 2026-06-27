@@ -36,8 +36,6 @@ jobs:
         run: npm run build
       - name: Static route link and motion integrity
         run: node scripts/site-integrity-check.mjs
-      - name: Chromium navigation button and transition journey
-        run: node scripts/browser-journey-check.mjs
       - name: Native engine and English pass 2
         run: node scripts/native-engine-check.mjs
       - name: V6 compatibility and privacy pass 2
@@ -46,3 +44,20 @@ jobs:
         run: npm run test:v7
       - name: V8 premium motion and language pass 2
         run: npm run test:v8
+
+  browser-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --silent
+      - name: Build production output
+        run: npm run build >/dev/null
+      - name: Chromium navigation button and transition journey
+        run: node scripts/browser-journey-check.mjs
