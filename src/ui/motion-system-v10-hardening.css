@@ -1,0 +1,8 @@
+/* Browser-safe transform overrides for the V10 atmosphere. */
+.m10-atmosphere::before {
+  transform: translate3d(var(--m10-ambient-x, 0px), var(--m10-ambient-y, 0px), 0);
+}
+
+.m10-atmosphere::after {
+  transform: translate3d(var(--m10-ambient-x-reverse, 0px), var(--m10-ambient-y-reverse, 0px), 0);
+}
