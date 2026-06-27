@@ -31,7 +31,8 @@ function normalizeAnchor(anchor) {
   const currentHref = anchor.getAttribute('href') || '';
   if (currentHref.includes('sites.google.com/view/devoviastudio/privacy-policy')) {
     if (/\/terms-of-service(?:[/?#]|$)/i.test(currentHref)) {
-      anchor.remove();
+      anchor.setAttribute('target', '_blank');
+      anchor.setAttribute('rel', 'noopener noreferrer');
       return;
     }
     anchor.setAttribute('href', localPrivacyRoute(currentHref));
