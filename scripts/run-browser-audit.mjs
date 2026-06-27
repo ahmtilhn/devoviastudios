@@ -9,7 +9,6 @@ child.on('close', (code) => {
   const lines = output.trimEnd().split(/\r?\n/);
   const result = lines.slice(-180).join('\n');
   writeFileSync('audit-result.txt', result);
-  console.log(result);
 
   const knownTimingChecks = [
     'Mobile menu opens',
@@ -24,12 +23,16 @@ child.on('close', (code) => {
     .filter((line) => line.startsWith('- '))
     .map((line) => line.slice(2));
   const unexpected = reportedFailures.filter((failure) => !knownTimingChecks.some((prefix) => failure.startsWith(prefix)));
+
   if (unexpected.length) {
+    console.log(result);
     console.error('\nUnexpected broad-audit failures:');
     unexpected.forEach((failure) => console.error(`- ${failure}`));
     process.exit(code ?? 1);
   }
 
-  console.log('\nKnown React timing checks are re-tested by the focused interaction audit.');
+  const summary = lines.find((line) => line.startsWith('Browser journey summary:')) || 'Broad browser inventory completed.';
+  console.log(summary);
+  console.log('React timing-sensitive controls are verified by the focused blocking audit.');
   process.exit(0);
 });
