@@ -60,4 +60,4 @@ jobs:
       - name: Build production output
         run: npm run build >/dev/null
       - name: Chromium navigation button and transition journey
-        run: node scripts/browser-journey-check.mjs
+        run: node scripts/run-browser-audit.mjs
