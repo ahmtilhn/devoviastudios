@@ -11,7 +11,7 @@
     "test:ux": "node scripts/ux-contract-check.mjs",
     "test:v7": "node scripts/v7-product-check.mjs",
     "test:v8": "node scripts/v8-premium-check.mjs",
-    "build": "npm run test:ux && npm run test:v7 && npm run test:v8 && vite build && node scripts/postbuild.mjs",
+    "build": "npm run test:ux && npm run test:v7 && npm run test:v8 && vite build && node scripts/postbuild.mjs && node scripts/copy-pointer-v11.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
