@@ -134,6 +134,22 @@ async function main() {
       await delay(320);
     }
 
+    async function navigateToCanonical(route, expectedPath, timeout = 5000) {
+      await client.send('Page.navigate', { url: `${baseUrl}${route}` });
+      const started = Date.now();
+      let currentPath = '';
+      while (Date.now() - started < timeout) {
+        try {
+          currentPath = await evaluate('location.pathname.replace(/\\/+$/, "") || "/"');
+          if (currentPath === expectedPath) return currentPath;
+        } catch {
+          // The execution context can be replaced while a redirect is committing.
+        }
+        await delay(100);
+      }
+      return currentPath;
+    }
+
     await client.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
     await navigate('/');
     const menu = await evaluate(`(async () => {
@@ -229,8 +245,7 @@ async function main() {
       ['/privacy/app-4.html', '/privacy/arrow-escape'],
       ['/projects/stockflow-inventory', '/products/stock-manager'],
     ]) {
-      await navigate(legacyRoute);
-      const finalPath = await evaluate('location.pathname.replace(/\\/+$/, "") || "/"');
+      const finalPath = await navigateToCanonical(legacyRoute, canonicalRoute);
       assert(`${legacyRoute} redirects to ${canonicalRoute}`, finalPath === canonicalRoute, finalPath);
     }
 
