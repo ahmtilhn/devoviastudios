@@ -20,6 +20,37 @@ for (const [source, target] of copyTargets) {
   }
 }
 
+function inlineLegalFragments() {
+  const privacyDir = path.join(dist, 'privacy');
+  if (!fs.existsSync(privacyDir)) return;
+
+  for (const fileName of ['app-1.html', 'app-2.html', 'app-4.html']) {
+    const pagePath = path.join(privacyDir, fileName);
+    if (!fs.existsSync(pagePath)) continue;
+
+    let html = fs.readFileSync(pagePath, 'utf8');
+    html = html.replace(/<script\s+type="module"\s+src="\.\/legal-fragments\.js"><\/script>\s*/g, '');
+    html = html.replace(/<div([^>]*?)data-legal-fragment="([^"]+)"([^>]*)><\/div>/g, (match, before, source, after) => {
+      const fragmentPath = path.resolve(privacyDir, source);
+      if (!fragmentPath.startsWith(privacyDir) || !fs.existsSync(fragmentPath)) {
+        throw new Error(`Missing legal fragment: ${source} in ${fileName}`);
+      }
+      const fragment = fs.readFileSync(fragmentPath, 'utf8');
+      const attributes = `${before}${after}`
+        .replace(/\s*aria-busy="true"/g, '')
+        .replace(/\s*data-legal-fragment="[^"]+"/g, '');
+      return `<div${attributes}>${fragment}</div>`;
+    });
+
+    if (html.includes('data-legal-fragment=')) {
+      throw new Error(`Unresolved legal fragment remains in ${fileName}`);
+    }
+    fs.writeFileSync(pagePath, html);
+  }
+}
+
+inlineLegalFragments();
+
 function routeSlug(app) {
   return app.id === 'app-1' ? 'stock-manager' : app.slug;
 }
@@ -45,6 +76,9 @@ const routes = [
   '/admin',
   '/products',
   '/services',
+  '/services/mobile-app-development',
+  '/services/game-development',
+  '/services/web-development',
   '/services/google-play-test-support',
   '/updates',
   '/blog',
@@ -77,6 +111,10 @@ fs.writeFileSync(
       .filter((route) => !route.startsWith('/projects') && route !== '/admin')
       .map((route) => `  <url><loc>${siteUrl}${route === '/' ? '/' : `${route}/`}</loc></url>`),
     `  <url><loc>${siteUrl}/privacy.html</loc></url>`,
+    `  <url><loc>${siteUrl}/privacy/app-1.html</loc></url>`,
+    `  <url><loc>${siteUrl}/privacy/app-2.html</loc></url>`,
+    `  <url><loc>${siteUrl}/privacy/app-3.html</loc></url>`,
+    `  <url><loc>${siteUrl}/privacy/app-4.html</loc></url>`,
     '</urlset>',
     '',
   ].join('\n'),

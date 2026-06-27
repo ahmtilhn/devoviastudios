@@ -73,13 +73,24 @@ function waitForReactPaint() {
   });
 }
 
-function eligibleAnchor(event) {
-  if (event.defaultPrevented || event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return null;
+function anchorMatch(event) {
   const anchor = event.target.closest?.('a[href]');
   if (!anchor || anchor.target || anchor.hasAttribute('download')) return null;
   const url = new URL(anchor.href, window.location.href);
   if (url.origin !== window.location.origin) return null;
   return { anchor, url };
+}
+
+function eligibleAnchor(event) {
+  if (event.defaultPrevented || event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return null;
+  return anchorMatch(event);
+}
+
+function preserveModifiedClick(event) {
+  if (!(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button > 0)) return false;
+  if (!anchorMatch(event)) return false;
+  event.stopImmediatePropagation();
+  return true;
 }
 
 function animatePressedControl(target) {
@@ -99,6 +110,11 @@ function animatePressedControl(target) {
 function navigateInternal(url) {
   const fromPath = normalizedPath();
   const toPath = normalizedPath(url.href);
+  if (fromPath === toPath && !url.search && !url.hash) {
+    window.scrollTo({ top: 0, left: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    return;
+  }
+
   const direction = routeDirection(fromPath, toPath);
   applyTransitionContext(direction);
   storeTransitionContext(direction);
@@ -113,10 +129,11 @@ function navigateInternal(url) {
   if (!reducedMotion && document.startViewTransition) {
     spaTransitionActive = true;
     const transition = document.startViewTransition(update);
-    transition.finished.finally(() => {
+    const finishTransition = () => {
       spaTransitionActive = false;
       clearTransitionContext();
-    });
+    };
+    transition.finished.then(finishTransition, finishTransition);
   } else {
     update();
     clearTransitionContext();
@@ -124,6 +141,7 @@ function navigateInternal(url) {
 }
 
 function handleClick(event) {
+  if (preserveModifiedClick(event)) return;
   if (Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
     lastPointer = { x: event.clientX, y: event.clientY };
   }
@@ -163,10 +181,10 @@ function handlePopState() {
     const main = document.querySelector('.app-shell main');
     main?.animate(
       [
-        { opacity: 0, translate: '-18px 0', filter: 'blur(6px)' },
-        { opacity: 1, translate: '0 0', filter: 'blur(0)' },
+        { opacity: 0, translate: '-18px 0' },
+        { opacity: 1, translate: '0 0' },
       ],
-      { duration: 460, easing: 'cubic-bezier(.2,.75,.2,1)', fill: 'both' },
+      { duration: 420, easing: 'cubic-bezier(.2,.75,.2,1)', fill: 'both' },
     );
     clearTransitionContext();
   });
@@ -226,11 +244,6 @@ document.addEventListener('pointerover', handlePointerOver, { passive: true });
 window.addEventListener('popstate', handlePopState);
 window.addEventListener('pageswap', handlePageSwap);
 window.addEventListener('pagereveal', handlePageReveal);
-
-window.addEventListener('pagehide', () => {
-  document.removeEventListener('click', handleClick, { capture: true });
-  document.removeEventListener('pointerover', handlePointerOver);
-  window.removeEventListener('popstate', handlePopState);
-  window.removeEventListener('pageswap', handlePageSwap);
-  window.removeEventListener('pagereveal', handlePageReveal);
-}, { once: true });
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) handlePageReveal();
+});
