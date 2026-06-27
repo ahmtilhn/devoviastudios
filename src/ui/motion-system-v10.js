@@ -17,6 +17,7 @@ let scrollVelocity = 0;
 let beforeFilter = null;
 let activeRegion = null;
 let sharedCleanup = 0;
+let started = false;
 
 const palettes = {
   home: [[59, 130, 246], [139, 92, 246]],
@@ -302,6 +303,12 @@ function handleClickCapture(event) {
 function handlePointerMove(event) {
   root.style.setProperty('--m10-x', `${event.clientX}px`);
   root.style.setProperty('--m10-y', `${event.clientY}px`);
+  const nx = event.clientX / Math.max(window.innerWidth, 1) - .5;
+  const ny = event.clientY / Math.max(window.innerHeight, 1) - .5;
+  root.style.setProperty('--m10-ambient-x', `${(nx * 12).toFixed(2)}px`);
+  root.style.setProperty('--m10-ambient-y', `${(ny * 9).toFixed(2)}px`);
+  root.style.setProperty('--m10-ambient-x-reverse', `${(nx * -9).toFixed(2)}px`);
+  root.style.setProperty('--m10-ambient-y-reverse', `${(ny * -7).toFixed(2)}px`);
 
   const surface = event.target.closest?.('[data-m10-surface]');
   document.querySelectorAll('[data-m10-surface].is-m10-pointer').forEach((element) => {
@@ -326,10 +333,10 @@ function handlePointerMove(event) {
   });
   if (magnetic) {
     const rect = magnetic.getBoundingClientRect();
-    const nx = ((event.clientX - rect.left) / Math.max(rect.width, 1) - .5) * 2;
-    const ny = ((event.clientY - rect.top) / Math.max(rect.height, 1) - .5) * 2;
-    magnetic.style.setProperty('--m10-magnet-x', `${(nx * 2.4).toFixed(2)}px`);
-    magnetic.style.setProperty('--m10-magnet-y', `${(ny * 1.8).toFixed(2)}px`);
+    const magneticX = ((event.clientX - rect.left) / Math.max(rect.width, 1) - .5) * 2;
+    const magneticY = ((event.clientY - rect.top) / Math.max(rect.height, 1) - .5) * 2;
+    magnetic.style.setProperty('--m10-magnet-x', `${(magneticX * 2.4).toFixed(2)}px`);
+    magnetic.style.setProperty('--m10-magnet-y', `${(magneticY * 1.8).toFixed(2)}px`);
     magnetic.dataset.m10Magnetic = 'true';
   }
 }
@@ -371,11 +378,19 @@ function requestScrollUpdate() {
   scrollFrame = requestAnimationFrame(updateScroll);
 }
 
-function handlePopState() {
+function handlePopState(event) {
   const nextPath = normalizedPath();
   const type = classifyTransition(lastPath, nextPath);
   storeTransition(type, lastPath, nextPath);
   lastPath = nextPath;
+
+  // React's navigation engine dispatches a synthetic popstate inside its own
+  // View Transition update. Only real browser history traversal starts a new one.
+  if (!event.isTrusted) {
+    scheduleInstall();
+    return;
+  }
+
   if (!reduceQuery?.matches && document.startViewTransition) {
     const transition = document.startViewTransition(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     transition.finished.catch(() => {});
@@ -383,7 +398,19 @@ function handlePopState() {
   scheduleInstall();
 }
 
+function handlePageReveal() {
+  restoreTransition();
+  lastPath = normalizedPath();
+  scheduleInstall();
+  requestScrollUpdate();
+}
+
 function start() {
+  if (started) {
+    handlePageReveal();
+    return;
+  }
+  started = true;
   restoreTransition();
   root.classList.add('motion-system-v10');
   revealObserver = reduceQuery?.matches ? null : new IntersectionObserver((entries) => {
@@ -403,9 +430,9 @@ function start() {
   window.addEventListener('scroll', requestScrollUpdate, { passive: true });
   window.addEventListener('resize', requestScrollUpdate, { passive: true });
   window.addEventListener('popstate', handlePopState);
-  window.addEventListener('pagereveal', () => {
-    restoreTransition();
-    scheduleInstall();
+  window.addEventListener('pagereveal', handlePageReveal);
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) handlePageReveal();
   });
   if (!reduceQuery?.matches && finePointerQuery?.matches) {
     document.addEventListener('pointermove', handlePointerMove, { passive: true });
@@ -416,7 +443,8 @@ function start() {
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
 else start();
 
-window.addEventListener('pagehide', () => {
+window.addEventListener('pagehide', (event) => {
+  if (event.persisted) return;
   revealObserver?.disconnect();
   mutationObserver?.disconnect();
   cancelAnimationFrame(frame);
@@ -428,4 +456,6 @@ window.addEventListener('pagehide', () => {
   window.removeEventListener('scroll', requestScrollUpdate);
   window.removeEventListener('resize', requestScrollUpdate);
   window.removeEventListener('popstate', handlePopState);
+  window.removeEventListener('pagereveal', handlePageReveal);
+  started = false;
 }, { once: true });
