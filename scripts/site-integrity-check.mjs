@@ -79,7 +79,7 @@ check('App shell includes all primary destinations', ['/products', '/services', 
 for (const app of appData.apps) {
   const paths = [app.icon_url, ...app.screenshots];
   for (const asset of paths) {
-    check(`${app.name} asset ${asset}`, fs.existsSync(path.join(root, asset.replace(/^\//, ''))));
+    check(`${app.name} asset ${asset}`, fs.existsSync(path.join(root, 'public', asset.replace(/^\//, ''))));
   }
   check(`${app.name} Play URL is HTTPS`, /^https:\/\/play\.google\.com\//.test(app.play_url));
 }
