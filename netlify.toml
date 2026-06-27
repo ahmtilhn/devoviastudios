@@ -6,6 +6,72 @@
   NODE_VERSION = "22"
 
 [[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy/app-1.html"
+  to = "/privacy/stock-manager"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy/app-2.html"
+  to = "/privacy/daily-hadith"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy/app-3.html"
+  to = "/privacy/tinysteps"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy/app-4.html"
+  to = "/privacy/arrow-escape"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/products/stockflow-inventory"
+  to = "/products/stock-manager"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/stockflow-inventory"
+  to = "/products/stock-manager"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/stock-manager"
+  to = "/products/stock-manager"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/arrow-escape"
+  to = "/products/arrow-escape"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/daily-hadith"
+  to = "/products/daily-hadith"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/tinysteps"
+  to = "/products/tinysteps"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
