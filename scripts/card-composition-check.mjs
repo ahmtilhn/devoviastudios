@@ -119,6 +119,17 @@ async function main() {
           const devices = visual ? [...visual.querySelectorAll('.device')].filter((item) => getComputedStyle(item).display !== 'none') : [];
           const stage = document.querySelector('.v7-stage-column');
           const chapters = [...document.querySelectorAll('.v7-feature-chapter')];
+          const chapterStyles = chapters.map((chapter) => {
+            const style = getComputedStyle(chapter);
+            return {
+              minHeight: parseFloat(style.minHeight) || 0,
+              paddingTop: parseFloat(style.paddingTop) || 0,
+              paddingBottom: parseFloat(style.paddingBottom) || 0,
+              overflowY: style.overflowY,
+              scrollHeight: chapter.scrollHeight,
+              clientHeight: chapter.clientHeight,
+            };
+          });
           const cards = [...document.querySelectorAll('.product-card,.service-card,.support-product-card,.reason-card,.story-card,.blog-card,.faq-card,.glass-panel')];
           return {
             heroHeight: hero?.getBoundingClientRect().height || 0,
@@ -126,7 +137,10 @@ async function main() {
             visualOverflowX: visual ? visual.scrollWidth - visual.clientWidth : 0,
             deviceCount: devices.length,
             stagePosition: stage ? getComputedStyle(stage).position : '',
-            maxChapterHeight: chapters.reduce((max, item) => Math.max(max, item.getBoundingClientRect().height), 0),
+            maxChapterMinHeight: chapterStyles.reduce((max, item) => Math.max(max, item.minHeight), 0),
+            maxChapterPaddingTop: chapterStyles.reduce((max, item) => Math.max(max, item.paddingTop), 0),
+            maxChapterPaddingBottom: chapterStyles.reduce((max, item) => Math.max(max, item.paddingBottom), 0),
+            clippedChapters: chapterStyles.filter((item) => item.overflowY !== 'visible' && item.scrollHeight > item.clientHeight + 2).length,
             pageOverflowX: document.documentElement.scrollWidth - window.innerWidth,
             oversizedCards: cards.filter((card) => card.getBoundingClientRect().width > window.innerWidth + 2).length,
           };
@@ -138,7 +152,10 @@ async function main() {
         assert(`${label} visual has no horizontal overflow`, result.visualOverflowX <= 2, `${Math.round(result.visualOverflowX)}px`);
         assert(`${label} uses at most two visible devices`, result.deviceCount > 0 && result.deviceCount <= 2, String(result.deviceCount));
         assert(`${label} mobile stage is not sticky`, result.stagePosition !== 'sticky', result.stagePosition);
-        assert(`${label} chapters avoid viewport-sized empty cards`, result.maxChapterHeight <= 620, `${Math.round(result.maxChapterHeight)}px`);
+        assert(`${label} chapters have no forced viewport min-height`, result.maxChapterMinHeight <= 2, `${Math.round(result.maxChapterMinHeight)}px`);
+        assert(`${label} chapter top padding is compact`, result.maxChapterPaddingTop <= 40, `${Math.round(result.maxChapterPaddingTop)}px`);
+        assert(`${label} chapter bottom padding is compact`, result.maxChapterPaddingBottom <= 40, `${Math.round(result.maxChapterPaddingBottom)}px`);
+        assert(`${label} chapter content is not clipped`, result.clippedChapters === 0, String(result.clippedChapters));
         assert(`${label} page has no horizontal overflow`, result.pageOverflowX <= 2, `${Math.round(result.pageOverflowX)}px`);
         assert(`${label} cards fit viewport`, result.oversizedCards === 0, String(result.oversizedCards));
       }
