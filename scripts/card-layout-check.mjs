@@ -74,6 +74,21 @@ class Cdp {
     const handlers = this.events.get(method) || [];
     handlers.push(handler);
     this.events.set(method, handlers);
+    return () => this.events.set(method, handlers.filter((item) => item !== handler));
+  }
+
+  waitFor(method, timeout = 15000) {
+    return new Promise((resolve, reject) => {
+      const off = this.on(method, (params) => {
+        clearTimeout(timer);
+        off();
+        resolve(params);
+      });
+      const timer = setTimeout(() => {
+        off();
+        reject(new Error(`Timed out waiting for ${method}`));
+      }, timeout);
+    });
   }
 
   close() {
@@ -122,6 +137,30 @@ async function main() {
       return response.result?.value;
     }
 
+    async function navigate(route) {
+      const loaded = client.waitFor('Page.loadEventFired').catch(() => null);
+      await client.send('Page.navigate', { url: `${baseUrl}${route}` });
+      await loaded;
+      await delay(120);
+      await evaluate(`Promise.all([
+        document.fonts?.ready || Promise.resolve(),
+        ...[...document.images].map((image) => image.complete ? Promise.resolve() : new Promise((resolve) => {
+          image.addEventListener('load', resolve, { once: true });
+          image.addEventListener('error', resolve, { once: true });
+          setTimeout(resolve, 1200);
+        }))
+      ])`);
+      await evaluate(`(() => {
+        document.querySelectorAll('[data-m10-state]').forEach((element) => { element.dataset.m10State = 'visible'; });
+        document.querySelectorAll('[data-pm-state]').forEach((element) => { element.dataset.pmState = 'visible'; });
+        document.querySelectorAll('[data-ux-reveal]').forEach((element) => { element.dataset.uxVisible = 'true'; });
+        document.querySelectorAll('[data-privacy-motion]').forEach((element) => { element.dataset.privacyMotion = 'visible'; });
+        window.scrollTo(0, 0);
+        return true;
+      })()`);
+      await delay(80);
+    }
+
     for (const width of widths) {
       await client.send('Emulation.setDeviceMetricsOverride', {
         width,
@@ -131,10 +170,7 @@ async function main() {
       });
 
       for (const route of routes) {
-        await client.send('Page.navigate', { url: `${baseUrl}${route}` });
-        await delay(260);
-        await evaluate(`document.fonts?.ready || Promise.resolve()`);
-        await delay(80);
+        await navigate(route);
 
         const result = await evaluate(`(() => {
           const cardSelector = [
@@ -142,17 +178,19 @@ async function main() {
             '.product-card', '.service-card', '.support-product-card', '.reason-card', '.update-card', '.story-card',
             '.launch-support-row', '.support-app-card', '.faq-card', '.blog-card', '.glass-panel', '.test-teaser',
             '.request-panel', '.final-cta', '.privacy-summary-card', '.privacy-card', '.privacy-app-card',
-            '.privacy-status-visual', '.capability-strip article'
+            '.privacy-status-visual', '.capability-strip article', '.v7-promise-grid article', '.v7-screen-card',
+            '.v7-fact-panel', '.v7-product-cta'
           ].join(',');
-          const textSelector = 'h1,h2,h3,p,li,time,a,button,strong,label';
-          const mediaSelector = 'img,.product-visual,.dv-product-visual,.detail-device-row,.gallery-row';
-          const allowedClipSelector = '.product-visual,.dv-product-visual,.detail-device-row,.gallery-row,.dv-hero-showcase,.dv-about-visual';
-          const decorativeSelector = '[aria-hidden="true"],.dv-device-caption,.dv-showcase-badge,.dv-floating-icon,.dv-product-stage,.dv-product-glow,.privacy-float-chip';
-          const visible = (element) => {
+          const textSelector = 'h1,h2,h3,p,li,time,a,button,strong,label,span';
+          const mediaSelector = 'img,.product-visual,.dv-product-visual,.detail-device-row,.gallery-row,.v7-stage-canvas,.v7-screen-frame';
+          const allowedClipSelector = '.product-visual,.dv-product-visual,.detail-device-row,.gallery-row,.dv-hero-showcase,.dv-about-visual,.v7-stage-canvas,.v7-screen-frame';
+          const decorativeSelector = '[aria-hidden="true"],svg,.icon,.device-speaker,.ux-local-aura,.ux-device-glass,.dv-device-caption,.dv-showcase-badge,.dv-floating-icon,.dv-product-stage,.dv-product-glow,.privacy-float-chip';
+          const rendered = (element) => {
             const style = getComputedStyle(element);
             const rect = element.getBoundingClientRect();
-            return style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity) > 0.01 && rect.width > 1 && rect.height > 1;
+            return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 1 && rect.height > 1;
           };
+          const readable = (element) => rendered(element) && element.textContent.replace(/\s+/g, ' ').trim().length > 0 && !element.closest(decorativeSelector);
           const nameOf = (element) => {
             const classes = [...element.classList].slice(0, 3).join('.');
             return classes ? element.tagName.toLowerCase() + '.' + classes : element.tagName.toLowerCase();
@@ -164,7 +202,7 @@ async function main() {
             return { width, height, area: width * height };
           };
           const localIssues = [];
-          const cards = [...document.querySelectorAll(cardSelector)].filter(visible);
+          const cards = [...document.querySelectorAll(cardSelector)].filter(rendered);
 
           if (document.documentElement.scrollWidth > window.innerWidth + 3) {
             localIssues.push({
@@ -177,8 +215,8 @@ async function main() {
           for (const card of cards) {
             const cardRect = card.getBoundingClientRect();
             const cardName = nameOf(card);
-            const texts = [...card.querySelectorAll(textSelector)].filter((element) => visible(element) && !element.closest(decorativeSelector));
-            const media = [...card.querySelectorAll(mediaSelector)].filter((element) => visible(element) && !element.closest(decorativeSelector));
+            const texts = [...card.querySelectorAll(textSelector)].filter(readable);
+            const media = [...card.querySelectorAll(mediaSelector)].filter((element) => rendered(element) && !element.closest(decorativeSelector));
 
             for (const element of texts) {
               const rect = element.getBoundingClientRect();
@@ -239,7 +277,8 @@ async function main() {
                 if (text.contains(visual) || visual.contains(text)) continue;
                 if (text.closest(allowedClipSelector) === visual || visual.closest(allowedClipSelector) === text) continue;
                 const hit = intersection(textRect, visual.getBoundingClientRect());
-                const minArea = Math.min(textRect.width * textRect.height, visual.getBoundingClientRect().width * visual.getBoundingClientRect().height);
+                const visualRect = visual.getBoundingClientRect();
+                const minArea = Math.min(textRect.width * textRect.height, visualRect.width * visualRect.height);
                 if (hit.width > 6 && hit.height > 6 && hit.area > 36 && hit.area / Math.max(minArea, 1) > 0.025) {
                   localIssues.push({
                     type: 'text-media-overlap',
