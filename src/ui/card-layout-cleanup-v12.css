@@ -1,5 +1,14 @@
 /* Final card cleanup after the shared layout system. */
 
+.app-shell :is(.v7-fact-panel, .v7-product-cta) h2 {
+  overflow: visible;
+  padding-bottom: 7px;
+}
+
+.app-shell .article-meta-panel .meta-chip-row + p {
+  margin-top: 18px;
+}
+
 @media (min-width: 1121px) {
   /* Full catalog cards contain screenshots, metrics and two CTAs; four columns makes them unreadably narrow. */
   .app-shell .products-grid {
