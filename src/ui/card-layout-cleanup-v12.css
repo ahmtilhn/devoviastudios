@@ -1,5 +1,14 @@
-/* Final mobile artwork cleanup: flat marketing screenshots must not inherit phone-frame decoration. */
+/* Final card cleanup after the shared layout system. */
+
+@media (min-width: 1121px) {
+  /* Full catalog cards contain screenshots, metrics and two CTAs; four columns makes them unreadably narrow. */
+  .app-shell .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 760px) {
+  /* Flat marketing screenshots must not inherit phone-frame decoration. */
   .app-shell.v7-product-detail-ready .detail-device-row > .ux-local-aura,
   .app-shell.v7-product-detail-ready .detail-device-row .ux-device-glass,
   .app-shell.v7-product-detail-ready .detail-device-row .ux-device-frame::after {
