@@ -73,6 +73,8 @@ jobs:
         run: node scripts/run-focused-audit.mjs
       - name: Responsive card overlap and clipping audit
         run: node scripts/card-layout-check.mjs | tee card-layout-result.txt
+      - name: Focused mobile card composition audit
+        run: node scripts/card-composition-check.mjs | tee card-composition-result.txt
       - name: Capture mobile and desktop layout screenshots
         run: node scripts/capture-layout-screenshots.mjs | tee card-layout-capture.txt
       - name: Global pointer Chromium audit
@@ -87,6 +89,7 @@ jobs:
             focused-audit-result.txt
             card-layout-result.txt
             card-layout-audit.json
+            card-composition-result.txt
             card-layout-capture.txt
             card-layout-shots/
             pointer-audit-result.txt
