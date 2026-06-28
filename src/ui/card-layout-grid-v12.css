@@ -1,0 +1,105 @@
+/* Grid proportions kept separate from content-flow hardening. */
+
+@media (min-width: 1121px) {
+  .app-shell .featured-grid,
+  .app-shell .products-grid,
+  .app-shell .service-grid,
+  .app-shell .full-grid,
+  .app-shell .blog-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .app-shell .updates-row,
+  .app-shell .reason-grid,
+  .app-shell .story-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-shell .detail-grid { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); }
+  .app-shell .workflow-section { grid-template-columns: minmax(0, 1.34fr) minmax(0, .66fr); }
+  .app-shell .detail-footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-shell .support-choice-grid,
+  .app-shell .support-app-grid,
+  .app-shell .problem-grid,
+  .app-shell .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .app-shell .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .capability-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .app-shell .v7-promise-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .v7-screen-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-shell .v7-product-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .metric-row,
+  .app-shell .v7-fact-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-shell .card-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .support-product-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dv-site .dv-service-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .dv-site .dv-update-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dv-site .dv-process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 761px) and (max-width: 1120px) {
+  .app-shell .featured-grid,
+  .app-shell .products-grid,
+  .app-shell .service-grid,
+  .app-shell .full-grid,
+  .app-shell .blog-grid,
+  .app-shell .support-app-grid,
+  .app-shell .support-choice-grid,
+  .app-shell .problem-grid,
+  .app-shell .process-grid,
+  .app-shell .reason-grid,
+  .app-shell .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .updates-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .detail-grid,
+  .app-shell .workflow-section { grid-template-columns: 1fr; }
+  .app-shell .detail-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .capability-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .v7-promise-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .v7-screen-grid { grid-template-columns: 1fr; }
+  .app-shell .v7-product-facts { grid-template-columns: 1fr; }
+  .app-shell .metric-row,
+  .app-shell .v7-fact-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-shell .card-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell .support-product-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dv-site .dv-service-grid,
+  .dv-site .dv-process-grid,
+  .dv-site .dv-update-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .app-shell :is(
+    .featured-grid,
+    .products-grid,
+    .service-grid,
+    .full-grid,
+    .updates-row,
+    .reason-grid,
+    .detail-grid,
+    .workflow-section,
+    .detail-footer-grid,
+    .support-choice-grid,
+    .faq-grid,
+    .blog-grid,
+    .story-grid,
+    .support-app-grid,
+    .support-product-steps,
+    .card-actions,
+    .capability-grid,
+    .v7-screen-grid,
+    .v7-product-facts,
+    .v7-fact-metrics
+  ),
+  .dv-site :is(.dv-service-grid, .dv-update-grid, .dv-process-grid, .dv-footer-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-shell .metric-row,
+  .app-shell .metric-row.compact {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .app-shell .v7-promise-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell .metric-row,
+  .app-shell .metric-row.compact {
+    grid-template-columns: 1fr;
+  }
+}
