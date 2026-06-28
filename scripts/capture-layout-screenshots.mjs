@@ -114,20 +114,44 @@ async function main() {
         await client.send('Page.navigate', { url: `${baseUrl}${route}` });
         await delay(420);
         await client.send('Runtime.evaluate', {
-          expression: 'document.fonts?.ready || Promise.resolve()',
+          expression: `Promise.all([
+            document.fonts?.ready || Promise.resolve(),
+            ...[...document.images].map((image) => image.complete ? Promise.resolve() : new Promise((resolve) => {
+              image.addEventListener('load', resolve, { once: true });
+              image.addEventListener('error', resolve, { once: true });
+              setTimeout(resolve, 1800);
+            }))
+          ])`,
           awaitPromise: true,
         });
         await client.send('Runtime.evaluate', {
-          expression: 'window.scrollTo(0, 0); document.documentElement.classList.add("layout-qa-capture"); true',
+          expression: `(async () => {
+            const step = Math.max(window.innerHeight * .72, 420);
+            const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+            for (let y = 0; y <= max; y += step) {
+              window.scrollTo(0, y);
+              await new Promise((resolve) => setTimeout(resolve, 55));
+            }
+            window.scrollTo(0, max);
+            await new Promise((resolve) => setTimeout(resolve, 180));
+            window.scrollTo(0, 0);
+            const style = document.createElement('style');
+            style.dataset.layoutQaCapture = 'true';
+            style.textContent = '*,*::before,*::after{animation-play-state:paused!important;transition:none!important}';
+            document.head.append(style);
+            document.documentElement.classList.add('layout-qa-capture');
+            await new Promise((resolve) => setTimeout(resolve, 220));
+            return true;
+          })()`,
+          awaitPromise: true,
           returnByValue: true,
         });
-        await delay(120);
 
         const metrics = await client.send('Page.getLayoutMetrics');
         const content = metrics.cssContentSize || metrics.contentSize;
         const capture = await client.send('Page.captureScreenshot', {
           format: 'jpeg',
-          quality: 58,
+          quality: 62,
           captureBeyondViewport: true,
           fromSurface: true,
           clip: {
