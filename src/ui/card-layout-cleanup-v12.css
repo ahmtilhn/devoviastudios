@@ -1,0 +1,13 @@
+/* Final mobile artwork cleanup: flat marketing screenshots must not inherit phone-frame decoration. */
+@media (max-width: 760px) {
+  .app-shell.v7-product-detail-ready .detail-device-row > .ux-local-aura,
+  .app-shell.v7-product-detail-ready .detail-device-row .ux-device-glass,
+  .app-shell.v7-product-detail-ready .detail-device-row .ux-device-frame::after {
+    display: none;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .ux-device-frame {
+    overflow: hidden;
+    isolation: auto;
+  }
+}
