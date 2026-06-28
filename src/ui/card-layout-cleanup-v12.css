@@ -17,7 +17,8 @@
 }
 
 @media (max-width: 760px) {
-  /* Flat marketing screenshots must not inherit phone-frame decoration. */
+  /* Flat marketing screenshots must not inherit phone-frame decoration or blurred glow overflow. */
+  .app-shell.v7-product-detail-ready .detail-device-row::before,
   .app-shell.v7-product-detail-ready .detail-device-row > .ux-local-aura,
   .app-shell.v7-product-detail-ready .detail-device-row .ux-device-glass,
   .app-shell.v7-product-detail-ready .detail-device-row .ux-device-frame::after {
