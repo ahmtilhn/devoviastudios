@@ -1,5 +1,10 @@
 /* Grid proportions kept separate from content-flow hardening. */
 
+.dv-site .dv-cta-card h2 {
+  overflow: visible;
+  padding-bottom: 8px;
+}
+
 @media (min-width: 1121px) {
   .app-shell .featured-grid,
   .app-shell .products-grid,
@@ -95,6 +100,40 @@
   .app-shell .v7-promise-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Mobile screenshots are marketing artwork, not raw app screens. Present one complete image instead of nesting it in four phone frames. */
+  .app-shell.v7-product-detail-ready .detail-device-row .device,
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-1 {
+    display: block;
+    inset: 16px;
+    width: auto;
+    height: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 20px;
+    background: transparent;
+    box-shadow: none;
+    transform: none !important;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .device img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 18px;
+    object-fit: contain;
+    object-position: center;
+    background: transparent;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .device-speaker,
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-2,
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-3,
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-4 {
+    display: none;
+  }
 }
 
 @media (max-width: 420px) {
@@ -105,11 +144,5 @@
 
   .app-shell.v7-product-detail-ready .v7-product-hero .detail-device-row {
     height: 360px;
-  }
-
-  .app-shell.v7-product-detail-ready .detail-device-row .device {
-    top: 10px;
-    width: min(44vw, 154px);
-    max-width: 44%;
   }
 }
