@@ -119,6 +119,16 @@ async function main() {
     await client.send('DOM.enable');
     await client.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1100, deviceScaleFactor: 1, mobile: false });
     await client.send('Emulation.setTouchEmulationEnabled', { enabled: false });
+    await client.send('Emulation.setEmulatedMedia', {
+      media: 'screen',
+      features: [
+        { name: 'hover', value: 'hover' },
+        { name: 'pointer', value: 'fine' },
+        { name: 'any-hover', value: 'hover' },
+        { name: 'any-pointer', value: 'fine' },
+        { name: 'prefers-reduced-motion', value: 'no-preference' },
+      ],
+    });
     client.on('Runtime.exceptionThrown', ({ exceptionDetails = {} }) => {
       const exception = exceptionDetails.exception || {};
       runtimeErrors.push(exception.description || String(exception.value || exceptionDetails.text || 'Runtime exception'));
@@ -221,7 +231,14 @@ async function main() {
     assert('Privacy center loads the same global pointer system', privacyState.active && privacyState.layer && privacyState.stylesheet && privacyState.script, JSON.stringify(privacyState));
 
     await client.send('Emulation.setEmulatedMedia', {
-      features: [{ name: 'prefers-reduced-motion', value: 'reduce' }],
+      media: 'screen',
+      features: [
+        { name: 'hover', value: 'hover' },
+        { name: 'pointer', value: 'fine' },
+        { name: 'any-hover', value: 'hover' },
+        { name: 'any-pointer', value: 'fine' },
+        { name: 'prefers-reduced-motion', value: 'reduce' },
+      ],
     });
     await navigate('/');
     const reducedState = await evaluate(`(() => ({
@@ -230,7 +247,6 @@ async function main() {
       layer: Boolean(document.querySelector('.p11-layer'))
     }))()`);
     assert('Reduced-motion preference prevents custom pointer startup', reducedState.reduced && !reducedState.active && !reducedState.layer, JSON.stringify(reducedState));
-    await client.send('Emulation.setEmulatedMedia', { features: [] });
 
     const actionable = runtimeErrors.filter((error) => !/AbortError|ViewTransition.*skip|Transition was skipped/i.test(error));
     assert('Pointer interactions produce no uncaught runtime errors', actionable.length === 0, actionable.join(' | '));
