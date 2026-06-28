@@ -73,6 +73,8 @@ jobs:
         run: node scripts/run-focused-audit.mjs
       - name: Responsive card overlap and clipping audit
         run: node scripts/card-layout-check.mjs | tee card-layout-result.txt
+      - name: Capture mobile and desktop layout screenshots
+        run: node scripts/capture-layout-screenshots.mjs | tee card-layout-capture.txt
       - name: Global pointer Chromium audit
         run: node scripts/pointer-browser-check.mjs | tee pointer-audit-result.txt
       - name: Upload browser audit diagnostics
@@ -85,6 +87,8 @@ jobs:
             focused-audit-result.txt
             card-layout-result.txt
             card-layout-audit.json
+            card-layout-capture.txt
+            card-layout-shots/
             pointer-audit-result.txt
           retention-days: 1
           if-no-files-found: warn
