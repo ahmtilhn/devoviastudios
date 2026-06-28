@@ -25,6 +25,15 @@
     display: none;
   }
 
+  .app-shell.v7-product-detail-ready .detail-device-row .device,
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-1 {
+    left: 16px;
+    right: auto;
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px);
+    box-sizing: border-box;
+  }
+
   .app-shell.v7-product-detail-ready .detail-device-row .ux-device-frame {
     overflow: hidden;
     isolation: auto;
