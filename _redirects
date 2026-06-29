@@ -1,0 +1,12 @@
+/privacy.html /privacy 301!
+/privacy/app-1.html /privacy/stock-manager 301!
+/privacy/app-2.html /privacy/daily-hadith 301!
+/privacy/app-3.html /privacy/tinysteps 301!
+/privacy/app-4.html /privacy/arrow-escape 301!
+/products/stockflow-inventory /products/stock-manager 301!
+/projects/stockflow-inventory /products/stock-manager 301!
+/projects/stock-manager /products/stock-manager 301!
+/projects/arrow-escape /products/arrow-escape 301!
+/projects/daily-hadith /products/daily-hadith 301!
+/projects/tinysteps /products/tinysteps 301!
+/* /index.html 200
