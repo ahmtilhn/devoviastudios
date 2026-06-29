@@ -35,6 +35,7 @@ import './ui/ux-copy-v8.js';
 import './ui/motion-system-v10.js';
 import './ui/motion-system-v10-compat.js';
 import './ui/contextual-file-uploads.js';
+import './ui/web3forms-attachment-payload.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 const page = path === '/admin'
