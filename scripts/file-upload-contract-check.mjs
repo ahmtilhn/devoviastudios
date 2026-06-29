@@ -20,6 +20,7 @@ check('Web3Forms payload adapter is imported once', count(source.main, "./ui/web
 check('Forms submit multipart FormData without a manual content-type header', source.app.includes('const formData = new FormData(form)') && source.app.includes('body: formData') && !source.app.includes("'Content-Type': 'multipart/form-data'"), paths.app);
 check('Web3Forms access key is configured', !source.app.includes("formAccessKey = 'PASTE_WEB3FORMS_ACCESS_KEY'"), paths.app);
 check('Only file attachment UI is added', ['project_link', 'screen_recording_link', 'google_play_reference', 'device_model', 'app_os_version', 'project_stage'].every((token) => !source.uploads.includes(token)), paths.uploads);
+check('Attachments remain optional', !source.uploads.includes('input.required = true') && source.uploads.includes('Optional: attach images or documents'), paths.uploads);
 check('Images, PDF, Word, spreadsheets, text and presentations are accepted', ['jpg', 'png', 'webp', 'pdf', 'docx', 'xlsx', 'csv', 'txt', 'pptx'].every((token) => source.uploads.includes(`'${token}'`)), paths.uploads);
 check('Executable and app package extensions are not accepted', ['.apk', '.aab', '.ipa', '.exe', '.zip', '.jks', '.keystore'].every((token) => !source.uploads.includes(`'${token}'`)), paths.uploads);
 check('Per-file limit is 5 MB', source.uploads.includes('const MAX_FILE_BYTES = 5 * 1024 * 1024'), paths.uploads);
