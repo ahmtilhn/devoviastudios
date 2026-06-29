@@ -9,10 +9,59 @@
   margin-top: 18px;
 }
 
+/*
+ * The shared card grid hardening defaults unknown grids to one column.
+ * The homepage footer is an intentional navigation grid, so restore its
+ * own responsive composition after the shared layer has loaded.
+ */
+.dv-site .dv-footer-grid {
+  grid-template-columns: minmax(280px, 1.7fr) repeat(3, minmax(110px, 1fr));
+  align-items: start;
+  column-gap: clamp(28px, 4vw, 64px);
+  row-gap: 34px;
+}
+
+.dv-site .dv-footer-grid > div:not(.dv-footer-brand) {
+  min-width: 0;
+}
+
 @media (min-width: 1121px) {
   /* Full catalog cards contain screenshots, metrics and two CTAs; four columns makes them unreadably narrow. */
   .app-shell .products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .dv-site .dv-footer-grid {
+    grid-template-columns: minmax(230px, 1.35fr) repeat(3, minmax(90px, 1fr));
+    column-gap: 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  .dv-site .dv-footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 18px;
+    row-gap: 38px;
+  }
+
+  .dv-site .dv-footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .dv-site .dv-footer-grid > div:not(.dv-footer-brand) {
+    gap: 11px;
+  }
+}
+
+@media (max-width: 460px) {
+  .dv-site .dv-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dv-site .dv-footer-grid > div:last-child {
+    grid-column: 1 / -1;
   }
 }
 
