@@ -1,0 +1,47 @@
+name: Short browser API diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  browser-api:
+    if: github.head_ref == 'verify/file-attachments-build'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Run browser-origin upload diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/devovia-browser-test
+          cat > /tmp/devovia-browser-test/index.html <<'HTML'
+          <!doctype html><html><body><pre id="result">PENDING</pre><script>
+          (async () => {
+            const output = document.getElementById('result');
+            const data = new FormData();
+            data.append('access_key', '156fd324-7568-4397-adee-20b99ad68190');
+            data.append('subject', '[QA] Devovia short browser attachment test');
+            data.append('from_name', 'Devovia Browser QA');
+            data.append('name', 'Browser QA');
+            data.append('email', 'info@devoviastudio.com');
+            data.append('message', 'One-time browser-origin attachment verification.');
+            data.append('attachment_1', new File(['Devovia attachment test'], 'attachment-test.txt', { type: 'text/plain' }));
+            try {
+              const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+              output.textContent = 'STATUS=' + response.status + ' BODY=' + await response.text();
+            } catch (error) {
+              output.textContent = 'ERROR=' + error.name + ':' + error.message;
+            }
+          })();
+          </script></body></html>
+          HTML
+          cd /tmp/devovia-browser-test
+          python3 -m http.server 8765 >/tmp/devovia-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill ${SERVER_PID} 2>/dev/null || true' EXIT
+          sleep 1
+          google-chrome --headless=new --no-sandbox --disable-gpu --virtual-time-budget=25000 --dump-dom http://127.0.0.1:8765/ 2>/dev/null | grep -E 'STATUS=|ERROR='
