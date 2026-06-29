@@ -73,6 +73,8 @@ jobs:
         run: node scripts/run-browser-audit.mjs
       - name: Focused wait-aware interaction and transition audit
         run: node scripts/run-focused-audit.mjs
+      - name: Footer column alignment audit
+        run: node scripts/footer-layout-browser-check.mjs
       - name: Responsive card overlap and clipping audit
         shell: bash
         run: |
