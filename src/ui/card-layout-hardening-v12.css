@@ -1,0 +1,469 @@
+/* Devovia Card Layout V12 — resilient content flow across every public card family. */
+
+/* Grid and flex children must be allowed to shrink instead of forcing text or media over siblings. */
+.app-shell :is(
+  .product-card,
+  .service-card,
+  .support-product-card,
+  .reason-card,
+  .update-card,
+  .story-card,
+  .launch-support-row,
+  .support-app-card,
+  .faq-card,
+  .blog-card,
+  .glass-panel,
+  .test-teaser,
+  .request-panel,
+  .final-cta,
+  .capability-strip article,
+  .v7-promise-grid article,
+  .v7-screen-card,
+  .v7-fact-panel,
+  .v7-product-cta
+) > *,
+.dv-site :is(
+  .dv-service-card,
+  .dv-product,
+  .dv-process-grid article,
+  .dv-update-card,
+  .dv-cta-card
+) > * {
+  min-width: 0;
+}
+
+.app-shell :is(
+  .product-card,
+  .service-card,
+  .support-product-card,
+  .reason-card,
+  .update-card,
+  .story-card,
+  .launch-support-row,
+  .support-app-card,
+  .faq-card,
+  .blog-card,
+  .glass-panel,
+  .test-teaser,
+  .request-panel,
+  .final-cta,
+  .v7-product-experience
+) :is(h1, h2, h3, p, li, strong, span, a, button),
+.dv-site :is(
+  .dv-service-card,
+  .dv-product,
+  .dv-process-grid article,
+  .dv-update-card,
+  .dv-cta-card
+) :is(h1, h2, h3, p, strong, span, a) {
+  overflow-wrap: anywhere;
+}
+
+.app-shell :is(.featured-grid, .products-grid, .service-grid, .full-grid, .updates-row, .reason-grid, .detail-grid, .workflow-section, .detail-footer-grid, .support-choice-grid, .faq-grid, .blog-grid, .story-grid, .support-app-grid),
+.app-shell :is(.metric-row, .card-actions, .support-product-steps, .capability-grid, .v7-promise-grid, .v7-screen-grid, .v7-product-facts, .v7-fact-metrics),
+.dv-site :is(.dv-service-grid, .dv-update-grid, .dv-process-grid, .dv-footer-grid) {
+  grid-template-columns: repeat(var(--layout-columns, 1), minmax(0, 1fr));
+}
+
+/* Standard app cards use content flow rather than fixed coordinates. */
+.app-shell .service-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+}
+
+.app-shell .service-card > .text-link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.app-shell .product-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.app-shell .product-card-top > div,
+.app-shell .update-card > div,
+.app-shell .support-product-card > div,
+.app-shell .launch-support-row > div,
+.app-shell .site-footer > div {
+  min-width: 0;
+}
+
+.app-shell .product-visual {
+  flex: 0 0 auto;
+  isolation: isolate;
+}
+
+.app-shell .chip-row {
+  align-items: flex-start;
+}
+
+.app-shell .chip-row :is(span, a),
+.app-shell .meta-chip-row span {
+  max-width: 100%;
+  line-height: 1.35;
+  text-align: left;
+  white-space: normal;
+}
+
+.app-shell .metric-row,
+.app-shell .card-actions,
+.app-shell .support-product-steps,
+.app-shell .v7-fact-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.app-shell .card-actions .button,
+.app-shell .actions .button,
+.app-shell .v7-cta-actions .button {
+  min-width: 0;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+}
+
+/* Homepage service cards no longer reserve an absolute footer that can collide with copy. */
+.dv-site .dv-service-card {
+  display: flex;
+  min-height: 350px;
+  flex-direction: column;
+  padding-bottom: 28px;
+}
+
+.dv-site .dv-service-top {
+  flex: 0 0 auto;
+}
+
+.dv-site .dv-service-card > a,
+html.motion-system-v10 .dv-site .dv-service-card > a {
+  position: static;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.dv-site .dv-product-copy,
+.dv-site .dv-product-heading > div,
+.dv-site .dv-metric div,
+.dv-site .dv-cta-card > div:not(.dv-cta-orb) {
+  min-width: 0;
+}
+
+/* Keep large product-detail artwork inside the hero surface. */
+.app-shell.v7-product-detail-ready .v7-product-hero {
+  overflow: hidden;
+}
+
+.app-shell.v7-product-detail-ready .v7-product-hero > div:first-child {
+  min-width: 0;
+}
+
+.app-shell.v7-product-detail-ready .v7-product-hero .detail-device-row {
+  overflow: hidden;
+  border-radius: 28px;
+  contain: layout paint;
+}
+
+@media (min-width: 1121px) {
+  .app-shell .featured-grid,
+  .app-shell .products-grid,
+  .app-shell .service-grid,
+  .app-shell .full-grid,
+  .app-shell .blog-grid { --layout-columns: 4; }
+  .app-shell .updates-row { --layout-columns: 3; }
+  .app-shell .detail-footer-grid { --layout-columns: 3; }
+  .dv-site .dv-service-grid { --layout-columns: 4; }
+  .dv-site .dv-update-grid { --layout-columns: 3; }
+  .dv-site .dv-process-grid { --layout-columns: 2; }
+}
+
+@media (min-width: 761px) and (max-width: 1120px) {
+  .app-shell .featured-grid,
+  .app-shell .products-grid,
+  .app-shell .service-grid,
+  .app-shell .full-grid,
+  .app-shell .blog-grid,
+  .app-shell .support-app-grid,
+  .app-shell .support-choice-grid,
+  .app-shell .problem-grid,
+  .app-shell .process-grid,
+  .app-shell .capability-grid { --layout-columns: 2; }
+  .dv-site .dv-service-grid { --layout-columns: 2; }
+  .dv-site .dv-update-grid { --layout-columns: 3; }
+  .dv-site .dv-process-grid { --layout-columns: 2; }
+}
+
+@media (max-width: 760px) {
+  .app-shell :is(.featured-grid, .products-grid, .service-grid, .full-grid, .updates-row, .reason-grid, .detail-grid, .workflow-section, .detail-footer-grid, .support-choice-grid, .faq-grid, .blog-grid, .story-grid, .support-app-grid),
+  .dv-site :is(.dv-service-grid, .dv-update-grid, .dv-process-grid, .dv-footer-grid) {
+    --layout-columns: 1;
+  }
+
+  .app-shell .product-card {
+    gap: 0;
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .app-shell .product-card-top {
+    align-items: flex-start;
+  }
+
+  .app-shell .product-card-top img {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 auto;
+  }
+
+  .app-shell .product-card p {
+    margin-block: 16px;
+    line-height: 1.68;
+  }
+
+  .app-shell .product-visual {
+    height: clamp(220px, 72vw, 290px);
+    margin-block: 18px;
+  }
+
+  .app-shell .metric-row,
+  .app-shell .metric-row.compact {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .app-shell .metric-row span,
+  .app-shell .metric-row.compact span {
+    min-width: 0;
+    min-height: 62px;
+    padding: 9px 8px;
+    line-height: 1.25;
+  }
+
+  .app-shell .metric-row strong,
+  .app-shell .metric-row.compact strong {
+    font-size: .88rem;
+  }
+
+  .app-shell .card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell .support-product-card {
+    gap: 18px;
+    padding: 22px;
+  }
+
+  .app-shell .support-product-steps {
+    grid-template-columns: 1fr;
+  }
+
+  /* Product hero: two bounded previews, no giant off-canvas device stack. */
+  .app-shell.v7-product-detail-ready .v7-product-hero {
+    min-height: 0;
+    gap: 24px;
+    padding: 26px 20px 20px;
+    border-radius: 28px;
+  }
+
+  .app-shell.v7-product-detail-ready .v7-product-hero .product-title-row {
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .app-shell.v7-product-detail-ready .v7-product-hero .product-title-row img {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 auto;
+  }
+
+  .app-shell.v7-product-detail-ready .v7-product-hero .product-title-row h1 {
+    font-size: clamp(2.55rem, 13vw, 3.45rem);
+    line-height: .96;
+    letter-spacing: -.055em;
+  }
+
+  .app-shell.v7-product-detail-ready .v7-product-hero .hero-lead {
+    font-size: 1.06rem;
+    line-height: 1.5;
+  }
+
+  .app-shell.v7-product-detail-ready .v7-product-hero .actions {
+    gap: 10px;
+  }
+
+  .app-shell.v7-product-detail-ready .v7-product-hero .detail-device-row {
+    position: relative;
+    width: calc(100% + 8px);
+    height: clamp(330px, 96vw, 410px);
+    min-height: 0 !important;
+    margin: 2px -4px 0;
+    border: 1px solid color-mix(in srgb, var(--theme) 12%, #dfe7f1);
+    background:
+      radial-gradient(circle at 48% 76%, color-mix(in srgb, var(--theme) 16%, transparent), transparent 58%),
+      linear-gradient(145deg, rgb(247 250 255 / .98), rgb(238 244 255 / .94));
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .device {
+    top: 22px;
+    width: min(47vw, 170px);
+    max-width: 47%;
+    padding: 7px;
+    border-radius: 26px;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .device img {
+    border-radius: 20px;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .device-speaker {
+    top: 14px;
+    width: 48px;
+    height: 14px;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-1 {
+    left: 8%;
+    right: auto;
+    z-index: 3;
+    transform: rotate(-4deg);
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-2 {
+    top: 42px;
+    right: 7%;
+    left: auto;
+    z-index: 2;
+    transform: rotate(4deg);
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-3,
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-4 {
+    display: none;
+  }
+
+  /* Mobile product storytelling uses normal document flow instead of desktop sticky theatre. */
+  .app-shell .v7-product-experience {
+    margin-top: 52px;
+  }
+
+  .app-shell .v7-product-overview {
+    gap: 30px;
+  }
+
+  .app-shell .v7-overview-copy h2,
+  .app-shell .v7-section-heading h2 {
+    font-size: clamp(2.25rem, 11.5vw, 3.45rem);
+    line-height: 1;
+  }
+
+  .app-shell .v7-story-layout {
+    display: grid;
+    gap: 28px;
+  }
+
+  .app-shell .v7-stage-column {
+    position: relative;
+    top: auto;
+  }
+
+  .app-shell .v7-feature-stage {
+    overflow: hidden;
+  }
+
+  .app-shell .v7-stage-canvas {
+    min-height: clamp(330px, 92vw, 390px);
+  }
+
+  .app-shell .v7-feature-track {
+    display: grid;
+    gap: 14px;
+  }
+
+  .app-shell .v7-feature-chapter {
+    min-height: 0;
+    padding: 28px 20px;
+    border: 1px solid var(--v7-line);
+    border-radius: 24px;
+    background: rgb(255 255 255 / .9);
+    box-shadow: 0 16px 44px rgb(15 23 42 / .045);
+  }
+
+  .app-shell .v7-feature-chapter h3 {
+    font-size: clamp(1.85rem, 9.5vw, 2.7rem);
+    line-height: 1.02;
+  }
+
+  .app-shell .v7-product-screens,
+  .app-shell .v7-fact-panel,
+  .app-shell .v7-product-cta {
+    padding: 22px;
+  }
+
+  .app-shell .v7-screen-card {
+    min-height: 390px;
+  }
+
+  .app-shell .v7-fact-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell .v7-product-cta {
+    gap: 28px;
+  }
+
+  .dv-site .dv-service-card {
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .dv-site .dv-service-top {
+    margin-bottom: 38px;
+  }
+
+  .dv-site .dv-service-card > a,
+  html.motion-system-v10 .dv-site .dv-service-card > a {
+    padding-top: 22px;
+  }
+
+  .dv-site .dv-product-heading {
+    align-items: flex-start;
+  }
+
+  .dv-site .dv-product-actions,
+  .dv-site .dv-product-actions .dv-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell.v7-product-detail-ready .v7-product-hero .detail-device-row {
+    height: 330px;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .device {
+    width: min(58vw, 182px);
+    max-width: 58%;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-1 {
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-2 {
+    display: none;
+  }
+
+  .app-shell .metric-row,
+  .app-shell .metric-row.compact {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell .metric-row span,
+  .app-shell .metric-row.compact span {
+    min-height: 0;
+  }
+}

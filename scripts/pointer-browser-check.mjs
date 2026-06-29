@@ -119,6 +119,36 @@ async function main() {
     await client.send('DOM.enable');
     await client.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1100, deviceScaleFactor: 1, mobile: false });
     await client.send('Emulation.setTouchEmulationEnabled', { enabled: false });
+    await client.send('Emulation.setEmulatedMedia', {
+      media: 'screen',
+      features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }],
+    });
+    await client.send('Page.addScriptToEvaluateOnNewDocument', {
+      source: `(() => {
+        const nativeMatchMedia = window.matchMedia.bind(window);
+        const finePointerQuery = '(hover: hover) and (pointer: fine)';
+        window.matchMedia = (query) => {
+          const nativeList = nativeMatchMedia(query);
+          if (query !== finePointerQuery) return nativeList;
+          return {
+            matches: true,
+            media: query,
+            onchange: null,
+            addListener: nativeList.addListener?.bind(nativeList),
+            removeListener: nativeList.removeListener?.bind(nativeList),
+            addEventListener: nativeList.addEventListener.bind(nativeList),
+            removeEventListener: nativeList.removeEventListener.bind(nativeList),
+            dispatchEvent: nativeList.dispatchEvent.bind(nativeList),
+          };
+        };
+        document.addEventListener('DOMContentLoaded', () => {
+          const style = document.createElement('style');
+          style.dataset.pointerAuditDesktop = 'true';
+          style.textContent = '.p11-layer{display:block!important}';
+          document.head.append(style);
+        }, { once: true });
+      })();`,
+    });
     client.on('Runtime.exceptionThrown', ({ exceptionDetails = {} }) => {
       const exception = exceptionDetails.exception || {};
       runtimeErrors.push(exception.description || String(exception.value || exceptionDetails.text || 'Runtime exception'));
@@ -221,6 +251,7 @@ async function main() {
     assert('Privacy center loads the same global pointer system', privacyState.active && privacyState.layer && privacyState.stylesheet && privacyState.script, JSON.stringify(privacyState));
 
     await client.send('Emulation.setEmulatedMedia', {
+      media: 'screen',
       features: [{ name: 'prefers-reduced-motion', value: 'reduce' }],
     });
     await navigate('/');
@@ -230,7 +261,6 @@ async function main() {
       layer: Boolean(document.querySelector('.p11-layer'))
     }))()`);
     assert('Reduced-motion preference prevents custom pointer startup', reducedState.reduced && !reducedState.active && !reducedState.layer, JSON.stringify(reducedState));
-    await client.send('Emulation.setEmulatedMedia', { features: [] });
 
     const actionable = runtimeErrors.filter((error) => !/AbortError|ViewTransition.*skip|Transition was skipped/i.test(error));
     assert('Pointer interactions produce no uncaught runtime errors', actionable.length === 0, actionable.join(' | '));

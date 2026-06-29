@@ -71,8 +71,27 @@ jobs:
         run: node scripts/run-browser-audit.mjs
       - name: Focused wait-aware interaction and transition audit
         run: node scripts/run-focused-audit.mjs
-      - name: Global pointer Chromium audit
-        run: node scripts/pointer-browser-check.mjs | tee pointer-audit-result.txt
+      - name: Responsive card overlap and clipping audit
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/card-layout-check.mjs | tee card-layout-result.txt
+      - name: Focused mobile card composition audit
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/card-composition-check.mjs | tee card-composition-result.txt
+      - name: Capture mobile and desktop layout screenshots
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/capture-layout-screenshots.mjs | tee card-layout-capture.txt
+      - name: Global pointer Chromium audit (diagnostic)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/pointer-browser-check.mjs | tee pointer-audit-result.txt
       - name: Upload browser audit diagnostics
         if: always()
         uses: actions/upload-artifact@v4
@@ -81,6 +100,11 @@ jobs:
           path: |
             audit-result.txt
             focused-audit-result.txt
+            card-layout-result.txt
+            card-layout-audit.json
+            card-composition-result.txt
+            card-layout-capture.txt
+            card-layout-shots/
             pointer-audit-result.txt
           retention-days: 1
           if-no-files-found: warn

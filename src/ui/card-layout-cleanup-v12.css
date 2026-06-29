@@ -1,0 +1,41 @@
+/* Final card cleanup after the shared layout system. */
+
+.app-shell :is(.v7-fact-panel, .v7-product-cta) h2 {
+  overflow: visible;
+  padding-bottom: 7px;
+}
+
+.app-shell .article-meta-panel .meta-chip-row + p {
+  margin-top: 18px;
+}
+
+@media (min-width: 1121px) {
+  /* Full catalog cards contain screenshots, metrics and two CTAs; four columns makes them unreadably narrow. */
+  .app-shell .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  /* Flat marketing screenshots must not inherit phone-frame decoration or blurred glow overflow. */
+  .app-shell.v7-product-detail-ready .detail-device-row::before,
+  .app-shell.v7-product-detail-ready .detail-device-row > .ux-local-aura,
+  .app-shell.v7-product-detail-ready .detail-device-row .ux-device-glass,
+  .app-shell.v7-product-detail-ready .detail-device-row .ux-device-frame::after {
+    display: none;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .device,
+  .app-shell.v7-product-detail-ready .detail-device-row .detail-device-1 {
+    left: 16px;
+    right: auto;
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px);
+    box-sizing: border-box;
+  }
+
+  .app-shell.v7-product-detail-ready .detail-device-row .ux-device-frame {
+    overflow: hidden;
+    isolation: auto;
+  }
+}
