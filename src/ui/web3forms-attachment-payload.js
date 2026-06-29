@@ -2,10 +2,6 @@ const SUPPORT_FORM_SELECTOR = 'form.support-form';
 const SOURCE_INPUT_SELECTOR = 'input.upload-native-input:not(.web3forms-attachment-payload)';
 const PAYLOAD_CLASS = 'web3forms-attachment-payload';
 
-function safeFieldName(value) {
-  return String(value || 'file').replace(/[^a-z0-9_]+/gi, '_').replace(/^_+|_+$/g, '').toLowerCase();
-}
-
 function clearPayloadInputs(form) {
   form.querySelectorAll(`.${PAYLOAD_CLASS}`).forEach((input) => input.remove());
   form.querySelectorAll(SOURCE_INPUT_SELECTOR).forEach((input) => {
@@ -13,10 +9,10 @@ function clearPayloadInputs(form) {
   });
 }
 
-function createSingleFileInput(file, name) {
+function createSingleFileInput(file, index) {
   const payload = document.createElement('input');
   payload.type = 'file';
-  payload.name = name;
+  payload.name = `attachment_${index}`;
   payload.className = `upload-native-input ${PAYLOAD_CLASS}`;
   payload.tabIndex = -1;
   payload.setAttribute('aria-hidden', 'true');
@@ -32,32 +28,27 @@ function preparePayload(form) {
   form.enctype = 'multipart/form-data';
 
   const sourceInputs = Array.from(form.querySelectorAll(SOURCE_INPUT_SELECTOR));
-  let payloadCount = 0;
+  const files = sourceInputs.flatMap((input) => Array.from(input.files || []));
+  if (!files.length) return;
 
   try {
-    sourceInputs.forEach((sourceInput) => {
-      const group = safeFieldName(sourceInput.closest('[data-upload-group]')?.dataset.uploadGroup);
-      Array.from(sourceInput.files || []).forEach((file, index) => {
-        const fieldName = `attachment_${group}_${index + 1}`;
-        form.append(createSingleFileInput(file, fieldName));
-        payloadCount += 1;
-      });
+    files.forEach((file, index) => {
+      form.append(createSingleFileInput(file, index + 1));
     });
   } catch {
     clearPayloadInputs(form);
     return;
   }
 
-  if (payloadCount > 0) {
+  sourceInputs.forEach((input) => {
+    input.disabled = true;
+  });
+
+  window.setTimeout(() => {
     sourceInputs.forEach((input) => {
-      input.disabled = true;
+      input.disabled = false;
     });
-    window.setTimeout(() => {
-      sourceInputs.forEach((input) => {
-        input.disabled = false;
-      });
-    }, 0);
-  }
+  }, 0);
 }
 
 document.addEventListener('submit', (event) => {
