@@ -22,6 +22,7 @@ import './ui/motion-system-v10-hardening.css';
 import './ui/card-layout-hardening-v12.css';
 import './ui/card-layout-grid-v12.css';
 import './ui/card-layout-cleanup-v12.css';
+import './ui/contextual-file-uploads.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/link-normalizer-v6.js';
@@ -33,6 +34,7 @@ import './ui/brand-meta-v8.js';
 import './ui/ux-copy-v8.js';
 import './ui/motion-system-v10.js';
 import './ui/motion-system-v10-compat.js';
+import './ui/contextual-file-uploads.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 const page = path === '/admin'
