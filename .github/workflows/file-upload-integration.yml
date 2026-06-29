@@ -1,4 +1,4 @@
-name: One-time file attachment integration
+name: One-time browser integration check
 
 on:
   pull_request:
@@ -8,26 +8,16 @@ permissions:
   contents: read
 
 jobs:
-  attachment-api:
+  browser-check:
     if: github.head_ref == 'verify/file-attachments-build'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
-      - name: Submit a small attachment to Web3Forms
-        shell: bash
-        run: |
-          set -u
-          printf 'Devovia file attachment integration test.\n' > attachment-test.txt
-          HTTP_STATUS=$(curl --silent --show-error --output response.json --write-out '%{http_code}' \
-            -X POST 'https://api.web3forms.com/submit' \
-            -F 'access_key=156fd324-7568-4397-adee-20b99ad68190' \
-            -F 'subject=[QA] Devovia file attachment integration test' \
-            -F 'from_name=Devovia Automated QA' \
-            -F 'name=Automated QA' \
-            -F 'email=info@devoviastudio.com' \
-            -F 'message=Automated one-time verification of the website file attachment flow.' \
-            -F 'attachment_1=@attachment-test.txt;type=text/plain')
-          echo "HTTP_STATUS=${HTTP_STATUS}"
-          cat response.json
-          echo
-          RESPONSE_JSON=$(cat response.json) node -e "const r=JSON.parse(process.env.RESPONSE_JSON);if(r.success!==true){console.error('WEB3FORMS_ERROR='+(r.message||'Unknown error'));process.exit(1)}"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: node scripts/one-time-browser-attachment-check.mjs
