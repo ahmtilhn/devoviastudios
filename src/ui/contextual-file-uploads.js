@@ -1,43 +1,43 @@
 const FORM_SELECTOR = 'form.support-form';
-const ENHANCED_ATTRIBUTE = 'data-contextual-uploads';
+const ENHANCED_ATTRIBUTE = 'data-file-uploads-ready';
+const PANEL_SELECTOR = '[data-attachment-panel="files"]';
+const MAX_FILES = 5;
+const MAX_FILE_BYTES = 5 * 1024 * 1024;
 const MAX_TOTAL_BYTES = 15 * 1024 * 1024;
 
-const FILE_TYPES = {
-  images: {
-    accept: '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp',
-    extensions: ['jpg', 'jpeg', 'png', 'webp'],
-    mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
-  },
-  documents: {
-    accept: '.pdf,.docx,.pptx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation',
-    extensions: ['pdf', 'docx', 'pptx'],
-    mimeTypes: [
-      'application/pdf',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-    ],
-  },
-  reports: {
-    accept: '.pdf,.docx,.xlsx,.csv,.txt,application/pdf,text/plain,text/csv,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    extensions: ['pdf', 'docx', 'xlsx', 'csv', 'txt'],
-    mimeTypes: [
-      'application/pdf',
-      'text/plain',
-      'text/csv',
-      'application/csv',
-      'application/vnd.ms-excel',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    ],
-  },
-  billing: {
-    accept: '.jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf',
-    extensions: ['jpg', 'jpeg', 'png', 'webp', 'pdf'],
-    mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
-  },
-};
+const ALLOWED_EXTENSIONS = new Set([
+  'jpg', 'jpeg', 'png', 'webp',
+  'pdf', 'doc', 'docx',
+  'xls', 'xlsx', 'csv',
+  'txt', 'ppt', 'pptx',
+]);
 
-function element(tag, className, text) {
+const ALLOWED_MIME_TYPES = new Set([
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'application/vnd.ms-excel',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  'text/csv',
+  'application/csv',
+  'text/plain',
+  'application/vnd.ms-powerpoint',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+]);
+
+const ACCEPTED_FILES = [
+  '.jpg', '.jpeg', '.png', '.webp',
+  '.pdf', '.doc', '.docx',
+  '.xls', '.xlsx', '.csv',
+  '.txt', '.ppt', '.pptx',
+].join(',');
+
+const formStates = new WeakMap();
+
+function element(tag, className = '', text = '') {
   const node = document.createElement(tag);
   if (className) node.className = className;
   if (text) node.textContent = text;
@@ -51,7 +51,7 @@ function formatBytes(bytes) {
 }
 
 function extensionOf(fileName) {
-  const parts = fileName.toLowerCase().split('.');
+  const parts = String(fileName || '').toLowerCase().split('.');
   return parts.length > 1 ? parts.pop() : '';
 }
 
@@ -59,62 +59,67 @@ function fileKey(file) {
   return `${file.name}:${file.size}:${file.lastModified}`;
 }
 
-function createTextField({ label, name, type = 'text', placeholder, className = 'full', hint }) {
-  const wrapper = element('label', className);
-  wrapper.append(document.createTextNode(label));
-  const input = document.createElement('input');
-  input.name = name;
-  input.type = type;
-  input.placeholder = placeholder || '';
-  wrapper.append(input);
-  if (hint) wrapper.append(element('span', 'field-hint', hint));
-  return wrapper;
+function validateFile(file) {
+  if (!file || file.size === 0) return 'Empty files cannot be attached.';
+  if (file.size > MAX_FILE_BYTES) {
+    return `${file.name} is larger than 5 MB.`;
+  }
+
+  const extension = extensionOf(file.name);
+  const mimeType = String(file.type || '').toLowerCase();
+  const mimeAllowed = !mimeType || mimeType === 'application/octet-stream' || ALLOWED_MIME_TYPES.has(mimeType);
+
+  if (!ALLOWED_EXTENSIONS.has(extension) || !mimeAllowed) {
+    return `${file.name} is not an accepted file type.`;
+  }
+  return '';
 }
 
-function createSelectField({ label, name, options, className = '' }) {
-  const wrapper = element('label', className);
-  wrapper.append(document.createTextNode(label));
-  const select = document.createElement('select');
-  select.name = name;
-  const placeholder = document.createElement('option');
-  placeholder.value = '';
-  placeholder.disabled = true;
-  placeholder.selected = true;
-  placeholder.textContent = 'Select an option';
-  select.append(placeholder);
-  options.forEach((optionText) => {
-    const option = document.createElement('option');
-    option.value = optionText;
-    option.textContent = optionText;
-    select.append(option);
-  });
-  wrapper.append(select);
-  return wrapper;
+function syncNativeInput(input, files) {
+  const transfer = new DataTransfer();
+  files.forEach((file) => transfer.items.add(file));
+  input.files = transfer.files;
+  input.dispatchEvent(new Event('file-attachments-changed', { bubbles: true }));
 }
 
-function createNotice(title, message, tone = 'info') {
-  const notice = element('div', `attachment-notice ${tone}`);
-  const copy = element('div');
-  copy.append(element('strong', '', title), element('p', '', message));
-  notice.append(element('span', 'attachment-notice-icon', tone === 'warning' ? '!' : 'i'), copy);
-  return notice;
+function updateAttachmentSummary(form, files) {
+  let summary = form.querySelector('input[name="attachment_summary"]');
+  if (!summary) {
+    summary = document.createElement('input');
+    summary.type = 'hidden';
+    summary.name = 'attachment_summary';
+    form.append(summary);
+  }
+  summary.value = files.length ? files.map((file) => file.name).join(', ') : 'No files attached';
 }
 
-function createUploadField(form, config) {
-  const type = FILE_TYPES[config.type];
-  const wrapper = element('section', 'upload-field full');
-  wrapper.dataset.uploadGroup = config.id;
+function createPanel(form, state) {
+  const panel = element('section', 'attachment-panel full');
+  panel.dataset.attachmentPanel = 'files';
+
+  const title = element('div', 'attachment-panel-title');
+  title.append(
+    element('span', 'attachment-panel-kicker', 'File attachment'),
+    element('h2', '', 'Add files to your message'),
+    element('p', '', 'Optional: attach images or documents directly to the email. No external upload link is required.'),
+  );
+
+  const upload = element('section', 'upload-field full');
+  upload.dataset.uploadGroup = 'files';
 
   const heading = element('div', 'upload-field-heading');
   const headingCopy = element('div');
-  headingCopy.append(element('h3', '', config.title), element('p', '', config.description));
-  heading.append(headingCopy, element('span', 'upload-limit', `${config.maxFiles} files · ${config.maxSizeMb} MB each`));
+  headingCopy.append(
+    element('h3', '', 'Images and documents'),
+    element('p', '', 'JPG, PNG, WebP, PDF, Word, Excel, CSV, TXT or PowerPoint'),
+  );
+  heading.append(headingCopy, element('span', 'upload-limit', `${MAX_FILES} files · 5 MB each`));
 
   const input = document.createElement('input');
   input.type = 'file';
   input.name = 'attachment';
-  input.accept = type.accept;
-  input.multiple = config.maxFiles > 1;
+  input.accept = ACCEPTED_FILES;
+  input.multiple = true;
   input.className = 'upload-native-input';
   input.tabIndex = -1;
   input.setAttribute('aria-hidden', 'true');
@@ -122,60 +127,30 @@ function createUploadField(form, config) {
   const dropZone = element('div', 'upload-drop-zone');
   dropZone.tabIndex = 0;
   dropZone.setAttribute('role', 'button');
-  dropZone.setAttribute('aria-label', `${config.title}. Choose files or drag and drop.`);
+  dropZone.setAttribute('aria-label', 'Choose files or drag and drop files');
   const action = element('div', 'upload-drop-action');
   action.append(element('span', 'upload-symbol', '+'), element('strong', '', 'Choose files'));
-  dropZone.append(action, element('p', '', config.formats));
+  dropZone.append(action, element('p', '', 'You can select up to 5 files. Total size must not exceed 15 MB.'));
 
   const error = element('p', 'upload-error');
-  error.setAttribute('role', 'alert');
   error.hidden = true;
+  error.setAttribute('role', 'alert');
 
   const list = element('div', 'upload-file-list');
   list.setAttribute('aria-live', 'polite');
 
-  let files = [];
-  let previewUrls = [];
-
-  const showError = (message = '') => {
+  function showError(message = '') {
     error.textContent = message;
     error.hidden = !message;
-    wrapper.classList.toggle('has-error', Boolean(message));
-  };
+    upload.classList.toggle('has-error', Boolean(message));
+  }
 
-  const syncInput = () => {
-    try {
-      const transfer = new DataTransfer();
-      files.forEach((file) => transfer.items.add(file));
-      input.files = transfer.files;
-    } catch {
-      // Modern browsers support DataTransfer construction. If an older browser
-      // does not, the latest native selection remains available for submission.
-    }
-    input.dispatchEvent(new Event('contextual-files-changed', { bubbles: true }));
-  };
-
-  const clearPreviews = () => {
-    previewUrls.forEach((url) => URL.revokeObjectURL(url));
-    previewUrls = [];
-  };
-
-  const render = () => {
-    clearPreviews();
+  function render() {
     list.replaceChildren();
-    files.forEach((file, index) => {
+    state.files.forEach((file, index) => {
       const row = element('article', 'upload-file-row');
-      let visual;
-      if (file.type.startsWith('image/')) {
-        const url = URL.createObjectURL(file);
-        previewUrls.push(url);
-        visual = document.createElement('img');
-        visual.src = url;
-        visual.alt = '';
-      } else {
-        visual = element('span', 'upload-file-extension', extensionOf(file.name).toUpperCase());
-      }
-
+      const extension = extensionOf(file.name).toUpperCase() || 'FILE';
+      const visual = element('span', 'upload-file-extension', extension);
       const copy = element('div', 'upload-file-copy');
       copy.append(element('strong', '', file.name), element('span', '', formatBytes(file.size)));
 
@@ -183,53 +158,51 @@ function createUploadField(form, config) {
       remove.type = 'button';
       remove.setAttribute('aria-label', `Remove ${file.name}`);
       remove.addEventListener('click', () => {
-        files.splice(index, 1);
+        state.files.splice(index, 1);
         showError('');
-        syncInput();
+        syncNativeInput(input, state.files);
+        updateAttachmentSummary(form, state.files);
         render();
       });
 
       row.append(visual, copy, remove);
       list.append(row);
     });
-    dropZone.classList.toggle('has-files', files.length > 0);
-  };
+    dropZone.classList.toggle('has-files', state.files.length > 0);
+  }
 
-  const validateFile = (file) => {
-    if (!file || file.size === 0) return 'Empty files cannot be uploaded.';
-    if (file.size > config.maxSizeMb * 1024 * 1024) {
-      return `${file.name} is larger than ${config.maxSizeMb} MB.`;
-    }
-    const extension = extensionOf(file.name);
-    const mimeAllowed = !file.type || type.mimeTypes.includes(file.type.toLowerCase());
-    if (!type.extensions.includes(extension) || !mimeAllowed) {
-      return `${file.name} is not an accepted file type.`;
-    }
-    return '';
-  };
-
-  const addFiles = (incoming) => {
+  function addFiles(incoming) {
     showError('');
-    const next = [...files];
-    const existing = new Set(next.map(fileKey));
+    const existing = new Set(state.files.map(fileKey));
+    const errors = [];
+
     for (const file of Array.from(incoming || [])) {
-      const validationMessage = validateFile(file);
-      if (validationMessage) {
-        showError(validationMessage);
+      const validationError = validateFile(file);
+      if (validationError) {
+        errors.push(validationError);
         continue;
       }
       if (existing.has(fileKey(file))) continue;
-      if (next.length >= config.maxFiles) {
-        showError(`You can add up to ${config.maxFiles} files in this section.`);
+      if (state.files.length >= MAX_FILES) {
+        errors.push(`You can attach up to ${MAX_FILES} files.`);
         break;
       }
-      next.push(file);
+
+      const nextTotal = state.files.reduce((sum, item) => sum + item.size, 0) + file.size;
+      if (nextTotal > MAX_TOTAL_BYTES) {
+        errors.push('All attachments together must be 15 MB or smaller.');
+        continue;
+      }
+
+      state.files.push(file);
       existing.add(fileKey(file));
     }
-    files = next;
-    syncInput();
+
+    syncNativeInput(input, state.files);
+    updateAttachmentSummary(form, state.files);
     render();
-  };
+    if (errors.length) showError(errors[0]);
+  }
 
   input.addEventListener('change', () => addFiles(input.files));
   dropZone.addEventListener('click', () => input.click());
@@ -239,6 +212,7 @@ function createUploadField(form, config) {
       input.click();
     }
   });
+
   ['dragenter', 'dragover'].forEach((eventName) => {
     dropZone.addEventListener(eventName, (event) => {
       event.preventDefault();
@@ -253,259 +227,76 @@ function createUploadField(form, config) {
   });
   dropZone.addEventListener('drop', (event) => addFiles(event.dataTransfer?.files));
 
-  wrapper.append(heading, input, dropZone, error, list);
-  wrapper.clearFiles = () => {
-    files = [];
+  const notice = element('div', 'attachment-notice warning');
+  const noticeCopy = element('div');
+  noticeCopy.append(
+    element('strong', '', 'Do not attach confidential access data'),
+    element('p', '', 'Do not send passwords, API keys, signing files, identity documents, bank details, APK/AAB/IPA files, archives or executable files.'),
+  );
+  notice.append(element('span', 'attachment-notice-icon', '!'), noticeCopy);
+
+  upload.append(heading, input, dropZone, error, list);
+  panel.append(title, upload, notice);
+
+  if (state.files.length) {
+    syncNativeInput(input, state.files);
+    render();
+  }
+
+  panel.clearFiles = () => {
+    state.files = [];
     showError('');
-    syncInput();
+    syncNativeInput(input, state.files);
+    updateAttachmentSummary(form, state.files);
     render();
   };
-  wrapper.getFiles = () => [...files];
-  wrapper.getLabel = () => config.title;
-  return wrapper;
-}
 
-function createPanel(form, kind) {
-  const panel = element('section', 'attachment-panel full');
-  panel.dataset.attachmentPanel = kind;
-  const title = element('div', 'attachment-panel-title');
-  title.append(element('span', 'attachment-panel-kicker', kind === 'project' ? 'Project material' : 'Helpful evidence'));
-  title.append(element('h2', '', kind === 'project' ? 'Show us what you have in mind' : 'Add files that explain the request'));
-  title.append(element('p', '', kind === 'project'
-    ? 'References and documents help us understand the scope before we reply.'
-    : 'The available upload fields change according to the request type you select.'));
-  panel.append(title);
   return panel;
 }
 
-function updateAttachmentSummary(form) {
-  const groups = Array.from(form.querySelectorAll('[data-upload-group]'));
-  const summary = groups
-    .map((group) => {
-      const names = group.getFiles?.().map((file) => file.name) || [];
-      return names.length ? `${group.getLabel?.()}: ${names.join(', ')}` : '';
-    })
-    .filter(Boolean)
-    .join(' | ');
-  let input = form.querySelector('input[name="attachment_summary"]');
-  if (!input) {
-    input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'attachment_summary';
-    form.append(input);
-  }
-  input.value = summary || 'No files attached';
-}
-
-function validateTotalSize(form) {
-  const files = Array.from(form.querySelectorAll('input[type="file"][name="attachment"]'))
-    .flatMap((input) => Array.from(input.files || []));
-  const total = files.reduce((sum, file) => sum + file.size, 0);
-  const existing = form.querySelector('.attachment-total-error');
-  if (total <= MAX_TOTAL_BYTES) {
-    existing?.remove();
-    return true;
-  }
-  const message = existing || element('p', 'upload-error attachment-total-error');
-  message.textContent = `All attachments together must be smaller than ${formatBytes(MAX_TOTAL_BYTES)}.`;
-  message.setAttribute('role', 'alert');
-  const panel = form.querySelector('[data-attachment-panel]');
-  panel?.append(message);
-  message.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  return false;
-}
-
-function addProjectFields(form, panel) {
-  const messageField = form.querySelector('textarea[name="message"]')?.closest('label');
-  const stage = createSelectField({
-    label: 'Project stage',
-    name: 'project_stage',
-    options: ['Idea only', 'Planning / specification', 'Design ready', 'Existing product', 'Needs redesign or repair'],
-  });
-  const projectType = form.querySelector('select[name="project_type"]');
-  const timeline = form.querySelector('select[name="timeline"]');
-  if (projectType) projectType.required = true;
-  if (timeline) timeline.required = true;
-  messageField?.before(stage);
-
-  panel.append(
-    createUploadField(form, {
-      id: 'project-visuals',
-      title: 'Visual references',
-      description: 'Screenshots, sketches, wireframes, brand references or examples you like.',
-      formats: 'JPG, PNG or WebP · Up to 5 files',
-      type: 'images',
-      maxFiles: 5,
-      maxSizeMb: 5,
-    }),
-    createUploadField(form, {
-      id: 'project-documents',
-      title: 'Project document',
-      description: 'Requirements, project brief, report, feature list or presentation.',
-      formats: 'PDF, DOCX or PPTX · Up to 2 files',
-      type: 'documents',
-      maxFiles: 2,
-      maxSizeMb: 5,
-    }),
-    createTextField({
-      label: 'Prototype or sharing link (optional)',
-      name: 'project_link',
-      type: 'url',
-      placeholder: 'https://figma.com, Google Drive, GitHub, Loom…',
-      hint: 'Use a shareable link for videos, Figma files, source repositories or large materials.',
-    }),
-    createNotice('Do not upload secrets', 'Do not include passwords, API keys, signing files, identity documents or confidential account access details.', 'warning'),
-  );
-}
-
-function addAppSupportFields(form, panel) {
-  const context = element('div', 'attachment-context-grid full');
-  context.append(
-    createTextField({ label: 'Device model (optional)', name: 'device_model', placeholder: 'Example: Pixel 8 or iPhone 15', className: '' }),
-    createTextField({ label: 'App / OS version (optional)', name: 'app_os_version', placeholder: 'Example: App 2.4.1 · Android 15', className: '' }),
-  );
-  panel.append(
-    context,
-    createUploadField(form, {
-      id: 'support-screenshots',
-      title: 'Screenshots of the problem',
-      description: 'Add the error message and the screen where the issue happens.',
-      formats: 'JPG, PNG or WebP · Up to 5 files',
-      type: 'images',
-      maxFiles: 5,
-      maxSizeMb: 5,
-    }),
-    createUploadField(form, {
-      id: 'support-report',
-      title: 'Technical report',
-      description: 'Optional PDF or text report containing additional non-sensitive details.',
-      formats: 'PDF or TXT · Up to 2 files',
-      type: 'reports',
-      maxFiles: 2,
-      maxSizeMb: 5,
-    }),
-    createTextField({
-      label: 'Screen recording link (optional)',
-      name: 'screen_recording_link',
-      type: 'url',
-      placeholder: 'Loom, Google Drive or YouTube link',
-      hint: 'Use a private share link instead of uploading large video files.',
-    }),
-  );
-}
-
-function addGooglePlayFields(form, panel) {
-  panel.append(
-    createTextField({
-      label: 'Google Play or Console reference link (optional)',
-      name: 'google_play_reference',
-      type: 'url',
-      placeholder: 'https://play.google.com or a shareable reference link',
-    }),
-    createUploadField(form, {
-      id: 'play-screenshots',
-      title: 'Play Console screenshots',
-      description: 'Policy notices, closed-testing status, review results or blocker screens.',
-      formats: 'JPG, PNG or WebP · Up to 5 files',
-      type: 'images',
-      maxFiles: 5,
-      maxSizeMb: 5,
-    }),
-    createUploadField(form, {
-      id: 'play-reports',
-      title: 'Reports and test files',
-      description: 'Review reports, policy copy, test lists, store content or readiness documents.',
-      formats: 'PDF, DOCX, XLSX, CSV or TXT · Up to 3 files',
-      type: 'reports',
-      maxFiles: 3,
-      maxSizeMb: 5,
-    }),
-    createNotice('Never send account credentials', 'APK, AAB, IPA, ZIP, keystore, certificates, passwords and Google account access details are not accepted.', 'warning'),
-  );
-}
-
-function addBillingFields(form, panel) {
-  panel.append(
-    createUploadField(form, {
-      id: 'billing-evidence',
-      title: 'Receipt or error evidence',
-      description: 'Add a purchase receipt, subscription screen or payment error screenshot.',
-      formats: 'JPG, PNG, WebP or PDF · Up to 2 files',
-      type: 'billing',
-      maxFiles: 2,
-      maxSizeMb: 5,
-    }),
-    createNotice('Hide financial information', 'Cover card numbers, bank details, identity numbers and security codes before uploading.', 'warning'),
-  );
-}
-
-function renderSupportPanel(form, panel, requestType) {
-  panel.querySelectorAll('[data-upload-group]').forEach((group) => group.clearFiles?.());
-  panel.querySelectorAll(':scope > :not(.attachment-panel-title)').forEach((node) => node.remove());
-  form.querySelector('.attachment-total-error')?.remove();
-
-  if (requestType === 'App support') {
-    addAppSupportFields(form, panel);
-  } else if (requestType === 'Google Play test support') {
-    addGooglePlayFields(form, panel);
-  } else if (requestType === 'Billing issue') {
-    addBillingFields(form, panel);
-  } else if (requestType === 'Privacy policy') {
-    panel.append(createNotice(
-      'No documents are needed here',
-      'Describe the privacy request in the message field. Do not upload passports, identity documents or other sensitive personal records.',
-      'warning',
-    ));
-  } else {
-    panel.append(createNotice('Choose a request type', 'Relevant and safe attachment options will appear after you select the type of help you need.'));
-  }
-  updateAttachmentSummary(form);
-}
-
 function enhanceForm(form) {
-  if (form.hasAttribute(ENHANCED_ATTRIBUTE)) return;
-  form.setAttribute(ENHANCED_ATTRIBUTE, 'true');
+  if (form.querySelector(PANEL_SELECTOR)) return;
 
-  const project = Boolean(form.querySelector('select[name="project_type"]'));
-  const requestType = form.querySelector('select[name="request_type"]');
-  if (requestType) {
-    requestType.required = true;
-    if (form.closest('.test-support-page') && !requestType.value) {
-      requestType.value = 'Google Play test support';
-    }
+  let state = formStates.get(form);
+  if (!state) {
+    state = { files: [] };
+    formStates.set(form, state);
   }
 
-  const panel = createPanel(form, project ? 'project' : 'support');
-  const formNote = form.querySelector('.form-note');
-  if (formNote) formNote.before(panel);
+  form.setAttribute(ENHANCED_ATTRIBUTE, 'true');
+  form.enctype = 'multipart/form-data';
+
+  form.querySelectorAll('select[name="project_type"], select[name="timeline"], select[name="request_type"]')
+    .forEach((select) => { select.required = true; });
+
+  const panel = createPanel(form, state);
+  const firstNote = form.querySelector('.form-note');
+  if (firstNote) firstNote.before(panel);
   else form.append(panel);
 
-  if (project) {
-    addProjectFields(form, panel);
-  } else if (requestType) {
-    renderSupportPanel(form, panel, requestType.value);
-    requestType.addEventListener('change', () => renderSupportPanel(form, panel, requestType.value));
+  updateAttachmentSummary(form, state.files);
+
+  if (!form.dataset.fileUploadListeners) {
+    form.dataset.fileUploadListeners = 'true';
+
+    form.addEventListener('submit', (event) => {
+      const total = state.files.reduce((sum, file) => sum + file.size, 0);
+      if (state.files.length > MAX_FILES || total > MAX_TOTAL_BYTES) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+      updateAttachmentSummary(form, state.files);
+    }, true);
+
+    form.addEventListener('reset', () => {
+      window.setTimeout(() => {
+        state.files = [];
+        const currentPanel = form.querySelector(PANEL_SELECTOR);
+        currentPanel?.clearFiles?.();
+        updateAttachmentSummary(form, state.files);
+      }, 0);
+    });
   }
-
-  panel.addEventListener('contextual-files-changed', () => updateAttachmentSummary(form));
-
-  form.addEventListener('submit', (event) => {
-    updateAttachmentSummary(form);
-    if (!validateTotalSize(form)) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-    }
-  }, true);
-
-  form.addEventListener('reset', () => {
-    window.setTimeout(() => {
-      panel.querySelectorAll('[data-upload-group]').forEach((group) => group.clearFiles?.());
-      updateAttachmentSummary(form);
-      if (!project && requestType) renderSupportPanel(form, panel, requestType.value);
-    }, 0);
-  });
-
-  updateAttachmentSummary(form);
 }
 
 function scan() {
