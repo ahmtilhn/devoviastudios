@@ -13,23 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Submit a small attachment to Web3Forms
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
           printf 'Devovia file attachment integration test.\n' > attachment-test.txt
-          ACCESS_KEY=$(node -e "const fs=require('fs');const s=fs.readFileSync('src/App.jsx','utf8');const m=s.match(/formAccessKey\s*=\s*'([^']+)'/);if(!m)process.exit(1);process.stdout.write(m[1]);")
-          RESPONSE=$(curl --fail-with-body --silent --show-error \
+          HTTP_STATUS=$(curl --silent --show-error --output response.json --write-out '%{http_code}' \
             -X POST 'https://api.web3forms.com/submit' \
-            -F "access_key=${ACCESS_KEY}" \
+            -F 'access_key=156fd324-7568-4397-adee-20b99ad68190' \
             -F 'subject=[QA] Devovia file attachment integration test' \
             -F 'from_name=Devovia Automated QA' \
             -F 'name=Automated QA' \
             -F 'email=info@devoviastudio.com' \
             -F 'message=Automated one-time verification of the website file attachment flow.' \
             -F 'attachment_1=@attachment-test.txt;type=text/plain')
-          printf '%s\n' "$RESPONSE"
-          RESPONSE_JSON="$RESPONSE" node -e "const r=JSON.parse(process.env.RESPONSE_JSON);if(r.success!==true){console.error(r);process.exit(1)}"
+          echo "HTTP_STATUS=${HTTP_STATUS}"
+          cat response.json
+          echo
+          RESPONSE_JSON=$(cat response.json) node -e "const r=JSON.parse(process.env.RESPONSE_JSON);if(r.success!==true){console.error('WEB3FORMS_ERROR='+(r.message||'Unknown error'));process.exit(1)}"
