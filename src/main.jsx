@@ -23,6 +23,7 @@ import './ui/card-layout-hardening-v12.css';
 import './ui/card-layout-grid-v12.css';
 import './ui/card-layout-cleanup-v12.css';
 import './ui/contextual-file-uploads.css';
+import './ui/contact-overflow-fix.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/link-normalizer-v6.js';
