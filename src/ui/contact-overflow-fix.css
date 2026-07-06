@@ -1,0 +1,125 @@
+/* Contact page overflow hardening.
+   Keeps the current visual language while preventing the project form from
+   forcing horizontal scroll on tablet and mobile widths. */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.app-shell,
+.app-shell main,
+.contact-page,
+.contact-page > *,
+.contact-page .support-form,
+.contact-page .support-form *,
+.support-layout,
+.request-panel,
+.support-form,
+.support-form * {
+  min-width: 0;
+}
+
+.contact-page {
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  overflow: clip;
+}
+
+.contact-page > div:first-child {
+  max-width: 650px;
+}
+
+.contact-page > .support-form {
+  width: 100%;
+  max-width: 560px;
+  justify-self: end;
+  padding: clamp(18px, 3vw, 24px);
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.062), rgba(255,255,255,0.028));
+  box-shadow: var(--shadow-low);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.contact-page .support-form label,
+.contact-page .support-form input,
+.contact-page .support-form textarea,
+.contact-page .support-form select,
+.contact-page .support-form button,
+.contact-page .form-note {
+  max-width: 100%;
+}
+
+.contact-page .support-form input,
+.contact-page .support-form textarea,
+.contact-page .support-form select {
+  min-width: 0;
+}
+
+.contact-page .form-note {
+  align-items: flex-start;
+  overflow-wrap: anywhere;
+}
+
+.contact-page h1,
+.contact-page p,
+.contact-page label,
+.contact-page input,
+.contact-page textarea,
+.contact-page select {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1120px) {
+  .contact-page {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px;
+    padding: 52px 0;
+  }
+
+  .contact-page > .support-form {
+    max-width: 720px;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: min(100% - 24px, 1280px);
+    overflow-x: clip;
+  }
+
+  .contact-page {
+    gap: 22px;
+    padding: 36px 0 48px;
+  }
+
+  .contact-page > .support-form {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .contact-page .support-form .full,
+  .contact-page .support-form button,
+  .contact-page .form-note {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    width: min(100% - 18px, 1280px);
+  }
+
+  .contact-page h1 {
+    font-size: clamp(2rem, 11vw, 2.55rem);
+  }
+
+  .contact-page > .support-form {
+    padding: 16px;
+  }
+}
