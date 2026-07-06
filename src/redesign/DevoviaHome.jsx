@@ -145,13 +145,29 @@ function Header() {
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, []);
 
+  useEffect(() => {
+    document.body.dataset.dvMenuOpen = open ? 'true' : 'false';
+    return () => {
+      delete document.body.dataset.dvMenuOpen;
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const closeOnDesktop = () => {
+      if (window.innerWidth > 900) setOpen(false);
+    };
+    window.addEventListener('resize', closeOnDesktop, { passive: true });
+    return () => window.removeEventListener('resize', closeOnDesktop);
+  }, []);
+
   return (
-    <header className="dv-header">
+    <header className="dv-header" data-menu-open={open ? 'true' : 'false'}>
       <div className="dv-shell dv-nav">
         <a className="dv-brand" href="/" aria-label="Devovia Studio home">
-          <img src="/devovia-logo.png" alt="" />
+          <img src="/devovia-logo.png" alt="" width="76" height="76" decoding="async" />
           <span>Devovia Studio</span>
         </a>
+        {open ? <button className="dv-menu-backdrop" type="button" aria-label="Close navigation menu" onClick={() => setOpen(false)} /> : null}
         <nav id="dv-primary-navigation" className={open ? 'dv-nav-links is-open' : 'dv-nav-links'} aria-label="Primary navigation">
           <a href="#services" onClick={() => setOpen(false)}>Services</a>
           <a href="#products" onClick={() => setOpen(false)}>Products</a>
@@ -182,12 +198,12 @@ function ProductVisual({ product, index }) {
       {product.screenshots.slice(0, 3).map((shot, shotIndex) => (
         <div className={`dv-phone phone-${shotIndex + 1}`} key={shot}>
           <div className="dv-phone-speaker" />
-          <img src={shot} alt={`${product.name} app screen ${shotIndex + 1}`} loading="lazy" />
+          <img src={shot} alt={`${product.name} app screen ${shotIndex + 1}`} loading="lazy" decoding="async" width="1080" height="1920" />
           <span className="dv-phone-glass" aria-hidden="true" />
           <span className="dv-phone-button" aria-hidden="true" />
         </div>
       ))}
-      <img className="dv-floating-icon" src={product.icon_url} alt="" loading="lazy" />
+      <img className="dv-floating-icon" src={product.icon_url} alt="" loading="lazy" decoding="async" width="512" height="512" />
     </div>
   );
 }
@@ -205,7 +221,7 @@ function ProductSection({ product, index }) {
       <ProductVisual product={product} index={index} />
       <div className="dv-product-copy">
         <div className="dv-product-heading">
-          <img src={product.icon_url} alt={`${product.name} icon`} loading="lazy" />
+          <img src={product.icon_url} alt={`${product.name} icon`} loading="lazy" decoding="async" width="512" height="512" />
           <div><span>{product.category}</span><h3>{product.name}</h3></div>
         </div>
         <p className="dv-product-tagline">{product.tagline}</p>
@@ -228,13 +244,13 @@ function Footer() {
     <footer className="dv-footer">
       <div className="dv-shell dv-footer-grid">
         <div className="dv-footer-brand">
-          <a className="dv-brand" href="/"><img src="/devovia-logo.png" alt="" /><span>Devovia Studio</span></a>
+          <a className="dv-brand" href="/"><img src="/devovia-logo.png" alt="" width="76" height="76" decoding="async" /><span>Devovia Studio</span></a>
           <p>A small independent studio making useful apps, playful games and clear digital experiences from the Netherlands.</p>
           <a href="mailto:info@devoviastudio.com">info@devoviastudio.com</a>
         </div>
         <div><strong>Explore</strong><a href="/products">Products</a><a href="/updates">Updates</a><a href="/blog">Blog</a></div>
         <div><strong>Studio</strong><a href="#about">About</a><a href="/contact">Contact</a><a href="/support">Support</a></div>
-        <div><strong>Legal</strong><a href="/support">Privacy hub</a><a href="/support">Terms & policies</a><a href="/app-ads.txt">App-ads.txt</a></div>
+        <div><strong>Legal</strong><a href="/support">Privacy hub</a><a href="/support">Terms & policies</a><a href="/support">Support</a></div>
       </div>
       <div className="dv-shell dv-footer-bottom"><span>© 2026 Devovia Studio</span><span>Made with care in the Netherlands.</span></div>
     </footer>
@@ -281,15 +297,15 @@ export default function DevoviaHome() {
             <div className="dv-hero-showcase" aria-label="Devovia product preview">
               <div className="dv-showcase-halo" aria-hidden="true" />
               <div className="dv-showcase-card card-blue">
-                <div className="dv-device-screen"><img src={products[0].screenshots[0]} alt="Stock Manager screen" /></div>
+                <div className="dv-device-screen"><img src={products[0].screenshots[0]} alt="Stock Manager screen" loading="eager" decoding="async" fetchPriority="high" width="1080" height="1920" /></div>
                 <div className="dv-device-caption">Productivity</div><i className="dv-device-button" aria-hidden="true" />
               </div>
               <div className="dv-showcase-card card-violet">
-                <div className="dv-device-screen"><img src={products[1].screenshots[0]} alt="Arrow Escape screen" /></div>
+                <div className="dv-device-screen"><img src={products[1].screenshots[0]} alt="Arrow Escape screen" loading="eager" decoding="async" fetchPriority="high" width="1080" height="1920" /></div>
                 <div className="dv-device-caption">Puzzle game</div><i className="dv-device-button" aria-hidden="true" />
               </div>
               <div className="dv-showcase-card card-cyan">
-                <div className="dv-device-screen"><img src={products[2].screenshots[0]} alt="Daily Hadith screen" /></div>
+                <div className="dv-device-screen"><img src={products[2].screenshots[0]} alt="Daily Hadith screen" loading="lazy" decoding="async" width="1080" height="1920" /></div>
                 <div className="dv-device-caption">Daily routine</div><i className="dv-device-button" aria-hidden="true" />
               </div>
               <div className="dv-showcase-badge badge-top"><span>Made with care</span><Icon name="check" size={17} /></div>
@@ -330,7 +346,7 @@ export default function DevoviaHome() {
 
         <section className="dv-section dv-about" id="about">
           <div className="dv-shell dv-about-grid">
-            <div className="dv-about-visual"><div className="dv-about-mark"><img src="/devovia-logo.png" alt="Devovia Studio" /></div><div className="dv-about-chip chip-one">Useful by default</div><div className="dv-about-chip chip-two">Clear by design</div><div className="dv-about-chip chip-three">Built to last</div></div>
+            <div className="dv-about-visual"><div className="dv-about-mark"><img src="/devovia-logo.png" alt="Devovia Studio" loading="lazy" decoding="async" width="512" height="512" /></div><div className="dv-about-chip chip-one">Useful by default</div><div className="dv-about-chip chip-two">Clear by design</div><div className="dv-about-chip chip-three">Built to last</div></div>
             <div className="dv-about-copy"><div className="dv-eyebrow"><span /> A little about us</div><h2>Small studio.<br />Close collaboration.</h2><p>Devovia Studio is an independent product studio in the Netherlands. We make our own apps and games, and we help other teams turn promising ideas into digital products that are easier to understand, use and trust.</p><div className="dv-about-values"><div><strong>01</strong><span>We listen before we design</span></div><div><strong>02</strong><span>We choose clarity over noise</span></div><div><strong>03</strong><span>We stay involved after launch</span></div></div></div>
           </div>
         </section>
