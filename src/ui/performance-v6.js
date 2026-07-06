@@ -1,10 +1,24 @@
 const root = document.documentElement;
 const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+const compactQuery = window.matchMedia?.('(max-width: 820px)');
+const coarsePointerQuery = window.matchMedia?.('(pointer: coarse)');
 const lowCapability = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
   || (navigator.deviceMemory && navigator.deviceMemory <= 4)
   || connection?.saveData;
 
-if (lowCapability) root.classList.add('ux-lite-motion');
+function shouldUseLiteMotion() {
+  return Boolean(lowCapability || compactQuery?.matches || coarsePointerQuery?.matches);
+}
+
+function updateMotionCapability() {
+  const liteMotion = shouldUseLiteMotion();
+  root.classList.toggle('ux-lite-motion', liteMotion);
+  root.classList.toggle('ux-mobile-motion-guard', Boolean(compactQuery?.matches || coarsePointerQuery?.matches));
+}
+
+updateMotionCapability();
+compactQuery?.addEventListener?.('change', updateMotionCapability);
+coarsePointerQuery?.addEventListener?.('change', updateMotionCapability);
 
 function markFirstPaint() {
   requestAnimationFrame(() => {
@@ -37,5 +51,7 @@ function updateVisibility() {
 document.addEventListener('visibilitychange', updateVisibility, { passive: true });
 window.addEventListener('pagehide', () => {
   longTaskObserver?.disconnect();
+  compactQuery?.removeEventListener?.('change', updateMotionCapability);
+  coarsePointerQuery?.removeEventListener?.('change', updateMotionCapability);
   document.removeEventListener('visibilitychange', updateVisibility);
 }, { once: true });
