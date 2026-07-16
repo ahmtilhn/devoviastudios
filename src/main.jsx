@@ -38,6 +38,7 @@ import './ui/motion-system-v10-compat.js';
 import './ui/product-select.js';
 import './ui/contextual-file-uploads.js';
 import './ui/web3forms-attachment-payload.js';
+import './ui/form-recipient-lock.js';
 
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 const page = path === '/admin'
