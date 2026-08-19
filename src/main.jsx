@@ -35,6 +35,7 @@ import './ui/structural-quality-v16.css';
 import './ui/structural-quality-v16-fixes.css';
 import './ui/deep-visual-qa-v17.css';
 import './ui/deep-visual-qa-v17-polish.css';
+import './ui/deep-visual-qa-v17-final.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/deep-visual-qa-v17.js';
