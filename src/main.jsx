@@ -25,6 +25,7 @@ import './ui/card-layout-cleanup-v12.css';
 import './ui/contextual-file-uploads.css';
 import './ui/contact-overflow-fix.css';
 import './ui/performance-v13.css';
+import './ui/sudoku-layout-v13.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/sudoku-development-v13.js';
