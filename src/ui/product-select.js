@@ -3,6 +3,7 @@ const PRODUCT_OPTIONS = [
   'Arrow Escape',
   'Daily Hadith',
   'TinySteps',
+  'Sudoku Duel',
   'Another app / not listed',
 ];
 
