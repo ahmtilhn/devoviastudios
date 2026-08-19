@@ -1,0 +1,219 @@
+/* Deep Visual QA V17 — second screenshot-review polish. */
+
+/* Google Play support hero: use the lower half as meaningful release proof
+   instead of leaving a large decorative empty area next to the request form. */
+html.dv-editorial-mode .app-shell[data-ux-page='test-support'] .test-support-top-v17 > .page-hero {
+  display: flex !important;
+  min-height: 690px !important;
+  padding: clamp(38px, 4.8vw, 56px) !important;
+  flex-direction: column;
+  align-items: stretch !important;
+  justify-content: flex-start;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='test-support'] .test-support-top-v17 > .page-hero > div:first-child {
+  max-width: 620px !important;
+}
+
+html.dv-editorial-mode .test-readiness-v17 {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-height: 270px;
+  margin-top: auto;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid #e1e8f1;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(53 109 243 / .09), transparent 12rem),
+    linear-gradient(145deg, #f7faff, #f3f4ff 60%, #fff);
+}
+
+html.dv-editorial-mode .test-readiness-v17::before,
+html.dv-editorial-mode .test-readiness-v17::after {
+  position: absolute;
+  z-index: 0;
+  content: '';
+  pointer-events: none;
+}
+
+html.dv-editorial-mode .test-readiness-v17::before {
+  top: 50%;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+  background: #dce6f3;
+}
+
+html.dv-editorial-mode .test-readiness-v17::after {
+  top: 18%;
+  bottom: 18%;
+  left: 50%;
+  width: 1px;
+  background: #dce6f3;
+}
+
+html.dv-editorial-mode .test-readiness-v17 article {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+  padding: 16px;
+  align-content: end;
+  border: 1px solid rgb(223 230 239 / .82);
+  border-radius: 15px;
+  background: rgb(255 255 255 / .82);
+}
+
+html.dv-editorial-mode .test-readiness-v17 article i {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border-radius: 9px;
+  color: #356df3;
+  background: #edf3ff;
+  font-size: .58rem;
+  font-style: normal;
+  font-weight: 800;
+}
+
+html.dv-editorial-mode .test-readiness-v17 article b {
+  color: #111827;
+  font-family: Sora, sans-serif;
+  font-size: .78rem;
+  letter-spacing: -.02em;
+}
+
+html.dv-editorial-mode .test-readiness-v17 article span {
+  margin-top: 3px;
+  color: #7b8aa0;
+  font-size: .65rem;
+  line-height: 1.4;
+}
+
+html.dv-editorial-mode .test-readiness-core-v17 {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 154px;
+  min-height: 108px;
+  padding: 15px;
+  place-items: center;
+  text-align: center;
+  border: 1px solid #d8e2f0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgb(15 23 42 / .09);
+  transform: translate(-50%, -50%);
+}
+
+html.dv-editorial-mode .test-readiness-core-v17 small {
+  color: #356df3;
+  font-size: .54rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+}
+
+html.dv-editorial-mode .test-readiness-core-v17 strong {
+  color: #111827;
+  font-family: Sora, sans-serif;
+  font-size: .96rem;
+  line-height: 1.05;
+}
+
+html.dv-editorial-mode .test-readiness-core-v17 span {
+  color: #7b8aa0;
+  font-size: .59rem;
+  line-height: 1.35;
+}
+
+/* Mobile product hero: two real store screenshots now share the visual stage,
+   eliminating the empty-left composition seen in the previous QA screenshot. */
+@media (max-width: 760px) {
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row {
+    height: 340px !important;
+    min-height: 340px !important;
+    padding: 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(1),
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(2) {
+    display: block !important;
+    position: absolute !important;
+    width: calc(50% - 24px) !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-radius: 16px !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(1) {
+    inset: 18px auto 18px 18px !important;
+    height: auto !important;
+    transform: rotate(-2deg) !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(2) {
+    inset: 34px 18px 2px auto !important;
+    height: auto !important;
+    transform: rotate(2deg) !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(n+3) {
+    display: none !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(-n+2) img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 14px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(-n+2) :is(.device-speaker, .ux-device-glass) {
+    display: none !important;
+  }
+
+  html.dv-editorial-mode .test-readiness-v17 {
+    min-height: 260px;
+    margin-top: 26px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 620px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='test-support'] .test-support-top-v17 > .page-hero {
+    min-height: 0 !important;
+  }
+
+  html.dv-editorial-mode .test-readiness-v17 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 250px;
+  }
+
+  html.dv-editorial-mode .test-readiness-v17 article {
+    padding: 14px 10px;
+  }
+
+  html.dv-editorial-mode .test-readiness-core-v17 {
+    width: 132px;
+    min-height: 96px;
+    padding: 12px;
+  }
+}
