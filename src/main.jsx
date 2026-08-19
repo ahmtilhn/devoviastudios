@@ -32,6 +32,7 @@ import './ui/editorial-visual-fixes-v15.css';
 import './ui/editorial-product-detail-v15.css';
 import './ui/editorial-final-qa-v15.css';
 import './ui/structural-quality-v16.css';
+import './ui/structural-quality-v16-fixes.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/sudoku-development-v13.js';
