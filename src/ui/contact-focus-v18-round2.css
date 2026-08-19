@@ -1,0 +1,195 @@
+/* Contact Focus V18 — second-eye screenshot corrections. */
+
+/* The left column was visually clipped at the bottom in the first desktop pass.
+   Keep it in normal flow so the grid measures its full content height. */
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 {
+  position: relative !important;
+  top: auto !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page[data-contact-focus-v18='ready'] {
+  grid-template-rows: auto auto !important;
+  overflow: hidden !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 {
+  align-self: start;
+}
+
+/* Make the operational microcopy readable without letting it dominate the form. */
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-panel-title p,
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-field-heading p,
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-zone > p,
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-notice p,
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 > .form-note {
+  font-size: .68rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-notice strong {
+  font-size: .71rem !important;
+}
+
+@media (max-width: 760px) {
+  /* The first mobile pass explained too much before the form. Turn the three
+     proof cards into compact trust chips while preserving their meaning. */
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-grid-v18 {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    margin-top: 20px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    min-height: 54px !important;
+    padding: 10px 8px !important;
+    place-items: center;
+    text-align: center;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 strong {
+    font-size: .64rem !important;
+    line-height: 1.25 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 span {
+    display: none !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-card-v18 {
+    padding: 16px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-card-v18 > h2 {
+    margin-bottom: 0 !important;
+    font-size: 1.35rem !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-card-v18 > p:not(.contact-mini-label-v18) {
+    display: none !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 {
+    margin-top: 12px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 li {
+    padding: 9px 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-number-v18 {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 8px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 strong {
+    font-size: .72rem !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 p {
+    font-size: .68rem !important;
+    line-height: 1.42 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 {
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    gap: 10px !important;
+    align-items: center !important;
+    padding: 12px 13px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 .contact-mini-label-v18 {
+    margin: 0 !important;
+    white-space: nowrap;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 p:not(.contact-mini-label-v18) {
+    display: none !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-link-v18 {
+    min-height: 34px !important;
+    justify-self: stretch;
+    padding-inline: 9px !important;
+    font-size: .66rem !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18 {
+    margin-top: 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-panel-title p,
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-field-heading p,
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-zone > p,
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-notice p,
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 > .form-note {
+    font-size: .7rem !important;
+    line-height: 1.42 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-notice strong {
+    font-size: .72rem !important;
+  }
+
+  /* Replace three tall process cards with a compact mobile timeline. */
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-v18 {
+    gap: 20px !important;
+    padding-block: 24px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-intro-v18 h2 {
+    margin-bottom: 8px !important;
+    font-size: 1.85rem !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 article {
+    display: grid !important;
+    grid-template-columns: 30px minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    gap: 3px 10px !important;
+    min-height: 0 !important;
+    padding: 13px 0 !important;
+    border: 0 !important;
+    border-top: 1px solid rgb(255 255 255 / .10) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 article > span {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin: 2px 0 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 h3 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0 !important;
+    font-size: .8rem !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 p {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: .68rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 360px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 .contact-mini-label-v18 {
+    white-space: normal;
+  }
+}
