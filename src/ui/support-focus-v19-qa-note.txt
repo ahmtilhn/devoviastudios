@@ -1,0 +1,1 @@
+Support Focus V19 uses a dedicated screenshot-led QA pass. This marker is intentionally lightweight and can be removed in a later cleanup after the focused support redesign is established.
