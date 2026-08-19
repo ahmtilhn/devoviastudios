@@ -205,6 +205,7 @@ async function main() {
     runtimeErrors.length = 0;
     const transition = await evaluate(`(async () => {
       const supported = typeof document.startViewTransition === 'function';
+      const calm = window.__DEVOVIA_CALM_MODE__ === true;
       window.__transitionCalls = 0;
       if (supported) {
         const original = document.startViewTransition.bind(document);
@@ -218,17 +219,23 @@ async function main() {
       const forwardPath = location.pathname;
       history.back();
       await new Promise((resolve) => setTimeout(resolve, 550));
-      return { supported, calls: window.__transitionCalls, forwardPath, backPath: location.pathname };
+      return { supported, calm, calls: window.__transitionCalls, forwardPath, backPath: location.pathname };
     })()`);
     assert('Product CTA opens a detail page', /^\/products\/.+/.test(transition.forwardPath) && transition.forwardPath !== '/products', transition.forwardPath);
     assert('Browser back returns to products', transition.backPath === '/products', transition.backPath);
-    if (transition.supported) assert('View Transition API runs for SPA navigation', transition.calls > 0, String(transition.calls));
+    if (transition.supported) {
+      assert(
+        transition.calm ? 'Calm mode suppresses SPA transition choreography' : 'View Transition API runs for SPA navigation',
+        transition.calm ? transition.calls === 0 : transition.calls > 0,
+        String(transition.calls),
+      );
+    }
 
     await client.send('Emulation.setScriptExecutionDisabled', { value: true });
     for (const [route, marker] of [
       ['/privacy/stock-manager/', '22. Contact'],
       ['/privacy/daily-hadith/', 'Terms of Service'],
-      ['/privacy/arrow-escape/', '21. Contact'],
+      ['/privacy/arrow-escape/', '24. Contact'],
     ]) {
       await navigate(route);
       const documentNode = await client.send('DOM.getDocument', { depth: 1, pierce: true });
