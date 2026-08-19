@@ -11,6 +11,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="./devovia-logo.png" />
   <link rel="stylesheet" href="./privacy/privacy-v2.css" />
+  <style>
+    @media (min-width: 1050px) {
+      .privacy-app-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+      .privacy-app-grid > .privacy-app-card { grid-column: span 2; min-width: 0; }
+      .privacy-app-grid > .privacy-app-card:nth-child(4) { grid-column: 2 / span 2; }
+      .privacy-app-grid > .privacy-app-card:nth-child(5) { grid-column: 4 / span 2; }
+    }
+    @media (min-width: 701px) and (max-width: 1049px) {
+      .privacy-app-grid > .privacy-app-card:last-child { grid-column: 1 / -1; width: min(100%, 560px); justify-self: center; }
+    }
+    @media (max-width: 700px) {
+      .privacy-app-grid { grid-template-columns: minmax(0, 1fr); }
+      .privacy-app-card { grid-template-columns: 58px minmax(0, 1fr); min-width: 0; padding: 22px; }
+      .privacy-app-card > img { width: 58px; height: 58px; }
+      .privacy-app-card .privacy-actions { align-items: stretch; }
+      .privacy-app-card .privacy-button { flex: 1 1 100%; }
+    }
+  </style>
   <script defer src="./privacy/privacy-v2.js"></script>
 </head>
 <body>
