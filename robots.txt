@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /privacy/fragments/
+Disallow: /apps/
+Sitemap: https://devoviastudio.com/sitemap.xml
