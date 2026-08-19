@@ -1,0 +1,25 @@
+/* Editorial V15 final visual QA adjustments. */
+
+/* Release notes benefit from one clear product proof, not another overlapping
+   phone stack. Center the primary screen and remove the secondary crop. */
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-1 {
+  display: block !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 178px !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-2,
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-3,
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-4 {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-1 {
+    width: 148px !important;
+  }
+}
