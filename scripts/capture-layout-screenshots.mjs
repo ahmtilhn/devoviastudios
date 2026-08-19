@@ -137,10 +137,7 @@ async function main() {
             window.scrollTo(0, 0);
             const style = document.createElement('style');
             style.dataset.layoutQaCapture = 'true';
-            style.textContent = `
-              *,*::before,*::after{animation-play-state:paused!important;transition:none!important}
-              *{content-visibility:visible!important;contain-intrinsic-size:none!important}
-            `;
+            style.textContent = '*,*::before,*::after{animation-play-state:paused!important;transition:none!important}\\n*{content-visibility:visible!important;contain-intrinsic-size:none!important}';
             document.head.append(style);
             document.querySelectorAll('[data-m10-state]').forEach((element) => { element.dataset.m10State = 'visible'; });
             document.querySelectorAll('[data-pm-state]').forEach((element) => { element.dataset.pmState = 'visible'; });
