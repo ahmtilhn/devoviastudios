@@ -59,3 +59,18 @@ html.dv-editorial-mode .app-shell[data-ux-page='test-support'] .test-readiness-v
     display: none !important;
   }
 }
+
+/* On narrow footer grids the contact email was the last visible text wrapping
+   into a one-word orphan. Give it the full footer row instead of squeezing it
+   into the same narrow navigation column as short links. */
+@media (max-width: 620px) {
+  html.dv-editorial-mode .app-shell .site-footer a[href^='mailto:'] {
+    grid-column: 1 / -1 !important;
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    font-size: .7rem;
+  }
+}
