@@ -28,6 +28,7 @@ import './ui/contact-overflow-fix.css';
 import './ui/performance-v13.css';
 import './ui/sudoku-layout-v13.css';
 import './ui/editorial-ui-v15.css';
+import './ui/editorial-visual-fixes-v15.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/sudoku-development-v13.js';
