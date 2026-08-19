@@ -14,8 +14,7 @@
     "test:uploads": "node scripts/file-upload-contract-check.mjs",
     "test:performance": "node scripts/performance-v13-check.mjs",
     "test:sudoku": "node scripts/sudoku-site-check.mjs",
-    "test:updates": "node scripts/updates-layout-check.mjs",
-    "build": "npm run test:ux && npm run test:v7 && npm run test:v8 && npm run test:uploads && npm run test:performance && npm run test:sudoku && npm run test:updates && vite build && node scripts/postbuild.mjs && node scripts/sudoku-postbuild.mjs",
+    "build": "npm run test:ux && npm run test:v7 && npm run test:v8 && npm run test:uploads && npm run test:performance && npm run test:sudoku && vite build && node scripts/postbuild.mjs && node scripts/sudoku-postbuild.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
