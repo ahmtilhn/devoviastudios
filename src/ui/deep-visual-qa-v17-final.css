@@ -7,9 +7,10 @@ html.dv-editorial-mode .app-shell[data-ux-page='test-support'] .test-readiness-v
   display: none !important;
 }
 
-/* Product-detail mobile hero: use one full-bleed crop of the real store artwork.
-   The source images already contain a designed phone composition; presenting
-   two narrow full screenshots made the useful content gather on one side. */
+/* Product-detail mobile hero: use one deliberate crop of the real store artwork.
+   The Play artwork places its useful phone composition toward the right edge;
+   enlarge and pull that area toward the visual centre instead of showing a large
+   field of empty background. */
 @media (max-width: 760px) {
   html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row {
     height: 330px !important;
@@ -49,6 +50,8 @@ html.dv-editorial-mode .app-shell[data-ux-page='test-support'] .test-readiness-v
     border-radius: 16px !important;
     object-fit: cover !important;
     object-position: center 38% !important;
+    transform: translateX(-16%) scale(1.38) !important;
+    transform-origin: 72% 46% !important;
   }
 
   html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(1) :is(.device-speaker, .ux-device-glass),
