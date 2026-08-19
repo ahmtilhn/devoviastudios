@@ -1,0 +1,187 @@
+/* Support Focus V19 — round-one screenshot review corrections.
+   Fixes the inherited support-card grid rules and the large empty hero gap caught
+   in the first desktop/mobile production screenshots. */
+
+@media (min-width: 981px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 {
+    grid-template-rows: auto 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 > div:first-child {
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    align-self: center !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: end !important;
+    margin: 0 0 12px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    align-self: start !important;
+  }
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:last-child {
+  display: grid !important;
+  grid-template-columns: 46px minmax(0, 1fr) auto !important;
+  grid-template-rows: minmax(0, auto) !important;
+  grid-auto-rows: auto !important;
+  grid-auto-flow: row !important;
+  gap: 12px !important;
+  align-items: center !important;
+  align-content: center !important;
+  min-height: 68px !important;
+  height: auto !important;
+  padding: 10px 12px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card > img,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:last-child > img {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  align-self: center !important;
+  width: 46px !important;
+  height: 46px !important;
+  max-width: 46px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card > .support-product-copy-v19,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:last-child > .support-product-copy-v19 {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-self: center !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-product-copy-v19 strong,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-product-copy-v19 span {
+  display: block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-product-copy-v19 strong {
+  margin-bottom: 3px !important;
+  font-size: .82rem !important;
+  line-height: 1.18 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-product-copy-v19 span {
+  font-size: .61rem !important;
+  line-height: 1.3 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card > .support-product-actions-v19,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:last-child > .support-product-actions-v19 {
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  display: flex !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-self: center !important;
+  justify-self: end !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 6px !important;
+  border: 0 !important;
+  flex-wrap: nowrap !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-product-actions-v19 > a {
+  position: static !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: 29px !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  overflow: visible !important;
+  border-top: 1px solid #dbe3ed !important;
+  font-size: .59rem !important;
+  white-space: nowrap !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-product-actions-v19 > .support-action-v19 {
+  border-color: #111827 !important;
+}
+
+@media (max-width: 680px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 {
+    margin-top: 2px !important;
+    margin-bottom: 10px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 > p {
+    font-size: .66rem !important;
+    line-height: 1.42 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 {
+    gap: 7px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:last-child {
+    grid-template-columns: 40px minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    gap: 6px 10px !important;
+    min-height: 0 !important;
+    padding: 10px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card > img,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:last-child > img {
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    align-self: start !important;
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card > .support-product-copy-v19,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:last-child > .support-product-copy-v19 {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: start !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card > .support-product-actions-v19,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:last-child > .support-product-actions-v19 {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: start !important;
+    justify-content: flex-start !important;
+    gap: 5px !important;
+    padding-top: 4px !important;
+    border: 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-product-actions-v19 > a {
+    min-height: 26px !important;
+    padding-inline: 7px !important;
+    font-size: .56rem !important;
+  }
+}
