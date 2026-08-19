@@ -11,12 +11,14 @@ const canonicalPathMap = new Map([
   ['/privacy/app-2.html', '/privacy/daily-hadith'],
   ['/privacy/app-3.html', '/privacy/tinysteps'],
   ['/privacy/app-4.html', '/privacy/arrow-escape'],
+  ['/privacy/app-5.html', '/privacy/sudoku-duel'],
   ['/products/stockflow-inventory', '/products/stock-manager'],
   ['/projects/stockflow-inventory', '/products/stock-manager'],
   ['/projects/stock-manager', '/products/stock-manager'],
   ['/projects/arrow-escape', '/products/arrow-escape'],
   ['/projects/daily-hadith', '/products/daily-hadith'],
   ['/projects/tinysteps', '/products/tinysteps'],
+  ['/projects/sudoku-duel', '/products/sudoku-duel'],
 ]);
 
 function localPrivacyRoute(href) {
