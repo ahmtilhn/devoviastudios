@@ -26,6 +26,7 @@ import './ui/contextual-file-uploads.css';
 import './ui/contact-overflow-fix.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
+import './ui/sudoku-development-v13.js';
 import './ui/link-normalizer-v6.js';
 import './ui/interaction-integrity-v9.js';
 import './ui/shared-transitions-v6.js';
