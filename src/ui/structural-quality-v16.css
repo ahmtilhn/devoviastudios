@@ -1,0 +1,749 @@
+/* Devovia Structural Quality V16
+   Layout-first refinement: stronger composition, safer card content flow and
+   less repetitive top-to-bottom stacking across catalogue, support, services
+   and product detail routes. Loaded after the V15 editorial layers. */
+
+html.dv-editorial-mode .app-shell {
+  --sq-gap: clamp(18px, 2.2vw, 28px);
+  --sq-card-pad: clamp(24px, 2.8vw, 34px);
+  --sq-section-gap: clamp(72px, 8vw, 112px);
+}
+
+/* Every complex grid/flex child must be allowed to shrink. This prevents the
+   visual "overflow" effect produced by long headings, metric rows and actions. */
+html.dv-editorial-mode .app-shell :is(
+  .products-grid,
+  .featured-grid,
+  .service-grid,
+  .reason-grid,
+  .update-grid,
+  .updates-row,
+  .blog-grid,
+  .support-app-grid,
+  .support-choice-grid,
+  .problem-grid,
+  .process-grid,
+  .detail-grid,
+  .workflow-section,
+  .detail-footer-grid,
+  .v7-product-overview,
+  .v7-promise-grid,
+  .v7-feature-track,
+  .v7-screen-grid,
+  .v7-product-facts
+) > * {
+  min-width: 0 !important;
+}
+
+html.dv-editorial-mode .app-shell :is(
+  .product-card,
+  .service-card,
+  .update-card,
+  .blog-card,
+  .story-card,
+  .reason-card,
+  .support-app-card,
+  .support-product-card,
+  .glass-panel,
+  .faq-card,
+  .test-teaser,
+  .request-panel,
+  .v7-promise-grid article,
+  .v7-feature-chapter,
+  .v7-screen-card,
+  .v7-fact-panel
+) {
+  min-width: 0 !important;
+  height: auto !important;
+}
+
+html.dv-editorial-mode .app-shell :is(
+  .product-card,
+  .service-card,
+  .update-card,
+  .blog-card,
+  .story-card,
+  .reason-card,
+  .support-app-card,
+  .support-product-card,
+  .glass-panel,
+  .faq-card,
+  .test-teaser,
+  .request-panel,
+  .v7-promise-grid article,
+  .v7-feature-chapter,
+  .v7-fact-panel
+) :is(h1, h2, h3, p, li, strong, small, time, a, button, span) {
+  min-width: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+html.dv-editorial-mode .app-shell :is(.card-actions, .actions, .chip-row, .meta-chip-row, .privacy-link-stack) {
+  min-width: 0;
+  flex-wrap: wrap !important;
+}
+
+html.dv-editorial-mode .app-shell :is(.card-actions, .actions) .button {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+/* Generic inner-page heroes were visually too tall when they contained copy
+   only. Keep them deliberate and compact instead of leaving an empty half-page. */
+html.dv-editorial-mode .app-shell .page-hero:has(> div:only-child) {
+  min-height: 340px !important;
+  padding-block: clamp(48px, 6vw, 76px) !important;
+  align-items: center !important;
+}
+
+html.dv-editorial-mode .app-shell .page-hero:has(> div:only-child) > div:first-child {
+  max-width: 900px !important;
+}
+
+html.dv-editorial-mode .app-shell .page-hero:has(> div:only-child) h1 {
+  max-width: 860px !important;
+  font-size: clamp(2.9rem, 5.5vw, 5.4rem) !important;
+  text-wrap: balance;
+}
+
+html.dv-editorial-mode .app-shell .section {
+  padding-block: clamp(42px, 5vw, 70px) !important;
+}
+
+html.dv-editorial-mode .app-shell .section-header {
+  align-items: end;
+  gap: 32px;
+  margin-bottom: clamp(26px, 3vw, 38px) !important;
+}
+
+html.dv-editorial-mode .app-shell .section-header > div:first-child {
+  min-width: 0;
+  max-width: 820px;
+}
+
+html.dv-editorial-mode .app-shell .section-header h2 {
+  text-wrap: balance;
+}
+
+/* PRODUCT CATALOGUE ------------------------------------------------------- */
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid {
+  display: grid !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: var(--sq-gap) !important;
+  align-items: stretch !important;
+  margin-top: 30px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card {
+  grid-column: span 4;
+  display: flex !important;
+  min-height: 0 !important;
+  padding: var(--sq-card-pad) !important;
+  flex-direction: column;
+  overflow: hidden !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) {
+  grid-column: span 7;
+  display: grid !important;
+  grid-template-columns: minmax(0, .82fr) minmax(260px, 1.18fr) !important;
+  grid-template-rows: auto auto auto 1fr auto !important;
+  column-gap: clamp(26px, 3vw, 38px) !important;
+  align-items: start;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(2) {
+  grid-column: span 5;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .product-card-top {
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .product-card-top h3 {
+  font-size: clamp(1.24rem, 1.6vw, 1.65rem) !important;
+  line-height: 1.05 !important;
+  text-wrap: balance;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card > p {
+  min-height: 0 !important;
+  margin: 18px 0 20px !important;
+  font-size: .92rem;
+  line-height: 1.68;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .metric-row {
+  margin-bottom: 18px;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .product-visual {
+  min-height: 0 !important;
+  height: 250px !important;
+  margin: 0 0 20px !important;
+  border-radius: 20px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .product-visual img {
+  object-fit: cover !important;
+  object-position: center 16% !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .chip-row {
+  margin-top: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .chip-row span {
+  max-width: 100%;
+  min-height: 30px;
+  padding: 6px 10px;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .card-actions {
+  margin-top: auto !important;
+  padding-top: 22px;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) .product-card-top,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) > p,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) > .metric-row,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) > .chip-row,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) > .card-actions {
+  grid-column: 1;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) .product-visual {
+  grid-column: 2;
+  grid-row: 1 / span 5;
+  align-self: stretch;
+  height: 100% !important;
+  min-height: 470px !important;
+  margin: 0 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) .product-visual img {
+  height: 100%;
+}
+
+/* Turn the launch-support module into a balanced horizontal system instead of
+   one text block followed by three narrow boxes. */
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .support-product-card {
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr) !important;
+  gap: clamp(28px, 4vw, 54px) !important;
+  padding: clamp(32px, 4vw, 48px) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .support-product-card > .support-product-steps {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .support-product-card .support-product-steps article {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 20px !important;
+}
+
+/* SUPPORT ---------------------------------------------------------------- */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) {
+  grid-template-columns: minmax(320px, .72fr) minmax(0, 1.28fr) !important;
+  align-items: start !important;
+  gap: clamp(36px, 5vw, 68px) !important;
+  min-height: 0 !important;
+  padding: clamp(40px, 5vw, 64px) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) > div:first-child {
+  position: sticky;
+  top: 100px;
+  max-width: 480px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) h1 {
+  max-width: 470px !important;
+  font-size: clamp(3rem, 5.3vw, 5.2rem) !important;
+  line-height: .98 !important;
+  text-wrap: balance;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  align-content: start;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card {
+  display: grid !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto auto !important;
+  gap: 6px 14px !important;
+  align-content: start;
+  min-height: 0 !important;
+  padding: 22px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > img {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 48px !important;
+  height: 48px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > h3,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > p {
+  grid-column: 2;
+  margin: 0 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > h3 {
+  font-size: 1.05rem;
+  line-height: 1.15;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > p {
+  font-size: .76rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > a {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 34px;
+  padding: 6px 0;
+  border-top: 1px solid #eef2f7;
+  font-size: .76rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child {
+  grid-column: 1 / -1;
+  grid-template-columns: 48px minmax(0, 1fr) minmax(190px, .7fr) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child > a {
+  grid-column: 3;
+  min-height: 30px;
+}
+
+/* SERVICES --------------------------------------------------------------- */
+html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid {
+  display: grid !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: var(--sq-gap) !important;
+  margin-top: 34px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card {
+  grid-column: span 6;
+  min-height: 0 !important;
+  padding: clamp(30px, 3.5vw, 44px) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card:first-child {
+  grid-column: span 7;
+  min-height: 360px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card:nth-child(2) {
+  grid-column: span 5;
+  min-height: 360px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-card h3 {
+  max-width: 520px;
+  margin-top: clamp(42px, 5vw, 72px) !important;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem) !important;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-card p {
+  max-width: 620px;
+  font-size: .96rem;
+  line-height: 1.72;
+}
+
+/* PRODUCT DETAIL --------------------------------------------------------- */
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-hero {
+  grid-template-columns: minmax(0, .82fr) minmax(500px, 1.18fr) !important;
+  align-items: center !important;
+  gap: clamp(38px, 5vw, 72px) !important;
+  min-height: 0 !important;
+  padding: clamp(42px, 5.5vw, 70px) !important;
+  overflow: hidden !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-hero > div:first-child {
+  min-width: 0;
+  align-self: center;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-hero .product-title-row h1 {
+  font-size: clamp(3rem, 5.4vw, 5.7rem) !important;
+  line-height: .94 !important;
+  text-wrap: balance;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row {
+  position: relative !important;
+  min-height: 520px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--ed-line);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 52% 28%, color-mix(in srgb, var(--theme) 12%, transparent), transparent 16rem),
+    linear-gradient(145deg, #eef4ff, #f8f6ff 62%, #fff) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row::before {
+  inset: 0 !important;
+  border-radius: inherit !important;
+  opacity: .6;
+  filter: blur(30px) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device {
+  position: absolute !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 170px !important;
+  margin: 0 !important;
+  transform: none !important;
+  box-shadow: 0 28px 66px rgb(15 23 42 / .2) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-child(1) {
+  top: 84px !important;
+  left: 5% !important;
+  transform: rotate(-5deg) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-child(2) {
+  top: 38px !important;
+  left: 36% !important;
+  width: 184px !important;
+  z-index: 3;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-child(3) {
+  top: 90px !important;
+  right: 5% !important;
+  transform: rotate(5deg) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-child(n+4) {
+  display: none !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-overview {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 34px !important;
+  align-items: start !important;
+  padding-bottom: 58px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-overview-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .55fr);
+  align-items: end;
+  gap: clamp(34px, 5vw, 64px);
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-overview-copy > p:last-child {
+  margin: 0 !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-promise-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-promise-grid article {
+  min-height: 190px !important;
+  padding: 24px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-track {
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter {
+  grid-column: span 5;
+  min-height: 420px !important;
+  padding: clamp(30px, 3.4vw, 42px) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter:nth-child(4n+1),
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter:nth-child(4n+4) {
+  grid-column: span 7;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter h3 {
+  max-width: 650px !important;
+  font-size: clamp(2rem, 3.1vw, 3.25rem) !important;
+  line-height: 1.02 !important;
+  text-wrap: balance;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-description {
+  max-width: 680px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-proof {
+  margin-top: auto !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-screens {
+  padding: clamp(34px, 4.5vw, 56px) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-grid {
+  gap: 18px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts {
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts > .v7-fact-panel {
+  grid-column: span 5;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts > .v7-fact-panel:first-child {
+  grid-column: span 7;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts > .v7-release-panel {
+  grid-column: 1 / -1 !important;
+}
+
+/* UPDATES / BLOG --------------------------------------------------------- */
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .update-grid,
+html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-grid {
+  display: grid !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: var(--sq-gap) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .update-grid > *,
+html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-grid > * {
+  grid-column: span 4;
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .update-grid > :first-child,
+html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-grid > :first-child {
+  grid-column: span 7;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .update-grid > :nth-child(2),
+html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-grid > :nth-child(2) {
+  grid-column: span 5;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] :is(.update-card, .story-card),
+html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-card {
+  min-height: 0 !important;
+  padding: clamp(24px, 2.6vw, 34px) !important;
+}
+
+/* BREAKPOINTS ------------------------------------------------------------ */
+@media (max-width: 1040px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card,
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1),
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(2),
+  html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card,
+  html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card:first-child,
+  html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card:nth-child(2),
+  html.dv-editorial-mode .app-shell[data-ux-page='updates'] .update-grid > *,
+  html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-grid > * {
+    grid-column: span 6 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) {
+    display: flex !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) .product-visual {
+    min-height: 0 !important;
+    height: 280px !important;
+    margin: 0 0 20px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid),
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) > div:first-child {
+    position: static;
+    max-width: 760px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row {
+    min-height: 500px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-promise-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter:nth-child(4n+1),
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter:nth-child(4n+4),
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts > .v7-fact-panel,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts > .v7-fact-panel:first-child {
+    grid-column: span 6 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  html.dv-editorial-mode .app-shell {
+    width: min(100% - 24px, 1180px) !important;
+  }
+
+  html.dv-editorial-mode .app-shell .page-hero,
+  html.dv-editorial-mode .app-shell .product-hero-detail {
+    padding: 28px !important;
+  }
+
+  html.dv-editorial-mode .app-shell .page-hero:has(> div:only-child) {
+    min-height: 0 !important;
+    padding-block: 36px !important;
+  }
+
+  html.dv-editorial-mode .app-shell .page-hero h1,
+  html.dv-editorial-mode .app-shell .page-hero:has(> div:only-child) h1,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) h1 {
+    font-size: clamp(2.45rem, 12vw, 3.55rem) !important;
+    line-height: 1 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid,
+  html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid,
+  html.dv-editorial-mode .app-shell[data-ux-page='updates'] .update-grid,
+  html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-grid,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-track,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card,
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1),
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(2),
+  html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card,
+  html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card:first-child,
+  html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card:nth-child(2),
+  html.dv-editorial-mode .app-shell[data-ux-page='updates'] .update-grid > *,
+  html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-grid > *,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter:nth-child(4n+1),
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter:nth-child(4n+4),
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts > .v7-fact-panel,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts > .v7-fact-panel:first-child,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-release-panel {
+    grid-column: 1 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card,
+  html.dv-editorial-mode .app-shell[data-ux-page='services'] .service-grid.full-grid > .service-card,
+  html.dv-editorial-mode .app-shell[data-ux-page='updates'] :is(.update-card, .story-card),
+  html.dv-editorial-mode .app-shell[data-ux-page='blog'] .blog-card {
+    padding: 22px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .product-visual,
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1) .product-visual {
+    height: 240px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child {
+    grid-column: 1 !important;
+    grid-template-columns: 48px minmax(0, 1fr) !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child > a {
+    grid-column: 1 / -1 !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row {
+    display: grid !important;
+    min-height: 390px !important;
+    place-items: center;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-child(1) {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 166px !important;
+    transform: none !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-child(n+2) {
+    display: none !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-overview-copy {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-promise-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-promise-grid article,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter {
+    min-height: 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter h3 {
+    font-size: clamp(1.8rem, 9.5vw, 2.6rem) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  html.dv-editorial-mode .app-shell {
+    width: calc(100% - 18px) !important;
+  }
+
+  html.dv-editorial-mode .app-shell .page-hero,
+  html.dv-editorial-mode .app-shell .product-hero-detail,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) {
+    padding: 22px !important;
+    border-radius: 20px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .metric-row {
+    gap: 6px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .metric-row span {
+    min-width: 0 !important;
+    padding-inline: 8px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .card-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .card-actions .button {
+    width: 100% !important;
+  }
+}
