@@ -1,1 +1,0 @@
-Support Focus V19 keeps native form controls, native details/summary FAQ disclosure, visible focus styles and direct privacy/support links.
