@@ -1,0 +1,78 @@
+/* Sudoku Duel V13 — portfolio composition hardening.
+   The fifth product should feel intentional instead of leaving a 4+1 orphan row. */
+
+[data-sudoku-product-card],
+[data-sudoku-support-card],
+[data-sudoku-story],
+[data-sudoku-timeline],
+[data-sudoku-update] {
+  min-width: 0;
+}
+
+@media (min-width: 1121px) {
+  /* Five product cards: three on the first row, two centered below. */
+  .app-shell .products-grid:has(> [data-sudoku-product-card]) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .app-shell .products-grid:has(> [data-sudoku-product-card]) > * {
+    grid-column: span 2;
+  }
+
+  .app-shell .products-grid:has(> [data-sudoku-product-card]:nth-child(5):last-child) > :nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .app-shell .products-grid:has(> [data-sudoku-product-card]:nth-child(5):last-child) > :nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+
+  /* Five support cards follow the same 3 + 2 centered rhythm. */
+  .app-shell .support-app-grid:has(> [data-sudoku-support-card]) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .app-shell .support-app-grid:has(> [data-sudoku-support-card]) > * {
+    grid-column: span 2;
+  }
+
+  .app-shell .support-app-grid:has(> [data-sudoku-support-card]:nth-child(5):last-child) > :nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .app-shell .support-app-grid:has(> [data-sudoku-support-card]:nth-child(5):last-child) > :nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+
+  /* Four update cards look stronger as a balanced 2 x 2 composition than 3 + 1. */
+  .dv-site .dv-update-grid:has(> [data-sudoku-update]) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1120px) {
+  /* Existing tablet grids are two columns. Center a fifth card instead of
+     leaving it attached to the left edge by itself. */
+  .app-shell .products-grid:has(> [data-sudoku-product-card]:nth-child(5):last-child) > [data-sudoku-product-card],
+  .app-shell .support-app-grid:has(> [data-sudoku-support-card]:nth-child(5):last-child) > [data-sudoku-support-card] {
+    grid-column: 1 / -1;
+    width: min(100%, 540px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell .products-grid:has(> [data-sudoku-product-card]),
+  .app-shell .support-app-grid:has(> [data-sudoku-support-card]),
+  .dv-site .dv-update-grid:has(> [data-sudoku-update]) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  [data-sudoku-product-card],
+  [data-sudoku-support-card],
+  [data-sudoku-update] {
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+  }
+}
