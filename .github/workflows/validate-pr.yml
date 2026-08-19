@@ -81,16 +81,19 @@ jobs:
           set -o pipefail
           node scripts/card-layout-check.mjs | tee card-layout-result.txt
       - name: Focused mobile card composition audit
+        if: always()
         shell: bash
         run: |
           set -o pipefail
           node scripts/card-composition-check.mjs | tee card-composition-result.txt
       - name: Capture mobile and desktop layout screenshots
+        if: always()
         shell: bash
         run: |
           set -o pipefail
           node scripts/capture-layout-screenshots.mjs | tee card-layout-capture.txt
       - name: Global pointer Chromium audit (diagnostic)
+        if: always()
         continue-on-error: true
         shell: bash
         run: |

@@ -276,6 +276,11 @@ async function main() {
               for (const visual of media) {
                 if (text.contains(visual) || visual.contains(text)) continue;
                 if (text.closest(allowedClipSelector) === visual || visual.closest(allowedClipSelector) === text) continue;
+                /* Raw images can be larger than the visible crop used by an
+                   overflow-hidden visual container. Audit the clipping container
+                   itself rather than treating invisible image pixels as overlap. */
+                const visualClip = visual.closest(allowedClipSelector);
+                if (visualClip && visualClip !== visual) continue;
                 const hit = intersection(textRect, visual.getBoundingClientRect());
                 const visualRect = visual.getBoundingClientRect();
                 const minArea = Math.min(textRect.width * textRect.height, visualRect.width * visualRect.height);

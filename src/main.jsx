@@ -1,4 +1,5 @@
 import './ui/canonical-route-redirect-v12.js';
+import './ui/calm-runtime-v15.js';
 import './ui/english-only.js';
 import './ui/performance-v6.js';
 import React from 'react';
@@ -26,6 +27,10 @@ import './ui/contextual-file-uploads.css';
 import './ui/contact-overflow-fix.css';
 import './ui/performance-v13.css';
 import './ui/sudoku-layout-v13.css';
+import './ui/editorial-ui-v15.css';
+import './ui/editorial-visual-fixes-v15.css';
+import './ui/editorial-product-detail-v15.css';
+import './ui/editorial-final-qa-v15.css';
 import './ui/enhancer.js';
 import './ui/product-story-engine.js';
 import './ui/sudoku-development-v13.js';

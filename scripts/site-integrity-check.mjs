@@ -79,7 +79,7 @@ const dailyPolicy = fs.readFileSync(distFile('/privacy/daily-hadith'), 'utf8');
 const arrowPolicy = fs.readFileSync(distFile('/privacy/arrow-escape'), 'utf8');
 check('Stock Manager legal fragments are inlined', stockPolicy.includes('22. Contact') && !stockPolicy.includes('data-legal-fragment'));
 check('Daily Hadith legal fragments are inlined', dailyPolicy.includes('Terms of Service') && dailyPolicy.includes('EULA') && !dailyPolicy.includes('data-legal-fragment'));
-check('Arrow Escape legal fragments are inlined', arrowPolicy.includes('21. Contact') && !arrowPolicy.includes('data-legal-fragment'));
+check('Arrow Escape legal fragments are inlined', arrowPolicy.includes('24. Contact') && !arrowPolicy.includes('data-legal-fragment'));
 check('Built policies do not depend on legal-fragments.js', ![stockPolicy, dailyPolicy, arrowPolicy].some((html) => html.includes('legal-fragments.js')));
 
 for (const route of privacyRoutes) {

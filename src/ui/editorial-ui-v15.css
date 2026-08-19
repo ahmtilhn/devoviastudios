@@ -1,0 +1,780 @@
+/* Devovia Editorial UI V15
+   Product-led, calm, high-clarity visual system. Loaded last on purpose. */
+
+:root,
+html.dv-editorial-mode {
+  color-scheme: light;
+  --ed-bg: #f7f9fc;
+  --ed-surface: #ffffff;
+  --ed-surface-soft: #f1f5f9;
+  --ed-ink: #0f172a;
+  --ed-copy: #526076;
+  --ed-muted: #7b8aa0;
+  --ed-line: #dfe6ef;
+  --ed-line-strong: #cbd5e1;
+  --ed-blue: #356df3;
+  --ed-violet: #7c5cf5;
+  --ed-cyan: #14b8d4;
+  --ed-dark: #101827;
+  --ed-radius-sm: 12px;
+  --ed-radius: 18px;
+  --ed-radius-lg: 26px;
+  --ed-shadow-sm: 0 10px 30px rgb(15 23 42 / .055);
+  --ed-shadow: 0 24px 64px rgb(15 23 42 / .075);
+}
+
+html.dv-editorial-mode,
+html.dv-editorial-mode body {
+  background: var(--ed-bg) !important;
+  color: var(--ed-ink) !important;
+  scroll-behavior: smooth;
+}
+
+html.dv-editorial-mode body::before {
+  display: none !important;
+}
+
+html.dv-editorial-mode body,
+html.dv-editorial-mode .app-shell,
+html.dv-editorial-mode .dv-site {
+  font-family: Manrope, Inter, system-ui, sans-serif;
+}
+
+html.dv-editorial-mode h1,
+html.dv-editorial-mode h2,
+html.dv-editorial-mode h3,
+html.dv-editorial-mode .brand,
+html.dv-editorial-mode .dv-brand,
+html.dv-editorial-mode .button,
+html.dv-editorial-mode .dv-button {
+  font-family: Sora, Manrope, Inter, system-ui, sans-serif;
+}
+
+/* Calm mode: old reveal and pointer systems may still decorate DOM, but they
+   no longer get to move or blur the page. */
+html.dv-editorial-mode .m10-atmosphere,
+html.dv-editorial-mode .dv-interactive-background,
+html.dv-editorial-mode .dv-v4-pointer,
+html.dv-editorial-mode .dv-v4-noise,
+html.dv-editorial-mode .ux-cursor-cloud,
+html.dv-editorial-mode .ux-ambient-ribbon,
+html.dv-editorial-mode .feature-ambient,
+html.dv-editorial-mode .dv-product-glow,
+html.dv-editorial-mode .dv-showcase-halo,
+html.dv-editorial-mode .dv-cta-orb {
+  display: none !important;
+}
+
+html.dv-editorial-mode [data-m10-state],
+html.dv-editorial-mode [data-ux-reveal],
+html.dv-editorial-mode .v4-reveal,
+html.dv-editorial-mode .v4-reveal.is-visible {
+  opacity: 1 !important;
+  translate: 0 0 !important;
+  scale: 1 !important;
+  filter: none !important;
+  clip-path: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+html.dv-editorial-mode .ux-tilt-target,
+html.dv-editorial-mode [data-m10-surface],
+html.dv-editorial-mode .dv-product-visual,
+html.dv-editorial-mode .dv-product-copy,
+html.dv-editorial-mode .product-feature-visual,
+html.dv-editorial-mode .detail-device-row,
+html.dv-editorial-mode .hero-device-cluster {
+  transform: none !important;
+  translate: 0 0 !important;
+  filter: none !important;
+}
+
+html.dv-editorial-mode .glass-panel,
+html.dv-editorial-mode .product-card,
+html.dv-editorial-mode .service-card,
+html.dv-editorial-mode .update-card,
+html.dv-editorial-mode .blog-card,
+html.dv-editorial-mode .story-card,
+html.dv-editorial-mode .faq-card,
+html.dv-editorial-mode .reason-card,
+html.dv-editorial-mode .support-app-card,
+html.dv-editorial-mode .support-product-card,
+html.dv-editorial-mode .request-panel,
+html.dv-editorial-mode .dv-service-card,
+html.dv-editorial-mode .dv-product,
+html.dv-editorial-mode .dv-update-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  will-change: auto !important;
+}
+
+/* Shared architecture */
+html.dv-editorial-mode .app-shell {
+  width: min(1180px, calc(100% - 48px));
+  padding: 16px 0 48px;
+}
+
+html.dv-editorial-mode .site-header,
+html.dv-editorial-mode .dv-header {
+  border: 1px solid rgb(223 230 239 / .94) !important;
+  background: rgb(255 255 255 / .94) !important;
+  box-shadow: 0 12px 34px rgb(15 23 42 / .055) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+html.dv-editorial-mode .site-header {
+  top: 12px;
+  min-height: 62px;
+  border-radius: 18px;
+}
+
+html.dv-editorial-mode .dv-header {
+  background: rgb(247 249 252 / .95) !important;
+}
+
+html.dv-editorial-mode .desktop-nav a,
+html.dv-editorial-mode .dv-nav-links > a {
+  color: #445168 !important;
+  transition: color 160ms ease, background-color 160ms ease !important;
+}
+
+html.dv-editorial-mode .desktop-nav a:hover,
+html.dv-editorial-mode .desktop-nav a.is-active,
+html.dv-editorial-mode .dv-nav-links > a:hover {
+  color: var(--ed-ink) !important;
+  background: #eef3fb !important;
+}
+
+html.dv-editorial-mode .button,
+html.dv-editorial-mode .dv-button {
+  min-height: 48px;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease !important;
+}
+
+html.dv-editorial-mode .button.primary,
+html.dv-editorial-mode .dv-button-primary,
+html.dv-editorial-mode .dv-nav-cta {
+  color: #fff !important;
+  border-color: #111827 !important;
+  background: #111827 !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .button.primary:hover,
+html.dv-editorial-mode .dv-button-primary:hover,
+html.dv-editorial-mode .dv-nav-cta:hover {
+  color: #fff !important;
+  background: #1e293b !important;
+}
+
+html.dv-editorial-mode .button.secondary,
+html.dv-editorial-mode .button.ghost,
+html.dv-editorial-mode .dv-button-secondary,
+html.dv-editorial-mode .dv-button-ghost {
+  border-color: var(--ed-line) !important;
+  color: var(--ed-ink) !important;
+  background: #fff !important;
+}
+
+html.dv-editorial-mode p {
+  color: var(--ed-copy);
+}
+
+html.dv-editorial-mode .eyebrow,
+html.dv-editorial-mode .dv-eyebrow {
+  color: #66748a !important;
+  letter-spacing: .12em !important;
+}
+
+/* Page heroes */
+html.dv-editorial-mode .page-hero,
+html.dv-editorial-mode .product-hero-detail,
+html.dv-editorial-mode .hero-section {
+  margin-top: 12px;
+  border: 1px solid var(--ed-line);
+  border-radius: var(--ed-radius-lg);
+  background:
+    radial-gradient(circle at 82% 18%, rgb(124 92 245 / .08), transparent 22rem),
+    radial-gradient(circle at 12% 18%, rgb(53 109 243 / .07), transparent 23rem),
+    #fff !important;
+  box-shadow: var(--ed-shadow-sm);
+}
+
+html.dv-editorial-mode .page-hero,
+html.dv-editorial-mode .product-hero-detail {
+  padding: clamp(38px, 6vw, 76px) !important;
+}
+
+html.dv-editorial-mode .page-hero h1,
+html.dv-editorial-mode .product-hero-detail h1,
+html.dv-editorial-mode .hero-section h1 {
+  color: var(--ed-ink) !important;
+  letter-spacing: -.045em !important;
+}
+
+html.dv-editorial-mode .page-hero h1,
+html.dv-editorial-mode .product-title-row h1,
+html.dv-editorial-mode .product-hero-detail h1 {
+  font-size: clamp(2.6rem, 5vw, 4.65rem) !important;
+  line-height: 1 !important;
+}
+
+html.dv-editorial-mode .page-hero p,
+html.dv-editorial-mode .product-hero-detail p,
+html.dv-editorial-mode .hero-section p {
+  color: var(--ed-copy) !important;
+}
+
+html.dv-editorial-mode .hero-device-cluster {
+  min-height: 390px;
+  border: 1px solid var(--ed-line);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #eef4ff, #f5f1ff 58%, #fff) !important;
+}
+
+html.dv-editorial-mode .device,
+html.dv-editorial-mode .detail-device-row .device {
+  box-shadow: 0 20px 46px rgb(15 23 42 / .16) !important;
+  filter: none !important;
+}
+
+/* Cards */
+html.dv-editorial-mode .product-card,
+html.dv-editorial-mode .service-card,
+html.dv-editorial-mode .update-card,
+html.dv-editorial-mode .blog-card,
+html.dv-editorial-mode .story-card,
+html.dv-editorial-mode .glass-panel,
+html.dv-editorial-mode .faq-card,
+html.dv-editorial-mode .reason-card,
+html.dv-editorial-mode .support-app-card,
+html.dv-editorial-mode .support-product-card,
+html.dv-editorial-mode .request-panel,
+html.dv-editorial-mode .test-teaser {
+  border-color: var(--ed-line) !important;
+  border-radius: var(--ed-radius) !important;
+  background: #fff !important;
+  box-shadow: 0 10px 34px rgb(15 23 42 / .045) !important;
+}
+
+html.dv-editorial-mode .product-card:hover,
+html.dv-editorial-mode .service-card:hover,
+html.dv-editorial-mode .update-card:hover,
+html.dv-editorial-mode .blog-card:hover,
+html.dv-editorial-mode .story-card:hover,
+html.dv-editorial-mode .glass-panel:hover {
+  translate: 0 -2px !important;
+  transform: none !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 16px 38px rgb(15 23 42 / .07) !important;
+}
+
+/* Product storytelling becomes editorial instead of theatrical. */
+html.dv-editorial-mode .product-story-section {
+  margin-top: 72px;
+}
+
+html.dv-editorial-mode .product-story-intro h2 {
+  font-size: clamp(2.35rem, 4.8vw, 4.9rem) !important;
+}
+
+html.dv-editorial-mode .product-feature-story {
+  min-height: 520px;
+  gap: clamp(30px, 4vw, 58px);
+  padding: clamp(30px, 4.8vw, 58px);
+  border-color: var(--ed-line) !important;
+  border-radius: 26px !important;
+  background: #fff !important;
+  box-shadow: var(--ed-shadow-sm) !important;
+}
+
+html.dv-editorial-mode .product-feature-story::before,
+html.dv-editorial-mode .product-feature-visual::before {
+  display: none !important;
+}
+
+html.dv-editorial-mode .product-feature-visual {
+  min-height: 410px;
+  border-color: var(--ed-line) !important;
+  border-radius: 22px !important;
+  background: linear-gradient(145deg, #eef4ff, #f6f3ff 60%, #fff) !important;
+}
+
+html.dv-editorial-mode .feature-device-shell,
+html.dv-editorial-mode .is-reversed .feature-device-shell {
+  transform: none !important;
+  box-shadow: 0 24px 54px rgb(15 23 42 / .18) !important;
+}
+
+/* Homepage */
+html.dv-editorial-mode .dv-site {
+  background:
+    radial-gradient(circle at 13% 3%, rgb(53 109 243 / .065), transparent 24rem),
+    radial-gradient(circle at 88% 6%, rgb(124 92 245 / .055), transparent 26rem),
+    var(--ed-bg) !important;
+}
+
+html.dv-editorial-mode .dv-shell {
+  width: min(1180px, calc(100% - 48px));
+}
+
+html.dv-editorial-mode .dv-hero {
+  padding: 132px 0 72px !important;
+}
+
+html.dv-editorial-mode .dv-hero-grid {
+  grid-template-columns: minmax(0, .98fr) minmax(460px, 1.02fr) !important;
+  gap: clamp(48px, 6vw, 80px) !important;
+  min-height: 620px !important;
+}
+
+html.dv-editorial-mode .dv-hero h1 {
+  max-width: 680px;
+  font-size: clamp(3.15rem, 5vw, 4.9rem) !important;
+  line-height: 1.01 !important;
+  letter-spacing: -.055em !important;
+}
+
+html.dv-editorial-mode .dv-hero h1 em {
+  display: inline !important;
+  color: var(--ed-ink) !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html.dv-editorial-mode .dv-hero h1 em::after {
+  content: '';
+  display: inline-block;
+  width: .72em;
+  height: .12em;
+  margin-left: .12em;
+  border-radius: 999px;
+  vertical-align: .12em;
+  background: linear-gradient(90deg, var(--ed-blue), var(--ed-violet), var(--ed-cyan));
+}
+
+html.dv-editorial-mode .dv-hero-copy > p {
+  max-width: 590px;
+  margin-top: 24px !important;
+  font-size: 1.05rem !important;
+  line-height: 1.72 !important;
+}
+
+html.dv-editorial-mode .dv-hero-actions {
+  margin-top: 30px !important;
+}
+
+html.dv-editorial-mode .dv-hero-proof {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 !important;
+  margin-top: 42px !important;
+  padding-top: 22px;
+  border-top: 1px solid var(--ed-line);
+}
+
+html.dv-editorial-mode .dv-hero-proof > div {
+  padding-right: 18px;
+}
+
+html.dv-editorial-mode .dv-hero-proof > div + div {
+  padding-left: 18px;
+  border-left: 1px solid var(--ed-line);
+}
+
+html.dv-editorial-mode .dv-hero-showcase {
+  min-height: 560px !important;
+  perspective: none !important;
+  transform: none !important;
+}
+
+html.dv-editorial-mode .dv-showcase-card {
+  width: 224px !important;
+  height: 458px !important;
+  padding: 10px !important;
+  border-radius: 30px !important;
+  border-color: rgb(255 255 255 / .88) !important;
+  box-shadow: 0 28px 62px rgb(15 23 42 / .16) !important;
+  transition: none !important;
+}
+
+html.dv-editorial-mode .dv-showcase-card.card-blue {
+  top: 74px !important;
+  left: 36px !important;
+  transform: rotate(-5deg) !important;
+}
+
+html.dv-editorial-mode .dv-showcase-card.card-violet {
+  top: 16px !important;
+  left: 228px !important;
+  transform: rotate(3deg) !important;
+}
+
+html.dv-editorial-mode .dv-showcase-card.card-cyan {
+  display: none !important;
+}
+
+html.dv-editorial-mode .dv-showcase-badge.badge-top {
+  display: none !important;
+}
+
+html.dv-editorial-mode .dv-showcase-badge.badge-bottom {
+  right: 18px !important;
+  bottom: 34px !important;
+  left: auto !important;
+  border-color: var(--ed-line) !important;
+  background: #fff !important;
+  box-shadow: var(--ed-shadow-sm) !important;
+  backdrop-filter: none !important;
+}
+
+html.dv-editorial-mode .dv-capability-strip {
+  border-color: var(--ed-line) !important;
+  background: #fff !important;
+}
+
+html.dv-editorial-mode .dv-capability-strip .dv-shell {
+  min-height: 68px !important;
+  color: #718096 !important;
+  letter-spacing: .055em !important;
+}
+
+html.dv-editorial-mode .dv-section {
+  padding-block: clamp(72px, 8vw, 108px) !important;
+}
+
+html.dv-editorial-mode .dv-section-head {
+  margin-bottom: 38px !important;
+}
+
+html.dv-editorial-mode .dv-section-head h2,
+html.dv-editorial-mode .dv-process-intro h2,
+html.dv-editorial-mode .dv-about-copy h2,
+html.dv-editorial-mode .dv-cta-card h2 {
+  letter-spacing: -.045em !important;
+}
+
+html.dv-editorial-mode .dv-service-grid {
+  gap: 16px !important;
+}
+
+html.dv-editorial-mode .dv-service-card {
+  min-height: 286px;
+  padding: 26px !important;
+  border: 1px solid var(--ed-line) !important;
+  border-radius: 20px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  transition: border-color 160ms ease, box-shadow 160ms ease !important;
+}
+
+html.dv-editorial-mode .dv-service-card::before {
+  display: none !important;
+}
+
+html.dv-editorial-mode .dv-service-card:hover {
+  translate: 0 -2px !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: var(--ed-shadow-sm) !important;
+}
+
+html.dv-editorial-mode .dv-product-list {
+  gap: 24px !important;
+}
+
+html.dv-editorial-mode .dv-product {
+  display: grid !important;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr) !important;
+  align-items: center !important;
+  gap: clamp(30px, 5vw, 64px) !important;
+  min-height: 520px !important;
+  padding: clamp(28px, 4vw, 48px) !important;
+  border: 1px solid var(--ed-line) !important;
+  border-radius: 26px !important;
+  background: #fff !important;
+  box-shadow: var(--ed-shadow-sm) !important;
+}
+
+html.dv-editorial-mode .dv-product.is-reverse .dv-product-visual {
+  order: 2;
+}
+
+html.dv-editorial-mode .dv-product.is-reverse .dv-product-copy {
+  order: 1;
+}
+
+html.dv-editorial-mode .dv-product-stage {
+  border: 1px solid var(--ed-line) !important;
+  border-radius: 22px !important;
+  background: linear-gradient(145deg, #eef4ff, #f5f1ff 60%, #fff) !important;
+}
+
+html.dv-editorial-mode .dv-phone.phone-3 {
+  display: none !important;
+}
+
+html.dv-editorial-mode .dv-phone {
+  box-shadow: 0 22px 48px rgb(15 23 42 / .18) !important;
+  transition: none !important;
+}
+
+html.dv-editorial-mode .dv-floating-icon {
+  box-shadow: 0 14px 30px rgb(15 23 42 / .11) !important;
+  transition: none !important;
+}
+
+html.dv-editorial-mode .dv-metric {
+  border-color: var(--ed-line) !important;
+  background: #f8fafc !important;
+}
+
+html.dv-editorial-mode .dv-process-section {
+  border-radius: 0 !important;
+  background: #101827 !important;
+}
+
+html.dv-editorial-mode .dv-process-grid article {
+  border: 1px solid rgb(255 255 255 / .09) !important;
+  background: rgb(255 255 255 / .045) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+html.dv-editorial-mode .dv-process-grid article:hover {
+  translate: 0 0 !important;
+}
+
+html.dv-editorial-mode .dv-update-grid {
+  gap: 14px !important;
+}
+
+html.dv-editorial-mode .dv-update-card {
+  padding: 24px !important;
+  border: 1px solid var(--ed-line) !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  transition: border-color 160ms ease !important;
+}
+
+html.dv-editorial-mode .dv-update-card:hover {
+  translate: 0 0 !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .dv-about-visual {
+  min-height: 430px !important;
+  border: 1px solid var(--ed-line) !important;
+  border-radius: 24px !important;
+  background: linear-gradient(145deg, #eff5ff, #f6f2ff 60%, #fff) !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .dv-about-chip {
+  border-color: var(--ed-line) !important;
+  background: #fff !important;
+  box-shadow: var(--ed-shadow-sm) !important;
+}
+
+html.dv-editorial-mode .dv-cta-card {
+  overflow: hidden;
+  border: 1px solid #1f2937 !important;
+  border-radius: 26px !important;
+  background: #101827 !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .dv-footer,
+html.dv-editorial-mode .site-footer {
+  border-color: var(--ed-line) !important;
+  background: #fff !important;
+  color: var(--ed-ink) !important;
+}
+
+html.dv-editorial-mode .dv-footer p,
+html.dv-editorial-mode .site-footer p,
+html.dv-editorial-mode .dv-footer a,
+html.dv-editorial-mode .site-footer a {
+  color: #5f6d82 !important;
+}
+
+/* Contact + support: operational, not decorative. */
+html.dv-editorial-mode .contact-page,
+html.dv-editorial-mode .support-layout {
+  color: var(--ed-ink) !important;
+}
+
+html.dv-editorial-mode .support-form,
+html.dv-editorial-mode .contact-page form {
+  border: 1px solid var(--ed-line) !important;
+  border-radius: 22px !important;
+  background: #fff !important;
+  box-shadow: var(--ed-shadow-sm) !important;
+}
+
+html.dv-editorial-mode input,
+html.dv-editorial-mode textarea,
+html.dv-editorial-mode select {
+  color: var(--ed-ink) !important;
+  border-color: var(--ed-line) !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode input:focus,
+html.dv-editorial-mode textarea:focus,
+html.dv-editorial-mode select:focus {
+  border-color: #94a3b8 !important;
+  outline: 3px solid rgb(53 109 243 / .10) !important;
+}
+
+/* Tables, filters, utility surfaces */
+html.dv-editorial-mode .filter-row button {
+  border-color: var(--ed-line) !important;
+  background: #fff !important;
+  color: #506078 !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .filter-row button.is-active,
+html.dv-editorial-mode .filter-row button[aria-pressed='true'] {
+  color: #fff !important;
+  border-color: #111827 !important;
+  background: #111827 !important;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  html.dv-editorial-mode .dv-hero-grid,
+  html.dv-editorial-mode .hero-section,
+  html.dv-editorial-mode .product-feature-story,
+  html.dv-editorial-mode .dv-product {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .dv-hero-showcase {
+    min-height: 500px !important;
+    width: min(100%, 520px);
+    margin-inline: auto;
+  }
+
+  html.dv-editorial-mode .dv-product.is-reverse .dv-product-visual,
+  html.dv-editorial-mode .dv-product.is-reverse .dv-product-copy {
+    order: initial;
+  }
+}
+
+@media (max-width: 760px) {
+  html.dv-editorial-mode .app-shell,
+  html.dv-editorial-mode .dv-shell {
+    width: min(100% - 28px, 1180px) !important;
+  }
+
+  html.dv-editorial-mode .site-header {
+    top: 8px;
+    border-radius: 16px;
+  }
+
+  html.dv-editorial-mode .dv-hero {
+    padding: 112px 0 54px !important;
+  }
+
+  html.dv-editorial-mode .dv-hero h1 {
+    font-size: clamp(2.75rem, 13vw, 4.25rem) !important;
+  }
+
+  html.dv-editorial-mode .dv-hero-proof {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  html.dv-editorial-mode .dv-hero-proof > div,
+  html.dv-editorial-mode .dv-hero-proof > div + div {
+    padding: 0 !important;
+    border-left: 0 !important;
+  }
+
+  html.dv-editorial-mode .dv-hero-showcase {
+    min-height: 430px !important;
+  }
+
+  html.dv-editorial-mode .dv-showcase-card {
+    width: 176px !important;
+    height: 360px !important;
+  }
+
+  html.dv-editorial-mode .dv-showcase-card.card-blue {
+    top: 56px !important;
+    left: 18px !important;
+  }
+
+  html.dv-editorial-mode .dv-showcase-card.card-violet {
+    top: 10px !important;
+    right: 14px !important;
+    left: auto !important;
+  }
+
+  html.dv-editorial-mode .dv-showcase-badge.badge-bottom {
+    right: 8px !important;
+    bottom: 8px !important;
+  }
+
+  html.dv-editorial-mode .dv-capability-strip .dv-shell {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    scrollbar-width: none;
+  }
+
+  html.dv-editorial-mode .dv-capability-strip i {
+    flex: 0 0 auto;
+  }
+
+  html.dv-editorial-mode .dv-product,
+  html.dv-editorial-mode .product-feature-story,
+  html.dv-editorial-mode .page-hero,
+  html.dv-editorial-mode .product-hero-detail {
+    padding: 24px !important;
+    border-radius: 20px !important;
+  }
+
+  html.dv-editorial-mode .product-feature-visual {
+    min-height: 340px;
+  }
+
+  html.dv-editorial-mode .dv-service-card,
+  html.dv-editorial-mode .dv-update-card {
+    border-radius: 16px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  html.dv-editorial-mode .dv-hero-showcase {
+    min-height: 360px !important;
+  }
+
+  html.dv-editorial-mode .dv-showcase-card {
+    width: 148px !important;
+    height: 304px !important;
+    border-radius: 24px !important;
+  }
+
+  html.dv-editorial-mode .dv-showcase-card.card-blue { left: 6px !important; }
+  html.dv-editorial-mode .dv-showcase-card.card-violet { right: 4px !important; }
+  html.dv-editorial-mode .dv-showcase-badge.badge-bottom { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.dv-editorial-mode *,
+  html.dv-editorial-mode *::before,
+  html.dv-editorial-mode *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -2,11 +2,14 @@
    repainting large blurred layers or off-screen sections. */
 
 @supports (content-visibility: auto) {
-  .dv-product-list > .dv-product,
+  /* Product cards deliberately stay fully laid out. They have highly variable
+     responsive heights, so per-card intrinsic placeholders can create false
+     geometry, late height corrections and visible scroll jumps on narrow
+     screens. Keep content-visibility for the heavier section-level surfaces
+     where intrinsic sizing is stable. */
   .dv-process-section,
   .dv-updates,
   .dv-about,
-  .products-grid > *,
   .updates-layout,
   .blog-grid > *,
   .support-layout,

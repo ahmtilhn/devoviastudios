@@ -137,10 +137,15 @@ async function main() {
             window.scrollTo(0, 0);
             const style = document.createElement('style');
             style.dataset.layoutQaCapture = 'true';
-            style.textContent = '*,*::before,*::after{animation-play-state:paused!important;transition:none!important}';
+            style.textContent = '*,*::before,*::after{animation-play-state:paused!important;transition:none!important}\\n*{content-visibility:visible!important;contain-intrinsic-size:none!important}';
             document.head.append(style);
+            document.querySelectorAll('[data-m10-state]').forEach((element) => { element.dataset.m10State = 'visible'; });
+            document.querySelectorAll('[data-pm-state]').forEach((element) => { element.dataset.pmState = 'visible'; });
+            document.querySelectorAll('[data-ux-reveal]').forEach((element) => { element.dataset.uxVisible = 'true'; });
+            document.querySelectorAll('[data-privacy-motion]').forEach((element) => { element.dataset.privacyMotion = 'visible'; });
             document.documentElement.classList.add('layout-qa-capture');
-            await new Promise((resolve) => setTimeout(resolve, 220));
+            await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+            await new Promise((resolve) => setTimeout(resolve, 240));
             return true;
           })()`,
           awaitPromise: true,
