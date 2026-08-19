@@ -135,13 +135,29 @@ async function main() {
     }
 
     async function navigateToCanonical(route, expectedPath, timeout = 5000) {
+      // Each legacy redirect has both a JS location.replace and a meta refresh.
+      // Isolate the test from the previous redirect so a still-committing load
+      // cannot win the race and replace the next navigation.
+      const blankLoaded = client.waitFor('Page.loadEventFired').catch(() => null);
+      await client.send('Page.navigate', { url: 'about:blank' });
+      await blankLoaded;
+      await delay(80);
+
+      const loaded = client.waitFor('Page.loadEventFired').catch(() => null);
       await client.send('Page.navigate', { url: `${baseUrl}${route}` });
+      await loaded;
+
       const started = Date.now();
       let currentPath = '';
       while (Date.now() - started < timeout) {
         try {
           currentPath = await evaluate('location.pathname.replace(/\\/+$/, "") || "/"');
-          if (currentPath === expectedPath) return currentPath;
+          if (currentPath === expectedPath) {
+            await delay(160);
+            const stablePath = await evaluate('location.pathname.replace(/\\/+$/, "") || "/"');
+            if (stablePath === expectedPath) return stablePath;
+            currentPath = stablePath;
+          }
         } catch {
           // The execution context can be replaced while a redirect is committing.
         }
