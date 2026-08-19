@@ -10,7 +10,8 @@
 }
 
 @media (min-width: 1121px) {
-  /* Five product cards: three on the first row, two centered below. */
+  /* Product portfolio: use a six-track canvas so both 5-card and 2-card
+     product states can be centered without odd orphan columns. */
   .app-shell .products-grid:has(> [data-sudoku-product-card]) {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
@@ -19,11 +20,21 @@
     grid-column: span 2;
   }
 
+  /* All products = five cards: 3 + 2 centered. */
   .app-shell .products-grid:has(> [data-sudoku-product-card]:nth-child(5):last-child) > :nth-child(4) {
     grid-column: 2 / span 2;
   }
 
   .app-shell .products-grid:has(> [data-sudoku-product-card]:nth-child(5):last-child) > :nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+
+  /* Games filter = Arrow Escape + Sudoku Duel: two cards centered. */
+  .app-shell .products-grid:has(> [data-sudoku-product-card]:nth-child(2):last-child) > :first-child {
+    grid-column: 2 / span 2;
+  }
+
+  .app-shell .products-grid:has(> [data-sudoku-product-card]:nth-child(2):last-child) > :last-child {
     grid-column: 4 / span 2;
   }
 
