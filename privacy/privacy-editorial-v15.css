@@ -24,13 +24,31 @@ html.privacy-editorial-v15 .privacy-float-chip {
   display: none !important;
 }
 
+/* The legacy privacy stylesheet still has view-timeline reveal rules. In the
+   calm profile every legal section must remain immediately legible at any
+   viewport size, including long full-page captures and direct anchor jumps. */
+html.privacy-editorial-v15 [data-reveal],
+html.privacy-editorial-v15 [data-reveal].is-visible,
 html.privacy-editorial-v15 [data-privacy-motion],
 html.privacy-editorial-v15 [data-privacy-role] {
   opacity: 1 !important;
   transform: none !important;
   translate: 0 0 !important;
+  scale: 1 !important;
   filter: none !important;
   clip-path: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+html.privacy-editorial-v15 .privacy-section {
+  content-visibility: visible !important;
+  contain-intrinsic-size: none !important;
+}
+
+html.privacy-editorial-v15 .privacy-status-visual::after,
+html.privacy-editorial-v15 .privacy-status-visual::before,
+html.privacy-editorial-v15 .privacy-app-orb {
   animation: none !important;
   transition: none !important;
 }
