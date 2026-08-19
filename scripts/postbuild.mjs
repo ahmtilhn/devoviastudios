@@ -11,6 +11,7 @@ const privacyPolicies = [
   { id: 'app-2', fileName: 'app-2.html', slug: 'daily-hadith' },
   { id: 'app-3', fileName: 'app-3.html', slug: 'tinysteps' },
   { id: 'app-4', fileName: 'app-4.html', slug: 'arrow-escape' },
+  { id: 'app-5', fileName: 'app-5.html', slug: 'sudoku-duel' },
 ];
 
 const privacyRouteById = new Map(
@@ -29,6 +30,7 @@ const productAliases = new Map([
   ['/projects/arrow-escape', '/products/arrow-escape'],
   ['/projects/daily-hadith', '/products/daily-hadith'],
   ['/projects/tinysteps', '/products/tinysteps'],
+  ['/projects/sudoku-duel', '/products/sudoku-duel'],
 ]);
 
 const legacyRedirects = new Map([
@@ -92,6 +94,7 @@ function normalizePublicReference(value) {
   else if (normalized === './devovia-logo.png') normalized = '/devovia-logo.png';
   else if (normalized === './privacy-v2.css') normalized = '/privacy/privacy-v2.css';
   else if (normalized === './privacy-v2.js') normalized = '/privacy/privacy-v2.js';
+  else if (normalized.startsWith('./')) normalized = `/privacy/${normalized.slice(2)}`;
 
   const url = new URL(normalized, siteUrl);
   const canonicalPath = cleanPrivacyPathMap.get(url.pathname.replace(/\/+$/, '') || '/');
@@ -229,6 +232,7 @@ const routes = [
   '/support',
   '/contact',
   ...appData.apps.map((app) => `/products/${routeSlug(app)}`),
+  '/products/sudoku-duel',
   ...blogSlugs.map((slug) => `/blog/${slug}`),
 ];
 
@@ -240,6 +244,8 @@ const canonicalRoutes = [
   ...routes,
   '/privacy',
   ...privacyPolicies.map((policy) => `/privacy/${policy.slug}`),
+  '/privacy/sudoku-duel-terms.html',
+  '/privacy/sudoku-duel-delete-account.html',
 ];
 
 fs.writeFileSync(
