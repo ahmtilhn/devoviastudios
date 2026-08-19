@@ -23,8 +23,10 @@ check('Unused pointer assets are not copied into production', !source.package.in
 check('Performance V13 stylesheet is loaded', source.main.includes("./ui/performance-v13.css"), paths.main);
 check('Balanced Sudoku layout stylesheet is loaded', source.main.includes("./ui/sudoku-layout-v13.css"), paths.main);
 check('Off-screen rendering uses content-visibility', source.performance.includes('content-visibility: auto'), paths.performance);
-check('Lite motion disables expensive atmosphere layers', source.performance.includes('html.ux-lite-motion .m10-atmosphere'), paths.performance);
-check('Mobile mode removes expensive backdrop filters', source.performance.includes('backdrop-filter: none !important'), paths.performance);
+check('Viewport-sized V10 atmosphere is disabled globally', source.performance.includes('.m10-atmosphere,') && source.performance.includes('.dv-pointer-aura') && source.performance.includes('display: none !important'), paths.performance);
+check('Large ambient orbs are disabled', source.performance.includes('.dv-ambient-orb') && source.performance.includes('display: none !important'), paths.performance);
+check('Card backdrop filters are disabled globally', source.performance.includes('.glass-panel,') && source.performance.includes('-webkit-backdrop-filter: none !important'), paths.performance);
+check('Mobile mode removes remaining expensive filtered backgrounds', source.performance.includes('@media (max-width: 900px)') && source.performance.includes('filter: none !important'), paths.performance);
 check('Sudoku integration has no permanent MutationObserver', !source.sudoku.includes('new MutationObserver'), paths.sudoku);
 check('Sudoku SPA integration follows history changes', source.sudoku.includes("wrapHistoryMethod('pushState')"), paths.sudoku);
 check('Sudoku product card has explicit alignment hardening', source.sudoku.includes('.products-grid [data-sudoku-product-card]'), paths.sudoku);
