@@ -1,0 +1,25 @@
+name: Production form comparison
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  production-browser-api:
+    if: github.head_ref == 'verify/file-attachments-build'
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Compare message-only and file submissions
+        shell: bash
+        run: |
+          set -u
+          curl -fsSL 'https://raw.githubusercontent.com/ahmtilhn/devoviastudios/verify/file-attachments-build/scripts/one-time-production-origin-check.mjs' -o /tmp/file-check.mjs
+          sed "/data.append('attachment_1'/d" /tmp/file-check.mjs > /tmp/message-check.mjs
+          echo '--- MESSAGE_ONLY ---'
+          node /tmp/message-check.mjs || true
+          echo '--- WITH_FILE ---'
+          node /tmp/file-check.mjs || true

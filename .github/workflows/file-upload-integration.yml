@@ -1,0 +1,23 @@
+name: One-time browser integration check
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  browser-check:
+    if: github.head_ref == 'verify/file-attachments-build'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --silent
+      - run: npm run build >/dev/null
+      - run: node scripts/one-time-browser-attachment-check.mjs
