@@ -5,6 +5,8 @@ const paths = {
   main: 'src/main.jsx',
   sudoku: 'src/ui/sudoku-development-v13.js',
   performance: 'src/ui/performance-v13.css',
+  sudokuLayout: 'src/ui/sudoku-layout-v13.css',
+  privacyHub: 'privacy.html',
   package: 'package.json',
 };
 
@@ -19,6 +21,7 @@ check('Global pointer stylesheet is no longer loaded', !source.index.includes('p
 check('Global pointer runtime is no longer loaded', !source.index.includes('pointer-v11.js'), paths.index);
 check('Unused pointer assets are not copied into production', !source.package.includes('copy-pointer-v11.mjs'), paths.package);
 check('Performance V13 stylesheet is loaded', source.main.includes("./ui/performance-v13.css"), paths.main);
+check('Balanced Sudoku layout stylesheet is loaded', source.main.includes("./ui/sudoku-layout-v13.css"), paths.main);
 check('Off-screen rendering uses content-visibility', source.performance.includes('content-visibility: auto'), paths.performance);
 check('Lite motion disables expensive atmosphere layers', source.performance.includes('html.ux-lite-motion .m10-atmosphere'), paths.performance);
 check('Mobile mode removes expensive backdrop filters', source.performance.includes('backdrop-filter: none !important'), paths.performance);
@@ -26,6 +29,10 @@ check('Sudoku integration has no permanent MutationObserver', !source.sudoku.inc
 check('Sudoku SPA integration follows history changes', source.sudoku.includes("wrapHistoryMethod('pushState')"), paths.sudoku);
 check('Sudoku product card has explicit alignment hardening', source.sudoku.includes('.products-grid [data-sudoku-product-card]'), paths.sudoku);
 check('Sudoku mobile product layout collapses to one column', source.sudoku.includes('grid-template-columns:1fr!important'), paths.sudoku);
+check('Five-card product layout uses centered three-plus-two composition', source.sudokuLayout.includes('repeat(6, minmax(0, 1fr))') && source.sudokuLayout.includes(':nth-child(4)') && source.sudokuLayout.includes(':nth-child(5)'), paths.sudokuLayout);
+check('Homepage four-update composition uses two columns', source.sudokuLayout.includes('.dv-update-grid:has(> [data-sudoku-update])') && source.sudokuLayout.includes('repeat(2, minmax(0, 1fr))'), paths.sudokuLayout);
+check('Tablet fifth product is centered', source.sudokuLayout.includes('width: min(100%, 540px)') && source.sudokuLayout.includes('justify-self: center'), paths.sudokuLayout);
+check('Privacy center five-card layout is balanced', source.privacyHub.includes('.privacy-app-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }') && source.privacyHub.includes('.privacy-app-card:nth-child(5)'), paths.privacyHub);
 
 const failures = checks.filter((item) => !item.value);
 for (const item of checks) console.log(`${item.value ? 'PASS' : 'FAIL'}  ${item.name}  [${item.file}]`);
