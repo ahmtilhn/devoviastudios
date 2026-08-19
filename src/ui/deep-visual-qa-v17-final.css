@@ -1,0 +1,76 @@
+/* Deep Visual QA V17 — final screenshot-review corrections. */
+
+/* The existing release-system diagram becomes visible once the test-support hero
+   is correctly composed. It is stronger than adding a second proof diagram, so
+   keep one visual language and suppress the redundant V17 duplicate. */
+html.dv-editorial-mode .app-shell[data-ux-page='test-support'] .test-readiness-v17 {
+  display: none !important;
+}
+
+/* Product-detail mobile hero: use one deliberate crop of the real store artwork.
+   The Play artwork places its useful phone composition toward the right edge;
+   enlarge and pull that area toward the visual centre instead of showing a large
+   field of empty background. */
+@media (max-width: 760px) {
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row {
+    height: 330px !important;
+    min-height: 330px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(1),
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .detail-device-1 {
+    position: absolute !important;
+    display: block !important;
+    inset: 16px !important;
+    width: calc(100% - 32px) !important;
+    height: calc(100% - 32px) !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-radius: 18px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    translate: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(n+2) {
+    display: none !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(1) img,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .detail-device-1 img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 16px !important;
+    object-fit: cover !important;
+    object-position: center 38% !important;
+    transform: translateX(-16%) scale(1.38) !important;
+    transform-origin: 72% 46% !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-of-type(1) :is(.device-speaker, .ux-device-glass),
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .detail-device-1 :is(.device-speaker, .ux-device-glass) {
+    display: none !important;
+  }
+}
+
+/* On narrow footer grids the contact email was the last visible text wrapping
+   into a one-word orphan. Give it the full footer row instead of squeezing it
+   into the same narrow navigation column as short links. */
+@media (max-width: 620px) {
+  html.dv-editorial-mode .app-shell .site-footer a[href^='mailto:'] {
+    grid-column: 1 / -1 !important;
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    font-size: .7rem;
+  }
+}

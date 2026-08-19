@@ -1,0 +1,248 @@
+/* Devovia Structural Quality V16 — visual QA corrections.
+   These overrides fix the first V16 screenshot pass without re-introducing the
+   rigid legacy card sizing that caused the original overflow complaints. */
+
+/* PRODUCT CATALOGUE
+   One full-width lead product + a dependable two-column catalogue below it.
+   This keeps the editorial hierarchy without leaving orphaned 1/12 columns. */
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(1),
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:nth-child(2) {
+  grid-column: auto !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child {
+  grid-column: 1 / -1 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, .88fr) minmax(360px, 1.12fr) !important;
+  grid-template-rows: auto auto auto 1fr auto !important;
+  column-gap: clamp(30px, 4vw, 52px) !important;
+  min-height: 520px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child .product-card-top,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child > p,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child > .metric-row,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child > .chip-row,
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child > .card-actions {
+  grid-column: 1 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child .product-visual {
+  grid-column: 2 !important;
+  grid-row: 1 / span 5 !important;
+  width: 100%;
+  height: 100% !important;
+  min-height: 458px !important;
+  margin: 0 !important;
+  align-self: stretch;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .card-actions {
+  display: flex !important;
+  align-items: center;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .card-actions > .button {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100%;
+  overflow: visible !important;
+}
+
+/* Google Play's label is intentionally icon-only inside catalogue action rows.
+   Preserve the semantic text for accessibility while removing clipping pressure. */
+html.dv-editorial-mode .app-shell[data-ux-page='products'] .product-card .card-actions .play-badge {
+  width: 28px !important;
+  max-width: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  font-size: 0 !important;
+}
+
+/* SUPPORT
+   The first V16 pass attempted to place the final card's links into a third
+   column. That made the grid calculate tall implicit rows and visibly crushed
+   adjacent cards. All product routes now use the same predictable card model. */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) {
+  grid-template-columns: minmax(320px, .78fr) minmax(0, 1.22fr) !important;
+  align-items: start !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) > div:first-child {
+  position: static !important;
+  top: auto !important;
+  max-width: 500px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) h1 {
+  font-size: clamp(2.9rem, 4.5vw, 4.7rem) !important;
+  line-height: 1 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-auto-rows: auto !important;
+  align-items: start !important;
+  align-content: start !important;
+  gap: 14px !important;
+  min-width: 0 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child {
+  grid-column: auto !important;
+  display: grid !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto auto !important;
+  grid-auto-rows: auto !important;
+  gap: 6px 14px !important;
+  align-content: start !important;
+  align-self: start !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 20px !important;
+  overflow: hidden !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > img,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child > img {
+  grid-column: 1 !important;
+  grid-row: 1 / span 2 !important;
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px !important;
+  margin: 0 !important;
+  align-self: start;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > h3,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > p,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child > h3,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child > p {
+  grid-column: 2 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card > a,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child > a {
+  grid-column: 1 / -1 !important;
+  display: flex !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 34px !important;
+  padding: 8px 0 !important;
+  align-items: center;
+  border-top: 1px solid #eef2f7;
+  overflow-wrap: anywhere;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-card:last-child {
+  grid-column: 1 / -1 !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+}
+
+/* PRODUCT DETAIL — MOBILE HERO
+   Keep one real product screen visible and centred. Absolute positioning is
+   intentional here because the existing regression audit treats these devices
+   as visual proof and expects one visible mockup. */
+@media (max-width: 760px) {
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-hero {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    min-height: 0 !important;
+    padding: 26px 22px !important;
+    overflow: hidden !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-hero .product-title-row h1 {
+    font-size: clamp(2.5rem, 13vw, 3.8rem) !important;
+    line-height: .96 !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-hero .hero-lead {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-hero .meta-chip-row {
+    gap: 7px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row {
+    position: relative !important;
+    display: block !important;
+    width: 100%;
+    min-height: 340px !important;
+    height: 340px !important;
+    overflow: hidden !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-child(1) {
+    position: absolute !important;
+    display: block !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 146px !important;
+    margin: 0 !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .detail-device-row .device:nth-child(n+2) {
+    display: none !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter {
+    padding: 22px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card,
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child {
+    grid-column: 1 !important;
+    display: flex !important;
+    min-height: 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='products'] .products-grid > .product-card:first-child .product-visual {
+    width: 100%;
+    height: 260px !important;
+    min-height: 0 !important;
+    margin: 0 0 20px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .page-hero:has(.support-app-grid) {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-app-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
