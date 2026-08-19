@@ -1,0 +1,714 @@
+/* Contact Focus V18 — screenshot-led refinement for the project enquiry flow. */
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] {
+  --contact-line: #dfe6ef;
+  --contact-line-strong: #cdd7e5;
+  --contact-ink: #0f172a;
+  --contact-copy: #526076;
+  --contact-muted: #718096;
+  --contact-blue: #356df3;
+  --contact-violet: #7c5cf5;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] main#top {
+  overflow: visible;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page[data-contact-focus-v18='ready'] {
+  display: grid !important;
+  grid-template-columns: minmax(0, .86fr) minmax(460px, 1.14fr) !important;
+  grid-template-rows: auto 1fr;
+  gap: 20px clamp(42px, 5vw, 66px) !important;
+  align-items: start !important;
+  width: 100% !important;
+  margin-top: 12px;
+  padding: clamp(44px, 5.5vw, 68px) !important;
+  overflow: hidden !important;
+  border: 1px solid var(--contact-line);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 10% 10%, rgb(53 109 243 / .075), transparent 25rem),
+    radial-gradient(circle at 88% 12%, rgb(124 92 245 / .075), transparent 25rem),
+    #fff;
+  box-shadow: 0 14px 44px rgb(15 23 42 / .055);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  position: sticky;
+  top: 104px;
+  align-self: start;
+  max-width: 520px !important;
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 > .eyebrow {
+  margin-bottom: 16px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 > h1 {
+  max-width: 520px;
+  margin: 0 0 22px !important;
+  color: var(--contact-ink) !important;
+  font-size: clamp(3.25rem, 5vw, 5.25rem) !important;
+  line-height: .97 !important;
+  letter-spacing: -.055em !important;
+  text-wrap: balance;
+  overflow-wrap: normal !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 > p:not(.eyebrow) {
+  max-width: 510px;
+  margin: 0;
+  color: var(--contact-copy) !important;
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-grid-v18 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 28px;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  min-width: 0;
+  min-height: 116px;
+  padding: 15px;
+  border: 1px solid var(--contact-line);
+  border-radius: 14px;
+  background: rgb(248 250 252 / .88);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 strong {
+  color: var(--contact-ink);
+  font-family: Sora, Manrope, sans-serif;
+  font-size: .78rem;
+  line-height: 1.25;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 span {
+  color: var(--contact-muted);
+  font-size: .68rem;
+  line-height: 1.46;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-card-v18 {
+  margin-top: 14px;
+  padding: 22px;
+  border: 1px solid var(--contact-line);
+  border-radius: 18px;
+  background: #fff;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-mini-label-v18 {
+  margin: 0 0 8px !important;
+  color: #64748b !important;
+  font-size: .66rem !important;
+  font-weight: 850;
+  letter-spacing: .12em;
+  line-height: 1.2 !important;
+  text-transform: uppercase;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-card-v18 > h2 {
+  max-width: 410px;
+  margin: 0 0 10px !important;
+  color: var(--contact-ink) !important;
+  font-size: clamp(1.25rem, 2vw, 1.7rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.035em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-card-v18 > p:not(.contact-mini-label-v18) {
+  margin: 0;
+  color: var(--contact-copy) !important;
+  font-size: .82rem;
+  line-height: 1.58;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 {
+  display: grid;
+  gap: 0;
+  margin: 17px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 11px;
+  align-items: start;
+  padding: 12px 0;
+  border-top: 1px solid #edf1f6;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-number-v18 {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 9px;
+  color: #355ec6;
+  background: #edf3ff;
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--contact-ink);
+  font-size: .78rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 p {
+  margin: 0;
+  color: var(--contact-muted) !important;
+  font-size: .72rem;
+  line-height: 1.5;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin-top: 12px;
+  padding: 16px 18px;
+  border: 1px solid #cfd9e7;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f7faff, #f7f4ff);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 p:not(.contact-mini-label-v18) {
+  max-width: 300px;
+  margin: 0;
+  color: var(--contact-copy) !important;
+  font-size: .7rem;
+  line-height: 1.5;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-link-v18 {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 13px;
+  border: 1px solid #d7dfeb;
+  border-radius: 11px;
+  color: var(--contact-ink) !important;
+  background: #fff;
+  font-size: .7rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-link-v18:hover {
+  border-color: #b8c5d8;
+  background: #f8fafc;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18 {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  padding: 0 4px;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18 > .eyebrow {
+  margin-bottom: 10px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18 h2 {
+  max-width: 560px;
+  margin: 0 0 10px !important;
+  color: var(--contact-ink) !important;
+  font-size: clamp(1.85rem, 3vw, 2.65rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -.04em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18 > p:not(.eyebrow) {
+  max-width: 540px;
+  margin: 0;
+  color: var(--contact-copy) !important;
+  font-size: .88rem;
+  line-height: 1.58;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page > .support-form.project-form-v18 {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 15px !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  justify-self: stretch !important;
+  padding: clamp(22px, 2.8vw, 28px) !important;
+  overflow: hidden !important;
+  border: 1px solid var(--contact-line) !important;
+  border-radius: 22px !important;
+  background: #fff !important;
+  box-shadow: 0 14px 38px rgb(15 23 42 / .055) !important;
+  backdrop-filter: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 label {
+  gap: 7px !important;
+  color: #37445a !important;
+  font-size: .72rem !important;
+  font-weight: 800 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 :is(input, select, textarea) {
+  width: 100%;
+  min-width: 0 !important;
+  min-height: 50px !important;
+  padding: 13px 14px !important;
+  border: 1px solid #dbe3ed !important;
+  border-radius: 12px !important;
+  color: var(--contact-ink) !important;
+  background: #fff !important;
+  font-size: .82rem;
+  box-shadow: inset 0 1px 0 rgb(15 23 42 / .015) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 textarea {
+  min-height: 148px !important;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 :is(input, select, textarea):hover {
+  border-color: #c7d1df !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 :is(input, select, textarea):focus {
+  border-color: #9eb4d7 !important;
+  outline: 3px solid rgb(53 109 243 / .09) !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-panel.contact-attachment-v18 {
+  gap: 13px !important;
+  margin: 1px 0 0 !important;
+  padding: 16px !important;
+  border: 1px solid #dbe4ef !important;
+  border-radius: 16px !important;
+  background: #f8fafc !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-panel-title {
+  gap: 4px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-panel-kicker {
+  color: #5d76aa !important;
+  font-size: .61rem !important;
+  letter-spacing: .13em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-panel-title h2 {
+  margin: 0 !important;
+  color: var(--contact-ink) !important;
+  font-size: 1rem !important;
+  line-height: 1.22 !important;
+  letter-spacing: -.02em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-panel-title p {
+  max-width: 560px;
+  color: var(--contact-copy) !important;
+  font-size: .71rem !important;
+  line-height: 1.45 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-field {
+  gap: 9px !important;
+  padding: 13px !important;
+  border: 1px solid #e0e7f0 !important;
+  border-radius: 13px !important;
+  background: #fff !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-field-heading h3 {
+  color: var(--contact-ink) !important;
+  font-size: .78rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-field-heading p {
+  color: var(--contact-muted) !important;
+  font-size: .66rem !important;
+  line-height: 1.4 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-limit {
+  padding: 4px 7px;
+  border-color: #dbe4ef !important;
+  color: #68778d !important;
+  background: #f8fafc !important;
+  font-size: .6rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-zone {
+  min-height: 88px !important;
+  gap: 5px !important;
+  padding: 14px !important;
+  border: 1px dashed #bdcadb !important;
+  border-radius: 11px !important;
+  background: linear-gradient(180deg, #fbfdff, #f6f9fd) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-zone:hover,
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-zone:focus-visible,
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-zone.is-dragging {
+  border-color: #91a9ce !important;
+  background: #f1f6ff !important;
+  box-shadow: 0 0 0 3px rgb(53 109 243 / .08) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-symbol {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  color: #fff !important;
+  background: #5578d8 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-action {
+  color: var(--contact-ink) !important;
+  font-size: .8rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-zone > p {
+  color: var(--contact-muted) !important;
+  font-size: .63rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-notice.warning {
+  gap: 9px !important;
+  padding: 10px 11px !important;
+  border-color: #eadbc2 !important;
+  border-radius: 11px !important;
+  background: #fffaf2 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-notice-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  color: #a15c17 !important;
+  background: #ffedd2 !important;
+  font-size: .66rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-notice strong {
+  margin-bottom: 2px;
+  color: #6e461f !important;
+  font-size: .68rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-notice p {
+  color: #83694d !important;
+  font-size: .62rem !important;
+  line-height: 1.4 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 > .form-note {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 10px 12px !important;
+  border: 1px solid #e3e9f1;
+  border-radius: 11px;
+  color: #657389 !important;
+  background: #f8fafc;
+  font-size: .64rem !important;
+  line-height: 1.48 !important;
+  overflow-wrap: normal !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 > .form-note .icon {
+  width: 15px;
+  height: 15px;
+  margin-top: 1px;
+  flex: 0 0 auto;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 > .routing-destination-note {
+  color: #52637c !important;
+  border-color: #dbe4ef;
+  background: #f5f8fc;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 > button[type='submit'] {
+  min-height: 52px !important;
+  margin-top: 1px;
+  border-radius: 13px !important;
+  font-size: .82rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-v18 {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(34px, 5vw, 64px);
+  align-items: start;
+  margin-top: 24px;
+  padding: clamp(32px, 4vw, 44px);
+  overflow: hidden;
+  border: 1px solid #1f2937;
+  border-radius: 24px;
+  color: #f8fafc;
+  background:
+    radial-gradient(circle at 86% 16%, rgb(84 111 194 / .18), transparent 19rem),
+    #101827;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-v18 .eyebrow {
+  color: #aebbd0 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-intro-v18 h2 {
+  max-width: 410px;
+  margin: 0 0 12px;
+  color: #fff !important;
+  font-size: clamp(1.85rem, 3.2vw, 2.8rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -.045em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-intro-v18 > p:not(.eyebrow) {
+  max-width: 390px;
+  margin: 0;
+  color: #b7c2d3 !important;
+  font-size: .82rem;
+  line-height: 1.62;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 article {
+  min-width: 0;
+  min-height: 176px;
+  padding: 20px;
+  border: 1px solid rgb(255 255 255 / .09);
+  border-radius: 15px;
+  background: rgb(255 255 255 / .045);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 article > span {
+  display: inline-flex;
+  margin-bottom: 28px;
+  color: #9fb2d5;
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 h3 {
+  margin: 0 0 8px;
+  color: #f8fafc !important;
+  font-size: .92rem;
+  letter-spacing: -.015em;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 p {
+  margin: 0;
+  color: #aebbd0 !important;
+  font-size: .7rem;
+  line-height: 1.52;
+}
+
+@media (max-width: 1020px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page[data-contact-focus-v18='ready'] {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto auto;
+    gap: 28px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18,
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18,
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page > .support-form.project-form-v18 {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 {
+    position: static;
+    top: auto;
+    max-width: 760px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 > h1,
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 > p:not(.eyebrow) {
+    max-width: 720px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page > .support-form.project-form-v18 {
+    max-width: 760px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18 {
+    max-width: 760px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 760px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page[data-contact-focus-v18='ready'] {
+    gap: 24px !important;
+    margin-top: 10px;
+    padding: 26px 22px 24px !important;
+    border-radius: 22px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 > h1 {
+    margin-bottom: 18px !important;
+    font-size: clamp(2.65rem, 12vw, 3.55rem) !important;
+    line-height: .98 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-intro-v18 > p:not(.eyebrow) {
+    font-size: .9rem;
+    line-height: 1.64;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-grid-v18 {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    margin-top: 22px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 12px;
+    min-height: 0;
+    padding: 12px 13px;
+    align-items: start;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 strong,
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-signal-v18 span {
+    font-size: .68rem;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-card-v18 {
+    margin-top: 10px;
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-card-v18 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 15px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-email-link-v18 {
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18 {
+    padding: 0;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-form-heading-v18 h2 {
+    font-size: clamp(1.8rem, 9vw, 2.35rem) !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page > .support-form.project-form-v18 {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 13px !important;
+    padding: 18px !important;
+    border-radius: 18px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 > * {
+    grid-column: 1 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 :is(input, select, textarea) {
+    font-size: 16px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 textarea {
+    min-height: 142px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .attachment-panel.contact-attachment-v18 {
+    padding: 14px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-field-heading {
+    display: flex !important;
+    gap: 10px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-limit {
+    align-self: start;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-drop-zone {
+    min-height: 82px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-v18 {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    margin-top: 16px;
+    padding: 26px 22px;
+    border-radius: 20px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 {
+    grid-template-columns: 1fr;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 article {
+    min-height: 0;
+    padding: 17px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-process-steps-v18 article > span {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page[data-contact-focus-v18='ready'] {
+    padding: 22px 18px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-brief-list-v18 li {
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .contact-page > .support-form.project-form-v18 {
+    padding: 16px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='contact'] .project-form-v18 .upload-field-heading {
+    display: grid !important;
+  }
+}
