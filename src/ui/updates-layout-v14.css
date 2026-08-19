@@ -144,7 +144,7 @@ html[data-motion-page='updates'] .story-card .text-link {
   margin-top: auto;
 }
 
-/* All-products state: 5 cards become 3 + 2, with the last row centered. */
+/* All-products state: five cards become 3 + 2, with the last row centered. */
 html[data-motion-page='updates'] .story-grid:has(> [data-sudoku-story]:not([hidden])) > :nth-child(4),
 html[data-motion-page='updates'] .story-grid:has(> [data-sudoku-story]:not([hidden])) > :nth-child(5) {
   grid-column: span 2;
@@ -173,9 +173,11 @@ html[data-motion-page='updates'] .story-grid:has(> [data-sudoku-story][hidden]) 
   justify-self: center;
 }
 
-/* Studio intentionally keeps all published product stories visible. */
-html[data-motion-page='updates'] .filter-row:has(button.active:nth-last-child(2)) + .updates-layout .story-grid > .story-card:not([hidden]) {
+/* Studio filter keeps four published product stories. Make them a balanced 2 x 2. */
+html[data-motion-page='updates'] .story-grid:has(> [data-sudoku-story][hidden]):has(> .story-card:nth-child(5)) > .story-card:not([hidden]) {
+  grid-column: span 3;
   width: auto;
+  justify-self: stretch;
 }
 
 /* Sudoku-only filter: center its timeline and release-note card. */
@@ -199,7 +201,8 @@ html[data-motion-page='updates'] .launch-support-row {
 
   html[data-motion-page='updates'] .story-grid > .story-card,
   html[data-motion-page='updates'] .story-grid:has(> [data-sudoku-story]:not([hidden])) > :nth-child(4),
-  html[data-motion-page='updates'] .story-grid:has(> [data-sudoku-story]:not([hidden])) > :nth-child(5) {
+  html[data-motion-page='updates'] .story-grid:has(> [data-sudoku-story]:not([hidden])) > :nth-child(5),
+  html[data-motion-page='updates'] .story-grid:has(> [data-sudoku-story][hidden]):has(> .story-card:nth-child(5)) > .story-card:not([hidden]) {
     grid-column: auto;
   }
 
