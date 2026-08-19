@@ -1,15 +1,22 @@
 /* Editorial V15 final visual QA adjustments. */
 
 /* Release notes benefit from one clear product proof, not another overlapping
-   phone stack. Center the primary screen and remove the secondary crop. */
+   phone stack. Pin the primary device safely inside the visual rather than
+   centering it with a height-dependent transform that can clip tall phones. */
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
 html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-1 {
   display: block !important;
-  top: 50% !important;
+  top: 18px !important;
   left: 50% !important;
   right: auto !important;
   bottom: auto !important;
-  width: 178px !important;
-  transform: translate(-50%, -50%) !important;
+  width: 150px !important;
+  translate: -50% 0 !important;
+  transform: none !important;
 }
 
 html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-2,
@@ -20,6 +27,7 @@ html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .
 
 @media (max-width: 760px) {
   html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-1 {
-    width: 148px !important;
+    top: 16px !important;
+    width: 132px !important;
   }
 }
