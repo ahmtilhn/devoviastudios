@@ -1,4 +1,5 @@
-/* Performance V13 — keep the visual language while avoiding unnecessary paint/layout work. */
+/* Performance V13 — preserve hierarchy and motion cues without continuously
+   repainting large blurred layers or off-screen sections. */
 
 @supports (content-visibility: auto) {
   .dv-product-list > .dv-product,
@@ -17,13 +18,54 @@
   }
 }
 
-/* The page already has several motion layers. Keep one restrained layer instead
-   of stacking expensive blurs, transforms and animated atmospheres. */
-html.ux-lite-motion .m10-atmosphere,
+/* V10 remains the single route/reveal orchestrator. Its full-screen pointer
+   atmosphere is redundant now that cards, sections and route transitions
+   already communicate interaction, so do not keep a viewport-sized blur layer
+   alive on every desktop frame. */
+.m10-atmosphere,
+.dv-pointer-aura {
+  display: none !important;
+}
+
+/* Keep the branded background composition static instead of continuously
+   transforming/filtering multiple large translucent layers. */
+.dv-ambient-orb {
+  display: none !important;
+}
+
+.dv-background-grid,
+.dv-product-glow,
+.dv-showcase-halo,
+.dv-about-visual::before {
+  animation: none !important;
+  filter: none !important;
+}
+
+/* Backdrop blur on dozens of cards is one of the most expensive paint effects
+   on integrated/mobile GPUs. Opaque/semi-opaque surfaces retain the same visual
+   hierarchy without forcing the browser to continuously sample what is behind
+   each card. */
+.glass-panel,
+.product-card,
+.dv-product,
+.update-card,
+.dv-update-card,
+.story-card,
+.blog-card,
+.support-app-card,
+.support-product-card,
+.request-panel,
+.test-teaser,
+.faq-card,
+.reason-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  will-change: auto !important;
+}
+
+/* Low-capability devices get an even quieter motion profile. */
 html.ux-lite-motion .dv-interactive-background,
-html.ux-lite-motion .dv-pointer-aura,
 html.ux-lite-motion .dv-product-glow,
-html.ux-lite-motion .dv-ambient-orb,
 html.ux-lite-motion .dv-background-grid {
   display: none !important;
 }
@@ -37,31 +79,9 @@ html.ux-lite-motion [data-m10-role] {
   transition-duration: 120ms !important;
 }
 
-html.ux-lite-motion .glass-panel,
-html.ux-lite-motion .product-card,
-html.ux-lite-motion .dv-product,
-html.ux-lite-motion .update-card,
-html.ux-lite-motion .dv-update-card,
-html.ux-lite-motion .support-app-card {
-  backdrop-filter: none !important;
-}
-
-/* Prevent paint-heavy elements from becoming permanent GPU layers. */
-.dv-product,
-.product-card,
-.glass-panel,
-.dv-update-card,
-.update-card,
-.support-app-card {
-  will-change: auto !important;
-}
-
 @media (max-width: 900px) {
-  .m10-atmosphere,
   .dv-interactive-background,
-  .dv-pointer-aura,
   .dv-product-glow,
-  .dv-ambient-orb,
   .dv-background-grid {
     display: none !important;
   }
@@ -73,7 +93,6 @@ html.ux-lite-motion .support-app-card {
   .update-card,
   .support-app-card,
   .request-panel {
-    backdrop-filter: none !important;
     filter: none !important;
   }
 
