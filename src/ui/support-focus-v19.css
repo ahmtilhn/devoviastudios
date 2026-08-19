@@ -1,0 +1,954 @@
+/* Support Focus V19 — operational, product-first and screenshot-led. */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] {
+  --support-ink: #0f172a;
+  --support-copy: #526076;
+  --support-muted: #748196;
+  --support-line: #dfe6ef;
+  --support-line-strong: #cbd5e1;
+  --support-blue: #356df3;
+  --support-violet: #7c5cf5;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] main#top {
+  overflow: visible;
+}
+
+/* HERO ------------------------------------------------------------------ */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 {
+  display: grid !important;
+  grid-template-columns: minmax(0, .9fr) minmax(470px, 1.1fr) !important;
+  gap: clamp(42px, 5vw, 68px) !important;
+  align-items: center !important;
+  min-height: 620px !important;
+  padding: clamp(44px, 5.5vw, 70px) !important;
+  overflow: hidden !important;
+  border-radius: 28px !important;
+  background:
+    radial-gradient(circle at 12% 8%, rgb(53 109 243 / .075), transparent 24rem),
+    radial-gradient(circle at 88% 10%, rgb(124 92 245 / .075), transparent 24rem),
+    #fff !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 > div:first-child {
+  position: static !important;
+  top: auto !important;
+  max-width: 560px !important;
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 h1 {
+  max-width: 560px !important;
+  margin: 0 0 22px !important;
+  color: var(--support-ink) !important;
+  font-size: clamp(3.2rem, 5.2vw, 5.35rem) !important;
+  line-height: .98 !important;
+  letter-spacing: -.055em !important;
+  text-wrap: balance;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 > div:first-child > p:not(.eyebrow) {
+  max-width: 530px !important;
+  margin: 0 !important;
+  color: var(--support-copy) !important;
+  font-size: 1rem !important;
+  line-height: 1.72 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-actions-v19 {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-actions-v19 .button {
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 34px;
+  padding-top: 20px;
+  border-top: 1px solid var(--support-line);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 article {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding-right: 15px;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 article + article {
+  padding-left: 15px;
+  border-left: 1px solid var(--support-line);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 strong {
+  color: var(--support-ink);
+  font-size: .76rem;
+  line-height: 1.3;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 span {
+  color: var(--support-muted);
+  font-size: .64rem;
+  line-height: 1.4;
+}
+
+/* PRODUCT INDEX --------------------------------------------------------- */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 {
+  grid-column: 2 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 > span {
+  color: #65748a;
+  font-size: .64rem;
+  font-weight: 900;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 > strong {
+  color: var(--support-ink);
+  font-family: Sora, Manrope, sans-serif;
+  font-size: 1.26rem;
+  letter-spacing: -.03em;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 > p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--support-copy) !important;
+  font-size: .73rem;
+  line-height: 1.48;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 8px !important;
+  align-content: start;
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card {
+  display: grid !important;
+  grid-template-columns: 46px minmax(0, 1fr) auto !important;
+  grid-template-rows: auto !important;
+  gap: 14px !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 72px !important;
+  padding: 11px 13px !important;
+  overflow: visible !important;
+  border: 1px solid var(--support-line) !important;
+  border-radius: 14px !important;
+  background: rgb(255 255 255 / .92) !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card:hover {
+  border-color: var(--support-line-strong) !important;
+  translate: 0 0 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card > img {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  width: 46px !important;
+  height: 46px !important;
+  max-width: 46px !important;
+  margin: 0 !important;
+  border-radius: 12px !important;
+  object-fit: cover;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-copy-v19 {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-copy-v19 strong {
+  color: var(--support-ink);
+  font-size: .85rem;
+  line-height: 1.2;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-copy-v19 span {
+  color: var(--support-muted);
+  font-size: .63rem;
+  line-height: 1.3;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-actions-v19 {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-actions-v19 a {
+  display: inline-flex !important;
+  width: auto !important;
+  min-height: 30px !important;
+  padding: 0 9px !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dbe3ed !important;
+  border-radius: 9px;
+  color: #44546b !important;
+  background: #fff;
+  font-size: .62rem !important;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-actions-v19 .support-action-v19 {
+  color: #fff !important;
+  border-color: #111827 !important;
+  background: #111827 !important;
+}
+
+/* MAIN FLOW ------------------------------------------------------------- */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-layout[data-support-focus-v19='ready'] {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: clamp(72px, 8vw, 104px) !important;
+  width: 100% !important;
+  margin-top: clamp(72px, 8vw, 104px) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-pathways-v19 {
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-pathways-v19 .section-header {
+  align-items: end !important;
+  margin-bottom: 30px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-pathways-v19 .section-header > div {
+  max-width: 740px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-pathways-v19 .section-header h2 {
+  max-width: 700px;
+  margin: 0 !important;
+  font-size: clamp(2.2rem, 4.4vw, 4.2rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -.05em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-grid-v19 {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 48px minmax(0, 1fr) auto !important;
+  grid-template-rows: auto auto !important;
+  gap: 4px 16px !important;
+  align-items: start;
+  min-width: 0 !important;
+  min-height: 158px !important;
+  padding: 25px !important;
+  overflow: hidden;
+  border: 1px solid var(--support-line) !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 30px rgb(15 23 42 / .04) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19::after {
+  content: var(--support-index);
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  color: #d6deea;
+  font-family: Sora, Manrope, sans-serif;
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 .icon-box {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 44px;
+  height: 44px;
+  border-color: #dbe5f3 !important;
+  background: #f2f6fd !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 h3,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 p {
+  grid-column: 2;
+  min-width: 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 h3 {
+  margin: 3px 46px 3px 0 !important;
+  color: var(--support-ink) !important;
+  font-size: 1.03rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 p {
+  max-width: 360px;
+  margin: 0 !important;
+  color: var(--support-copy) !important;
+  font-size: .75rem !important;
+  line-height: 1.55 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-link-v19 {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: end;
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  color: #355ec6 !important;
+  font-size: .7rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+/* REQUEST SECTION ------------------------------------------------------- */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-section-v19 {
+  display: grid;
+  grid-template-columns: minmax(0, .84fr) minmax(430px, 1.16fr);
+  gap: clamp(34px, 5vw, 64px);
+  align-items: start;
+  padding: clamp(34px, 5vw, 58px);
+  overflow: hidden;
+  border: 1px solid #1f2937;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 8% 12%, rgb(53 109 243 / .24), transparent 25rem),
+    radial-gradient(circle at 92% 90%, rgb(124 92 245 / .16), transparent 22rem),
+    #101827;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-context-v19 {
+  min-width: 0;
+  padding: 8px 0;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-context-v19 > .eyebrow {
+  color: #93c5fd !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-context-v19 > h2 {
+  max-width: 530px;
+  margin: 0 0 18px !important;
+  color: #fff !important;
+  font-size: clamp(2.4rem, 4.4vw, 4.45rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -.05em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-context-v19 > p:not(.eyebrow) {
+  max-width: 510px;
+  margin: 0;
+  color: #bac5d5 !important;
+  font-size: .91rem;
+  line-height: 1.7;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-checklist-v19 {
+  display: grid;
+  gap: 0;
+  margin-top: 28px;
+  border-top: 1px solid rgb(255 255 255 / .1);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-checklist-v19 article {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgb(255 255 255 / .1);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-checklist-v19 article > span {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / .12);
+  border-radius: 9px;
+  color: #bfdbfe;
+  background: rgb(255 255 255 / .055);
+  font-size: .61rem;
+  font-weight: 900;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-checklist-v19 strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #f8fafc;
+  font-size: .78rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-checklist-v19 p {
+  margin: 0;
+  color: #9eacbf !important;
+  font-size: .7rem;
+  line-height: 1.48;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-inbox-v19 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin-top: 22px;
+  padding: 14px 16px;
+  border: 1px solid rgb(255 255 255 / .11);
+  border-radius: 14px;
+  background: rgb(255 255 255 / .05);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-inbox-v19 div {
+  display: grid;
+  gap: 2px;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-inbox-v19 strong {
+  color: #fff;
+  font-size: .75rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-inbox-v19 span {
+  color: #9eacbf;
+  font-size: .65rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-inbox-v19 a {
+  color: #dbeafe !important;
+  font-size: .7rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* FORM ------------------------------------------------------------------ */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-panel-v19 {
+  position: static !important;
+  top: auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: clamp(22px, 2.8vw, 28px) !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 20px !important;
+  background: #fff !important;
+  box-shadow: 0 18px 48px rgb(2 6 23 / .22) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-heading-v19 {
+  margin-bottom: 19px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #edf1f6;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-heading-v19 > .eyebrow {
+  margin-bottom: 8px !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-heading-v19 h3 {
+  margin: 0 0 7px !important;
+  color: var(--support-ink) !important;
+  font-size: 1.42rem !important;
+  letter-spacing: -.035em;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-heading-v19 p:not(.eyebrow) {
+  margin: 0;
+  color: var(--support-copy) !important;
+  font-size: .74rem;
+  line-height: 1.5;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 > label {
+  gap: 7px !important;
+  color: #37445a !important;
+  font-size: .71rem !important;
+  font-weight: 800 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 :is(input, select, textarea) {
+  width: 100%;
+  min-width: 0 !important;
+  min-height: 49px !important;
+  padding: 12px 13px !important;
+  border: 1px solid #dbe3ed !important;
+  border-radius: 11px !important;
+  color: var(--support-ink) !important;
+  background: #fff !important;
+  font-size: .8rem !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 textarea {
+  min-height: 150px !important;
+  line-height: 1.52;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 :is(input, select, textarea):focus {
+  border-color: #9eb4d7 !important;
+  outline: 3px solid rgb(53 109 243 / .09) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .attachment-panel.support-attachment-v19 {
+  gap: 12px !important;
+  margin: 1px 0 0 !important;
+  padding: 15px !important;
+  border: 1px solid #dce5ef !important;
+  border-radius: 15px !important;
+  background: #f8fafc !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .attachment-panel-kicker {
+  color: #5d76aa !important;
+  font-size: .6rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .attachment-panel-title h2 {
+  margin: 0 !important;
+  color: var(--support-ink) !important;
+  font-size: .97rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.02em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .attachment-panel-title p {
+  color: var(--support-copy) !important;
+  font-size: .69rem !important;
+  line-height: 1.45 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-field {
+  gap: 8px !important;
+  padding: 12px !important;
+  border: 1px solid #e0e7f0 !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-field-heading h3 {
+  color: var(--support-ink) !important;
+  font-size: .76rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-field-heading p,
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-drop-zone p {
+  color: var(--support-muted) !important;
+  font-size: .64rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-limit {
+  border-color: #dbe4ef !important;
+  color: #68778d !important;
+  background: #f8fafc !important;
+  font-size: .59rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-drop-zone {
+  min-height: 84px !important;
+  padding: 13px !important;
+  border: 1px dashed #bdcadb !important;
+  border-radius: 10px !important;
+  background: linear-gradient(180deg, #fbfdff, #f6f9fd) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-drop-action {
+  color: var(--support-ink) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-symbol {
+  color: #fff !important;
+  background: #4f75d9 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .attachment-notice {
+  padding: 10px !important;
+  border-color: #efdcc2 !important;
+  background: #fffaf3 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .attachment-notice strong {
+  color: #5a4630 !important;
+  font-size: .68rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .attachment-notice p {
+  color: #806b56 !important;
+  font-size: .61rem !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .form-note {
+  margin: 0 !important;
+  color: #718096 !important;
+  font-size: .64rem !important;
+  line-height: 1.45 !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .routing-destination-note {
+  padding-top: 9px;
+  border-top: 1px solid #edf1f6;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 button[type='submit'] {
+  min-height: 50px;
+  margin-top: 1px;
+}
+
+/* FAQ ------------------------------------------------------------------- */
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-v19 {
+  display: grid;
+  grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(38px, 6vw, 78px);
+  align-items: start;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-intro-v19 h2 {
+  max-width: 480px;
+  margin: 0 0 15px !important;
+  color: var(--support-ink) !important;
+  font-size: clamp(2.1rem, 4vw, 3.8rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -.05em !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-intro-v19 p:not(.eyebrow) {
+  max-width: 440px;
+  margin: 0;
+  color: var(--support-copy) !important;
+  font-size: .86rem;
+  line-height: 1.65;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-list-v19 {
+  display: grid;
+  border-top: 1px solid var(--support-line);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-list-v19 details {
+  border-bottom: 1px solid var(--support-line);
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-list-v19 summary {
+  position: relative;
+  padding: 20px 42px 20px 0;
+  color: var(--support-ink);
+  font-family: Sora, Manrope, sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  line-height: 1.35;
+  cursor: pointer;
+  list-style: none;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-list-v19 summary::-webkit-details-marker {
+  display: none;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-list-v19 summary::after {
+  content: '+';
+  position: absolute;
+  top: 18px;
+  right: 4px;
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border: 1px solid var(--support-line);
+  border-radius: 9px;
+  color: #607089;
+  background: #fff;
+  font-family: Manrope, sans-serif;
+  font-size: .95rem;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-list-v19 details[open] summary::after {
+  content: '–';
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-list-v19 details > p {
+  max-width: 680px;
+  margin: -5px 42px 20px 0;
+  color: var(--support-copy) !important;
+  font-size: .78rem;
+  line-height: 1.62;
+}
+
+/* RESPONSIVE ------------------------------------------------------------ */
+@media (max-width: 980px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-section-v19,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-v19 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 {
+    grid-column: 1 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 {
+    margin-top: 14px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-context-v19 {
+    max-width: 720px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-panel-v19 {
+    max-width: 760px !important;
+  }
+}
+
+@media (max-width: 680px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 {
+    min-height: 0 !important;
+    gap: 30px !important;
+    padding: 28px 22px !important;
+    border-radius: 20px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 h1 {
+    font-size: clamp(2.45rem, 12vw, 3.55rem) !important;
+    line-height: .98 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 > div:first-child > p:not(.eyebrow) {
+    font-size: .88rem !important;
+    line-height: 1.62 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-actions-v19 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-actions-v19 .button {
+    min-height: 44px;
+    padding-inline: 12px;
+    font-size: .72rem;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 {
+    gap: 8px;
+    margin-top: 24px;
+    padding-top: 16px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 article,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 article + article {
+    padding: 0 !important;
+    border-left: 0 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 strong {
+    font-size: .64rem;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 span {
+    display: none;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-heading-v19 > strong {
+    font-size: 1.08rem;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card {
+    grid-template-columns: 40px minmax(0, 1fr) !important;
+    gap: 10px !important;
+    min-height: 0 !important;
+    padding: 10px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-index-v19 .support-app-card > img {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-actions-v19 {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding-top: 7px;
+    border-top: 1px solid #edf1f6;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-product-actions-v19 a {
+    min-height: 28px !important;
+    padding-inline: 8px !important;
+    font-size: .59rem !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-layout[data-support-focus-v19='ready'] {
+    gap: 64px !important;
+    margin-top: 64px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-pathways-v19 .section-header h2 {
+    font-size: clamp(2rem, 10vw, 2.8rem) !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-grid-v19 {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 9px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 {
+    grid-template-columns: 42px minmax(0, 1fr) !important;
+    grid-template-rows: auto auto auto !important;
+    min-height: 0 !important;
+    padding: 18px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19::after {
+    top: 15px;
+    right: 16px;
+    font-size: 1.45rem;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 .icon-box {
+    width: 38px;
+    height: 38px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 h3,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 p {
+    grid-column: 2;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-card-v19 h3 {
+    margin-right: 34px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-path-link-v19 {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 6px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-section-v19 {
+    gap: 28px;
+    padding: 26px 18px !important;
+    border-radius: 20px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-context-v19 > h2 {
+    font-size: clamp(2.15rem, 10.5vw, 3.05rem) !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-inbox-v19 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-inbox-v19 a {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-panel-v19 {
+    padding: 18px !important;
+    border-radius: 16px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .full,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 button,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .form-note,
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .attachment-panel {
+    grid-column: 1 !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-field-heading {
+    display: grid !important;
+    gap: 7px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-form-v19 .upload-limit {
+    justify-self: start;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-v19 {
+    gap: 24px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-intro-v19 h2 {
+    font-size: clamp(2rem, 9.5vw, 2.75rem) !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-faq-list-v19 summary {
+    padding-block: 17px;
+    font-size: .82rem;
+  }
+}
+
+@media (max-width: 390px) {
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-v19 {
+    padding-inline: 19px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-actions-v19 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-hero-signals-v19 strong {
+    font-size: .59rem;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] .support-request-panel-v19 {
+    padding: 16px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.dv-editorial-mode .app-shell[data-ux-page='support'] * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
