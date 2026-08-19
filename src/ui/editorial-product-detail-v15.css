@@ -1,0 +1,258 @@
+/* Editorial Product Detail V15
+   Removes the long scrollytelling corridor and keeps product proof visible,
+   static and compact. This layer loads after all legacy product experience CSS. */
+
+/* Filters are useful navigation, not a floating chrome layer. Keeping them in
+   document flow avoids covering the first row of update/product content. */
+html.dv-editorial-mode .app-shell .filter-row {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+  margin: 22px 0 28px !important;
+  border-color: var(--ed-line) !important;
+  background: #fff !important;
+  box-shadow: 0 8px 24px rgb(15 23 42 / .045) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Product detail pages: the animated/sticky demo stage duplicated information
+   already proven by real screenshots and made desktop pages extremely long.
+   In editorial mode the feature story becomes a direct 2x2 capability grid. */
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-experience {
+  width: min(1180px, calc(100% - 48px)) !important;
+  margin-top: 72px !important;
+  content-visibility: visible !important;
+  contain-intrinsic-size: none !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-overview {
+  gap: clamp(34px, 5vw, 64px) !important;
+  padding: 0 0 52px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-overview-copy h2 {
+  max-width: 720px !important;
+  font-size: clamp(2.45rem, 4.8vw, 4.8rem) !important;
+  line-height: .99 !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-promise-grid article {
+  min-height: 150px !important;
+  padding: 22px !important;
+  border-radius: 18px !important;
+  border-color: var(--ed-line) !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-promise-grid h3 {
+  margin-top: 22px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-story-layout {
+  display: block !important;
+  padding: 0 !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-stage-column {
+  display: none !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-track {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter {
+  position: relative !important;
+  display: flex !important;
+  min-height: 0 !important;
+  padding: 30px !important;
+  justify-content: flex-start !important;
+  opacity: 1 !important;
+  transform: none !important;
+  border: 1px solid var(--ed-line) !important;
+  border-radius: 20px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 32px rgb(15 23 42 / .045) !important;
+  transition: border-color 160ms ease, box-shadow 160ms ease !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter:hover {
+  border-color: var(--ed-line-strong) !important;
+  box-shadow: 0 14px 34px rgb(15 23 42 / .06) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter::before,
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter::after {
+  display: none !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-chapter-index {
+  margin-bottom: 22px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter h3 {
+  max-width: 520px !important;
+  font-size: clamp(1.8rem, 2.8vw, 2.75rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -.045em !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-description {
+  margin-top: 18px !important;
+  font-size: .96rem !important;
+  line-height: 1.68 !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-outcome-list {
+  margin-top: 22px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-proof {
+  margin-top: auto !important;
+  padding-top: 24px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-screens,
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts,
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-cta {
+  margin-top: 64px !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-screens {
+  padding: clamp(30px, 4vw, 48px) !important;
+  border-color: var(--ed-line) !important;
+  border-radius: 24px !important;
+  background: #fff !important;
+  box-shadow: 0 12px 36px rgb(15 23 42 / .05) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-section-heading h2 {
+  font-size: clamp(2rem, 3.7vw, 3.8rem) !important;
+  line-height: 1.02 !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-card {
+  min-height: 440px !important;
+  border-color: var(--ed-line) !important;
+  border-radius: 20px !important;
+  background: linear-gradient(145deg, #f2f6ff, #fff) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-phone,
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-card:nth-child(2) .v7-screen-phone,
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-card:nth-child(3) .v7-screen-phone,
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-card:hover .v7-screen-phone {
+  transform: none !important;
+  box-shadow: 0 22px 48px rgb(15 23 42 / .17) !important;
+  transition: none !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-fact-panel {
+  min-height: 0 !important;
+  border-color: var(--ed-line) !important;
+  border-radius: 20px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 32px rgb(15 23 42 / .045) !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-cta {
+  min-height: 240px !important;
+  border-radius: 24px !important;
+  background: #101827 !important;
+  box-shadow: none !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-cta h2 {
+  color: #f8fafc !important;
+}
+
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-cta .eyebrow,
+html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-cta p {
+  color: #cbd5e1 !important;
+}
+
+/* Updates: make the hero a deliberate two-device composition rather than a
+   partially cropped phone stack. */
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-1,
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-2 {
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-1 {
+  left: 10% !important;
+  right: auto !important;
+}
+
+html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-2 {
+  right: 10% !important;
+  left: auto !important;
+}
+
+@media (max-width: 900px) {
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-experience {
+    width: min(100% - 28px, 760px) !important;
+    margin-top: 52px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-track {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter {
+    padding: 26px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-card {
+    min-height: 400px !important;
+  }
+}
+
+@media (max-width: 620px) {
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-experience {
+    width: calc(100% - 18px) !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-overview {
+    padding-bottom: 38px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-screens,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-fact-panel,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-cta {
+    padding: 22px !important;
+    border-radius: 18px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-feature-chapter h3 {
+    font-size: clamp(1.75rem, 9vw, 2.4rem) !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-screens,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-facts,
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-product-cta {
+    margin-top: 42px !important;
+  }
+
+  html.dv-editorial-mode .app-shell.v7-product-detail-ready .v7-screen-card {
+    min-height: 360px !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-1 {
+    left: 8% !important;
+  }
+
+  html.dv-editorial-mode .app-shell[data-ux-page='updates'] .hero-device-cluster .cluster-2 {
+    right: 8% !important;
+  }
+}
