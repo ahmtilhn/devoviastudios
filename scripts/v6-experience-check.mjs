@@ -42,7 +42,7 @@ check('V6 supporting experience CSS remains loaded', source.main.includes("./ui/
 check('Adaptive performance controller is loaded', source.main.includes("./ui/performance-v6.js"), paths.main);
 check('Shared transition controller is loaded before native engine', source.main.indexOf("./ui/shared-transitions-v6.js") > -1 && source.main.indexOf("./ui/shared-transitions-v6.js") < source.main.indexOf("./ui/native-web-engine.js"), paths.main);
 check('All four products have dedicated experience data', ['app-1', 'app-2', 'app-3', 'app-4'].every((id) => source.productData.includes(`'${id}'`)), paths.productData);
-check('All sixteen product visuals exist', ['stockCatalog','stockMovement','stockInsights','stockOffline','arrowMemory','arrowPressure','arrowBoosters','arrowProgression','hadithDaily','hadithPrayer','hadithTools','hadithMedia','tinySchedules','tinyReminders','tinyWidget','tinyStats'].every((variant) => source.productVisuals.includes(variant)), paths.productVisuals);
+check('All sixteen product visuals exist', ['stockCatalog','stockMovement','stockInsights','stockOffline','arrowMemory','arrowPressure','arrowBoosters','arrowProgression','hadithDaily','hadithPrayer','hadithTools','hadithMedia','tinySchedules','tinyReminders','tinyWidget','tinyStats'].every((variant) => source.productVisuals.includes(variant)), paths.productData);
 check('Product stories use real screenshots with lazy async decoding', source.story.includes('loading="lazy" decoding="async"'), paths.story);
 check('Test Support retains its dedicated visual system', source.story.includes('test-support-visual-v6') && source.story.includes('support-proof-strip-v6'), paths.story);
 check('Supporting experience uses content visibility', source.experienceCss.includes('content-visibility: auto'), paths.experienceCss);
@@ -66,7 +66,7 @@ check('Long legal documents use local same-origin fragments', [source.privacy1, 
 check('Legal fragment loader handles success and failure', source.legalLoader.includes("fetch(source, { credentials: 'same-origin' })") && source.legalLoader.includes('Document unavailable'), paths.legalLoader);
 check('Stock Manager policy includes opening and final sections', source.stockStart.includes('1. Purpose of the Application') && source.stockEnd.includes('22. Contact'), 'privacy/fragments/stock-manager-*.html');
 check('Daily Hadith documents include privacy and EULA sections', source.dailyStart.includes('1. Introduction') && source.dailyEnd.includes('10. Contact'), 'privacy/fragments/daily-hadith-*.html');
-check('Arrow Escape policy includes opening and final sections', source.arrowStart.includes('1. Publisher and Developer Information') && source.arrowEnd.includes('24. Contact'), 'privacy/fragments/arrow-escape-*.html');
+check('Arrow Escape policy includes opening and final sections', source.arrowStart.includes('1. Publisher and Contact') && source.arrowEnd.includes('24. Contact'), 'privacy/fragments/arrow-escape-*.html');
 
 const failures = checks.filter((item) => !item.value);
 for (const item of checks) console.log(`${item.value ? 'PASS' : 'FAIL'}  ${item.name}  [${item.file}]`);
