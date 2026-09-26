@@ -53,9 +53,9 @@ const updates = [
   },
   {
     product: 'Stock Manager',
-    date: 'May 8, 2026',
-    title: 'Backup and restore now feels simpler',
-    text: 'Android file handling is clearer and moving a backup between devices is more dependable.',
+    date: 'Sep 26, 2026',
+    title: 'Business 6.0 rollout is underway',
+    text: 'Verified Business workspaces and safer setup are rolling out now, while role-focused warehouse, transfer and operational workflows move forward in P2.',
     href: '/products/stock-manager',
     accent: '#3B82F6',
   },
