@@ -5,17 +5,17 @@
       "slug": "stockflow-inventory",
       "package": "com.stockflow.inventory",
       "name": "Stock Manager",
-      "tagline": "Professional offline inventory management for products, stock movement, value and alerts.",
-      "short_desc": "Create a structured product catalog, track every stock movement, monitor inventory value and low-stock risk, then export or restore records without depending on a permanent internet connection.",
-      "long_desc": "Stock Manager is designed for small and medium-sized businesses that need practical inventory control without a complex ERP workflow.\n\nKey features:\n- Product creation and editing with SKU, categories, photos and documents\n- Barcode and QR scanning for faster lookup and entry\n- Real-time stock levels and chronological transaction history\n- Dashboard for product count, inventory value and recent movement\n- Low-stock notifications and critical-level warnings\n- CSV export, professional reports and data sharing\n- Local SQLite storage and complete offline operation\n- Android .sfbak backup and restore support\n- Turkish, English, French, German and Dutch language support",
+      "tagline": "Offline-first inventory management expanding with Business workspaces, capability-aware access and operational workflows.",
+      "short_desc": "Manage products, stock movements, inventory value, alerts, reports and backups in an offline-first workflow. The Business 6.0 rollout adds a verified workspace foundation, while the next P2 updates are bringing role-focused work, warehouse logistics and stronger operational visibility.",
+      "long_desc": "Stock Manager is designed for small and medium-sized businesses that need practical inventory control without a complex ERP workflow. The current Business update keeps products, stock and movements in one Stock Manager experience while adding workspace-aware access and a foundation for multi-user operations.\n\nKey features:\n- Product creation and editing with SKU, categories, photos and documents\n- Barcode and QR scanning for faster lookup and entry\n- Real-time stock levels and chronological transaction history\n- Dashboard for product count, inventory value and recent movement\n- Low-stock notifications and critical-level warnings\n- Business workspace setup and verified Business access (active rollout)\n- Capability-aware employee and warehouse workflows (P2 in progress)\n- CSV export, professional reports and data sharing\n- Local SQLite storage and complete offline operation\n- Android .sfbak backup and restore support\n- Turkish, English, French, German and Dutch language support",
       "developer": "Devovia Studio",
       "category": "Productivity",
-      "updated_on": "2026-05-08",
+      "updated_on": "2026-09-26",
       "downloads_text": "1K+",
       "rating_text": "5.0",
       "reviews_text": "16 comments",
       "theme": "#2563EB",
-      "tech_stack": "Flutter / SQLite / Android backup integration",
+      "tech_stack": "Flutter / SQLite / Firebase Business workspace / Android backup integration",
       "play_url": "https://play.google.com/store/apps/details?id=com.stockflow.inventory",
       "icon_url": "/products/stockflow-inventory/icon.png",
       "screenshots": [
@@ -27,26 +27,28 @@
       "privacy_official_url": "https://sites.google.com/view/devoviastudio/privacy-policy/SM-PP?authuser=0",
       "app_ads_file_url": "./apps/app-1/app-ads.txt",
       "release_notes": [
-        "Improved Android backup and restore compatibility for .sfbak files.",
-        "Added support for opening Stock Manager backup files directly from Android file managers.",
-        "Improved backup file picker behavior on mobile devices."
+        "Business 6.0 foundation is in active rollout with workspace setup, verified Business entitlements and hardened authentication/App Check paths.",
+        "Business entry now routes users to setup when no workspace exists, while established workspaces open into the Business experience.",
+        "Business localization, dynamic status/date presentation and release configuration have been hardened for the new workspace flow.",
+        "P2 development is underway for capability-aware workspaces, warehouse transfers, My Work tasks, approvals and stronger audit visibility.",
+        "Android backup and restore compatibility for .sfbak files remains supported."
       ],
       "feature_details": [
         {
-          "title": "Product catalog and barcode capture",
-          "description": "Create and edit products with SKU, category, photos and documents, then use barcode or QR scanning to speed up lookup and entry."
+          "title": "Product catalog, scanning and stock control",
+          "description": "Create products, scan barcodes or QR codes, follow stock levels and keep movement history in the same inventory domain."
         },
         {
-          "title": "Real-time stock movement history",
-          "description": "Follow incoming stock, sales and adjustments in chronological order so every quantity change keeps its operational context."
+          "title": "Business workspaces and verified access",
+          "description": "The Business 6.0 rollout adds workspace setup, verified Business access and safer routing into the correct Business state."
         },
         {
-          "title": "Inventory dashboard and shortage alerts",
-          "description": "Review total products, inventory value, recent movement, low-stock items and critical-level warnings from one decision surface."
+          "title": "Role-focused warehouse operations",
+          "description": "P2 is extending Stock Manager with capability-aware work, warehouse assignments and task-oriented transfer and receiving flows."
         },
         {
           "title": "Offline storage, reports and backup",
-          "description": "Continue core work through local SQLite storage, export CSV records and move .sfbak backups through supported Android file workflows."
+          "description": "Continue core inventory work locally, export records and move .sfbak backups through supported Android file workflows."
         }
       ],
       "privacy_points": [
@@ -54,6 +56,14 @@
         "Camera permission is used for barcode and QR scanning.",
         "Storage access may be used for product images and exported reports.",
         "Internet access may support synchronization, updates, security and support."
+      ],
+      "update_status": "Business 6.0 update in active rollout",
+      "update_summary": "The current Business update is hardening workspace setup, verified Business entitlements, authentication and App Check paths, and the entry flow that sends users to setup or their existing workspace. A broader P2 operations redesign is now underway on the same Stock Manager product.",
+      "roadmap": [
+        "Role- and capability-aware workspaces so each employee sees the tools needed for their job, warehouse and current operation.",
+        "A warehouse transfer lifecycle covering pick, pack, staging, pickup verification, in transit, receiving, partial acceptance and discrepancies.",
+        "My Work task flows for operational users and drivers, with recovery after offline periods, timeouts, restarts and duplicate taps.",
+        "Management attention, approvals, inventory valuation and loss visibility, plus stronger audit history using corrections and reversals instead of silent deletion."
       ]
     },
     {
