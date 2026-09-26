@@ -289,7 +289,7 @@ export default function DevoviaHome() {
                 <a className="dv-button dv-button-secondary" href="/contact">Talk about your idea</a>
               </div>
               <div className="dv-hero-proof" aria-label="Studio highlights">
-                <div><strong>{products.length}</strong><span>Published products</span></div>
+                <div><strong>{products.length + 1}</strong><span>Published products</span></div>
                 <div><strong>600+</strong><span>Google Play installs</span></div>
                 <div><strong>NL</strong><span>Independent studio</span></div>
               </div>
@@ -309,7 +309,7 @@ export default function DevoviaHome() {
                 <div className="dv-device-caption">Daily routine</div><i className="dv-device-button" aria-hidden="true" />
               </div>
               <div className="dv-showcase-badge badge-top"><span>Made with care</span><Icon name="check" size={17} /></div>
-              <div className="dv-showcase-badge badge-bottom"><strong>4</strong><span>live products</span><Icon name="star" size={16} /></div>
+              <div className="dv-showcase-badge badge-bottom"><strong>5</strong><span>live products</span><Icon name="star" size={16} /></div>
             </div>
           </div>
         </section>
