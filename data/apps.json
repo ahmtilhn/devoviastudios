@@ -35,16 +35,16 @@
       ],
       "feature_details": [
         {
-          "title": "Product catalog, scanning and stock control",
+          "title": "Product catalog and barcode capture",
           "description": "Create products, scan barcodes or QR codes, follow stock levels and keep movement history in the same inventory domain."
         },
         {
-          "title": "Business workspaces and verified access",
-          "description": "The Business 6.0 rollout adds workspace setup, verified Business access and safer routing into the correct Business state."
+          "title": "Real-time stock movement history",
+          "description": "Follow incoming stock, sales, adjustments and Business operations in chronological order so every quantity change keeps its operational context."
         },
         {
-          "title": "Role-focused warehouse operations",
-          "description": "P2 is extending Stock Manager with capability-aware work, warehouse assignments and task-oriented transfer and receiving flows."
+          "title": "Inventory dashboard and shortage alerts",
+          "description": "Review inventory value, recent movement, low-stock risk and Business attention items from one decision surface."
         },
         {
           "title": "Offline storage, reports and backup",
