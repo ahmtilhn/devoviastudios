@@ -9,9 +9,9 @@ if (!fs.existsSync(file)) {
   throw new Error(`Missing generated Sudoku Duel route: ${file}`);
 }
 
-const title = 'Sudoku Duel — In Development | Devovia Studio';
-const description = 'Sudoku Duel is a competitive Sudoku game in active development with career progression, ranked online duels, achievements, friends, virtual rewards and Android/iOS release foundations.';
-const image = `${siteUrl}/products/sudoku-duel/icon.svg`;
+const title = 'Sudoku Duel — Available on Google Play | Devovia Studio';
+const description = 'Sudoku Duel is available on Google Play for Android with 9×9 and 16×16 Sudoku, career progression, ranked online duels, achievements, friends and virtual rewards. iOS is coming soon.';
+const image = 'https://raw.githubusercontent.com/ahmtilhn/sudoku_game/main/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png';
 const canonical = `${siteUrl}${route}`;
 
 let html = fs.readFileSync(file, 'utf8');
@@ -35,7 +35,8 @@ const structuredData = {
   description,
   applicationCategory: 'Game',
   genre: ['Puzzle', 'Strategy'],
-  operatingSystem: ['Android', 'iOS'],
+  operatingSystem: ['Android'],
+  downloadUrl: 'https://play.google.com/store/apps/details?id=com.devoviastudio.sudoku',
   author: {
     '@type': 'Organization',
     name: 'Devovia Studio',
