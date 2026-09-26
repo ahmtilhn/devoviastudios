@@ -72,6 +72,13 @@ const deliverables = [
 
 const updates = [
   {
+    product: 'Stock Manager',
+    date: 'Sep 26, 2026',
+    title: 'Stock Manager Business 6.0 rollout is in progress',
+    text: 'The Business workspace foundation is being rolled out with verified access, safer setup and stronger release hardening, while role-focused warehouse and logistics work continues in P2.',
+    slug: 'stock-manager',
+  },
+  {
     product: 'Arrow Escape',
     date: 'May 27, 2026',
     title: 'Arrow Escape is live on Google Play',
@@ -188,7 +195,7 @@ const metaByRoute = {
   '/services': ['Services - Devovia Studio', 'Mobile app development, game development, product websites and Google Play launch support by Devovia Studio.'],
   '/services/google-play-test-support': ['Google Play Test Support - Devovia Studio', 'Get help with Google Play closed testing, store readiness, policy pages, test flows and release support before launch.'],
   '/updates': ['Updates - Devovia Studio', 'Follow Devovia Studio product launches, app updates, release notes and quality improvements.'],
-  '/support': ['Support & Privacy - Devovia Studio', 'Find Devovia app support, privacy policies, release notes and contact paths for Stock Manager, Arrow Escape, Daily Hadith and TinySteps.'],
+  '/support': ['Support & Privacy - Devovia Studio', 'Find Devovia app support, privacy policies, release notes and contact paths for Stock Manager, Sudoku Duel, Arrow Escape, Daily Hadith and TinySteps.'],
   '/blog': ['Blog - Devovia Studio', 'Practical notes on mobile apps, Google Play, product design and launch systems.'],
   '/contact': ['Start a Project - Devovia Studio', 'Tell Devovia Studio what you want to build and start a clean, launch-ready product system.'],
 };
@@ -862,7 +869,7 @@ function ProductDetailPage({ product, navigate }) {
             <h1>{product.name}</h1>
           </div>
           <p className="hero-lead">{product.tagline}</p>
-          <p>{isStock ? 'Stock Manager helps small and medium-sized businesses organize products, track inventory movements, monitor stock value and export data with confidence - all in a fast, offline-first workflow.' : product.long_desc.split('\n')[0]}</p>
+          <p>{isStock ? 'Stock Manager helps small and medium-sized businesses organize products, track inventory movements, monitor stock value and export data in an offline-first workflow. Business 6.0 is now in active rollout, extending the same product with a verified workspace foundation and capability-aware operations.' : product.long_desc.split('\n')[0]}</p>
           <div className="actions">
             <a className="button primary" href={product.play_url} target="_blank" rel="noreferrer"><PlayBadge />View on Google Play<Icon name="arrow" /></a>
             <Link href="/support" onNavigate={navigate} className="button secondary"><Icon name="shield" />Contact Support</Link>
@@ -874,6 +881,7 @@ function ProductDetailPage({ product, navigate }) {
             <span>{product.reviews_text}</span>
             <span>Updated {formatDate(product.updated_on)}</span>
             {isStock && <span>Offline-first</span>}
+            {isStock && product.update_status && <span>{product.update_status}</span>}
           </div>
         </div>
         <div className="detail-device-row">
@@ -896,6 +904,14 @@ function ProductDetailPage({ product, navigate }) {
           </div>
         </article>
         <ReviewPanel product={product} />
+        {isStock && product.roadmap?.length > 0 && <article className="glass-panel wide">
+          <p className="eyebrow">Business update roadmap</p>
+          <h2>What users will get next</h2>
+          <p>{product.update_summary}</p>
+          <div className="capability-grid">
+            {product.roadmap.map((item, index) => <span key={item}><Icon name={['grid', 'arrow', 'support', 'shield'][index % 4]} />{item}</span>)}
+          </div>
+        </article>}
       </section>
 
       <section className="workflow-section">
