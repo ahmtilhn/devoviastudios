@@ -1,0 +1,4 @@
+# Sudoku Duel app-ads.txt convenience mirror
+# The authoritative publisher declaration is https://devoviastudio.com/app-ads.txt
+google.com, pub-8422988604275177, DIRECT, f08c47fec0942fa0
+unity.com, 8547698, DIRECT, 96cabb5fbdde37a7

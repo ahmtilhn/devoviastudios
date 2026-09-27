@@ -1,0 +1,145 @@
+/* Privacy Motion V8 — calm, precise and accessible. */
+:root {
+  --privacy-v8-ease: cubic-bezier(.22, 1, .36, 1);
+  --privacy-v8-soft: cubic-bezier(.33, 1, .68, 1);
+}
+
+[data-reveal] {
+  opacity: 0;
+  translate: 0 18px;
+  scale: .995;
+  clip-path: inset(0 0 10% 0 round 12px);
+  transition:
+    opacity 760ms var(--privacy-v8-ease),
+    translate 980ms var(--privacy-v8-ease),
+    scale 980ms var(--privacy-v8-ease),
+    clip-path 980ms var(--privacy-v8-ease);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  clip-path: inset(0);
+}
+
+.privacy-topbar {
+  transition: background-color 420ms ease, border-color 420ms ease, box-shadow 620ms var(--privacy-v8-ease);
+}
+
+.privacy-button,
+.privacy-nav a {
+  transition:
+    translate 420ms var(--privacy-v8-ease),
+    color 320ms ease,
+    background-color 320ms ease,
+    border-color 320ms ease,
+    box-shadow 520ms var(--privacy-v8-ease);
+}
+
+.privacy-button:hover,
+.privacy-nav a:hover {
+  translate: 0 -1px;
+}
+
+.privacy-summary-card,
+.privacy-card,
+.privacy-app-card {
+  transition:
+    translate 560ms var(--privacy-v8-ease),
+    border-color 420ms ease,
+    box-shadow 620ms var(--privacy-v8-ease);
+}
+
+.privacy-summary-card:hover,
+.privacy-card:hover,
+.privacy-app-card:hover {
+  translate: 0 -3px;
+  border-color: color-mix(in srgb, var(--privacy-theme) 18%, var(--line));
+  box-shadow: 0 30px 76px rgb(15 23 42 / .095), inset 0 1px 0 #fff;
+}
+
+.privacy-status-visual::after {
+  animation: privacy-v8-ring 28s linear 1 both !important;
+}
+
+.privacy-motion-ready .privacy-float-chip.c1,
+.privacy-motion-ready .privacy-float-chip.c2,
+.privacy-motion-ready .privacy-float-chip.c3,
+.privacy-motion-ready .privacy-float-chip.c4 {
+  animation: privacy-v8-chip 1100ms var(--privacy-v8-ease) 1 both !important;
+}
+
+.privacy-motion-ready .privacy-float-chip.c2 { animation-delay: 90ms !important; }
+.privacy-motion-ready .privacy-float-chip.c3 { animation-delay: 180ms !important; }
+.privacy-motion-ready .privacy-float-chip.c4 { animation-delay: 270ms !important; }
+
+@keyframes privacy-v8-chip {
+  from { opacity: 0; translate: 0 14px; scale: .96; }
+  to { opacity: 1; translate: 0 0; scale: 1; }
+}
+
+@keyframes privacy-v8-ring {
+  from { rotate: 0deg; opacity: .18; }
+  to { rotate: 24deg; opacity: .42; }
+}
+
+::view-transition-old(privacy-content) {
+  animation: privacy-v8-page-out 420ms cubic-bezier(.4,0,1,1) both;
+}
+
+::view-transition-new(privacy-content) {
+  animation: privacy-v8-page-in 760ms var(--privacy-v8-ease) both;
+}
+
+@keyframes privacy-v8-page-out {
+  to { opacity: 0; transform: translate3d(-10px,0,0) scale(.998); }
+}
+
+@keyframes privacy-v8-page-in {
+  from { opacity: 0; transform: translate3d(14px,0,0) scale(.997); clip-path: inset(0 0 0 2%); }
+  to { opacity: 1; transform: translate3d(0,0,0) scale(1); clip-path: inset(0); }
+}
+
+@supports (animation-timeline: view()) {
+  [data-reveal],
+  [data-reveal].is-visible {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    clip-path: none;
+    transition: none;
+    animation: privacy-v8-reveal 1ms linear both;
+    animation-timeline: view(block);
+    animation-range: entry 8% cover 32%;
+  }
+}
+
+@keyframes privacy-v8-reveal {
+  from { opacity: .08; translate: 0 18px; scale: .995; clip-path: inset(0 0 10% 0 round 12px); }
+  to { opacity: 1; translate: 0 0; scale: 1; clip-path: inset(0); }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .privacy-summary-card:hover,
+  .privacy-card:hover,
+  .privacy-app-card:hover,
+  .privacy-button:hover,
+  .privacy-nav a:hover { translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal].is-visible,
+  .privacy-status-visual::after,
+  .privacy-float-chip,
+  ::view-transition-old(privacy-content),
+  ::view-transition-new(privacy-content) {
+    opacity: 1 !important;
+    translate: 0 0 !important;
+    scale: 1 !important;
+    clip-path: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

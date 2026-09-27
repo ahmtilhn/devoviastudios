@@ -1,0 +1,226 @@
+/* Privacy Motion V10 — calm, legible and purpose-built for long-form legal content. */
+:root {
+  --privacy-m10-enter: cubic-bezier(.16, 1, .3, 1);
+  --privacy-m10-standard: cubic-bezier(.2, .72, .2, 1);
+  --privacy-progress: 0;
+}
+
+html.privacy-motion-v10 { scroll-behavior: smooth; }
+
+.privacy-reading-progress {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--privacy-theme), color-mix(in srgb, var(--privacy-theme) 54%, #22d3ee));
+  box-shadow: 0 0 16px rgb(var(--privacy-theme-rgb) / .22);
+  transform: scaleX(var(--privacy-progress));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.privacy-motion-v10 .privacy-topbar {
+  transition: background-color 360ms ease, border-color 360ms ease, box-shadow 560ms var(--privacy-m10-standard);
+}
+
+.privacy-motion-v10.is-privacy-scrolled .privacy-topbar {
+  background: rgb(248 251 255 / .94);
+  box-shadow: 0 16px 48px rgb(15 23 42 / .07);
+}
+
+.privacy-motion-v10 [data-privacy-motion='pending'] {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+}
+
+.privacy-motion-v10 [data-privacy-motion='pending'][data-privacy-role='heading'] {
+  transform: translate3d(0, 22px, 0);
+  clip-path: inset(0 0 16% 0 round 10px);
+}
+
+.privacy-motion-v10 [data-privacy-motion='pending'][data-privacy-role='card'] {
+  transform: translate3d(0, 16px, 0) scale(.992);
+}
+
+.privacy-motion-v10 [data-privacy-motion='pending'][data-privacy-role='legal'] {
+  transform: translate3d(14px, 0, 0);
+  clip-path: inset(0 0 0 3% round 10px);
+}
+
+.privacy-motion-v10 [data-privacy-motion='visible'] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  clip-path: inset(0);
+  transition:
+    opacity 520ms var(--privacy-m10-standard),
+    transform 820ms var(--privacy-m10-enter),
+    clip-path 820ms var(--privacy-m10-enter);
+  transition-delay: calc(var(--privacy-motion-order, 0) * 38ms);
+}
+
+.privacy-motion-v10 .privacy-hero > div:first-child > * {
+  transition-delay: calc(var(--privacy-motion-order, 0) * 52ms);
+}
+
+.privacy-motion-v10 .privacy-status-visual {
+  transform-style: preserve-3d;
+  transition: transform 820ms var(--privacy-m10-enter), box-shadow 620ms var(--privacy-m10-standard);
+}
+
+.privacy-motion-v10 .privacy-status-visual:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: inset 0 1px 0 #fff, 0 32px 76px rgb(15 23 42 / .09);
+}
+
+.privacy-motion-v10 .privacy-status-visual::after {
+  animation: privacy-m10-ring-settle 1600ms var(--privacy-m10-enter) both;
+}
+
+.privacy-motion-v10 .privacy-app-orb {
+  transition: transform 760ms var(--privacy-m10-enter), box-shadow 620ms var(--privacy-m10-standard);
+}
+
+.privacy-motion-v10 .privacy-status-visual:hover .privacy-app-orb {
+  transform: translate3d(0, -3px, 18px) scale(1.012);
+  box-shadow: 0 34px 80px rgb(var(--privacy-theme-rgb) / .2);
+}
+
+.privacy-motion-v10 .privacy-float-chip {
+  animation: privacy-m10-chip-settle 900ms var(--privacy-m10-enter) both;
+  animation-delay: calc(var(--privacy-chip-order, 0) * 80ms);
+}
+
+.privacy-motion-v10 .privacy-summary-card,
+.privacy-motion-v10 .privacy-card,
+.privacy-motion-v10 .privacy-app-card {
+  --privacy-local-x: 50%;
+  --privacy-local-y: 50%;
+  transition: transform 560ms var(--privacy-m10-enter), border-color 340ms ease, box-shadow 560ms var(--privacy-m10-standard);
+}
+
+.privacy-motion-v10 .privacy-summary-card::before,
+.privacy-motion-v10 .privacy-card::before,
+.privacy-motion-v10 .privacy-app-card::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(360px circle at var(--privacy-local-x) var(--privacy-local-y), rgb(255 255 255 / .58), transparent 68%);
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms ease;
+}
+
+.privacy-motion-v10 .privacy-summary-card > *,
+.privacy-motion-v10 .privacy-card > *,
+.privacy-motion-v10 .privacy-app-card > * { position: relative; z-index: 1; }
+
+.privacy-motion-v10 .privacy-summary-card:hover,
+.privacy-motion-v10 .privacy-card:hover,
+.privacy-motion-v10 .privacy-app-card:hover {
+  transform: translate3d(0, -2px, 0);
+  border-color: color-mix(in srgb, var(--privacy-theme) 18%, var(--line));
+  box-shadow: 0 28px 68px rgb(15 23 42 / .085), inset 0 1px 0 #fff;
+}
+
+.privacy-motion-v10 .privacy-summary-card:hover::before,
+.privacy-motion-v10 .privacy-card:hover::before,
+.privacy-motion-v10 .privacy-app-card:hover::before { opacity: .7; }
+
+.privacy-motion-v10 .privacy-button,
+.privacy-motion-v10 .privacy-nav a {
+  --privacy-magnet-x: 0px;
+  --privacy-magnet-y: 0px;
+  transform: translate3d(var(--privacy-magnet-x), var(--privacy-magnet-y), 0);
+  transition: transform 420ms var(--privacy-m10-enter), color 260ms ease, background-color 260ms ease, border-color 260ms ease, box-shadow 420ms var(--privacy-m10-standard);
+}
+
+.privacy-motion-v10 .privacy-grid[style*='grid-template-columns:1fr'] > * {
+  position: relative;
+}
+
+.privacy-motion-v10 .privacy-grid[style*='grid-template-columns:1fr'] > *::before {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 0;
+  width: 2px;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, rgb(var(--privacy-theme-rgb) / .72), transparent);
+  content: '';
+  opacity: .25;
+  transform: scaleY(.18);
+  transform-origin: top;
+  transition: transform 740ms var(--privacy-m10-enter), opacity 320ms ease;
+}
+
+.privacy-motion-v10 .privacy-grid[style*='grid-template-columns:1fr'] > *:hover::before {
+  opacity: .82;
+  transform: scaleY(1);
+}
+
+::view-transition-group(privacy-header),
+::view-transition-group(privacy-brand),
+::view-transition-group(privacy-content) {
+  animation-duration: 760ms;
+  animation-timing-function: var(--privacy-m10-enter);
+}
+
+::view-transition-old(privacy-content) {
+  animation: privacy-m10-page-out 300ms cubic-bezier(.4, 0, 1, 1) both;
+}
+
+::view-transition-new(privacy-content) {
+  animation: privacy-m10-page-in 680ms var(--privacy-m10-enter) both;
+}
+
+@keyframes privacy-m10-page-out {
+  to { opacity: 0; transform: translate3d(-7px, 0, 0) scale(.999); }
+}
+
+@keyframes privacy-m10-page-in {
+  from { opacity: 0; transform: translate3d(10px, 0, 0) scale(.998); clip-path: inset(0 0 0 1.5%); }
+  to { opacity: 1; transform: none; clip-path: inset(0); }
+}
+
+@keyframes privacy-m10-ring-settle {
+  from { opacity: .08; transform: rotate(-12deg) scale(.94); }
+  to { opacity: .34; transform: rotate(0deg) scale(1); }
+}
+
+@keyframes privacy-m10-chip-settle {
+  from { opacity: 0; transform: translate3d(0, 12px, 0) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .privacy-motion-v10 .privacy-summary-card:hover,
+  .privacy-motion-v10 .privacy-card:hover,
+  .privacy-motion-v10 .privacy-app-card:hover,
+  .privacy-motion-v10 .privacy-status-visual:hover,
+  .privacy-motion-v10 .privacy-status-visual:hover .privacy-app-orb { transform: none; }
+  .privacy-motion-v10 .privacy-summary-card::before,
+  .privacy-motion-v10 .privacy-card::before,
+  .privacy-motion-v10 .privacy-app-card::before { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.privacy-motion-v10 { scroll-behavior: auto; }
+  .privacy-reading-progress { display: none; }
+  .privacy-motion-v10 *,
+  .privacy-motion-v10 *::before,
+  .privacy-motion-v10 *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .privacy-motion-v10 [data-privacy-motion] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  ::view-transition-old(privacy-content),
+  ::view-transition-new(privacy-content) { animation: none !important; }
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Sudoku Duel</title><desc id="desc">Sudoku Duel app icon with a glowing Sudoku grid and versus mark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="48" y1="28" x2="462" y2="486" gradientUnits="userSpaceOnUse"><stop stop-color="#111B3A"/><stop offset=".52" stop-color="#241B55"/><stop offset="1" stop-color="#0B1026"/></linearGradient>
+    <linearGradient id="accent" x1="132" y1="116" x2="390" y2="402" gradientUnits="userSpaceOnUse"><stop stop-color="#6EE7FF"/><stop offset=".5" stop-color="#8B7CFF"/><stop offset="1" stop-color="#D98BFF"/></linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="13" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <circle cx="382" cy="106" r="88" fill="#7C5CFF" opacity=".16"/><circle cx="113" cy="405" r="102" fill="#4CE1FF" opacity=".10"/>
+  <rect x="104" y="92" width="304" height="304" rx="50" fill="#0E1732" stroke="#A8B4FF" stroke-opacity=".38" stroke-width="5"/>
+  <g stroke="#AAB7E8" stroke-opacity=".55" stroke-width="4"><path d="M205.3 94v300M306.7 94v300M106 193.3h300M106 294.7h300"/></g>
+  <g stroke="url(#accent)" stroke-width="8" filter="url(#glow)"><path d="M104 193.3h304M104 294.7h304M205.3 92v304M306.7 92v304" opacity=".56"/></g>
+  <g fill="#F8FAFF" font-family="Sora,Arial,sans-serif" font-size="54" font-weight="700" text-anchor="middle"><text x="154" y="164">7</text><text x="256" y="164">2</text><text x="357" y="164">9</text><text x="154" y="267">4</text><text x="357" y="267">6</text><text x="154" y="368">8</text><text x="256" y="368">5</text><text x="357" y="368">1</text></g>
+  <path d="M235 218l25 26-18 11 35 39-7-34 20-9-24-28 15-10-36-30 8 31-18 4z" fill="url(#accent)" filter="url(#glow)"/>
+  <rect x="172" y="414" width="168" height="54" rx="27" fill="#111A37" stroke="#8FA2FF" stroke-opacity=".45"/>
+  <text x="256" y="450" fill="#E9ECFF" font-family="Sora,Arial,sans-serif" font-size="24" font-weight="800" text-anchor="middle" letter-spacing="3">DUEL</text>
+</svg>
