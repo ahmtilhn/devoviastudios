@@ -3,11 +3,11 @@ const sudokuProduct = {
   slug: 'sudoku-duel',
   category: 'Puzzle game',
   theme: '#7C6CFF',
-  icon: 'https://raw.githubusercontent.com/ahmtilhn/sudoku_game/main/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png',
+  icon: '/products/sudoku-duel/icon.png',
   screenshots: [
-    '/products/sudoku-duel/preview-1.svg',
-    '/products/sudoku-duel/preview-2.svg',
-    '/products/sudoku-duel/preview-3.svg',
+    'https://raw.githubusercontent.com/ahmtilhn/sudoku_game/main/assets/images/ui/home_career.png',
+    'https://raw.githubusercontent.com/ahmtilhn/sudoku_game/main/assets/images/ui/home_online_duel.png',
+    'https://raw.githubusercontent.com/ahmtilhn/sudoku_game/main/assets/images/ui/home_profile.png',
   ],
   privacy: '/privacy/sudoku-duel',
   terms: '/privacy/sudoku-duel-terms.html',
@@ -66,7 +66,7 @@ function injectStyles() {
     .sudoku-development-detail .detail-device-row{min-width:0;align-items:flex-start;justify-content:center}
     .sudoku-development-detail .detail-device-row .device{min-width:0}
     .sudoku-preview-gallery{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px!important;align-items:start}
-    .sudoku-preview-gallery img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;object-position:top;border-radius:18px}
+    .sudoku-preview-gallery img{display:block;width:100%;aspect-ratio:9/16;object-fit:contain;object-position:center;border-radius:18px;background:#081321}
     [data-sudoku-support-card]{min-width:0}
     [data-sudoku-support-card] a{overflow-wrap:anywhere}
 
@@ -113,7 +113,7 @@ function setSudokuMetadata() {
 }
 
 function deviceMarkup(src, className = '') {
-  return `<figure class="device ${className}" style="--theme:${sudokuProduct.theme}"><div class="device-speaker"></div><img src="${src}" alt="Sudoku Duel product visual" loading="lazy" decoding="async" /></figure>`;
+  return `<figure class="device ${className}" style="--theme:${sudokuProduct.theme}"><div class="device-speaker"></div><img src="${src}" alt="Sudoku Duel app artwork" loading="lazy" decoding="async" /></figure>`;
 }
 
 function renderSudokuDetail() {
@@ -143,7 +143,7 @@ function renderSudokuDetail() {
     </section>
 
     <section class="workflow-section">
-      <article class="glass-panel gallery-panel"><span class="sudoku-preview-label">Product visuals</span><h2>Career, competition and progression</h2><div class="gallery-row sudoku-preview-gallery">${sudokuProduct.screenshots.map((shot, index) => `<img src="${shot}" alt="Sudoku Duel ${['career','online duel','progression'][index]} preview" loading="lazy" decoding="async" />`).join('')}</div></article>
+      <article class="glass-panel gallery-panel"><span class="sudoku-preview-label">Real app artwork</span><h2>Career, competition and progression</h2><div class="gallery-row sudoku-preview-gallery">${sudokuProduct.screenshots.map((shot, index) => `<img src="${shot}" alt="Sudoku Duel ${['career','online duel','progression'][index]} preview" loading="lazy" decoding="async" />`).join('')}</div></article>
       <article class="glass-panel"><span class="sudoku-preview-label">Technical foundation</span><h2>Flutter / Firebase / Online services</h2><div class="chip-row large"><span>Flutter</span><span>Firebase Auth</span><span>Firebase App Check</span><span>Cloud Messaging</span><span>Crashlytics</span><span>Analytics controls</span><span>Google Mobile Ads</span><span>In-app purchases</span><span>Server-verified rewards</span></div></article>
     </section>
 
@@ -159,7 +159,7 @@ function renderSudokuDetail() {
 }
 
 function homeProductMarkup() {
-  const phones = sudokuProduct.screenshots.map((shot, index) => `<div class="dv-phone phone-${index + 1}"><div class="dv-phone-speaker"></div><img src="${shot}" alt="Sudoku Duel product visual ${index + 1}" loading="lazy" decoding="async" width="1080" height="1920" /><span class="dv-phone-glass" aria-hidden="true"></span><span class="dv-phone-button" aria-hidden="true"></span></div>`).join('');
+  const phones = sudokuProduct.screenshots.map((shot, index) => `<div class="dv-phone phone-${index + 1}"><div class="dv-phone-speaker"></div><img src="${shot}" alt="Sudoku Duel app artwork ${index + 1}" loading="lazy" decoding="async" width="1080" height="1920" /><span class="dv-phone-glass" aria-hidden="true"></span><span class="dv-phone-button" aria-hidden="true"></span></div>`).join('');
   return `<article class="dv-product" data-sudoku-development style="--theme:${sudokuProduct.theme}">
     <div class="dv-product-visual" style="--product-accent:${sudokuProduct.theme}"><div class="dv-product-stage" aria-hidden="true"></div><div class="dv-product-glow" aria-hidden="true"></div>${phones}<img class="dv-floating-icon" src="${sudokuProduct.icon}" alt="" loading="lazy" decoding="async" width="512" height="512" /></div>
     <div class="dv-product-copy"><div class="sudoku-status-badge">Available on Google Play</div><div class="dv-product-heading"><img src="${sudokuProduct.icon}" alt="Sudoku Duel icon" loading="lazy" decoding="async" width="512" height="512" /><div><span>Puzzle · Strategy</span><h3>Sudoku Duel</h3></div></div><p class="dv-product-tagline">Career progression meets ranked head-to-head Sudoku.</p><p>Play 9×9 and 16×16 Sudoku with career goals, online duels, ranks, achievements, friends, challenges and virtual rewards. Android is live now; iOS is coming soon.</p><div class="sudoku-home-status"><span>Career + Daily</span><span>Online duel</span><span>Android live</span><span>iOS coming soon</span></div><div class="dv-product-actions"><a class="dv-button dv-button-primary" href="/products/sudoku-duel">See Sudoku Duel →</a><a class="dv-button dv-button-ghost" href="${sudokuProduct.playUrl}" target="_blank" rel="noreferrer">Google Play</a></div></div>
